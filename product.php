@@ -82,16 +82,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- STYLESHEETS -->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor-js/bootstrap-select/dist/css/bootstrap-select.min.css">
 	<link rel="stylesheet" type="text/css" href="icons/fontawesome/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="icons/themify/themify-icons.css">
 	<link rel="stylesheet" type="text/css" href="icons/flaticon/flaticon_mooncart.css">
-	<link rel="stylesheet" type="text/css" href="vendor/swiper/swiper-bundle.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor/nouislider/nouislider.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-	<link rel="stylesheet" type="text/css" href="vendor/lightgallery/dist/css/lightgallery.css" >
-    <link rel="stylesheet" type="text/css" href="vendor/lightgallery/dist/css/lg-thumbnail.css">
-    <link rel="stylesheet" type="text/css" href="vendor/lightgallery/dist/css/lg-zoom.css">
+	<link rel="stylesheet" type="text/css" href="vendor-js/swiper/swiper-bundle.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor-js/nouislider/nouislider.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor-js/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lightgallery.css" >
+    <link rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-thumbnail.css">
+    <link rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-zoom.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js" type="text/javascript"></script>
 
@@ -279,24 +279,24 @@
 
 <!-- JAVASCRIPT FILES ========================================= -->
 <script src="js/jquery.min.js"></script><!-- JQUERY MIN JS -->
-<script src="vendor/wow/wow.min.js"></script><!-- WOW JS -->
-<script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP MIN JS -->
-<script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELECT MIN JS -->
-<script src="vendor/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN JS -->
+<script src="vendor-js/wow/wow.min.js"></script><!-- WOW JS -->
+<script src="vendor-js/bootstrap/dist/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP MIN JS -->
+<script src="vendor-js/bootstrap-select/dist/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELECT MIN JS -->
+<script src="vendor-js/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN JS -->
 
-<script src="vendor/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
-<script src="vendor/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
-<script src="vendor/swiper/swiper-bundle.min.js"></script><!-- SWIPER JS -->
-<script src="vendor/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED-->
-<script src="vendor/masonry/masonry-4.2.2.js"></script><!-- MASONRY -->
-<script src="vendor/masonry/isotope.pkgd.min.js"></script><!-- ISOTOPE -->
-<script src="vendor/countdown/jquery.countdown.js"></script><!-- COUNTDOWN FUCTIONS  -->
-<script src="vendor/wnumb/wNumb.js"></script><!-- WNUMB -->
-<script src="vendor/nouislider/nouislider.min.js"></script><!-- NOUSLIDER MIN JS-->
+<script src="vendor-js/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
+<script src="vendor-js/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
+<script src="vendor-js/swiper/swiper-bundle.min.js"></script><!-- SWIPER JS -->
+<script src="vendor-js/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED-->
+<script src="vendor-js/masonry/masonry-4.2.2.js"></script><!-- MASONRY -->
+<script src="vendor-js/masonry/isotope.pkgd.min.js"></script><!-- ISOTOPE -->
+<script src="vendor-js/countdown/jquery.countdown.js"></script><!-- COUNTDOWN FUCTIONS  -->
+<script src="vendor-js/wnumb/wNumb.js"></script><!-- WNUMB -->
+<script src="vendor-js/nouislider/nouislider.min.js"></script><!-- NOUSLIDER MIN JS-->
 <script src="js/dz.carousel.js"></script><!-- DZ CAROUSEL JS -->
-<script src="vendor/lightgallery/dist/lightgallery.min.js"></script>
-<script src="vendor/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js"></script>
-<script src="vendor/lightgallery/dist/plugins/zoom/lg-zoom.min.js"></script>
+<script src="vendor-js/lightgallery/dist/lightgallery.min.js"></script>
+<script src="vendor-js/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js"></script>
+<script src="vendor-js/lightgallery/dist/plugins/zoom/lg-zoom.min.js"></script>
 <script src="js/dz.ajax.js"></script><!-- AJAX -->
 <script src="js/custom.js"></script><!-- CUSTOM JS -->
 
