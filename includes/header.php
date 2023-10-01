@@ -1,7 +1,15 @@
 <?php
 
-	include_once('./includes/mysql_params.php');
-	$conn = mysqli_connect($host,$user,$pass,'Web_3dprints') or die ("Couldn't connect to server.");
+	include_once './vendor/autoload.php';
+	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '../.env');
+	$dotenv->load();
+	$env = $_ENV['env'];
+	$conn = mysqli_connect(
+		$_ENV['mysql_host'],
+		$_ENV['mysql_user'],
+		$_ENV['mysql_pass'],
+		'Web_3dprints'
+	) or die ("Couldn't connect to server.");
 	$pages_sql = "SELECT * FROM Web_3dprints.menu__pages;";
 
 ?>
@@ -55,7 +63,7 @@
 											<path fill-rule="evenodd" clip-rule="evenodd" d="M8.16479 17.8278C8.16479 17.1374 8.72444 16.5778 9.4148 16.5778H9.42313C10.1135 16.5778 10.6731 17.1374 10.6731 17.8278C10.6731 18.5182 10.1135 19.0778 9.42313 19.0778H9.4148C8.72444 19.0778 8.16479 18.5182 8.16479 17.8278Z" fill="var(--white)"/>
 											<path fill-rule="evenodd" clip-rule="evenodd" d="M14.8315 17.8278C14.8315 17.1374 15.3912 16.5778 16.0815 16.5778H16.0899C16.7802 16.5778 17.3399 17.1374 17.3399 17.8278C17.3399 18.5182 16.7802 19.0778 16.0899 19.0778H16.0815C15.3912 19.0778 14.8315 18.5182 14.8315 17.8278Z" fill="var(--white)"/>
 										</svg>
-										<span id="cart_badge" class="badge badge-circle">TODO</span>
+										<span id="cart_badge" class="badge badge-circle"></span>
 									</a>
 								</li>
 							</ul>
@@ -404,7 +412,7 @@
 						<ul class="nav nav-tabs center" id="myTab" role="tablist">
 							<li class="nav-item" role="presentation">
 								<button class="nav-link active" id="shopping-cart" data-bs-toggle="tab" data-bs-target="#shopping-cart-pane" type="button" role="tab" aria-controls="shopping-cart-pane" aria-selected="true">Shopping Cart
-									<span class="badge badge-light">TODO</span>
+									<span id="shopping_cart_badge" class="badge badge-light">0</span>
 								</button>
 							</li>
 							<!-- <li class="nav-item" role="presentation">
@@ -416,32 +424,12 @@
 						<div class="tab-content pt-4" id="dz-shopcart-sidebar">
 							<div class="tab-pane fade show active" id="shopping-cart-pane" role="tabpanel" aria-labelledby="shopping-cart" tabindex="0">
 								<div class="shop-sidebar-cart">
-									<ul class="sidebar-cart-list">
-										<!-- Start Cart Item -->
-										<li>
-											<div class="cart-widget">
-												<div class="dz-media me-3">
-													<img src="images/shop/shop-cart/pic1.jpg" alt="">
-												</div>
-												<div class="cart-content">
-													<h6 class="title"><a href="product-thumbnail.html">Wooden Water Bottles</a></h6>
-													<div class="d-flex align-items-center">
-														<div class="btn-quantity light quantity-sm me-3">
-															<input type="text" value="1" name="disable-demo_vertical2" readonly>
-														</div>
-														<h6 class="dz-price text-primary mb-0">$50.00</h6>
-													</div>
-												</div>
-												<a href="javascript:void(0);" class="dz-close">
-													<i class="ti-close"></i>
-												</a>
-											</div>
-										</li>
-										<!-- End Cart Item -->
+									<ul id="shoppingCartModal" class="sidebar-cart-list">
+										<!-- Cart Items Go Here -->
 									</ul>
 									<div class="cart-total">
 										<h5 class="mb-0">Subtotal:</h5>
-										<h5 class="mb-0">$300.00</h5>
+										<h5 id="subtotalLabel" class="mb-0">$0.00</h5>
 									</div>
 									<div class="mt-auto">
 										<!-- <div class="shipping-time">

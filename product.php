@@ -1,11 +1,25 @@
 <?php
-	include_once('./includes/mysql_params.php');
+	include 'vendor/autoload.php';
+	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+	$dotenv->load();
+	$env = $_ENV['env'];
+	$conn = mysqli_connect(
+		$_ENV['mysql_host'],
+		$_ENV['mysql_user'],
+		$_ENV['mysql_pass'],
+		'Web_3dprints'
+		) or die ("Couldn't connect to server.");
 	$sku = [];
-	$conn = mysqli_connect($host,$user,$pass,'Web_3dprints') or die ("Couldn't connect to server.");
 	if (isset($_GET['sku'])) {
 		$sku['sku'] = $_GET['sku'];
 	} else {
-		$sku['sku'] = 'ALO-POO-LSN-000';
+		if ($env == 'dev') {
+			$sku['sku'] = 'ALO-POO-LSN-000';
+		} else {
+			http_response_code(404);
+			include('./404.php');
+			die();
+		}
 	}
 	$sku_array = explode("-", $sku['sku']);
 	if (isset($sku_array[0]) && isset($sku_array[1]) && isset($sku_array[2])) {
@@ -62,6 +76,13 @@
 <html lang="en">
 <head>
 	<!-- Meta -->
+	<!-- <script type='text/javascript'>console.log=function(){};
+        console.error=function(){};
+        window.onerror=function(){
+            console=null;
+            return true;
+        }
+    </script> -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="keywords" content="<?php echo $product['tags']; ?>">
@@ -102,7 +123,7 @@
 
 </head>
 
-<body>
+<body onload="updateShoppingCartModal();">
 <div class="page-wraper">
 	<div id="loading-area" class="preloader-wrapper-1">
 		<div>
@@ -192,7 +213,7 @@
 										<div class="product-num">
 											<div class="btn-quantity light d-xl-block d-sm-none d-none">
 												<label class="form-label">Quantity</label>
-												<input id="qty" type="text" value="1" name="qty">
+												<input min="1" id="qty" type="number" value="1" name="qty" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
 											</div>
 											<!-- <div class="d-block">
 												<label class="form-label">Size</label>
@@ -216,7 +237,7 @@
 															while($filament = mysqli_fetch_array($filaments_query)) {
 																echo '
 																<div class="radio-value image-radio">
-																	<input class="form-check-input radio-value" type="radio" name="radioNoLabel" id="radioNoLabel1" value="#24262B" aria-label="...">
+																	<input onchange="changedColor()" class="form-check-input radio-value" type="radio" name="radioColor" id="radioColor" value="'.$filament['swatch_id'].'" aria-label="...">
 																	<br>'.$filament['type'].' '.$filament['color_name'].'
 																	<br>'.$filament['status'].'
 																	<img src="https://images.kumpeapps.com/filament_swatch?swatch='.$filament['swatch_id'].'_'.$base_sku.'">
@@ -231,7 +252,7 @@
 											<ul>
 												<li>
 													<strong>SKU:</strong>
-													<span><?php echo $product['sku']; ?></span>
+													<span id="skuLabel"><?php echo $product['sku']; ?></span>
 												</li>
 												<li>
 													<strong>Category:</strong>
@@ -260,7 +281,7 @@
 											</tr>
 										</tbody>
 									</table>
-									<a href="shop-cart.html" class="btn btn-secondary w-100">ADD TO CART</a>
+									<a id='addToCartButton' class="btn btn-secondary w-100">ADD TO CART</a>
 								</div>
 							</div>
 						</div>
@@ -299,6 +320,8 @@
 <script src="vendor-js/lightgallery/dist/plugins/zoom/lg-zoom.min.js"></script>
 <script src="js/dz.ajax.js"></script><!-- AJAX -->
 <script src="js/custom.js"></script><!-- CUSTOM JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- SweetAlerts -->
+<script src="cart.js"></script><!-- cart scripts -->
 
 <script>
 
@@ -313,8 +336,22 @@
 	const changeQty = document.querySelector("#qty");
 	const priceLabel = document.querySelector("#priceLabel");
 	const totalPriceLabel = document.querySelector("#totalPriceLabel");
+	const skuLabel = document.querySelector("#skuLabel")
+	const addToCartButton = document.querySelector("#addToCartButton")
+
+	changeQty.addEventListener("change", function() {
+		changedQty();
+	});
 
 	changeQty.addEventListener("keyup", function() {
+		changedQty();
+	});
+
+	addToCartButton.addEventListener("click", function() {
+		addToCart();
+	});
+
+	function changedQty() {
 		const qty = document.getElementById('qty').value;
 		let totalPrice = price
 		// Update total price on qty change (and give wholesale price if >=10)
@@ -330,8 +367,82 @@
 			const newTotalPriceLabel = '$' + totalPrice + ' <del>$' + originalTotal + '</del>';
 			totalPriceLabel.innerHTML = newTotalPriceLabel;
 		}
+		changedColor();
+	}
 
-	});
+	function getColorValue() {
+        const ele = document.getElementsByName('radioColor');
+        for (i = 0; i < ele.length; i++) {
+            if (ele[i].checked)
+                return ele[i].value;
+        }
+		return 000;
+    };
+	
+	function isColorSet() {
+        const ele = document.getElementsByName('radioColor');
+        for (i = 0; i < ele.length; i++) {
+            if (ele[i].checked)
+                return true;
+        }
+		return false;
+	};
+
+	function changedColor() {
+		const color_id = getColorValue();
+		const base_sku = '<?php echo $base_sku; ?>';
+		const qty = document.getElementById('qty').value;
+		let sku = base_sku + '-' + color_id;
+		if (qty > 9) {
+			sku = sku + '-W';
+		}
+		skuLabel.innerHTML = sku;
+	};
+
+	function addToCart() {
+		const sku = skuLabel.innerHTML;
+		const base_sku = '<?php echo $base_sku; ?>';
+		const color_id = getColorValue();
+		const image_url_base = 'https://images.kumpeapps.com/filament_swatch?sku=';
+		const image_url = image_url_base + base_sku + '-' + color_id;
+		const qty = document.getElementById('qty').value;
+		let itemPrice = price;
+
+		if (qty > 9) {
+			itemPrice = wholesale_price;
+		}
+		if (!isColorSet()) {
+			Swal.fire(
+				'Error!',
+				'Please select a color',
+				'error'
+			);
+		} else {
+			cartLS.add(
+				{
+					id: sku,
+					name: "<?php echo $product['title']; ?>",
+					price: itemPrice,
+					image_url: image_url,
+					original_price: price
+				}, parseInt(qty)
+			);
+		}
+		updateShoppingCartModal();
+	};
+
+	function updateCartBadge() {
+		const addToCartButton = document.querySelector("#cart_badge");
+		const shoppingCartBadge = document.querySelector("#shopping_cart_badge");
+		addToCartButton.innerHTML = cartLS.list().length;
+		shoppingCartBadge.innerHTML =cartLS.list().length;
+	};
+
+	function updateShoppingCartModal() {
+		updateCartBadge();
+		buildShoppingCartModalList();
+	};
+
 </script>
 
 </body>
