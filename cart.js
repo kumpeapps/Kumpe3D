@@ -73,3 +73,7 @@ function deleteItem(sku) {
     cartLS.remove(cartLS.get(sku));
     buildShoppingCartModalList();
 };
+
+function clearCart() {
+    cartLS.destroy();
+}
