@@ -76,13 +76,6 @@
 <html lang="en">
 <head>
 	<!-- Meta -->
-	<!-- <script type='text/javascript'>console.log=function(){};
-        console.error=function(){};
-        window.onerror=function(){
-            console=null;
-            return true;
-        }
-    </script> -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="keywords" content="<?php echo $product['tags']; ?>">
@@ -132,9 +125,9 @@
 			<span class="loader"></span>
 		</div>
 	</div>
-<?php
-	include('./includes/header.php');
-?>
+	<?php
+		include('./includes/header.php');
+	?>
 
 	<div class="page-content">
 
@@ -321,7 +314,7 @@
 <script src="js/dz.ajax.js"></script><!-- AJAX -->
 <script src="js/custom.js"></script><!-- CUSTOM JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- SweetAlerts -->
-<script src="cart.js"></script><!-- cart scripts -->
+<script src="product.js"></script><!-- product scripts -->
 
 <script>
 
@@ -333,69 +326,11 @@
 		echo 'const wholesale_price = '.$product['wholesale_price'].';';
 	?>
 
-	const changeQty = document.querySelector("#qty");
-	const priceLabel = document.querySelector("#priceLabel");
-	const totalPriceLabel = document.querySelector("#totalPriceLabel");
-	const skuLabel = document.querySelector("#skuLabel")
-	const addToCartButton = document.querySelector("#addToCartButton")
-
-	changeQty.addEventListener("change", function() {
-		changedQty();
-	});
-
-	changeQty.addEventListener("keyup", function() {
-		changedQty();
-	});
-
-	addToCartButton.addEventListener("click", function() {
-		addToCart();
-	});
-
-	function changedQty() {
-		const qty = document.getElementById('qty').value;
-		let totalPrice = price
-		// Update total price on qty change (and give wholesale price if >=10)
-		if (qty < 10) {
-			totalPrice = price * qty;
-			priceLabel.textContent = '$' + price;
-			const newTotalPriceLabel = '$' + totalPrice;
-			totalPriceLabel.textContent = newTotalPriceLabel;
-		} else {
-			totalPrice = wholesale_price * qty;
-			const originalTotal = price * qty;
-			priceLabel.innerHTML = '$' + wholesale_price + ' <del>$' + price + '</del>';
-			const newTotalPriceLabel = '$' + totalPrice + ' <del>$' + originalTotal + '</del>';
-			totalPriceLabel.innerHTML = newTotalPriceLabel;
-		}
-		changedColor();
-	}
-
-	function getColorValue() {
-        const ele = document.getElementsByName('radioColor');
-        for (i = 0; i < ele.length; i++) {
-            if (ele[i].checked)
-                return ele[i].value;
-        }
-		return 000;
-    };
-	
-	function isColorSet() {
-        const ele = document.getElementsByName('radioColor');
-        for (i = 0; i < ele.length; i++) {
-            if (ele[i].checked)
-                return true;
-        }
-		return false;
-	};
-
 	function changedColor() {
 		const color_id = getColorValue();
 		const base_sku = '<?php echo $base_sku; ?>';
 		const qty = document.getElementById('qty').value;
 		let sku = base_sku + '-' + color_id;
-		if (qty > 9) {
-			sku = sku + '-W';
-		}
 		skuLabel.innerHTML = sku;
 	};
 
@@ -424,23 +359,12 @@
 					name: "<?php echo $product['title']; ?>",
 					price: itemPrice,
 					image_url: image_url,
-					original_price: price
+					original_price: price,
+					wholesale_price: wholesale_price
 				}, parseInt(qty)
 			);
 		}
 		updateShoppingCartModal();
-	};
-
-	function updateCartBadge() {
-		const addToCartButton = document.querySelector("#cart_badge");
-		const shoppingCartBadge = document.querySelector("#shopping_cart_badge");
-		addToCartButton.innerHTML = cartLS.list().length;
-		shoppingCartBadge.innerHTML =cartLS.list().length;
-	};
-
-	function updateShoppingCartModal() {
-		updateCartBadge();
-		buildShoppingCartModalList();
 	};
 
 </script>

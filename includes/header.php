@@ -11,9 +11,13 @@
 		'Web_3dprints'
 	) or die ("Couldn't connect to server.");
 	$pages_sql = "SELECT * FROM Web_3dprints.menu__pages;";
+	if ($env == 'prod') {
+		echo "<script>const console = '';</script>";
+	}
 
 ?>
 	<!-- Header -->
+	<script src="header.js"></script><!-- product scripts -->
 	<header class="site-header mo-left header border-bottom">
 		<!-- Main Header -->
 		<div class="sticky-header main-bar-wraper navbar-expand-lg">
@@ -446,7 +450,8 @@
 											</div>
 										</div> -->
 										<a href="shop-checkout.php" class="btn btn-light btn-block m-b20">Checkout</a>
-										<a href="shop-cart.php" class="btn btn-secondary btn-block">View Cart</a>
+										<!-- TODO: Build and activate view cart page -->
+										<!-- <a href="shop-cart.php" class="btn btn-secondary btn-block">View Cart</a> -->
 									</div>
 								</div>
 							</div>
