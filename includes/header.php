@@ -77,7 +77,7 @@
 					<!-- Main Nav -->
 					<div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
 						<div class="logo-header">
-							<a href="index.html"><img src="images/logo.svg" alt="/"></a>
+							<a href="index.html"><img src="images/logo.png" alt="/"></a>
 						</div>
 						<ul class="nav navbar-nav dark-nav">
 							<!-- <li class="sub-menu sub-menu-down">

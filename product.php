@@ -265,7 +265,7 @@
 									<table>
 										<tbody>
 											<tr>
-												<div class="btn-quantity light d-xl-block d-sm-none d-none">
+												<div class="btn-quantity light d-xl-block">
 													<label class="form-label">Quantity</label>
 													<input min="1" id="qty" type="number" value="1" name="qty" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
 												</div>
