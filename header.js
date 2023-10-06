@@ -31,7 +31,7 @@ function buildShoppingCartModalList() {
         title121.setAttribute('class', 'title');
         title121.innerHTML = title;
         let div122 = document.createElement('div');
-        div122.setAttribute('class', 'd-flex align-itmes-center');
+        div122.setAttribute('class', 'd-flex align-items-center');
         let div1221 = document.createElement('div');
         div1221.setAttribute('class', 'btn-quantity light quantity-sm me-3');
         let input12211 = document.createElement('input');
