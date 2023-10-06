@@ -9,13 +9,15 @@
 		$_ENV['mysql_pass'],
 		'Web_3dprints'
 		) or die ("Couldn't connect to server.");
+	
+	$enabled_countries = "'US'";
 	$countries_sql = "
 		SELECT 
 			*
 		FROM
-			Public.Addresses__Countries
+			Public.vw_Addresses__Countries
 		WHERE 1 = 1 
-			AND country_abbrv = 'US';
+			AND country_abbrv IN($enabled_countries);
 	";
 	$states_sql = "
 		SELECT 
@@ -23,7 +25,7 @@
 		FROM
 			Public.vw_Addresses__States
 		WHERE 1 = 1 
-			AND country_abbrv = 'US';
+			AND country_abbrv IN($enabled_countries);
 	";
 	$cities_sql = "
 		SELECT 
@@ -31,7 +33,7 @@
 		FROM
 			Public.vw_Addresses__Cities
 		WHERE 1 = 1 
-			AND country_abbrv = 'US';
+			AND country_abbrv IN($enabled_countries);
 	";
 
 	if (mysqli_connect_errno()) {
@@ -89,6 +91,15 @@
 	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 	
 	<script>
+		const allTrue = arr => arr.every(e => e);
+		let isValid = {
+			firstNameInput: false,
+			lastNameInput: false,
+			streetAddressInput: false,
+			zipCodeInput: false,
+			phoneInput: false,
+			emailInput: false
+		};
 		const cities = <?php echo json_encode($cities); ?>;
 		const states = <?php echo json_encode($states); ?>;
 		const countries = <?php echo json_encode($countries); ?>;
@@ -163,19 +174,23 @@
 							<div class="col-md-6">
 								<div class="form-group m-b25">
 									<label class="label-title">First Name</label>
-									<input name="dzName" required="" class="form-control">
+									<input onchange="validateFName()" onkeyup="validateFName()" id="firstNameInput" name="dzName" required="" class="form-control is-invalid">
+									<div class="valid-feedback">Looks Good!</div>
+									<div class="invalid-feedback">Please Enter First Name</div>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group m-b25">
 									<label class="label-title">Last Name</label>
-									<input name="dzName" required="" class="form-control">
+									<input onchange="validateLName()" onkeyup="validateLName()" id="lastNameInput" name="dzName" required="" class="form-control is-invalid">
+									<div class="valid-feedback">Looks Good!</div>
+									<div class="invalid-feedback">Please Enter Last Name</div>
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group m-b25">
 									<label class="label-title">Company name (optional)</label>
-									<input name="dzName" required="" class="form-control">
+									<input id="companyName" name="dzName" class="form-control">
 								</div>
 							</div>
 							<div class="col-md-12">
@@ -191,46 +206,50 @@
 							<div class="col-md-12">
 								<div class="form-group m-b25">
 									<label class="label-title">Street address *</label>
-									<input name="dzName" required="" class="form-control m-b15" placeholder="House number and street name">
-									<input name="dzName" required="" class="form-control" placeholder="Apartment, suite, unit, etc. (optional)">
+									<input onchange="validateAddress()" onkeyup="validateAddress()" id="streetAddressInput" name="dzName" required="" class="form-control m-b15 is-invalid" placeholder="House number and street name">
+									<div class="valid-feedback">Looks Good!</div>
+									<div class="invalid-feedback">Please Enter Street Address</div>
+									<input id="streetAddress2Input" name="dzName" required="" class="form-control" placeholder="Apartment, suite, unit, etc. (optional)">
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="m-b25">
 									<label class="label-title">Town / City *</label>
-									<div class="form-select">
-										<select id="citySelect" class="default-select w-100">
-											<!-- <option selected>Rogers</option> -->
-										</select>	
-									</div>
+									<select id="citySelect" class="form-select w-100">
+										<!-- <option selected>Rogers</option> -->
+									</select>
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="m-b25">
 									<label class="label-title">State *</label>
-									<div class="form-select">
-										<select onchange="buildCities()" id="stateSelect" class="default-select w-100">
-											  <!-- <option selected>Arkansas</option> -->
-										</select>	
-									</div>
+									<select onchange="buildCities()" id="stateSelect" class="form-select w-100">
+										<!-- <option selected>Arkansas</option> -->
+									</select>	
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group m-b25">
 									<label class="label-title">ZIP Code *</label>
-									<input name="dzName" required="" class="form-control">
+									<input onchange="validateZipCode()" onkeyup="validateZipCode()" id="zipCodeInput" name="dzName" required="" class="form-control is-invalid">
+									<div class="valid-feedback">Looks Good!</div>
+									<div class="invalid-feedback">Please Enter Zip Code</div>
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group m-b25">
 									<label class="label-title">Phone *</label>
-									<input name="dzName" required="" class="form-control">
+									<input onchange="validatePhone()" onkeyup="validatePhone()" id="phoneInput" name="dzName" required="" class="form-control is-invalid">
+									<div class="valid-feedback">Looks Good!</div>
+									<div class="invalid-feedback">Please Enter Phone Number</div>
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group m-b25">
 									<label class="label-title">Email address *</label>
-									<input name="dzName" required="" class="form-control">
+									<input onchange="validateEmail()" onkeyup="validateEmail()" id="emailInput" name="dzName" required="" class="form-control is-invalid">
+									<div class="valid-feedback">Looks Good!</div>
+									<div class="invalid-feedback">Please Enter a Valid Email Address</div>
 								</div>
 							</div>
 							<div class="col-md-12 m-b25">
@@ -251,7 +270,7 @@
 							<div class="col-md-12 m-b25">
 								<div class="form-group">
 									<label class="label-title">Order notes (optional)</label>
-									<textarea id="comments" placeholder="Notes about your order, e.g. special notes for delivery." class="form-control" name="comment" cols="90" rows="5" required="required"></textarea>
+									<textarea id="orderNotes" placeholder="Notes about your order, e.g. special notes for delivery." class="form-control" name="comment" cols="90" rows="5" required="required"></textarea>
 								</div>
 							</div>
 						</form>
@@ -277,9 +296,9 @@
 										<td>
 											<!-- Start Shipping Option -->
 											<div class="custom-control custom-checkbox">
-											  <input class="form-check-input radio" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+											  <input id="shippingCost" value="10.00" class="form-check-input radio" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
 											  <label class="form-check-label" for="flexRadioDefault2">
-												Flat Rate:
+												Flat Rate: $10
 											  </label>
 											</div>
 											<!-- End Shipping Option -->
@@ -294,7 +313,8 @@
 							</table>
 							
 							<div class="accordion dz-accordion accordion-sm" id="accordionFaq1">
-								<div id="paypal-button-container" style="max-width:1000px;"></div>
+								<div id="paypal-button-container" style="max-width:1000px;" hidden=True></div>
+								<div id="paymentBlockedNotice">Please fill out order form for payment options to appear.</div>
 							</div>
 							<!-- <p class="text">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="javascript:void(0);">privacy policy.</a></p>
 							<div class="form-group">
@@ -340,8 +360,11 @@
 <script src="js/dz.ajax.js"></script><!-- AJAX -->
 <script src="js/custom.js"></script><!-- CUSTOM JS -->
 <!-- Checkout JS -->
-<script src="https://www.paypal.com/sdk/js?client-id=ASjJ8C-CZh2CjFxQ8Ee_Gf1v6N8UU_BohfkEMskC0vbmqIcHOTIl-6UDCxD1owUABlPdljXnUuK4z6F2&buyer-country=US&currency=USD&disable-funding=paylater&integration-date=2023-10-01"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- SweetAlerts -->
+<script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=ASSRnueVzZKV_Wz6BZ8U7r0ToHiJqX7a0wcDVn83DeCgPpgex1MhwNZdM-J8hzk3Ge62kMr5Yjo-VkTF&buyer-country=US&currency=USD&disable-funding=paylater&integration-date=2023-10-01"></script>
 <script src="env.js"></script>
+<script src="cookies.js"></script>
 <script src="checkout.js"></script>
 
 </body>

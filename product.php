@@ -204,10 +204,10 @@
 											</div>
 										</div>
 										<div class="product-num">
-											<div class="btn-quantity light d-xl-block d-sm-none d-none">
+											<!-- <div class="btn-quantity light d-xl-block d-sm-none d-none">
 												<label class="form-label">Quantity</label>
 												<input min="1" id="qty" type="number" value="1" name="qty" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
-											</div>
+											</div> -->
 											<!-- <div class="d-block">
 												<label class="form-label">Size</label>
 												<div class="btn-group product-size mb-0">
@@ -264,6 +264,12 @@
 								<div class="cart-detail sticky-top">
 									<table>
 										<tbody>
+											<tr>
+												<div class="btn-quantity light d-xl-block d-sm-none d-none">
+													<label class="form-label">Quantity</label>
+													<input min="1" id="qty" type="number" value="1" name="qty" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
+												</div>
+											</tr>
 											<tr class="total">
 												<td>
 													<h6 class="mb-0">Total</h6>
@@ -356,13 +362,15 @@
 			cartLS.add(
 				{
 					id: sku,
-					name: "<?php echo $product['title']; ?>",
+					sku: sku,
+					name: "<?php echo $product['title']; ?> (" + color_id + ")",
 					price: itemPrice,
 					image_url: image_url,
 					original_price: price,
 					wholesale_price: wholesale_price
 				}, parseInt(qty)
 			);
+			document.getElementById("cartButton").click()
 		}
 		updateShoppingCartModal();
 	};
