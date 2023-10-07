@@ -27,6 +27,7 @@
     }
 
     $result = mysqli_query($params_conn, $params_sql);
+    $site_params = [];
     $site_params_js = "let siteParams = {};";
 
     if ($result) {
@@ -36,6 +37,7 @@
         } elseif ($env == "prod" && $row['parameter'] == "store_paypal_clientid_prod") {
             $paypal_clientid = $row['value'];
         }
+        $site_params[$row['parameter']] = $row['value'];
         switch ($row['type']) {
             case "json":
                 $value = json_encode($row['value']);

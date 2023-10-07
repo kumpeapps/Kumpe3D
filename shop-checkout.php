@@ -64,7 +64,7 @@
 	<link rel="icon" type="image/x-icon" href="images/favicon.png">
 
 	<!-- PAGE TITLE HERE -->
-	<title>Kumpe3D Checkout</title>
+	<title><?php echo $site_params['store_name']; ?> Checkout</title>
 	
 	<!-- MOBILE SPECIFIC -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -360,7 +360,7 @@
 <!-- Checkout JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- SweetAlerts -->
 <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
-<?php echo "<script src='https://www.paypal.com/sdk/js?client-id=$paypal_clientid&buyer-country=US&currency=USD&components=buttons,applepay&disable-funding=paylater&enable-funding=venmo,paypal&integration-date=2023-10-01'></script>"; ?>
+<?php echo "<script src='https://www.paypal.com/sdk/js?client-id=$paypal_clientid&buyer-country=US&currency=USD&components=buttons,applepay&disable-funding=paylater&integration-date=2023-10-01' data-page-type=\"product-checkout\"></script>"; ?>
 <script src="env.js"></script>
 <script src="cookies.js"></script>
 <script src="checkout.js"></script>
