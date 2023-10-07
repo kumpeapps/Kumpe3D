@@ -1,3 +1,3 @@
 <?php
-    shell_exec("git pull -f");
+    shell_exec("sudo -u justinkumpe git pull -f");
 ?>
