@@ -4,8 +4,10 @@
 	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 	$dotenv->load();
 	$env = $_ENV['env'];
-	$submit_session_id = $_POST['session_id'];
-	$data = $_POST['checkout_data'];
+    $json = file_get_contents('php://input');
+    $data = json_decode($json);
+	$submit_session_id = $data['session_id'];
+	$data = $data['checkout_data'];
     $order_id = "unavailable";
     $sql = "
         INSERT INTO `Web_3dprints`.`orders`
