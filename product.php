@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	include 'vendor/autoload.php';
 	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 	$dotenv->load();
@@ -116,7 +117,7 @@
 
 </head>
 
-<body onload="updateShoppingCartModal();">
+<body onload="onload();">
 <div class="page-wraper">
 	<div id="loading-area" class="preloader-wrapper-1">
 		<div>
@@ -267,7 +268,7 @@
 											<tr>
 												<div class="btn-quantity light d-xl-block">
 													<label class="form-label">Quantity</label>
-													<input min="1" id="qty" type="number" value="1" name="qty" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
+													<input min="1" id="qty" type="number" value="1" name="qty">
 												</div>
 											</tr>
 											<tr class="total">
@@ -328,9 +329,15 @@
 		$(this).prev().attr('checked',true);
 	});
 	<?php
-		echo 'const price = '.$product['price'].';';
+		echo 'let price = '.$product['price'].';';
+		echo 'const originalPrice = '.$product['price'].';';
 		echo 'const wholesale_price = '.$product['wholesale_price'].';';
+		echo 'const discountPrice = '.$product['discount_price'].';';
+		echo 'const discountStart = new Date("'.$product['discount_start'].'");';
+		echo 'const discountEnd = new Date("'.$product['discount_end'].'");';
+		echo 'const wholesaleQty = '.$product['wholesale_qty'].';';
 	?>
+	const sessionID = <?php echo "'".session_id()."'"; ?>;
 
 	function changedColor() {
 		const color_id = getColorValue();
@@ -349,7 +356,7 @@
 		const qty = document.getElementById('qty').value;
 		let itemPrice = price;
 
-		if (qty > 9) {
+		if (qty >= wholesaleQty) {
 			itemPrice = wholesale_price;
 		}
 		if (!isColorSet()) {
@@ -366,11 +373,12 @@
 					name: "<?php echo $product['title']; ?> (" + color_id + ")",
 					price: itemPrice,
 					image_url: image_url,
-					original_price: price,
+					original_price: originalPrice,
 					wholesale_price: wholesale_price
 				}, parseInt(qty)
 			);
-			document.getElementById("cartButton").click()
+			cartLS.update("price", itemPrice);
+			document.getElementById("cartButton").click();
 		}
 		updateShoppingCartModal();
 	};

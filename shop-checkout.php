@@ -1,8 +1,10 @@
 <?php
+	session_start();
 	include 'vendor/autoload.php';
 	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 	$dotenv->load();
 	$env = $_ENV['env'];
+	$paypal_client_id = $_ENV['paypal_client_id'];
 	$conn = mysqli_connect(
 		$_ENV['mysql_host'],
 		$_ENV['mysql_user'],
@@ -362,10 +364,13 @@
 <!-- Checkout JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- SweetAlerts -->
 <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
-<script src="https://www.paypal.com/sdk/js?client-id=ASSRnueVzZKV_Wz6BZ8U7r0ToHiJqX7a0wcDVn83DeCgPpgex1MhwNZdM-J8hzk3Ge62kMr5Yjo-VkTF&buyer-country=US&currency=USD&disable-funding=paylater&integration-date=2023-10-01"></script>
+<?php echo "<script src='https://www.paypal.com/sdk/js?client-id=$paypal_client_id&buyer-country=US&currency=USD&disable-funding=paylater&integration-date=2023-10-01'></script>"; ?>
 <script src="env.js"></script>
 <script src="cookies.js"></script>
 <script src="checkout.js"></script>
+<script>
+	const sessionID = <?php echo "'".session_id()."'"; ?>;
+</script>
 
 </body>
 </html>
