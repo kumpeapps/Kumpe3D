@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	include 'vendor/autoload.php';
+	require_once 'site_params.php';
 	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 	$dotenv->load();
 	$env = $_ENV['env'];
