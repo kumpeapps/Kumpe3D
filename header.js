@@ -1,3 +1,4 @@
+// buildShoppingCartModalList()
 function buildShoppingCartModalList() {
     const ul = document.getElementById('shoppingCartModal');
     const subtotalLabel = document.getElementById('subtotalLabel');
