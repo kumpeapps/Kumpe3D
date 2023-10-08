@@ -34,7 +34,7 @@ paypal.Buttons({
                             currency_code: "USD"
                         },
                         shipping: {
-                            value: checkoutData.shipping_cost,
+                            value: checkoutData.shippingCost,
                             currency_code: "USD"
                         },
                         tax_total: {
@@ -47,7 +47,7 @@ paypal.Buttons({
                 shipping: {
                     type: "SHIPPING",
                     name: {
-                        full_name: checkoutData.firstname + " " + checkoutData.lastName
+                        full_name: checkoutData.firstName + " " + checkoutData.lastName
                     },
                     address: {
                         address_line_1: checkoutData.address,
@@ -61,9 +61,9 @@ paypal.Buttons({
             }],
             payment_source: {
                 paypal: {
-                    email_address: checkoutData.emailAdddress,
+                    email_address: checkoutData.emailAddress,
                     name: {
-                        given_name: checkoutData.firstname,
+                        given_name: checkoutData.firstName,
                         surname: checkoutData.lastName
                     },
                     address: {
@@ -91,21 +91,49 @@ paypal.Buttons({
             const payments = purchaseUnits[0]['payments'];
             const transactionID = payments['captures'][0]['id'];
             let checkoutData = getCheckoutData();
-            checkoutData.transactionID = transactionID;
-            console.log(checkoutData);
-
-			Swal.fire(
-				'Order Submitted',
-				'Your order has been submitted successfully!',
-				'success'
-			);
+            let orderID = "unavailable.";
+            checkoutData.ppTransactionID = transactionID;
+            checkoutData.paymentMethod = "PayPal";
+            checkoutData.statusID = 3;
+            orderSuccess();
+            fetch("submit_order.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    checkout_data: checkoutData,
+                    session_id: sessionID
+                })
+            });
         });
+    },
+
+    onError(err) {
+        console.log(err);
+        Swal.fire(
+            'PayPal Error',
+            'An error occurred while processing your PayPal payment. Please try again.',
+            'error'
+        );
     }
-  }).render('#paypal-button-container');
+}).render('#paypal-button-container');
+
+function orderSuccess() {
+    cartLS.destroy();
+    onload();
+    Swal.fire(
+        'Success',
+        'Your order has been submitted!',
+        'success'
+    );
+    onload();
+};
 
 function devData() {
     const firstName = document.getElementById("firstNameInput");
     const lastName = document.getElementById("lastNameInput");
+    const companyName = document.getElementById("companyName");
     const address = document.getElementById("streetAddressInput");
     const zip = document.getElementById("zipCodeInput");
     const email = document.getElementById("emailInput");
@@ -115,7 +143,8 @@ function devData() {
     address.value = "123 Easy St";
     zip.value = "72103";
     phone.value = "5555555555";
-    email.value = "john@dev.kumpeapps.com";
+    email.value = "jakumpe@dev.kumpes.com";
+    companyName.value = "KumpeApps Dev"
     validateAddress();
     validateEmail();
     validateFName();
@@ -125,6 +154,7 @@ function devData() {
 };
 
 function getCheckoutData() {
+    const customerID = 0;
     const firstName = document.getElementById("firstNameInput");
     const lastName = document.getElementById("lastNameInput");
     const address = document.getElementById("streetAddressInput");
@@ -142,7 +172,8 @@ function getCheckoutData() {
     const taxes = 0;
     const total = subtotal + taxes + parseFloat(shipping.value);
     const checkout = {
-        firstname: firstName.value,
+        customerID: customerID,
+        firstName: firstName.value,
         lastName: lastName.value,
         companyName: companyName.value,
         address: address.value,
@@ -151,13 +182,14 @@ function getCheckoutData() {
         state: state.value,
         zip: zip.value,
         country: country.value,
-        shipping_cost: parseFloat(shipping.value),
+        shippingCost: parseFloat(shipping.value),
         cart: cart,
         subtotal: subtotal,
         taxes: taxes,
+        discount: 0.00,
         total: total,
         orderNotes: orderNotes.value,
-        emailAdddress: emailAddress.value
+        emailAddress: emailAddress.value
     };
     return checkout;
 }

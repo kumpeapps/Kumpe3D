@@ -1,3 +1,4 @@
+// buildShoppingCartModalList()
 function buildShoppingCartModalList() {
     const ul = document.getElementById('shoppingCartModal');
     const subtotalLabel = document.getElementById('subtotalLabel');
@@ -29,9 +30,9 @@ function buildShoppingCartModalList() {
         div12.setAttribute('class', 'cart-content');
         let title121 = document.createElement('h6');
         title121.setAttribute('class', 'title');
-        title121.innerHTML = title;
+        title121.innerHTML = title + "<br>" + sku;
         let div122 = document.createElement('div');
-        div122.setAttribute('class', 'd-flex align-itmes-center');
+        div122.setAttribute('class', 'd-flex align-items-center');
         let div1221 = document.createElement('div');
         div1221.setAttribute('class', 'btn-quantity light quantity-sm me-3');
         let input12211 = document.createElement('input');

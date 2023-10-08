@@ -1,0 +1,1 @@
+<?php header('Location: product?sku=ALO-POO-LSN'); ?>

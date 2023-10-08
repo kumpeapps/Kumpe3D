@@ -1,8 +1,6 @@
 <?php
-	include 'vendor/autoload.php';
-	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-	$dotenv->load();
-	$env = $_ENV['env'];
+	session_start();
+	require_once 'includes/site_params.php';
 	$conn = mysqli_connect(
 		$_ENV['mysql_host'],
 		$_ENV['mysql_user'],
@@ -66,7 +64,7 @@
 	<link rel="icon" type="image/x-icon" href="images/favicon.png">
 
 	<!-- PAGE TITLE HERE -->
-	<title>Kumpe3D Checkout</title>
+	<title><?php echo $site_params['store_name']; ?> Checkout</title>
 	
 	<!-- MOBILE SPECIFIC -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -127,7 +125,7 @@
 					<h1>Checkout</h1>
 					<nav aria-label="breadcrumb" class="breadcrumb-row">
 						<ul class="breadcrumb">
-							<li class="breadcrumb-item"><a href="index.html"> Home</a></li>
+							<li class="breadcrumb-item"><a href="index.php"> Home</a></li>
 							<li class="breadcrumb-item">Checkout</li>
 						</ul>
 					</nav>
@@ -362,10 +360,13 @@
 <!-- Checkout JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- SweetAlerts -->
 <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
-<script src="https://www.paypal.com/sdk/js?client-id=ASSRnueVzZKV_Wz6BZ8U7r0ToHiJqX7a0wcDVn83DeCgPpgex1MhwNZdM-J8hzk3Ge62kMr5Yjo-VkTF&buyer-country=US&currency=USD&disable-funding=paylater&integration-date=2023-10-01"></script>
+<?php echo "<script src='https://www.paypal.com/sdk/js?client-id=$paypal_clientid&buyer-country=US&currency=USD&components=buttons,applepay&disable-funding=paylater&integration-date=2023-10-01' data-page-type=\"checkout\"></script>"; ?>
 <script src="env.js"></script>
 <script src="cookies.js"></script>
 <script src="checkout.js"></script>
+<script>
+	const sessionID = <?php echo "'".session_id()."'"; ?>;
+</script>
 
 </body>
 </html>
