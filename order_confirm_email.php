@@ -596,7 +596,7 @@ style=\"height:39px; v-text-anchor:middle; width:122px\" arcsize=\"13%\" strokec
                                                                 href=\"\"
                                                                 style=\"-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#6A994E;font-size:16px\"><img
                                                                     class=\"adapt-img p_image\"
-                                                                    src=\"https://$baseurl/order_status_image?order_id=$email_orderid\"
+                                                                    src=\"https://$base_url/order_status_image?order_id=$email_orderid\"
                                                                     alt
                                                                     style=\"display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;border-radius:10px\"
                                                                     width=\"75%\"></a></td>
