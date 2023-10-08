@@ -50,8 +50,8 @@ if ($submit_session_id == session_id()) {
     $email_products = "";
     $email_name = $data['firstName'];
     $email_shippingname = $data['firstName'] . " " . $email_shippingname = $data['lastName'];
-    if ($data['company'] != '') {
-        $email_shippingname = $email_shippingname . "<br>" . $email_shippingname = $data['company'];
+    if ($data['companyName'] != '') {
+        $email_shippingname = $email_shippingname . "<br>" . $email_shippingname = $data['companyName'];
     }
     $email_address = $data['address'];
     $email_address2 = $data['address2'];
