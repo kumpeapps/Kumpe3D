@@ -148,6 +148,7 @@ try {
     //Server settings
     $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
     $mail->isSMTP();                                            //Send using SMTP
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Set STARTTLS
     $mail->Host       = 'mail.kumpeapps.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = $_ENV['email_user'];                     //SMTP username
