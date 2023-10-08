@@ -120,12 +120,13 @@ paypal.Buttons({
 
 function orderSuccess(data) {
     cartLS.destroy();
-    refresh();
+    onload();
     Swal.fire(
         'Success',
         'Your order has been submitted!',
         'success'
     );
+    onload();
 };
 
 function devData() {
