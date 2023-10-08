@@ -100,6 +100,9 @@ if ($submit_session_id == session_id()) {
     $email_date = '';
     $cart = $data['cart'];
 
+    $response = [];
+    $response['id'] = $order_id;
+    print(json_encode($response));
     $items_sql = "
             INSERT INTO `Web_3dprints`.`orders__items`
                 (`idorders`,
@@ -236,8 +239,4 @@ if ($submit_session_id == session_id()) {
     }
 }
 mysqli_close($db);
-$response = [];
-$response['id'] = $order_id;
-error_log(json_encode($response));
-print(json_encode($response));
 ?>

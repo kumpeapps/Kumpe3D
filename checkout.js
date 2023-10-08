@@ -141,7 +141,7 @@ function devData() {
     address.value = "123 Easy St";
     zip.value = "72103";
     phone.value = "5555555555";
-    email.value = "john@dev.kumpeapps.com";
+    email.value = "jakumpe@dev.kumpes.com";
     companyName.value = "KumpeApps Dev"
     validateAddress();
     validateEmail();
