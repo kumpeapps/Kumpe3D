@@ -1,1 +1,1 @@
-<?php header('Location: product?sku=ALO-POO-LNN'); ?>
+<?php header('Location: product?sku=ALO-POO-LSN'); ?>
