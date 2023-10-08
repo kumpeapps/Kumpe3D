@@ -1,1 +1,1 @@
-<?php header('Location: https://3d.kumpeapps.com/product?sku=ALO-POO-LNN'); ?>
+<?php header('Location: product?sku=ALO-POO-LNN'); ?>
