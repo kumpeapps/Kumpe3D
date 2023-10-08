@@ -107,7 +107,7 @@ paypal.Buttons({
             })
             .then((response) => response.json())
             .then((json) =>
-                console.log(json)
+                orderSuccess(json)
             );
         });
     },
