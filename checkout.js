@@ -95,7 +95,7 @@ paypal.Buttons({
             checkoutData.ppTransactionID = transactionID;
             checkoutData.paymentMethod = "PayPal";
             checkoutData.statusID = 3;
-            orderSuccess(response);
+            orderSuccess();
             fetch("submit_order.php", {
                 method: "POST",
                 headers: {
@@ -119,7 +119,7 @@ paypal.Buttons({
     }
 }).render('#paypal-button-container');
 
-function orderSuccess(data) {
+function orderSuccess() {
     cartLS.destroy();
     onload();
     Swal.fire(
