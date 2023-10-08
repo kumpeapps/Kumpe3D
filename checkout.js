@@ -105,10 +105,7 @@ paypal.Buttons({
                     session_id: sessionID
                 })
             })
-            .then((response) => response.json())
-            .then((json) =>
-                orderSuccess(json)
-            );
+            .then((response) => console.log(response));
         });
     },
 

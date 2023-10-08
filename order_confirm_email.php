@@ -863,7 +863,7 @@ style=\"height:39px; v-text-anchor:middle; width:163px\" arcsize=\"13%\" strokec
                                                                         Shipping Address</h3>
                                                                     <p
                                                                         style=\"Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:tahoma, verdana, segoe, sans-serif;line-height:24px;color:#4D4D4D;font-size:16px\">
-                                                                        $email_name<br>
+                                                                        $email_shippingname<br>
                                                                         $email_address<br>
                                                                         $email_city, $email_state  $email_zip<br>
                                                                         $email_country</p>
