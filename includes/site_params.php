@@ -68,4 +68,9 @@
       echo mysqli_error($params_conn);
     }
     mysqli_close($params_conn);
+    if ($site_params['store_maitenance_mode']) {
+        http_response_code(503);
+        include('./under-construction.php');
+        die();
+    }
 ?>
