@@ -12,6 +12,8 @@ composer.phar
 ### dotenv ###
 .env
 
+pcloud/
+pcloud
 ### macOS ###
 # General
 .DS_Store
