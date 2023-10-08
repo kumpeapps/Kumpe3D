@@ -114,6 +114,8 @@ paypal.Buttons({
   }).render('#paypal-button-container');
 
 function orderSuccess(data) {
+    cartLS.destroy();
+    refresh();
     Swal.fire(
         'Order Submitted',
         'Your order ID is ' + data['id'],
