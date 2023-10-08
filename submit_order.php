@@ -61,6 +61,7 @@ if ($submit_session_id == session_id()) {
     $email_discount = $data['discount'];
     $email_total = $data['total'];
     $email_paymentmethod = $data['paymentMethod'];
+    $email_shippingmethod = "Flat Rate";
     $email_notes = $data['orderNotes'];
     $stmt = $db->prepare($sql);
     $stmt->bind_param(
