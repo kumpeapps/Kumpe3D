@@ -44,7 +44,7 @@ $html_email_items = "
                                     style=\"Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:tahoma, verdana, segoe, sans-serif;line-height:24px;color:#4D4D4D;font-size:16px\">
                                     QTY:&nbsp;$product_quantity</p>
                                 <h3 style=\"Margin:0;line-height:36px;mso-line-height-rule:exactly;font-family:Raleway, Arial, sans-serif;font-size:24px;font-style:normal;font-weight:normal;color:#386641\"
-                                    class=\"p_price\">$product_price</h3>
+                                    class=\"p_price\">$product_price each</h3>
                             </td>
                         </tr>
                     </table>

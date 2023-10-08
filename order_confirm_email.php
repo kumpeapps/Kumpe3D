@@ -601,7 +601,7 @@ style=\"height:39px; v-text-anchor:middle; width:163px\" arcsize=\"13%\" strokec
 </v:roundrect></a>
 <![endif]--><!--[if !mso]><!-- --><span class=\"msohide es-button-border\"
                                                                         style=\"border-style:solid;border-color:#ffffff;background:#ffffff;border-width:1px;display:inline-block;border-radius:5px;width:auto;mso-hide:all\"><a
-                                                                            href=\"https://3d.kumpeapps.com/shop-checkout.php\"
+                                                                            href=\"https://3d.kumpeapps.com/shop-checkout.php\" hidden
                                                                             class=\"es-button\" target=\"_blank\"
                                                                             style=\"mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#386641;font-size:16px;display:inline-block;background:#ffffff;border-radius:5px;font-family:Raleway, Arial, sans-serif;font-weight:normal;font-style:normal;line-height:19px;width:auto;text-align:center;padding:10px 30px 10px 30px;mso-padding-alt:0;mso-border-alt:10px solid #ffffff\">View
                                                                             Order</a></span><!--<![endif]--></td>
@@ -865,8 +865,7 @@ style=\"height:39px; v-text-anchor:middle; width:163px\" arcsize=\"13%\" strokec
                                                                         style=\"Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:tahoma, verdana, segoe, sans-serif;line-height:24px;color:#4D4D4D;font-size:16px\">
                                                                         $email_name<br>
                                                                         $email_address<br>
-                                                                        $email_address2<br>
-                                                                        $email_city, $email_state $email_zip<br>
+                                                                        $email_city, $email_state  $email_zip<br>
                                                                         $email_country</p>
                                                                 </td>
                                                             </tr>
@@ -1134,7 +1133,7 @@ style=\"height:39px; v-text-anchor:middle; width:163px\" arcsize=\"13%\" strokec
                                                             <tr>
                                                                 <td align=\"center\" class=\"es-m-txt-c\"
                                                                     style=\"padding:0;Margin:0;padding-bottom:20px;font-size:0px\">
-                                                                    <a target=\"_blank\" href=\"https://viewstripo.email\"
+                                                                    <a target=\"_blank\" href=\"\"
                                                                         style=\"-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#6A994E;font-size:12px\"><img
                                                                             src=\"https://api.kumpeapps.com/images/kumpeapps/base_logo_white_background.png\"
                                                                             alt=\"Logo\"

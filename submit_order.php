@@ -48,18 +48,25 @@ $db = new mysqli(
 );
 if ($submit_session_id == session_id()) {
     $email_products = "";
-    $email_name = $data['firstName']."<br>".$data['companyName'];
+    $email_name = $data['firstName'];
+    $email_shippingname = $data['firstName'] . " " . $email_shippingname = $data['lastName'];
+    if ($data['company'] != '') {
+        $email_shippingname = $email_shippingname . "<br>" . $email_shippingname = $data['company'];
+    }
     $email_address = $data['address'];
     $email_address2 = $data['address2'];
+    if ($email_address != '') {
+        $email_address = $email_address . "<br>" . $email_address2;
+    }
     $email_city = $data['city'];
     $email_state = $data['state'];
     $email_zip = $data['zip'];
     $email_country = $data['country'];
-    $email_subtotal = $data['subtotal'];
-    $email_taxes = $data['taxes'];
-    $email_shipping = $data['shippingCost'];
-    $email_discount = $data['discount'];
-    $email_total = $data['total'];
+    $email_subtotal = "$" . $data['subtotal'];
+    $email_taxes = "$" . $data['taxes'];
+    $email_shipping = "$" . $data['shippingCost'];
+    $email_discount = "$" . $data['discount'];
+    $email_total = "$" . $data['total'];
     $email_paymentmethod = $data['paymentMethod'];
     $email_shippingmethod = "Flat Rate";
     $email_notes = $data['orderNotes'];
@@ -119,10 +126,64 @@ if ($submit_session_id == session_id()) {
         $product_name = $item['name'];
         $product_sku = $item['sku'];
         $product_quantity = $item['quantity'];
-        $product_price = $item['price'];
+        $product_price = "$" . $item['price'];
         $stmt->execute();
-        require_once 'items_html.php';
-        $email_products = $email_products.$html_email_items;
+        $html_email_items = "
+            <tr>
+                <td align=\"left\" style=\"padding:0;Margin:0;padding-left:20px;padding-right:20px;padding-bottom:40px\">
+                    <!--[if mso]><table style=\"width:560px\" cellpadding=\"0\" cellspacing=\"0\"><tr><td style=\"width:195px\" valign=\"top\"><![endif]-->
+                    <table cellpadding=\"0\" cellspacing=\"0\" class=\"es-left\" align=\"left\"
+                        style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left\">
+                        <tr>
+                            <td align=\"left\" class=\"es-m-p20b\" style=\"padding:0;Margin:0;width:195px\">
+                                <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" role=\"presentation\"
+                                    style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px\">
+                                    <tr>
+                                        <td align=\"center\" style=\"padding:0;Margin:0;font-size:0px\"><a target=\"_blank\"
+                                                href=\"\"
+                                                style=\"-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#6A994E;font-size:16px\"><img
+                                                    class=\"adapt-img p_image\"
+                                                    src=\"$product_img\"
+                                                    alt
+                                                    style=\"display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;border-radius:10px\"
+                                                    width=\"195\"></a></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <!--[if mso]></td><td style=\"width:20px\"></td><td style=\"width:345px\" valign=\"top\"><![endif]-->
+                    <table cellpadding=\"0\" cellspacing=\"0\" class=\"es-right\" align=\"right\"
+                        style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right\">
+                        <tr>
+                            <td align=\"left\" style=\"padding:0;Margin:0;width:345px\">
+                                <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"
+                                    style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;border-left:1px solid #386641;border-right:1px solid #386641;border-top:1px solid #386641;border-bottom:1px solid #386641;border-radius:10px\"
+                                    role=\"presentation\">
+                                    <tr>
+                                        <td align=\"left\" class=\"es-m-txt-c\"
+                                            style=\"Margin:0;padding-left:20px;padding-right:20px;padding-top:25px;padding-bottom:25px\">
+                                            <h3 class=\"p_name\"
+                                                style=\"Margin:0;line-height:36px;mso-line-height-rule:exactly;font-family:Raleway, Arial, sans-serif;font-size:24px;font-style:normal;font-weight:normal;color:#386641\">
+                                                $product_name</h3>
+                                            <p class=\"p_description\"
+                                                style=\"Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:tahoma, verdana, segoe, sans-serif;line-height:24px;color:#4D4D4D;font-size:16px\">
+                                                SKU: $product_sku</p>
+                                            <p
+                                                style=\"Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:tahoma, verdana, segoe, sans-serif;line-height:24px;color:#4D4D4D;font-size:16px\">
+                                                QTY:&nbsp;$product_quantity</p>
+                                            <h3 style=\"Margin:0;line-height:36px;mso-line-height-rule:exactly;font-family:Raleway, Arial, sans-serif;font-size:24px;font-style:normal;font-weight:normal;color:#386641\"
+                                                class=\"p_price\">$product_price each</h3>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table><!--[if mso]></td></tr></table><![endif]-->
+                </td>
+            </tr>
+        ";
+        $email_products = $email_products . $html_email_items;
     }
     $history_sql = "
         INSERT INTO `Web_3dprints`.`orders__history`
@@ -142,37 +203,37 @@ if ($submit_session_id == session_id()) {
     $stmt->execute();
     require_once 'order_confirm_email.php';
     //Create an instance; passing `true` enables exceptions
-$mail = new PHPMailer(true);
+    $mail = new PHPMailer(true);
 
-try {
-    //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-    $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'mail.kumpeapps.com';                     //Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = $_ENV['email_user'];                     //SMTP username
-    $mail->Password   = $_ENV['email_pass'];                               //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
-    $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    try {
+        //Server settings
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER; //Enable verbose debug output
+        $mail->isSMTP(); //Send using SMTP
+        $mail->Host = 'mail.kumpeapps.com'; //Set the SMTP server to send through
+        $mail->SMTPAuth = true; //Enable SMTP authentication
+        $mail->Username = $_ENV['email_user']; //SMTP username
+        $mail->Password = $_ENV['email_pass']; //SMTP password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; //Enable implicit TLS encryption
+        $mail->Port = 587; //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-    //Recipients
-    $mail->setFrom($_ENV['email_user'], 'Kumpe3D');
-    $mail->addAddress($data['emailAddress'], $email_name);     //Add a recipient
-    $mail->addReplyTo('sales@kumpeapps.com', 'Kumpe3D');
-    $mail->addBCC('sales@kumpeapps.com');
+        //Recipients
+        $mail->setFrom($_ENV['email_user'], 'Kumpe3D');
+        $mail->addAddress($data['emailAddress'], $email_name); //Add a recipient
+        $mail->addReplyTo('sales@kumpeapps.com', 'Kumpe3D');
+        $mail->addBCC('sales@kumpeapps.com');
 
-    //Attachments
-    // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+        //Attachments
+        // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
 
-    //Content
-    $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Kumpe3D Order Number '.$email_orderid;
-    $mail->Body    = $html_email;
+        //Content
+        $mail->isHTML(true); //Set email format to HTML
+        $mail->Subject = 'Kumpe3D Order Number ' . $email_orderid;
+        $mail->Body = $html_email;
 
-    $mail->send();
-} catch (Exception $e) {
-    error_log("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
-}
+        $mail->send();
+    } catch (Exception $e) {
+        error_log("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
+    }
 }
 mysqli_close($db);
 $response = [];
