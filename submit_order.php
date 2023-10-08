@@ -5,6 +5,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 include 'vendor/autoload.php';
+$base_url = $_SERVER['SERVER_NAME'];
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 $env = $_ENV['env'];
@@ -227,10 +228,13 @@ if ($submit_session_id == session_id()) {
 
         //Attachments
         // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-
+        $subject = 'Kumpe3D Order Number ' . $email_orderid;
+        if ($env == 'dev') {
+            $subject = '[PreProd] '.$subject;
+        }
         //Content
         $mail->isHTML(true); //Set email format to HTML
-        $mail->Subject = 'Kumpe3D Order Number ' . $email_orderid;
+        $mail->Subject = $subject;
         $mail->Body = $html_email;
 
         $mail->send();
