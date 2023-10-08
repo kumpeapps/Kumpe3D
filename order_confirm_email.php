@@ -804,7 +804,8 @@ style=\"height:39px; v-text-anchor:middle; width:122px\" arcsize=\"13%\" strokec
                                                                                 style=\"padding:0;Margin:0\">
                                                                                 <h3
                                                                                     style=\"Margin:0;line-height:29px;mso-line-height-rule:exactly;font-family:Raleway, Arial, sans-serif;font-size:24px;font-style:normal;font-weight:normal;color:#386641\">
-                                                                                    $email_total</h3>
+                                                                                    $email_total</h3><br>
+                                                                                    <b>Order Notes:</b> $email_notes
                                                                             </td>
                                                                         </tr>
                                                                     </table>
