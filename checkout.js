@@ -105,7 +105,7 @@ paypal.Buttons({
                     session_id: sessionID
                 })
             })
-            .then((response) => console.log(response));
+            .then((response) => console.log(response.json()));
         });
     },
 
@@ -131,6 +131,7 @@ function orderSuccess(data) {
 function devData() {
     const firstName = document.getElementById("firstNameInput");
     const lastName = document.getElementById("lastNameInput");
+    const companyName = document.getElementById("companyName");
     const address = document.getElementById("streetAddressInput");
     const zip = document.getElementById("zipCodeInput");
     const email = document.getElementById("emailInput");
@@ -141,6 +142,7 @@ function devData() {
     zip.value = "72103";
     phone.value = "5555555555";
     email.value = "john@dev.kumpeapps.com";
+    companyName.value = "KumpeApps Dev"
     validateAddress();
     validateEmail();
     validateFName();

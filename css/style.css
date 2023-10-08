@@ -7237,12 +7237,14 @@ select.is-invalid {
 .radio-value {
   width: 110px;  /* Or whatever */
   margin: auto;  /* Magic! */
+  margin-top: 25px;  /* Magic! */
   display: inline-block;
   justify-content: space-around;
+  outline: 1px solid grey;
 }
 
 div.image-radio input[type="radio"]:checked + img{
-    border:1px solid red;
+    outline:10px solid red;
 }
 
 .d-inline-flex {
