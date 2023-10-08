@@ -107,15 +107,19 @@ paypal.Buttons({
             })
             .then((response) => response.json())
             .then((json) =>
-                Swal.fire(
-                    'Order Submitted',
-                    'Your order ID is ' + json['id'],
-                    'success'
-                )
+                orderSuccess(json)
             );
         });
     }
   }).render('#paypal-button-container');
+
+function orderSuccess(data) {
+    Swal.fire(
+        'Order Submitted',
+        'Your order ID is ' + data['id'],
+        'success'
+    );
+};
 
 function devData() {
     const firstName = document.getElementById("firstNameInput");
