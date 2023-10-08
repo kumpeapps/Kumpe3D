@@ -121,9 +121,6 @@ paypal.Buttons({
 function orderSuccess(data) {
     cartLS.destroy();
     refresh();
-    if ($env == 'dev') {
-        console.log(data);
-    }
     Swal.fire(
         'Success',
         'Your order has been submitted!',
