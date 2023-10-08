@@ -110,8 +110,16 @@ paypal.Buttons({
                 orderSuccess(json)
             );
         });
+    },
+
+    onError(err) {
+        Swal.fire(
+            'PayPal Error',
+            'An error occurred while processing your PayPal payment. Please try again.',
+            'error'
+        );
     }
-  }).render('#paypal-button-container');
+}).render('#paypal-button-container');
 
 function orderSuccess(data) {
     cartLS.destroy();
