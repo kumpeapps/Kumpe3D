@@ -110,6 +110,7 @@ paypal.Buttons({
     },
 
     onError(err) {
+        console.log(err);
         Swal.fire(
             'PayPal Error',
             'An error occurred while processing your PayPal payment. Please try again.',
