@@ -105,7 +105,7 @@ paypal.Buttons({
                     session_id: sessionID
                 })
             })
-            .then((response) => console.log(response.json()));
+            .then((response) => orderSuccess(response));
         });
     },
 
@@ -121,9 +121,12 @@ paypal.Buttons({
 function orderSuccess(data) {
     cartLS.destroy();
     refresh();
+    if ($env == 'dev') {
+        console.log(data);
+    }
     Swal.fire(
-        'Order Submitted',
-        'Your order ID is ' + data['id'],
+        'Success',
+        'Your order has been submitted!',
         'success'
     );
 };
