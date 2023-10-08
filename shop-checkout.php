@@ -125,7 +125,7 @@
 					<h1>Checkout</h1>
 					<nav aria-label="breadcrumb" class="breadcrumb-row">
 						<ul class="breadcrumb">
-							<li class="breadcrumb-item"><a href="index.html"> Home</a></li>
+							<li class="breadcrumb-item"><a href="index.php"> Home</a></li>
 							<li class="breadcrumb-item">Checkout</li>
 						</ul>
 					</nav>
