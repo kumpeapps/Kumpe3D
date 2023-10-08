@@ -218,7 +218,7 @@ if ($submit_session_id == session_id()) {
 
         //Recipients
         $mail->setFrom($_ENV['email_user'], 'Kumpe3D');
-        $mail->addAddress($data['emailAddress'], $email_name); //Add a recipient
+        $mail->addAddress($data['emailAddress'], $data['firstName']." ".$data['lastName']); //Add a recipient
         $mail->addReplyTo('sales@kumpeapps.com', 'Kumpe3D');
         $mail->addBCC('sales@kumpeapps.com');
 
@@ -238,5 +238,6 @@ if ($submit_session_id == session_id()) {
 mysqli_close($db);
 $response = [];
 $response['id'] = $order_id;
+error_log(json_encode($response));
 print(json_encode($response));
 ?>
