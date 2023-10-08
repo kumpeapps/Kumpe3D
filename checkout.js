@@ -95,6 +95,7 @@ paypal.Buttons({
             checkoutData.ppTransactionID = transactionID;
             checkoutData.paymentMethod = "PayPal";
             checkoutData.statusID = 3;
+            orderSuccess(response);
             fetch("submit_order.php", {
                 method: "POST",
                 headers: {
@@ -104,8 +105,7 @@ paypal.Buttons({
                     checkout_data: checkoutData,
                     session_id: sessionID
                 })
-            })
-            .then((response) => orderSuccess(response));
+            });
         });
     },
 
