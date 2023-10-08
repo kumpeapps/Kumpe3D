@@ -107,12 +107,11 @@ paypal.Buttons({
             })
             .then((response) => response.json())
             .then((json) =>
-                // Swal.fire(
-                //     'Order Submitted',
-                //     'Your order ID is ' + json.id,
-                //     'success'
-                // )
-                console.log(json)
+                Swal.fire(
+                    'Order Submitted',
+                    'Your order ID is ' + json['id'],
+                    'success'
+                )
             );
         });
     }
