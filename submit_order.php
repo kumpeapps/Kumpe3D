@@ -5,7 +5,7 @@
 	$dotenv->load();
 	$env = $_ENV['env'];
     $json = file_get_contents('php://input');
-    $data = json_decode($json);
+    $data = json_decode($json, true);
 	$submit_session_id = $data['session_id'];
 	$data = $data['checkout_data'];
     $order_id = "unavailable";

@@ -105,6 +105,7 @@ paypal.Buttons({
                     session_id: sessionID
                 })
             });
+            console.log(orderID);
 			Swal.fire(
 				'Order Submitted',
 				'Your order ID is ' + orderID,
