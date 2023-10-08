@@ -96,7 +96,7 @@
             $stmt->execute();
           }
     }
-    mysqli_close($conn);
+    mysqli_close($db);
     $response = [];
     $response['id'] = $order_id;
     print(json_encode($response));
