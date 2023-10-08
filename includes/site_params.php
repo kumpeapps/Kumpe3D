@@ -1,10 +1,10 @@
 <?php
+    $base_url = $_SERVER['SERVER_NAME'];
+    print($base_url);
 	include_once 'vendor/autoload.php';
 	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '../.env');
 	$dotenv->load();
 	$env = $_ENV['env'];
-    $base_url = $_SERVER['SERVER_NAME'];
-    print($base_url);
 	$params_conn = mysqli_connect(
 		$_ENV['mysql_host'],
 		$_ENV['mysql_user'],
