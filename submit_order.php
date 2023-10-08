@@ -171,7 +171,7 @@ try {
 
     $mail->send();
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    error_log("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
 }
 }
 mysqli_close($db);
