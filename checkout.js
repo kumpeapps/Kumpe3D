@@ -95,7 +95,7 @@ paypal.Buttons({
             checkoutData.ppTransactionID = transactionID;
             checkoutData.paymentMethod = "PayPal";
             checkoutData.statusID = 3;
-            orderID = fetch("submit_order.php", {
+            fetch("submit_order.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -104,13 +104,15 @@ paypal.Buttons({
                     checkout_data: checkoutData,
                     session_id: sessionID
                 })
-            });
-            console.log(orderID);
-			Swal.fire(
-				'Order Submitted',
-				'Your order ID is ' + orderID,
-				'success'
-			);
+            })
+            .then((response) => response.json())
+            .then((json) =>
+                Swal.fire(
+                    'Order Submitted',
+                    'Your order ID is ' + json.id,
+                    'success'
+                )
+            );
         });
     }
   }).render('#paypal-button-container');
