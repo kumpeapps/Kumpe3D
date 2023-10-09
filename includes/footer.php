@@ -10,7 +10,7 @@ $useful_links_sql = "SELECT * FROM Web_3dprints.useful_links;";
 				<div class="col-xl-3 col-md-4 col-sm-6">
 					<div class="widget widget_about me-2">
 						<div class="footer-logo logo-white">
-							<a href="index.php"><img src="<?php $site_params['store_logo_url'] ?>" alt="/"></a>
+							<a href="index.php"><img src="<?php $site_params['store_logo_url']; ?>" alt="/"></a>
 						</div>
 						<ul class="widget-address">
 							<li>
