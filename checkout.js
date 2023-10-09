@@ -95,7 +95,6 @@ paypal.Buttons({
             checkoutData.ppTransactionID = transactionID;
             checkoutData.paymentMethod = "PayPal";
             checkoutData.statusID = 3;
-            console.log(details);
             orderSuccess();
             fetch("submit_order.php", {
                 method: "POST",
