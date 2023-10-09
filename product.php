@@ -74,7 +74,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 <html lang="en">
 
 <head>
-	<script type="text/javascript" src="https://app.termly.io/embed.min.js" data-auto-block="on"
+	<script type="text/javascript" src="https://app.termly.io/embed.min.js" data-auto-block="off"
 		data-website-uuid="f0526f09-9728-4a75-853d-72961022b400"></script>
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -127,7 +127,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		<div id="loading-area" class="preloader-wrapper-1">
 			<div>
 				<span class="loader-2"></span>
-				<img src="images/logo.png" alt="/">
+				<img src="<?php $site_params['store_loading_image_url'] ?>" alt="/">
 				<span class="loader"></span>
 			</div>
 		</div>

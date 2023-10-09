@@ -10,17 +10,20 @@ $useful_links_sql = "SELECT * FROM Web_3dprints.useful_links;";
 				<div class="col-xl-3 col-md-4 col-sm-6">
 					<div class="widget widget_about me-2">
 						<div class="footer-logo logo-white">
-							<a href="index.php"><img src="images/logo.png" alt="/"></a>
+							<a href="index.php"><img src="<?php $site_params['store_logo_url'] ?>" alt="/"></a>
 						</div>
 						<ul class="widget-address">
 							<li>
-								<p><span>Address</span> : 8180 Elm Ln, Rogers, AR 72756</p>
+								<p><span>Address</span> : <?php echo $site_params['store_address']; ?>,
+								<?php echo $site_params['store_city']; ?>, 
+								<?php echo $site_params['store_state']; ?> 
+								<?php echo $site_params['store_zip']; ?></p>
 							</li>
 							<li>
-								<p><span>E-mail</span> : sales@kumpeapps.com</p>
+								<p><span>E-mail</span> : <?php echo $site_params['store_email']; ?></p>
 							</li>
 							<!-- <li>
-									<p><span>Phone</span> : 501.831.2980</p>
+									<p><span>Phone</span> : <?php $site_params['store_phone'] ?></p>
 								</li> -->
 						</ul>
 					</div>
