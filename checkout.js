@@ -2,17 +2,17 @@ let fundingSource;
 
 paypal.Buttons({
     style: {
-      disableMaxWidth: true ,
-      shape: "pill",
-      label: "pay"
+        disableMaxWidth: true,
+        shape: "pill",
+        label: "pay"
     },
 
     onClick: (data) => {
         // fundingSource = "venmo"
         fundingSource = data.fundingSource;
         console.log(fundingSource);
-      },
-      createOrder: function(data, actions) {
+    },
+    createOrder: function (data, actions) {
         const checkoutData = getCheckoutData();
         let itemsArray = [];
         for (product in checkoutData['cart']) {
@@ -91,9 +91,9 @@ paypal.Buttons({
         })
     },
 
-    onApprove: function(data, actions) {
+    onApprove: function (data, actions) {
         // Payment Approved
-        return actions.order.capture().then(function(details) {
+        return actions.order.capture().then(function (details) {
             const purchaseUnits = details['purchase_units'];
             const payments = purchaseUnits[0]['payments'];
             const transactionID = payments['captures'][0]['id'];
@@ -212,7 +212,7 @@ function buildCheckout() {
     totalLabel.innerHTML = '$' + (cartLS.total() + 10)
     cart = cartLS.list();
     cart.forEach(renderCheckoutList);
-    
+
     function renderCheckoutList(element, _, _) {
         const img_url = element["image_url"];
         const title = element["name"];
@@ -247,13 +247,6 @@ function buildCheckout() {
 };
 
 function onload() {
-    if (env == "dev") {
-    Swal.fire(
-        'PreProd Server',
-        'This is a PreProd/Development server. Orders submitted via this site will not be charged or filled.',
-        'info'
-    );
-}
     refresh();
     isValidCheck();
 };
@@ -261,21 +254,21 @@ function onload() {
 function validateFName() {
     const fieldID = "firstNameInput";
     const field = document.getElementById(fieldID).value;
-    const valid = validator.isAlpha(field,["en-US"], {ignore: " -"});
+    const valid = validator.isAlpha(field, ["en-US"], { ignore: " -" });
     fieldValidated(fieldID, valid);
 };
 
 function validateLName() {
     const fieldID = "lastNameInput";
     const field = document.getElementById(fieldID).value;
-    const valid = validator.isAlpha(field,["en-US"], {ignore: " -"});
+    const valid = validator.isAlpha(field, ["en-US"], { ignore: " -" });
     fieldValidated(fieldID, valid);
 };
 
 function validateAddress() {
     const fieldID = "streetAddressInput";
     const field = document.getElementById(fieldID).value;
-    const valid = validator.isAlphanumeric(field,["en-US"], {ignore: " -"});
+    const valid = validator.isAlphanumeric(field, ["en-US"], { ignore: " -" });
     fieldValidated(fieldID, valid);
 };
 
@@ -289,7 +282,7 @@ function validatePhone() {
 function validateEmail() {
     const fieldID = "emailInput";
     const field = document.getElementById(fieldID).value;
-    const valid = validator.isEmail(field, {host_blacklist: ["yopmail.com"]});
+    const valid = validator.isEmail(field, { host_blacklist: ["yopmail.com"] });
     fieldValidated(fieldID, valid);
 };
 
@@ -297,7 +290,7 @@ function validateZipCode() {
     const fieldID = "zipCodeInput";
     const country = document.getElementById("countrySelect").value;
     const field = document.getElementById(fieldID).value;
-    const valid = validator.isPostalCode(field,country);
+    const valid = validator.isPostalCode(field, country);
     fieldValidated(fieldID, valid);
 };
 
