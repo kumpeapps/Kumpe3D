@@ -129,6 +129,7 @@ function orderSuccess() {
         'success'
     );
     onload();
+    showPayPal(false);
 };
 
 function devData() {
