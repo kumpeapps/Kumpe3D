@@ -120,6 +120,7 @@ paypal.Buttons({
 }).render('#paypal-button-container');
 
 function orderSuccess() {
+    document.getElementById("emailInput").value = "";
     cartLS.destroy();
     onload();
     Swal.fire(
