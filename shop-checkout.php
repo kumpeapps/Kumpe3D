@@ -117,7 +117,7 @@ mysqli_close($conn);
 		<div id="loading-area" class="preloader-wrapper-1">
 			<div>
 				<span class="loader-2"></span>
-				<img src="images/logo.png" alt="/">
+				<img src="<?php echo $site_params['store_loading_image_url']; ?>" alt="/">
 				<span class="loader"></span>
 			</div>
 		</div>
