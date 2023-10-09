@@ -5,7 +5,12 @@ paypal.Buttons({
       label: "pay"
     },
 
-    createOrder: function(data, actions) {
+    onClick: (data) => {
+        // fundingSource = "venmo"
+        fundingSource = data.fundingSource;
+        console.log(fundingSource);
+      },
+      createOrder: function(data, actions) {
         const checkoutData = getCheckoutData();
         let itemsArray = [];
         for (product in checkoutData['cart']) {

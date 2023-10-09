@@ -127,7 +127,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		<div id="loading-area" class="preloader-wrapper-1">
 			<div>
 				<span class="loader-2"></span>
-				<img src="<?php $site_params['store_loading_image_url'] ?>" alt="/">
+				<img src="<?php echo $site_params['store_loading_image_url'] ?>" alt="/">
 				<span class="loader"></span>
 			</div>
 		</div>

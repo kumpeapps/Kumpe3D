@@ -58,9 +58,9 @@ mysqli_close($conn);
 	<meta name="keywords" content="Checkout">
 	<meta name="author" content="KumpeApps LLC">
 	<meta name="robots" content="">
-	<meta name="description" content="<?php $site_params['store_name'] ?> checkout">
+	<meta name="description" content="<?php echo $site_params['store_name'] ?> checkout">
 	<meta property="og:title" content="Checkout">
-	<meta property="og:description" content="<?php $site_params['store_name'] ?> checkout">
+	<meta property="og:description" content="<?php echo $site_params['store_name'] ?> checkout">
 	<meta name="format-detection" content="telephone=no">
 
 	<!-- FAVICONS ICON -->
