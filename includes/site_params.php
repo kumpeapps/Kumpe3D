@@ -29,7 +29,7 @@
 
     $result = mysqli_query($params_conn, $params_sql);
     $site_params = [];
-    $site_params_js = "const env = $env; let siteParams = {};";
+    $site_params_js = "const env = '$env'; let siteParams = {};";
 
     if ($result) {
       while($row = mysqli_fetch_array($result)) {
