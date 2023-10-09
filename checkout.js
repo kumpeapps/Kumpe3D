@@ -240,6 +240,13 @@ function buildCheckout() {
 };
 
 function onload() {
+    if (env == "dev") {
+    Swal.fire(
+        'PreProd Server',
+        'This is a PreProd/Development server. Orders submitted via this site will not be charged or filled.',
+        'info'
+    );
+}
     refresh();
     isValidCheck();
 };
