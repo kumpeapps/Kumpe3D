@@ -126,6 +126,17 @@ if ($submit_session_id == session_id()) {
             VALUES
                 (?, ?, ?, ?, ?, NULL);
         ";
+    
+    $stock_sql = "
+        INSERT INTO `Web_3dprints`.`stock`
+            (`sku`,
+            `swatch_id`,
+            `qty`)
+        VALUES
+            (?, ?, 0 - ?)
+        ON DUPLICATE KEY UPDATE    
+            qty = qty - ?;
+    ";
 
     foreach ($cart as $item) {
         $stmt = $db->prepare($items_sql);
@@ -207,7 +218,7 @@ if ($submit_session_id == session_id()) {
             `notes`,
             `updated_by`)
         VALUES
-            (?, ?, 'Order Paid', 'checkout');
+            (?, ?, 'Paid via ".$data['paymentMethod']."', 'checkout');
     ";
     $stmt = $db->prepare($history_sql);
     $stmt->bind_param(

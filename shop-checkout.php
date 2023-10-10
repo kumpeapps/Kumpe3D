@@ -50,8 +50,6 @@ mysqli_close($conn);
 <html lang="en">
 
 <head>
-	<script type="text/javascript" src="https://app.termly.io/embed.min.js" data-auto-block="off"
-		data-website-uuid="f0526f09-9728-4a75-853d-72961022b400"></script>
 	<!-- Meta -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
