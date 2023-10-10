@@ -18,7 +18,7 @@
 ?>
 	<!-- Header -->
 	<script src="header.js"></script><!-- product scripts -->
-	<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>"><?php echo $site_params_js; ?></script>
+	<script nonce="<?php echo $nonce; ?>"><?php echo $site_params_js; ?></script>
 	<header class="site-header mo-left header border-bottom">
 		<!-- Main Header -->
 		<div class="sticky-header main-bar-wraper navbar-expand-lg">

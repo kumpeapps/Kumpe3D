@@ -1,4 +1,5 @@
 <?php
+    $nonce = bin2hex(openssl_random_pseudo_bytes(32));
 	include_once 'vendor/autoload.php';
 	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '../.env');
 	$dotenv->load();
