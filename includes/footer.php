@@ -14,7 +14,7 @@ $useful_links_sql = "SELECT * FROM Web_3dprints.useful_links;";
 						</div>
 						<ul class="widget-address">
 							<li>
-								<p><span>Address</span> : <?php echo $site_params['store_address']; ?>,
+								<p><span>Address</span> : <br><?php echo $site_params['store_address']; ?><br>
 								<?php echo $site_params['store_city']; ?>, 
 								<?php echo $site_params['store_state']; ?> 
 								<?php echo $site_params['store_zip']; ?></p>
