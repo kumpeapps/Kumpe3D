@@ -389,7 +389,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 							original_price: originalPrice,
 							wholesale_price: wholesale_price,
 							baseSKU: newBaseSKU,
-							colorID =color_id
+							colorID: color_id
 						}, parseInt(qty)
 					);
 					cartLS.update("price", itemPrice);
