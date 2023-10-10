@@ -51,7 +51,6 @@ if (mysqli_connect_errno()) {
 $sql = "CALL get_products('$base_sku', '%', '%')";
 $product = mysqli_query($conn, $sql);
 $product = mysqli_fetch_array($product);
-mysqli_close($conn);
 
 if (empty($product)) {
 	http_response_code(404);

@@ -1,5 +1,11 @@
 <?php
 $useful_links_sql = "SELECT * FROM Web_3dprints.useful_links;";
+$conn = mysqli_connect(
+	$_ENV['mysql_host'],
+	$_ENV['mysql_user'],
+	$_ENV['mysql_pass'],
+	'Web_3dprints'
+) or die("Couldn't connect to server.");
 ?>
 <!-- Footer -->
 <footer class="site-footer style-1">
