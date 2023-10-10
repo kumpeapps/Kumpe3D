@@ -74,6 +74,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 
 <head>
 	<!-- Meta -->
+	<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https://*; child-src 'none';" /> -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="keywords" content="<?php echo $product['tags']; ?>">
@@ -107,8 +108,8 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 	<link rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-thumbnail.css">
 	<link rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-zoom.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script src="https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js"
-		type="text/javascript"></script>
+	<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>"
+		src="https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js" type="text/javascript"></script>
 
 	<!-- GOOGLE FONTS-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -309,32 +310,54 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		</div>
 
 		<!-- JAVASCRIPT FILES ========================================= -->
-		<script src="js/jquery.min.js"></script><!-- JQUERY MIN JS -->
-		<script src="vendor-js/wow/wow.min.js"></script><!-- WOW JS -->
-		<script src="vendor-js/bootstrap/dist/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP MIN JS -->
-		<script src="vendor-js/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>" src="js/jquery.min.js"></script>
+		<!-- JQUERY MIN JS -->
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>" src="vendor-js/wow/wow.min.js"></script>
+		<!-- WOW JS -->
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>"
+			src="vendor-js/bootstrap/dist/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP MIN JS -->
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>"
+			src="vendor-js/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 		<!-- BOOTSTRAP SELECT MIN JS -->
-		<script src="vendor-js/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN JS -->
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>"
+			src="vendor-js/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN JS -->
 
-		<script src="vendor-js/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
-		<script src="vendor-js/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
-		<script src="vendor-js/swiper/swiper-bundle.min.js"></script><!-- SWIPER JS -->
-		<script src="vendor-js/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED-->
-		<script src="vendor-js/masonry/masonry-4.2.2.js"></script><!-- MASONRY -->
-		<script src="vendor-js/masonry/isotope.pkgd.min.js"></script><!-- ISOTOPE -->
-		<script src="vendor-js/countdown/jquery.countdown.js"></script><!-- COUNTDOWN FUCTIONS  -->
-		<script src="vendor-js/wnumb/wNumb.js"></script><!-- WNUMB -->
-		<script src="vendor-js/nouislider/nouislider.min.js"></script><!-- NOUSLIDER MIN JS-->
-		<script src="js/dz.carousel.js"></script><!-- DZ CAROUSEL JS -->
-		<script src="vendor-js/lightgallery/dist/lightgallery.min.js"></script>
-		<script src="vendor-js/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js"></script>
-		<script src="vendor-js/lightgallery/dist/plugins/zoom/lg-zoom.min.js"></script>
-		<script src="js/dz.ajax.js"></script><!-- AJAX -->
-		<script src="js/custom.js"></script><!-- CUSTOM JS -->
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- SweetAlerts -->
-		<script src="product.js"></script><!-- product scripts -->
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>"
+			src="vendor-js/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>"
+			src="vendor-js/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>"
+			src="vendor-js/swiper/swiper-bundle.min.js"></script><!-- SWIPER JS -->
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>"
+			src="vendor-js/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED-->
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>"
+			src="vendor-js/masonry/masonry-4.2.2.js"></script><!-- MASONRY -->
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>"
+			src="vendor-js/masonry/isotope.pkgd.min.js"></script><!-- ISOTOPE -->
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>"
+			src="vendor-js/countdown/jquery.countdown.js"></script><!-- COUNTDOWN FUCTIONS  -->
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>" src="vendor-js/wnumb/wNumb.js"></script>
+		<!-- WNUMB -->
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>"
+			src="vendor-js/nouislider/nouislider.min.js"></script><!-- NOUSLIDER MIN JS-->
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>" src="js/dz.carousel.js"></script>
+		<!-- DZ CAROUSEL JS -->
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>"
+			src="vendor-js/lightgallery/dist/lightgallery.min.js"></script>
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>"
+			src="vendor-js/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js"></script>
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>"
+			src="vendor-js/lightgallery/dist/plugins/zoom/lg-zoom.min.js"></script>
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>" src="js/dz.ajax.js"></script>
+		<!-- AJAX -->
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>" src="js/custom.js"></script>
+		<!-- CUSTOM JS -->
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>"
+			src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- SweetAlerts -->
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>" src="product.js"></script>
+		<!-- product scripts -->
 
-		<script>
+		<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>">
 
 			$(".image-radio img").click(function () {
 				$(this).prev().attr('checked', true);
@@ -365,7 +388,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 				const image_url_base = 'https://images.kumpeapps.com/filament_swatch?sku=';
 				const image_url = image_url_base + base_sku + '-' + color_id;
 				const qty = document.getElementById('qty').value;
-				const newBaseSKU =base_sku
+				const newBaseSKU = base_sku
 				let itemPrice = price;
 
 				if (qty >= wholesaleQty) {
