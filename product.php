@@ -74,7 +74,19 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 
 <head>
 	<!-- Meta -->
-	<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https://*; child-src 'none';" /> -->
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self';
+script-src 'report-sample' 'self' https://cdn.jsdelivr.net/npm/sweetalert2@11 https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js;
+style-src 'report-sample' 'self' https://fonts.googleapis.com;
+object-src 'none';
+base-uri 'self';
+connect-src 'self';
+font-src 'self' data: https://fonts.gstatic.com;
+frame-src 'self';
+img-src 'self' https://images.kumpeapps.com;
+manifest-src 'self';
+media-src 'self';
+report-uri https://6525dec50fcafd85d341f4c1.endpoint.csper.io/?v=0;
+worker-src 'none';" />
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="keywords" content="<?php echo $product['tags']; ?>">
