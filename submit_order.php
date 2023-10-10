@@ -213,12 +213,12 @@ if ($submit_session_id == session_id()) {
         $stmt2 = $db->prepare($stock_sql);
         $stmt2->bind_param(
             "ssii",
-            $order_id,
             $item['baseSKU'],
             $item['colorID'],
             $item['quantity'],
             $item['quantity']
         );
+        $stmt2->execute();
     }
     $history_sql = "
         INSERT INTO `Web_3dprints`.`orders__history`
