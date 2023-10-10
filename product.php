@@ -366,6 +366,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 				const image_url_base = 'https://images.kumpeapps.com/filament_swatch?sku=';
 				const image_url = image_url_base + base_sku + '-' + color_id;
 				const qty = document.getElementById('qty').value;
+				const newBaseSKU =base_sku
 				let itemPrice = price;
 
 				if (qty >= wholesaleQty) {
@@ -386,7 +387,9 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 							price: itemPrice,
 							image_url: image_url,
 							original_price: originalPrice,
-							wholesale_price: wholesale_price
+							wholesale_price: wholesale_price,
+							baseSKU: newBaseSKU,
+							colorID =color_id
 						}, parseInt(qty)
 					);
 					cartLS.update("price", itemPrice);

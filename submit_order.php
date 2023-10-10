@@ -210,6 +210,15 @@ if ($submit_session_id == session_id()) {
             </tr>
         ";
         $email_products = $email_products . $html_email_items;
+        $stmt2 = $db->prepare($stock_sql);
+        $stmt2->bind_param(
+            "ssii",
+            $order_id,
+            $item['baseSKU'],
+            $item['colorID'],
+            $item['quantity'],
+            $item['quantity']
+        );
     }
     $history_sql = "
         INSERT INTO `Web_3dprints`.`orders__history`
