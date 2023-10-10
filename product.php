@@ -75,17 +75,17 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 	<!-- Meta -->
 	<meta http-equiv="Content-Security-Policy" content="default-src 'self';
 script-src 'report-sample' 'self' https://cdn.jsdelivr.net/npm/sweetalert2@11 https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js 'nonce-<?php echo $nonce; ?>';
-style-src 'report-sample' 'self' https://fonts.googleapis.com;
-object-src 'none';
-base-uri 'self';
-connect-src 'self';
-font-src 'self' data: https://fonts.gstatic.com;
+style-src 'report-sample' 'self' https://fonts.googleapis.com 'nonce-<?php echo $nonce; ?>';
+object-src 'none' 'nonce-<?php echo $nonce; ?>';
+base-uri 'self' 'nonce-<?php echo $nonce; ?>';
+connect-src 'self' 'nonce-<?php echo $nonce; ?>';
+font-src 'self' data: https://fonts.gstatic.com 'nonce-<?php echo $nonce; ?>';
 frame-src 'self';
-img-src 'self' https://images.kumpeapps.com;
-manifest-src 'self';
-media-src 'self';
+img-src 'self' https://images.kumpeapps.com 'nonce-<?php echo $nonce; ?>';
+manifest-src 'self' 'nonce-<?php echo $nonce; ?>';
+media-src 'self' 'nonce-<?php echo $nonce; ?>';
 report-uri https://6525dec50fcafd85d341f4c1.endpoint.csper.io/?v=0;
-worker-src 'none';" />
+worker-src 'none' 'nonce-<?php echo $nonce; ?>';" />
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="keywords" content="<?php echo $product['tags']; ?>">
