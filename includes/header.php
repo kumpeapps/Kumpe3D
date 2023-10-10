@@ -12,13 +12,13 @@
 	) or die ("Couldn't connect to server.");
 	$pages_sql = "SELECT * FROM Web_3dprints.menu__pages;";
 	if ($env == 'prod') {
-		echo "<script>const console = '';</script>";
+		echo "<script nonce='".bin2hex(openssl_random_pseudo_bytes(32))."'>const console = '';</script>";
 	}
 
 ?>
 	<!-- Header -->
 	<script src="header.js"></script><!-- product scripts -->
-	<script><?php echo $site_params_js; ?></script>
+	<script nonce="<?php echo bin2hex(openssl_random_pseudo_bytes(32)); ?>"><?php echo $site_params_js; ?></script>
 	<header class="site-header mo-left header border-bottom">
 		<!-- Main Header -->
 		<div class="sticky-header main-bar-wraper navbar-expand-lg">
