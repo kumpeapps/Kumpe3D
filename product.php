@@ -51,7 +51,6 @@ if (mysqli_connect_errno()) {
 $sql = "CALL get_products('$base_sku', '%', '%')";
 $product = mysqli_query($conn, $sql);
 $product = mysqli_fetch_array($product);
-mysqli_close($conn);
 
 if (empty($product)) {
 	http_response_code(404);
@@ -74,8 +73,6 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 <html lang="en">
 
 <head>
-	<script type="text/javascript" src="https://app.termly.io/embed.min.js" data-auto-block="on"
-		data-website-uuid="f0526f09-9728-4a75-853d-72961022b400"></script>
 	<!-- Meta -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -127,7 +124,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		<div id="loading-area" class="preloader-wrapper-1">
 			<div>
 				<span class="loader-2"></span>
-				<img src="images/logo.png" alt="/">
+				<img src="<?php echo $site_params['store_loading_image_url'] ?>" alt="/">
 				<span class="loader"></span>
 			</div>
 		</div>
@@ -368,6 +365,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 				const image_url_base = 'https://images.kumpeapps.com/filament_swatch?sku=';
 				const image_url = image_url_base + base_sku + '-' + color_id;
 				const qty = document.getElementById('qty').value;
+				const newBaseSKU =base_sku
 				let itemPrice = price;
 
 				if (qty >= wholesaleQty) {
@@ -388,7 +386,9 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 							price: itemPrice,
 							image_url: image_url,
 							original_price: originalPrice,
-							wholesale_price: wholesale_price
+							wholesale_price: wholesale_price,
+							baseSKU: newBaseSKU,
+							colorID: color_id
 						}, parseInt(qty)
 					);
 					cartLS.update("price", itemPrice);

@@ -26,7 +26,7 @@
 				<div class="container-fluid clearfix">
 					<!-- Website Logo -->
 					<div class="logo-header logo-dark me-md-5">
-						<a href="index.php"><img src="images/logo.png" alt="logo"></a>
+						<a href="index.php"><img src="<?php echo $site_params['store_logo_url']; ?>" alt="logo"></a>
 					</div>
 
 					<!-- Nav Toggle Button -->
@@ -78,7 +78,7 @@
 					<!-- Main Nav -->
 					<div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
 						<div class="logo-header">
-							<a href="index.html"><img src="images/logo.png" alt="/"></a>
+							<a href="index.html"><img src="<?php echo $site_params['store_logo_url']; ?>" alt="/"></a>
 						</div>
 						<ul class="nav navbar-nav dark-nav">
 							<!-- <li class="sub-menu sub-menu-down">

@@ -1,3 +1,12 @@
+<?php
+$useful_links_sql = "SELECT * FROM Web_3dprints.useful_links;";
+$conn = mysqli_connect(
+	$_ENV['mysql_host'],
+	$_ENV['mysql_user'],
+	$_ENV['mysql_pass'],
+	'Web_3dprints'
+) or die("Couldn't connect to server.");
+?>
 <!-- Footer -->
 <footer class="site-footer style-1">
 	<!-- Footer Top -->
@@ -7,17 +16,20 @@
 				<div class="col-xl-3 col-md-4 col-sm-6">
 					<div class="widget widget_about me-2">
 						<div class="footer-logo logo-white">
-							<a href="index.php"><img src="images/logo.png" alt="/"></a>
+							<a href="index.php"><img src="<?php echo $site_params['store_logo_url']; ?>" alt="/"></a>
 						</div>
 						<ul class="widget-address">
 							<li>
-								<p><span>Address</span> : 8180 Elm Ln, Rogers, AR 72756</p>
+								<p><span>Address</span> : <br><?php echo $site_params['store_address']; ?><br>
+								<?php echo $site_params['store_city']; ?>, 
+								<?php echo $site_params['store_state']; ?> 
+								<?php echo $site_params['store_zip']; ?></p>
 							</li>
 							<li>
-								<p><span>E-mail</span> : sales@kumpeapps.com</p>
+								<p><span>E-mail</span> : <?php echo $site_params['store_email']; ?></p>
 							</li>
 							<!-- <li>
-									<p><span>Phone</span> : 501.831.2980</p>
+									<p><span>Phone</span> : <?php echo $site_params['store_phone']; ?></p>
 								</li> -->
 						</ul>
 					</div>
@@ -26,13 +38,15 @@
 					<div class="widget widget_services">
 						<h5 class="footer-title">Useful Links</h5>
 						<ul>
-							<!-- TODO: Pull links from MySQL -->
-							<!-- <li><a href="javascript:void(0);">Privacy Policy</a></li>
-								<li><a href="javascript:void(0);">Returns</a></li>
-								<li><a href="javascript:void(0);">Terms & Conditions</a></li>
-								<li><a href="javascript:void(0);">Contact Us</a></li>
-								<li><a href="javascript:void(0);">Latest News</a></li>
-								<li><a href="javascript:void(0);">Our Sitemap</a></li> -->
+							<?php
+							if ($links_query = mysqli_query($conn, $useful_links_sql)) {
+								while ($links_data = mysqli_fetch_array($links_query)) {
+									$link_title = $links_data['text'];
+									$link_link = $links_data['url'];
+									echo "<li><a href='$link_link'>$link_title</a></li>";
+								}
+							}
+							?>
 						</ul>
 					</div>
 				</div>

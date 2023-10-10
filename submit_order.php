@@ -13,6 +13,17 @@ $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 $submit_session_id = $data['session_id'];
 $data = $data['checkout_data'];
+if ($data['paymentMethod'] == 'venmo') {
+    $data['paymentMethod'] = 'Venmo';
+} else if ($data['paymentMethod'] == 'card') {
+    $data['paymentMethod'] == "Credit/Debit Card";
+} else if ($data['paymentMethod'] == 'applepay') {
+    $data['paymentMethod'] == 'ApplePay';
+} else if ($data['paymentMethod'] == 'googlepay') {
+    $data['paymentMethod'] = 'Google Pay';
+} else {
+    $data['paymentMethod'] = 'PayPal';
+}
 $order_id = "unavailable";
 $sql = "
         INSERT INTO `Web_3dprints`.`orders`
@@ -115,6 +126,17 @@ if ($submit_session_id == session_id()) {
             VALUES
                 (?, ?, ?, ?, ?, NULL);
         ";
+    
+    $stock_sql = "
+        INSERT INTO `Web_3dprints`.`stock`
+            (`sku`,
+            `swatch_id`,
+            `qty`)
+        VALUES
+            (?, ?, 0 - ?)
+        ON DUPLICATE KEY UPDATE    
+            qty = qty - ?;
+    ";
 
     foreach ($cart as $item) {
         $stmt = $db->prepare($items_sql);
@@ -188,6 +210,15 @@ if ($submit_session_id == session_id()) {
             </tr>
         ";
         $email_products = $email_products . $html_email_items;
+        $stmt2 = $db->prepare($stock_sql);
+        $stmt2->bind_param(
+            "ssii",
+            $item['baseSKU'],
+            $item['colorID'],
+            $item['quantity'],
+            $item['quantity']
+        );
+        $stmt2->execute();
     }
     $history_sql = "
         INSERT INTO `Web_3dprints`.`orders__history`
@@ -196,7 +227,7 @@ if ($submit_session_id == session_id()) {
             `notes`,
             `updated_by`)
         VALUES
-            (?, ?, 'Order Paid', 'checkout');
+            (?, ?, 'Paid via ".$data['paymentMethod']."', 'checkout');
     ";
     $stmt = $db->prepare($history_sql);
     $stmt->bind_param(

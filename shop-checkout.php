@@ -8,7 +8,7 @@ $conn = mysqli_connect(
 	'Web_3dprints'
 ) or die("Couldn't connect to server.");
 
-$enabled_countries = "'US'";
+$enabled_countries = $site_params['shipping_countries'];
 $countries_sql = "
 		SELECT 
 			*
@@ -56,9 +56,9 @@ mysqli_close($conn);
 	<meta name="keywords" content="Checkout">
 	<meta name="author" content="KumpeApps LLC">
 	<meta name="robots" content="">
-	<meta name="description" content="Kumpe3D checkout">
+	<meta name="description" content="<?php echo $site_params['store_name'] ?> checkout">
 	<meta property="og:title" content="Checkout">
-	<meta property="og:description" content="Kumpe3D checkout">
+	<meta property="og:description" content="<?php echo $site_params['store_name'] ?> checkout">
 	<meta name="format-detection" content="telephone=no">
 
 	<!-- FAVICONS ICON -->
@@ -385,7 +385,9 @@ mysqli_close($conn);
 	<!-- Checkout JS -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- SweetAlerts -->
 	<script src="https://unpkg.com/validator@latest/validator.min.js"></script>
-	<?php echo "<script src='https://www.paypal.com/sdk/js?client-id=$paypal_clientid&currency=USD&components=buttons&disable-funding=paylater&integration-date=2023-10-01' data-page-type=\"checkout\"></script>"; ?>
+	<?php
+	echo "<script src='https://www.paypal.com/sdk/js?&client-id=$paypal_clientid&currency=USD&components=" . $site_params['store_paypal_components'] . "&disable-funding=" . $site_params['store_paypal_disablefunding'] . "&enable-funding=" . $site_params['store_paypal_enablefunding'] . "&integration-date=2023-10-01' data-page-type=\"checkout\"></script>";
+	?>
 	<script src="env.js"></script>
 	<script src="cookies.js"></script>
 	<script src="checkout.js"></script>
