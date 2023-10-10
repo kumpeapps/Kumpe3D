@@ -23,7 +23,7 @@ $useful_links_sql = "SELECT * FROM Web_3dprints.useful_links;";
 								<p><span>E-mail</span> : <?php echo $site_params['store_email']; ?></p>
 							</li>
 							<!-- <li>
-									<p><span>Phone</span> : <?php echo $site_params['store_phone'] ?></p>
+									<p><span>Phone</span> : <?php echo $site_params['store_phone']; ?></p>
 								</li> -->
 						</ul>
 					</div>
