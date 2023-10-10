@@ -100,7 +100,7 @@ paypal.Buttons({
             let checkoutData = getCheckoutData();
             let orderID = "unavailable.";
             checkoutData.ppTransactionID = transactionID;
-            checkoutData.paymentMethod = "PayPal";
+            checkoutData.paymentMethod = fundingSource;
             checkoutData.statusID = 3;
             orderSuccess();
             fetch("submit_order.php", {

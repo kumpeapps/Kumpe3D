@@ -13,6 +13,17 @@ $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 $submit_session_id = $data['session_id'];
 $data = $data['checkout_data'];
+if ($data['paymentMethod'] == 'venmo') {
+    $data['paymentMethod'] = 'Venmo';
+} else if ($data['paymentMethod'] == 'card') {
+    $data['paymentMethod'] == "Credit/Debit Card";
+} else if ($data['paymentMethod'] == 'applepay') {
+    $data['paymentMethod'] == 'ApplePay';
+} else if ($data['paymentMethod'] == 'googlepay') {
+    $data['paymentMethod'] = 'Google Pay';
+} else {
+    $data['paymentMethod'] = 'PayPal';
+}
 $order_id = "unavailable";
 $sql = "
         INSERT INTO `Web_3dprints`.`orders`
