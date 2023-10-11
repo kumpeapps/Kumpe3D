@@ -85,7 +85,8 @@ img-src *;
 manifest-src 'self' 'nonce-<?php echo $nonce; ?>';
 media-src 'self' 'nonce-<?php echo $nonce; ?>';
 report-uri https://6525dec50fcafd85d341f4c1.endpoint.csper.io/?v=0;
-worker-src 'nonce-<?php echo $nonce; ?>';" />
+worker-src 'nonce-<?php echo $nonce; ?>';
+disown-opener;" />
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="keywords" content="<?php echo $product['tags']; ?>">
