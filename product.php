@@ -81,7 +81,7 @@ base-uri 'self' 'nonce-<?php echo $nonce; ?>';
 connect-src 'self' 'nonce-<?php echo $nonce; ?>';
 font-src 'self' data: https://fonts.gstatic.com 'nonce-<?php echo $nonce; ?>';
 frame-src 'self';
-img-src 'self' https://images.kumpeapps.com http://www.w3.org/ 'nonce-<?php echo $nonce; ?>';
+img-src *;
 manifest-src 'self' 'nonce-<?php echo $nonce; ?>';
 media-src 'self' 'nonce-<?php echo $nonce; ?>';
 report-uri https://6525dec50fcafd85d341f4c1.endpoint.csper.io/?v=0;
