@@ -388,7 +388,7 @@ mysqli_close($conn);
 	<?php
 	echo "<script src='https://www.paypal.com/sdk/js?&client-id=$paypal_clientid&currency=USD&components=" . $site_params['store_paypal_components'] . "&disable-funding=" . $site_params['store_paypal_disablefunding'] . "&enable-funding=" . $site_params['store_paypal_enablefunding'] . "&integration-date=2023-10-01' data-page-type=\"checkout\"></script>";
 	?>
-	<script src="env.js"></script>
+	<script id="envScript"></script>
 	<script src="cookies.js"></script>
 	<script src="checkout.js"></script>
 	<script>

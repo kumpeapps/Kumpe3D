@@ -72,7 +72,6 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 <html lang="en">
 
 <head>
-	<script>const console = "";</script>
 	<!-- Meta -->
 	<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self';
 script-src https://cdn.jsdelivr.net/npm/sweetalert2@11 https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js 'nonce-<?php echo $nonce; ?>';
