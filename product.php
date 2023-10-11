@@ -369,9 +369,6 @@ worker-src 'nonce-<?php echo $nonce; ?>';" />
 		<!-- product scripts -->
 
 		<script nonce="<?php echo $nonce; ?>">
-			$(
-				onload();
-			);
 
 			$(".image-radio img").click(function () {
 				$(this).prev().attr('checked', true);
