@@ -68,7 +68,7 @@ $photo_sql = "SELECT * FROM Web_3dprints.product_photos WHERE sku = '$base_sku';
 $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 
 ?>
-<!DOCTYPE html nonce="<?php echo $nonce; ?>">
+<!DOCTYPE html>
 <html lang="en">
 
 <head>

@@ -17,7 +17,7 @@
 
 ?>
 	<!-- Header -->
-	<script src="header.js"></script><!-- product scripts -->
+	<script nonce="<?php echo $nonce; ?>" src="header.js"></script><!-- product scripts -->
 	<script nonce="<?php echo $nonce; ?>"><?php echo $site_params_js; ?></script>
 	<header class="site-header mo-left header border-bottom">
 		<!-- Main Header -->
