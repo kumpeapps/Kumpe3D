@@ -73,7 +73,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 
 <head>
 	<!-- Meta -->
-	<meta http-equiv="Content-Security-Policy" content="default-src 'self';
+	<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self';
 script-src https://cdn.jsdelivr.net/npm/sweetalert2@11 https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js 'nonce-<?php echo $nonce; ?>';
 style-src 'report-sample' 'self' https://fonts.googleapis.com 'nonce-<?php echo $nonce; ?>';
 object-src 'nonce-<?php echo $nonce; ?>';
@@ -86,7 +86,7 @@ manifest-src 'self' 'nonce-<?php echo $nonce; ?>';
 media-src 'self' 'nonce-<?php echo $nonce; ?>';
 report-uri https://6525dec50fcafd85d341f4c1.endpoint.csper.io/?v=0;
 worker-src 'nonce-<?php echo $nonce; ?>';
-disown-opener;" />
+disown-opener;" /> -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="keywords" content="<?php echo $product['tags']; ?>">
@@ -370,7 +370,8 @@ disown-opener;" />
 		<!-- product scripts -->
 
 		<script nonce="<?php echo $nonce; ?>">
-
+			Object.defineProperty(console, '_commandLineAPI',
+   { get : function() { throw 'Nooo!' } });
 			$(".image-radio img").click(function () {
 				$(this).prev().attr('checked', true);
 			});
