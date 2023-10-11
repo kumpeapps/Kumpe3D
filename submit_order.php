@@ -9,9 +9,6 @@ $base_url = $_SERVER['SERVER_NAME'];
 $ref = $_SERVER['HTTP_REFERER'];
 $refData = parse_url($ref);
 $refDomain = $refData['host'];
-print($base_url);
-print($refData);
-print($refDomain);
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 $env = $_ENV['env'];
@@ -64,7 +61,7 @@ $db = new mysqli(
     'Web_3dprints',
     "3306"
 );
-if ($submit_session_id == session_id() && ($ref == $base_url."/shop-checkout.php")) {
+if ($submit_session_id == session_id() && $refDomain == $base_url) {
     $email_products = "";
     $email_name = $data['firstName'];
     $email_shippingname = $data['firstName'] . " " . $email_shippingname = $data['lastName'];
@@ -278,6 +275,9 @@ if ($submit_session_id == session_id() && ($ref == $base_url."/shop-checkout.php
     } catch (Exception $e) {
         error_log("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
     }
+} else {
+    http_response_code(403);
+    die;
 }
 mysqli_close($db);
 ?>
