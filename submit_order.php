@@ -6,6 +6,10 @@ use PHPMailer\PHPMailer\Exception;
 
 include 'vendor/autoload.php';
 $base_url = $_SERVER['SERVER_NAME'];
+$ref = $_SERVER['HTTP_REFERER'];
+$refData = parse_url($ref);
+$refDomain = $refData['host'];
+print($refDomain);
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 $env = $_ENV['env'];
@@ -58,7 +62,7 @@ $db = new mysqli(
     'Web_3dprints',
     "3306"
 );
-if ($submit_session_id == session_id()) {
+if ($submit_session_id == session_id() && ($ref == $base_url."/shop-checkout.php")) {
     $email_products = "";
     $email_name = $data['firstName'];
     $email_shippingname = $data['firstName'] . " " . $email_shippingname = $data['lastName'];
