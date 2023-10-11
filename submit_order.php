@@ -277,7 +277,6 @@ if ($submit_session_id == session_id() && $refDomain == $base_url) {
     }
 } else {
     http_response_code(403);
-    print("Access Denied");
     die;
 }
 mysqli_close($db);
