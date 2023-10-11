@@ -131,7 +131,7 @@ worker-src 'nonce-<?php echo $nonce; ?>';" />
 
 </head>
 
-<body onload="onload();">
+<body>
 	<div class="page-wraper">
 		<div id="loading-area" class="preloader-wrapper-1">
 			<div>
@@ -369,6 +369,9 @@ worker-src 'nonce-<?php echo $nonce; ?>';" />
 		<!-- product scripts -->
 
 		<script nonce="<?php echo $nonce; ?>">
+			$(
+				onload();
+			);
 
 			$(".image-radio img").click(function () {
 				$(this).prev().attr('checked', true);
