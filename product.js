@@ -5,15 +5,15 @@ const skuLabel = document.querySelector("#skuLabel");
 const addToCartButton = document.querySelector("#addToCartButton");
 
 
-changeQty.addEventListener("change", function() {
+changeQty.addEventListener("change", function () {
     changedQty();
 });
 
-changeQty.addEventListener("keyup", function() {
+changeQty.addEventListener("keyup", function () {
     changedQty();
 });
 
-addToCartButton.addEventListener("click", function() {
+addToCartButton.addEventListener("click", function () {
     addToCart();
 });
 
@@ -21,7 +21,7 @@ function changedQty() {
     const qty = document.getElementById('qty').value;
     let totalPrice = price
     // Update total price on qty change (and give wholesale price if >=10)
-    if (isOnSale()){
+    if (isOnSale()) {
         totalPrice = discountPrice * qty;
         const originalTotal = originalPrice * qty;
         priceLabel.innerHTML = '$' + discountPrice + ' <del>$' + originalPrice + '</del>';
@@ -67,14 +67,21 @@ function refresh() {
 
 function onload() {
     refresh();
+    if (env == 'dev') {
+        Swal.fire(
+            'Pre-Prod Server!',
+            'You are viewing the Pre-Production/Dev server. Orders submitted via this site will not be filled or charged. Only PayPal sandbox accounts/credit cards will work.',
+            'warning'
+        );
+    };
 };
 
 function isOnSale() {
-	const currentDate = new Date();
+    const currentDate = new Date();
     const currentTime = currentDate.getTime()
     const discountStartTime = discountStart.getTime()
     const discountEndTime = discountEnd.getTime()
-	if (currentTime >= discountStartTime && currentTime <= discountEndTime) {
+    if (currentTime >= discountStartTime && currentTime <= discountEndTime) {
         // Item is on sale
         price = discountPrice;
         return true;
