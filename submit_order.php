@@ -9,6 +9,8 @@ $base_url = $_SERVER['SERVER_NAME'];
 $ref = $_SERVER['HTTP_REFERER'];
 $refData = parse_url($ref);
 $refDomain = $refData['host'];
+print($base_url);
+print($refData);
 print($refDomain);
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
