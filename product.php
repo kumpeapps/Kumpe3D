@@ -15,7 +15,7 @@ if (isset($_GET['sku'])) {
 		$sku['sku'] = 'ALO-POO-LSN-000';
 	} else {
 		http_response_code(404);
-		include('./404.php');
+		include('./ErrorPages/HTTP404.html');
 		die();
 	}
 }
@@ -26,7 +26,7 @@ if (isset($sku_array[0]) && isset($sku_array[1]) && isset($sku_array[2])) {
 	$sku['options'] = $sku_array[2];
 } else {
 	http_response_code(404);
-	include('./404.php');
+	include('./ErrorPages/HTTP404.html');
 	die();
 }
 if (isset($sku_array[3])) {

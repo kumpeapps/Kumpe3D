@@ -277,8 +277,8 @@ if ($submit_session_id == session_id() && $refDomain == $base_url) {
     }
 } else {
     http_response_code(403);
-    include('./ErrorPages/HTTP403.html');
-    die;
+    // include('./ErrorPages/HTTP403.html');
+    exit(0);
 }
 mysqli_close($db);
 ?>
