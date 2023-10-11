@@ -132,7 +132,7 @@ disown-opener;" /> -->
 
 </head>
 
-<body>
+<body onload="onload()">
 	<div class="page-wraper">
 		<div id="loading-area" class="preloader-wrapper-1">
 			<div>
@@ -370,8 +370,7 @@ disown-opener;" /> -->
 		<!-- product scripts -->
 
 		<script nonce="<?php echo $nonce; ?>">
-			Object.defineProperty(console, '_commandLineAPI',
-   { get : function() { throw 'Nooo!' } });
+
 			$(".image-radio img").click(function () {
 				$(this).prev().attr('checked', true);
 			});
