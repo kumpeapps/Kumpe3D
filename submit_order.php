@@ -129,7 +129,7 @@ if ($submit_session_id == session_id() && $refDomain == $base_url) {
             VALUES
                 (?, ?, ?, ?, ?, NULL);
         ";
-    
+
     $stock_sql = "
         INSERT INTO `Web_3dprints`.`stock`
             (`sku`,
@@ -230,7 +230,7 @@ if ($submit_session_id == session_id() && $refDomain == $base_url) {
             `notes`,
             `updated_by`)
         VALUES
-            (?, ?, 'Paid via ".$data['paymentMethod']."', 'checkout');
+            (?, ?, 'Paid via " . $data['paymentMethod'] . "', 'checkout');
     ";
     $stmt = $db->prepare($history_sql);
     $stmt->bind_param(
@@ -256,7 +256,7 @@ if ($submit_session_id == session_id() && $refDomain == $base_url) {
 
         //Recipients
         $mail->setFrom($_ENV['email_user'], 'Kumpe3D');
-        $mail->addAddress($data['emailAddress'], $data['firstName']." ".$data['lastName']); //Add a recipient
+        $mail->addAddress($data['emailAddress'], $data['firstName'] . " " . $data['lastName']); //Add a recipient
         $mail->addReplyTo('sales@kumpeapps.com', 'Kumpe3D');
         $mail->addBCC('sales@kumpeapps.com');
 
@@ -264,7 +264,7 @@ if ($submit_session_id == session_id() && $refDomain == $base_url) {
         // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
         $subject = 'Kumpe3D Order Number ' . $email_orderid;
         if ($env == 'dev') {
-            $subject = '[PreProd] '.$subject;
+            $subject = '[PreProd] ' . $subject;
         }
         //Content
         $mail->isHTML(true); //Set email format to HTML
@@ -277,8 +277,8 @@ if ($submit_session_id == session_id() && $refDomain == $base_url) {
     }
 } else {
     http_response_code(403);
-    // include('./ErrorPages/HTTP403.html');
-    exit(0);
+    include('./ErrorPages/HTTP403.html');
+    die;
 }
 mysqli_close($db);
 ?>
