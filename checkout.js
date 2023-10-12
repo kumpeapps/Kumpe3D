@@ -128,9 +128,7 @@ paypal.Buttons({
 
 function orderSuccess() {
     showPayPal(false);
-    for (item in cartLS.list()) {
-        cartLS.remove(item.id);
-    }
+    cartLS.destroy();
     onload();
     Swal.fire(
         'Success',
