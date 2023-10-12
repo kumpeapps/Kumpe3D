@@ -11,9 +11,6 @@
 		'Web_3dprints'
 	) or die ("Couldn't connect to server.");
 	$pages_sql = "SELECT * FROM Web_3dprints.menu__pages;";
-	if ($env == 'prod') {
-		echo "<script nonce='".bin2hex(openssl_random_pseudo_bytes(32))."'>const console = '';</script>";
-	}
 
 ?>
 	<!-- Header -->
