@@ -206,7 +206,7 @@ mysqli_close($conn);
 										<div class="form-select">
 											<select onchange="buildStates()" id="countrySelect"
 												class="default-select w-100">
-												<!-- <option value="USA" selected>USA</option> -->
+												<option value="US" selected>USA</option>
 											</select>
 										</div>
 									</div>
