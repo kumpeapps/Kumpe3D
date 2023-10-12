@@ -16,12 +16,20 @@ require_once 'includes/site_params.php';
 	<meta property="og:title" content="<?php echo $site_params['store_name']; ?>">
 	<meta property="og:description" content="<?php echo $site_params['store_name']; ?>">
 	<meta name="format-detection" content="telephone=no">
-
+	<style>
+		p {
+			text-align: center;
+			font-size: 60px;
+			margin-top: 0px;
+		}
+	</style>
 	<!-- FAVICONS ICON -->
 	<link rel="icon" type="image/x-icon" href="images/favicon.png">
 
 	<!-- PAGE TITLE HERE -->
-	<title><?php echo $site_params['store_name']; ?></title>
+	<title>
+		<?php echo $site_params['store_name']; ?>
+	</title>
 
 	<!-- MOBILE SPECIFIC -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,7 +75,10 @@ require_once 'includes/site_params.php';
 					<div class="dz-content">
 						<div class="dz-media-title"><img src="images/vlc.png" alt="">Oops!</div>
 						<h2 class="dz-title">Our website in Under Construction</h2>
-						<h3><?php echo $site_params['store_maitenance_text']; ?></h3>
+						<h3>
+							<?php echo $site_params['store_maitenance_text']; ?>
+						</h3>
+						<p id="countdown"></p>
 					</div>
 				</div>
 			</div>
@@ -82,6 +93,8 @@ require_once 'includes/site_params.php';
 	<script src="vendor-js/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN JS -->
 	<script src="js/dz.ajax.js"></script><!-- AJAX -->
 	<script src="js/custom.js"></script><!-- CUSTOM JS -->
+	<script src="countdown.js"></script>
+
 
 </body>
 
