@@ -15,7 +15,7 @@ if (isset($_GET['sku'])) {
 		$sku['sku'] = 'ALO-POO-LSN-000';
 	} else {
 		http_response_code(404);
-		include('./404.php');
+		include('./ErrorPages/HTTP404.html');
 		die();
 	}
 }
@@ -26,7 +26,7 @@ if (isset($sku_array[0]) && isset($sku_array[1]) && isset($sku_array[2])) {
 	$sku['options'] = $sku_array[2];
 } else {
 	http_response_code(404);
-	include('./404.php');
+	include('./ErrorPages/HTTP404.html');
 	die();
 }
 if (isset($sku_array[3])) {
@@ -68,12 +68,25 @@ $photo_sql = "SELECT * FROM Web_3dprints.product_photos WHERE sku = '$base_sku';
 $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 	<!-- Meta -->
+	<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self';
+script-src https://cdn.jsdelivr.net/npm/sweetalert2@11 https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js 'nonce-<?php echo $nonce; ?>';
+style-src 'report-sample' 'self' https://fonts.googleapis.com 'nonce-<?php echo $nonce; ?>';
+object-src 'nonce-<?php echo $nonce; ?>';
+base-uri 'self' 'nonce-<?php echo $nonce; ?>';
+connect-src 'self' 'nonce-<?php echo $nonce; ?>';
+font-src 'self' data: https://fonts.gstatic.com 'nonce-<?php echo $nonce; ?>';
+frame-src 'self';
+img-src *;
+manifest-src 'self' 'nonce-<?php echo $nonce; ?>';
+media-src 'self' 'nonce-<?php echo $nonce; ?>';
+report-uri https://6525dec50fcafd85d341f4c1.endpoint.csper.io/?v=0;
+worker-src 'nonce-<?php echo $nonce; ?>';
+disown-opener;" /> -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="keywords" content="<?php echo $product['tags']; ?>">
@@ -96,30 +109,34 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- STYLESHEETS -->
-	<link rel="stylesheet" type="text/css" href="vendor-js/bootstrap-select/dist/css/bootstrap-select.min.css">
-	<link rel="stylesheet" type="text/css" href="icons/fontawesome/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="icons/themify/themify-icons.css">
-	<link rel="stylesheet" type="text/css" href="icons/flaticon/flaticon_mooncart.css">
-	<link rel="stylesheet" type="text/css" href="vendor-js/swiper/swiper-bundle.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor-js/nouislider/nouislider.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor-js/animate/animate.css">
-	<link rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lightgallery.css">
-	<link rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-thumbnail.css">
-	<link rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-zoom.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script src="https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js"
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css"
+		href="vendor-js/bootstrap-select/dist/css/bootstrap-select.min.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="icons/fontawesome/css/all.min.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="icons/themify/themify-icons.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="icons/flaticon/flaticon_mooncart.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/swiper/swiper-bundle.min.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/nouislider/nouislider.min.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/animate/animate.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css"
+		href="vendor-js/lightgallery/dist/css/lightgallery.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css"
+		href="vendor-js/lightgallery/dist/css/lg-thumbnail.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css"
+		href="vendor-js/lightgallery/dist/css/lg-zoom.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="css/style.css">
+	<script nonce="<?php echo $nonce; ?>" src="https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js"
 		type="text/javascript"></script>
 
 	<!-- GOOGLE FONTS-->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
+	<link nonce="<?php echo $nonce; ?>" rel="preconnect" href="https://fonts.googleapis.com">
+	<link nonce="<?php echo $nonce; ?>" rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link nonce="<?php echo $nonce; ?>"
 		href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap"
 		rel="stylesheet">
 
 </head>
 
-<body onload="onload();">
+<body onload="onload()">
 	<div class="page-wraper">
 		<div id="loading-area" class="preloader-wrapper-1">
 			<div>
@@ -309,32 +326,45 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		</div>
 
 		<!-- JAVASCRIPT FILES ========================================= -->
-		<script src="js/jquery.min.js"></script><!-- JQUERY MIN JS -->
-		<script src="vendor-js/wow/wow.min.js"></script><!-- WOW JS -->
-		<script src="vendor-js/bootstrap/dist/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP MIN JS -->
-		<script src="vendor-js/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+		<script nonce="<?php echo $nonce; ?>" src="js/jquery.min.js"></script>
+		<!-- JQUERY MIN JS -->
+		<script nonce="<?php echo $nonce; ?>" src="vendor-js/wow/wow.min.js"></script>
+		<!-- WOW JS -->
+		<script nonce="<?php echo $nonce; ?>" src="vendor-js/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+		<!-- BOOTSTRAP MIN JS -->
+		<script nonce="<?php echo $nonce; ?>" src="vendor-js/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 		<!-- BOOTSTRAP SELECT MIN JS -->
-		<script src="vendor-js/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN JS -->
+		<script nonce="<?php echo $nonce; ?>" src="vendor-js/bootstrap-touchspin/bootstrap-touchspin.js"></script>
+		<!-- BOOTSTRAP TOUCHSPIN JS -->
 
-		<script src="vendor-js/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
-		<script src="vendor-js/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
-		<script src="vendor-js/swiper/swiper-bundle.min.js"></script><!-- SWIPER JS -->
-		<script src="vendor-js/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED-->
-		<script src="vendor-js/masonry/masonry-4.2.2.js"></script><!-- MASONRY -->
-		<script src="vendor-js/masonry/isotope.pkgd.min.js"></script><!-- ISOTOPE -->
-		<script src="vendor-js/countdown/jquery.countdown.js"></script><!-- COUNTDOWN FUCTIONS  -->
-		<script src="vendor-js/wnumb/wNumb.js"></script><!-- WNUMB -->
-		<script src="vendor-js/nouislider/nouislider.min.js"></script><!-- NOUSLIDER MIN JS-->
-		<script src="js/dz.carousel.js"></script><!-- DZ CAROUSEL JS -->
-		<script src="vendor-js/lightgallery/dist/lightgallery.min.js"></script>
-		<script src="vendor-js/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js"></script>
-		<script src="vendor-js/lightgallery/dist/plugins/zoom/lg-zoom.min.js"></script>
-		<script src="js/dz.ajax.js"></script><!-- AJAX -->
-		<script src="js/custom.js"></script><!-- CUSTOM JS -->
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- SweetAlerts -->
-		<script src="product.js"></script><!-- product scripts -->
+		<script nonce="<?php echo $nonce; ?>" src="vendor-js/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
+		<script nonce="<?php echo $nonce; ?>" src="vendor-js/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
+		<script nonce="<?php echo $nonce; ?>" src="vendor-js/swiper/swiper-bundle.min.js"></script><!-- SWIPER JS -->
+		<script nonce="<?php echo $nonce; ?>" src="vendor-js/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED-->
+		<script nonce="<?php echo $nonce; ?>" src="vendor-js/masonry/masonry-4.2.2.js"></script><!-- MASONRY -->
+		<script nonce="<?php echo $nonce; ?>" src="vendor-js/masonry/isotope.pkgd.min.js"></script><!-- ISOTOPE -->
+		<script nonce="<?php echo $nonce; ?>" src="vendor-js/countdown/jquery.countdown.js"></script>
+		<!-- COUNTDOWN FUCTIONS  -->
+		<script nonce="<?php echo $nonce; ?>" src="vendor-js/wnumb/wNumb.js"></script>
+		<!-- WNUMB -->
+		<script nonce="<?php echo $nonce; ?>" src="vendor-js/nouislider/nouislider.min.js"></script>
+		<!-- NOUSLIDER MIN JS-->
+		<script nonce="<?php echo $nonce; ?>" src="js/dz.carousel.js"></script>
+		<!-- DZ CAROUSEL JS -->
+		<script nonce="<?php echo $nonce; ?>" src="vendor-js/lightgallery/dist/lightgallery.min.js"></script>
+		<script nonce="<?php echo $nonce; ?>"
+			src="vendor-js/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js"></script>
+		<script nonce="<?php echo $nonce; ?>" src="vendor-js/lightgallery/dist/plugins/zoom/lg-zoom.min.js"></script>
+		<script nonce="<?php echo $nonce; ?>" src="js/dz.ajax.js"></script>
+		<!-- AJAX -->
+		<script nonce="<?php echo $nonce; ?>" src="js/custom.js"></script>
+		<!-- CUSTOM JS -->
+		<script nonce="<?php echo $nonce; ?>" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<!-- SweetAlerts -->
+		<script nonce="<?php echo $nonce; ?>" src="product.js"></script>
+		<!-- product scripts -->
 
-		<script>
+		<script nonce="<?php echo $nonce; ?>">
 
 			$(".image-radio img").click(function () {
 				$(this).prev().attr('checked', true);
@@ -365,7 +395,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 				const image_url_base = 'https://images.kumpeapps.com/filament_swatch?sku=';
 				const image_url = image_url_base + base_sku + '-' + color_id;
 				const qty = document.getElementById('qty').value;
-				const newBaseSKU =base_sku
+				const newBaseSKU = base_sku
 				let itemPrice = price;
 
 				if (qty >= wholesaleQty) {

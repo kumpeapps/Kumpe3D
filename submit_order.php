@@ -6,6 +6,9 @@ use PHPMailer\PHPMailer\Exception;
 
 include 'vendor/autoload.php';
 $base_url = $_SERVER['SERVER_NAME'];
+$ref = $_SERVER['HTTP_REFERER'];
+$refData = parse_url($ref);
+$refDomain = $refData['host'];
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 $env = $_ENV['env'];
@@ -58,7 +61,7 @@ $db = new mysqli(
     'Web_3dprints',
     "3306"
 );
-if ($submit_session_id == session_id()) {
+if ($submit_session_id == session_id() && $refDomain == $base_url) {
     $email_products = "";
     $email_name = $data['firstName'];
     $email_shippingname = $data['firstName'] . " " . $email_shippingname = $data['lastName'];
@@ -126,7 +129,7 @@ if ($submit_session_id == session_id()) {
             VALUES
                 (?, ?, ?, ?, ?, NULL);
         ";
-    
+
     $stock_sql = "
         INSERT INTO `Web_3dprints`.`stock`
             (`sku`,
@@ -227,7 +230,7 @@ if ($submit_session_id == session_id()) {
             `notes`,
             `updated_by`)
         VALUES
-            (?, ?, 'Paid via ".$data['paymentMethod']."', 'checkout');
+            (?, ?, 'Paid via " . $data['paymentMethod'] . "', 'checkout');
     ";
     $stmt = $db->prepare($history_sql);
     $stmt->bind_param(
@@ -253,7 +256,7 @@ if ($submit_session_id == session_id()) {
 
         //Recipients
         $mail->setFrom($_ENV['email_user'], 'Kumpe3D');
-        $mail->addAddress($data['emailAddress'], $data['firstName']." ".$data['lastName']); //Add a recipient
+        $mail->addAddress($data['emailAddress'], $data['firstName'] . " " . $data['lastName']); //Add a recipient
         $mail->addReplyTo('sales@kumpeapps.com', 'Kumpe3D');
         $mail->addBCC('sales@kumpeapps.com');
 
@@ -261,7 +264,7 @@ if ($submit_session_id == session_id()) {
         // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
         $subject = 'Kumpe3D Order Number ' . $email_orderid;
         if ($env == 'dev') {
-            $subject = '[PreProd] '.$subject;
+            $subject = '[PreProd] ' . $subject;
         }
         //Content
         $mail->isHTML(true); //Set email format to HTML
@@ -272,6 +275,10 @@ if ($submit_session_id == session_id()) {
     } catch (Exception $e) {
         error_log("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
     }
+} else {
+    http_response_code(403);
+    include('./ErrorPages/HTTP403.html');
+    die;
 }
 mysqli_close($db);
 ?>

@@ -27,16 +27,16 @@ require_once 'includes/site_params.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- STYLESHEETS -->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor-js/bootstrap-select/dist/css/bootstrap-select.min.css">
 	<link rel="stylesheet" type="text/css" href="icons/fontawesome/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="icons/themify/themify-icons.css">
 	<link rel="stylesheet" type="text/css" href="icons/flaticon/flaticon_mooncart.css">
-	<link rel="stylesheet" type="text/css" href="vendor/swiper/swiper-bundle.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor/nouislider/nouislider.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-	<link rel="stylesheet" type="text/css" href="vendor/lightgallery/dist/css/lightgallery.css">
-	<link rel="stylesheet" type="text/css" href="vendor/lightgallery/dist/css/lg-thumbnail.css">
-	<link rel="stylesheet" type="text/css" href="vendor/lightgallery/dist/css/lg-zoom.css">
+	<link rel="stylesheet" type="text/css" href="vendor-js/swiper/swiper-bundle.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor-js/nouislider/nouislider.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor-js/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lightgallery.css">
+	<link rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-thumbnail.css">
+	<link rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-zoom.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 	<!-- GOOGLE FONTS-->
@@ -77,9 +77,9 @@ require_once 'includes/site_params.php';
 
 	<!-- JAVASCRIPT FILES ========================================= -->
 	<script src="js/jquery.min.js"></script><!-- JQUERY MIN JS -->
-	<script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP MIN JS -->
-	<script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELECT MIN JS -->
-	<script src="vendor/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN JS -->
+	<script src="vendor-js/bootstrap/dist/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP MIN JS -->
+	<script src="vendor-js/bootstrap-select/dist/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELECT MIN JS -->
+	<script src="vendor-js/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN JS -->
 	<script src="js/dz.ajax.js"></script><!-- AJAX -->
 	<script src="js/custom.js"></script><!-- CUSTOM JS -->
 
