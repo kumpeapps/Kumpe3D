@@ -91,3 +91,13 @@ function isOnSale() {
         return false;
     }
 };
+
+function test(){
+    const request = new Request("https://api.preprod.kumpe3d.com/headerdata", {
+        method: "GET",
+      });
+      
+      request.json().then((data) => {
+        console.log(data)
+      });
+}
