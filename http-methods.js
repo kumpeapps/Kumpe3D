@@ -15,6 +15,8 @@ const getJSON = async url => {
     if (!response.ok) // check if response worked (no 404 errors etc...)
         throw new Error(response.statusText);
 
-    const data = response.json(); // get JSON from the response
-    return data; // returns a promise, which resolves to this data value
+    if (response.status === 204)
+        return null
+    else
+        return data; // returns a promise, which resolves to this data value
 };
