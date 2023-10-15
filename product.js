@@ -97,7 +97,7 @@ function test(){
         method: "GET",
       });
       
-      request.json().then((data) => {
+      request.text().then((data) => {
         console.log(data)
       });
 }
