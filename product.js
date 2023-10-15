@@ -91,23 +91,3 @@ function isOnSale() {
         return false;
     }
 };
-let testdata
-function test(){
-    const request = new Request("https://api.preprod.kumpe3d.com/product?sku=alo-poo-lsn", {
-        method: "GET",
-      });
-      
-      request.json().then((data) => {
-        testdata = data
-      });
-};
-
-function test2(){
-    const request = new Request("https://api.preprod.kumpe3d.com/product?sku=alo-poo-lsl", {
-        method: "GET",
-      });
-      
-      request.json().then((data) => {
-        console.log(data)
-      });
-};
