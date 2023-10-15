@@ -97,7 +97,7 @@ function test(){
         method: "GET",
       });
       
-      request.text().then((data) => {
+      request.json().then((data) => {
         console.log(data)
       });
 };
@@ -107,7 +107,7 @@ function test2(){
         method: "GET",
       });
       
-      request.text().then((data) => {
+      request.json().then((data) => {
         console.log(data)
       });
 };
