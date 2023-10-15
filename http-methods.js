@@ -15,7 +15,7 @@ const getJSON = async url => {
     if (!response.ok) // check if response worked (no 404 errors etc...)
         throw new Error(response.statusText);
 
-    if (response.status === 204)
+    if (response.status === 204) // check if 204 (No Content)
         return null;
     else
         return response.json();
