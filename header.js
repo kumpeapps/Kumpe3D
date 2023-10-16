@@ -1,3 +1,5 @@
+const siteParams = GET(apiUrl + "/site-params")
+
 // buildShoppingCartModalList()
 function buildShoppingCartModalList() {
     const ul = document.getElementById('shoppingCartModal');
