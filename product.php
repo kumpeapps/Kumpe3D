@@ -105,6 +105,8 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- STYLESHEETS -->
+		<script nonce="<?php echo $nonce; ?>" src="http-methods.js"></script>
+		<script nonce="<?php echo $nonce; ?>" src="env.js"></script>
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css"
 		href="vendor-js/bootstrap-select/dist/css/bootstrap-select.min.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="icons/fontawesome/css/all.min.css">
@@ -322,7 +324,6 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		</div>
 
 		<!-- JAVASCRIPT FILES ========================================= -->
-		<script nonce="<?php echo $nonce; ?>" src="http-methods.js"></script>
 		<script nonce="<?php echo $nonce; ?>" src="js/jquery.min.js"></script>
 		<!-- JQUERY MIN JS -->
 		<script nonce="<?php echo $nonce; ?>" src="vendor-js/wow/wow.min.js"></script>
