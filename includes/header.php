@@ -14,7 +14,7 @@
 
 ?>
 	<!-- Header -->
-	<script nonce="<?php echo $nonce; ?>" src="header.js"></script><!-- product scripts -->
+	<script nonce="<?php echo $nonce; ?>" src="js/header.js"></script><!-- product scripts -->
 	<header class="site-header mo-left header border-bottom">
 		<!-- Main Header -->
 		<div class="sticky-header main-bar-wraper navbar-expand-lg">
