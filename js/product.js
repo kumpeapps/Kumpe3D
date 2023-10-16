@@ -11,6 +11,8 @@ if (env == 'dev') {
         'warning'
     );
 };
+const querySKU = urlParams.get('sku')
+const product = GET(apiUrl + "/product?sku=" + querySKU)
 
 
 changeQty.addEventListener("change", function () {
