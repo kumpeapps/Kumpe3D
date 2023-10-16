@@ -1,8 +1,4 @@
 <?php
-// **PREVENTING SESSION HIJACKING**
-// Prevents javascript XSS attacks aimed to steal the session ID
-ini_set('session.cookie_httponly', 1);
-
 // **PREVENTING SESSION FIXATION**
 // Session ID cannot be passed through URLs
 ini_set('session.use_only_cookies', 1);
@@ -95,6 +91,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 
 	<!-- FAVICONS ICON -->
 	<link rel="icon" type="image/x-icon" href="images/favicon.png">
+	<script nonce="<?php echo $nonce; ?>" src="js/default.js"></script>
 
 	<!-- PAGE TITLE HERE -->
 	<title>
@@ -105,8 +102,6 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- STYLESHEETS -->
-		<script nonce="<?php echo $nonce; ?>" src="http-methods.js"></script>
-		<script nonce="<?php echo $nonce; ?>" src="env.js"></script>
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css"
 		href="vendor-js/bootstrap-select/dist/css/bootstrap-select.min.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="icons/fontawesome/css/all.min.css">
@@ -359,8 +354,12 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		<!-- CUSTOM JS -->
 		<script nonce="<?php echo $nonce; ?>" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 		<!-- SweetAlerts -->
-		<script nonce="<?php echo $nonce; ?>" src="product.js"></script>
+		<script nonce="<?php echo $nonce; ?>" src="js/product.js"></script>
 		<!-- product scripts -->
+
+		<script nonce="<?php echo $nonce; ?>" rel="preload" src="js/http-methods.js"></script>
+		<script nonce="<?php echo $nonce; ?>" rel="preload" src="js/env.js"></script>
+		<!-- default scripts -->
 
 		<script nonce="<?php echo $nonce; ?>">
 

@@ -1,0 +1,1 @@
+const siteParams = GET(apiUrl + "/site-params")

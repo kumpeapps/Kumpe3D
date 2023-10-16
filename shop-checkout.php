@@ -84,6 +84,8 @@ mysqli_close($conn);
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- STYLESHEETS -->
+	<script nonce="<?php echo $nonce; ?>" src="http-methods.js"></script>
+	<script nonce="<?php echo $nonce; ?>" src="env.js"></script>
 	<link rel="stylesheet" type="text/css" href="vendor-js/bootstrap-select/dist/css/bootstrap-select.min.css">
 	<link rel="stylesheet" type="text/css" href="icons/fontawesome/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="icons/themify/themify-icons.css">
