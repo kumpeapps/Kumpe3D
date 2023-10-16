@@ -355,7 +355,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		<!-- AJAX -->
 		<script nonce="<?php echo $nonce; ?>" src="js/custom.js"></script>
 		<!-- CUSTOM JS -->
-		<script nonce="<?php echo $nonce; ?>" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script nonce="<?php echo $nonce; ?>" ref="preload" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 		<!-- SweetAlerts -->
 
 		<script nonce="<?php echo $nonce; ?>">
