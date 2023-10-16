@@ -322,6 +322,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		</div>
 
 		<!-- JAVASCRIPT FILES ========================================= -->
+		<script nonce="<?php echo $nonce; ?>" src="http-methods.js"></script>
 		<script nonce="<?php echo $nonce; ?>" src="js/jquery.min.js"></script>
 		<!-- JQUERY MIN JS -->
 		<script nonce="<?php echo $nonce; ?>" src="vendor-js/wow/wow.min.js"></script>
@@ -358,7 +359,6 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		<script nonce="<?php echo $nonce; ?>" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 		<!-- SweetAlerts -->
 		<script nonce="<?php echo $nonce; ?>" src="product.js"></script>
-		<script nonce="<?php echo $nonce; ?>" src="http-methods.js"></script>
 		<!-- product scripts -->
 
 		<script nonce="<?php echo $nonce; ?>">
