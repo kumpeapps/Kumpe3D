@@ -131,7 +131,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 
 </head>
 
-<body onload="onload()">
+<body>
 	<div class="page-wraper">
 		<div id="loading-area" class="preloader-wrapper-1">
 			<div>

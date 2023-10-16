@@ -3,6 +3,14 @@ const priceLabel = document.querySelector("#priceLabel");
 const totalPriceLabel = document.querySelector("#totalPriceLabel");
 const skuLabel = document.querySelector("#skuLabel");
 const addToCartButton = document.querySelector("#addToCartButton");
+refresh();
+if (env == 'dev') {
+    Swal.fire(
+        'Pre-Prod Server!',
+        'You are viewing the Pre-Production/Dev server. Orders submitted via this site will not be filled or charged. Only PayPal sandbox accounts/credit cards will work.',
+        'warning'
+    );
+};
 
 
 changeQty.addEventListener("change", function () {
