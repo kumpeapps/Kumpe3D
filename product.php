@@ -177,7 +177,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 					<div class="row">
 						<div class="col-xl-4 col-md-4">
 							<div class="dz-product-detail sticky-top">
-								<div class="swiper-btn-center-lr">
+								<div id="productImageGallery"class="swiper-btn-center-lr">
 									<div class="swiper product-gallery-swiper2">
 										<div class="swiper-wrapper" id="lightgallery">
 											<?php
