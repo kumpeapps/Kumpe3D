@@ -87,7 +87,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		base-uri 'self';
 		connect-src 'self' https://api.preprod.kumpe3d.com https://api.kumpe3d.com;
 		font-src 'self' data: https://fonts.gstatic.com;
-		frame-src 'self';
+		frame-src *;
 		img-src *;
 		manifest-src 'self';
 		media-src 'self';
