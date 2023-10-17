@@ -143,4 +143,5 @@ function buildImageGallery(images) {
     removeAllChildNodes(productImageGallery);
     productImageGallery.appendChild(buildImages(images));
     productImageGallery.appendChild(buildThumbnails(images));
+    console.log(productImageGallery)
 };
