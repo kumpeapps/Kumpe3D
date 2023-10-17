@@ -79,10 +79,22 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 
 <head>
 	<!-- Meta -->
-	<meta default-src 'self' ; script-src 'self'; style-src 'self'
-		https://fonts.googleapis.com; object-src 'none' ; base-uri 'self' ; connect-src 'self'
-		https://api.preprod.kumpe3d.com; font-src 'self' data: https://fonts.gstatic.com; frame-src 'self' ; img-src '*'
-		https://images.kumpeapps.com; manifest-src 'self' ; media-src 'self' ; worker-src 'none' ;>
+	<meta 
+	http-equiv="Content-Security-Policy" 
+	content="
+		default-src 'self';
+		script-src 'self';
+		style-src 'self' https://fonts.googleapis.com;
+		object-src 'none';
+		base-uri 'self';
+		connect-src 'self' https://api.preprod.kumpe3d.com;
+		font-src 'self' data: https://fonts.gstatic.com;
+		frame-src 'self';
+		img-src 'self' https://images.kumpeapps.com;
+		manifest-src 'self';
+		media-src 'self';
+		worker-src 'none';
+		Content-Security-Policy-Report-Only;">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="keywords" content="<?php echo $product['tags']; ?>">
