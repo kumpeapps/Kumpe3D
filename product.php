@@ -193,7 +193,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 										</div>
 									</div>
 									<div class="swiper product-gallery-swiper thumb-swiper-lg">
-										<div class="swiper-wrapper">
+										<div id="photoThumbnails" class="swiper-wrapper">
 											<?php
 											echo $photo_thumbnails;
 											?>
@@ -377,7 +377,6 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 			echo 'const discountEnd = new Date("' . $product['discount_end'] . '");';
 			echo 'const wholesaleQty = ' . $product['wholesale_qty'] . ';';
 			?>
-			const sessionID = <?php echo "'" . session_id() . "'"; ?>;
 
 			function changedColor() {
 				const color_id = getColorValue();

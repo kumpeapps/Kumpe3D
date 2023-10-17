@@ -1,3 +1,5 @@
+const sessionID = getCookie("PHPSESSID")
+
 updateShoppingCartModal()
 
 function buildShoppingCartModalList() {
