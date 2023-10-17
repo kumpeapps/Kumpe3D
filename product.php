@@ -365,14 +365,6 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 
 		<script nonce="<?php echo $nonce; ?>">
 
-			function changedColor() {
-				const color_id = getColorValue();
-				const base_sku = '<?php echo $base_sku; ?>';
-				const qty = document.getElementById('qty').value;
-				let sku = base_sku + '-' + color_id;
-				skuLabel.innerHTML = sku;
-			};
-
 			function addToCart() {
 				const sku = skuLabel.innerHTML;
 				const base_sku = '<?php echo $base_sku; ?>';
