@@ -20,7 +20,7 @@ titleCrumb.innerHTML = product.title
 titleLabel.innerHTML = product.title
 descriptionLabel.innerHTML = product.description
 document.getElementById("categoryLabel").innerHTML = product.categories
-document.getElementById("tagLabel").innerHTML = product.tags
+document.getElementById("tagsLabel").innerHTML = product.tags
 refresh();
 
 function getColorValue() {
