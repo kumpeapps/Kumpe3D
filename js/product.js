@@ -12,7 +12,7 @@ if (env == 'dev') {
     );
 };
 const querySKU = urlParams.get('sku')
-const product = GET(apiUrl + "/product?sku=" + querySKU)
+let product = GET(apiUrl + "/product?sku=" + querySKU)
 
 
 changeQty.addEventListener("change", function () {
@@ -29,7 +29,8 @@ addToCartButton.addEventListener("click", function () {
 
 function changedQty() {
     const qty = document.getElementById('qty').value;
-    let totalPrice = price
+    let productPrice = GET(apiUrl + "/product-price?sku=" + querySKU + "&qty=" + qty)
+    let totalPrice = productPrice.price
     // Update total price on qty change (and give wholesale price if >=10)
     if (isOnSale()) {
         totalPrice = discountPrice * qty;
