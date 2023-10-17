@@ -368,15 +368,6 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 			$(".image-radio img").click(function () {
 				$(this).prev().attr('checked', true);
 			});
-			<?php
-			echo 'let price = ' . $product['price'] . ';';
-			echo 'const originalPrice = ' . $product['price'] . ';';
-			echo 'const wholesale_price = ' . $product['wholesale_price'] . ';';
-			echo 'const discountPrice = ' . $product['discount_price'] . ';';
-			echo 'const discountStart = new Date("' . $product['discount_start'] . '");';
-			echo 'const discountEnd = new Date("' . $product['discount_end'] . '");';
-			echo 'const wholesaleQty = ' . $product['wholesale_qty'] . ';';
-			?>
 
 			function changedColor() {
 				const color_id = getColorValue();

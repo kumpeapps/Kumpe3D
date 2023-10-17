@@ -11,7 +11,7 @@ if (env == 'dev') {
     );
 };
 const querySKU = urlParams.get('sku')
-let product = GET(apiUrl + "/product?sku=" + querySKU)
+let product = GET(apiUrl + "/product?sku=" + querySKU).response
 refresh();
 
 
@@ -74,20 +74,4 @@ function isColorSet() {
 function refresh() {
     changedQty();
     updateShoppingCartModal();
-};
-
-function isOnSale() {
-    const currentDate = new Date();
-    const currentTime = currentDate.getTime()
-    const discountStartTime = discountStart.getTime()
-    const discountEndTime = discountEnd.getTime()
-    if (currentTime >= discountStartTime && currentTime <= discountEndTime) {
-        // Item is on sale
-        price = discountPrice;
-        return true;
-    } else {
-        // Item is not on sale
-        price = originalPrice;
-        return false;
-    }
 };
