@@ -84,13 +84,13 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 	content="
 		default-src 'self';
 		script-src 'self' 'nonce-<?php echo $nonce; ?>';
-		style-src 'self' https://fonts.googleapis.com;
+		style-src 'self' https://fonts.googleapis.com 'nonce-<?php echo $nonce; ?>';
 		object-src 'none';
 		base-uri 'self';
 		connect-src 'self' https://api.preprod.kumpe3d.com;
 		font-src 'self' data: https://fonts.gstatic.com;
 		frame-src 'self';
-		img-src 'self' https://images.kumpeapps.com;
+		img-src 'self' https://images.kumpeapps.com http://www.w3.org/2000/svg;
 		manifest-src 'self';
 		media-src 'self';
 		worker-src 'none';">
