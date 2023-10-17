@@ -80,7 +80,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 <head>
 	<!-- Meta -->
 	<meta 
-	http-equiv="Content-Security-Policy-Report-Only" 
+	http-equiv="Content-Security-Policy" 
 	content="
 		default-src 'self';
 		script-src 'self';
