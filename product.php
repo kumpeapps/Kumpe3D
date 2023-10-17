@@ -145,6 +145,8 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap"
 		rel="stylesheet">
 
+		<script nonce="<?php echo $nonce; ?>" src="js/product.js"></script>
+
 </head>
 
 <body>
@@ -361,7 +363,6 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		<!-- AJAX -->
 		<script nonce="<?php echo $nonce; ?>" src="js/custom.js"></script>
 		<!-- CUSTOM JS -->
-		<script nonce="<?php echo $nonce; ?>" src="js/product.js"></script>
 
 		<script nonce="<?php echo $nonce; ?>">
 
