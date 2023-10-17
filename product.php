@@ -181,31 +181,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 							<div class="dz-product-detail sticky-top">
 								<div id="productImageGallery" class="swiper-btn-center-lr">
 									<div class="swiper product-gallery-swiper2">
-										<div class="swiper-wrapper" id="lightgallery">
-											<?php
-											if ($photo_query = mysqli_query($conn, $photo_sql)) {
-												// Loop through each row in the result set
-												$photo_images = '';
-												$photo_thumbnails = '';
-												while ($photo = mysqli_fetch_array($photo_query)) {
-													$photo_images = $photo_images .
-														'<div class="swiper-slide">
-															<div class="dz-media DZoomImage">
-																<a class="mfp-link lg-item" data-src="' . $photo['file_path'] . '">
-																	<i class="feather icon-maximize dz-maximize top-left"></i>
-																</a>
-																<img src="' . $photo['file_path'] . '" alt="image">
-															</div>
-														</div>';
-													$photo_thumbnails = $photo_thumbnails . '
-													<div class="swiper-slide">
-														<img src="' . $photo['file_path'] . '" alt="image">
-													</div>';
-												}
-												echo $photo_images;
-											}
-											?>
-										</div>
+										
 									</div>
 									<div class="swiper product-gallery-swiper thumb-swiper-lg">
 										<div id="photoThumbnails" class="swiper-wrapper">
