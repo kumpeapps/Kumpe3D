@@ -15,14 +15,12 @@ if (env == 'dev') {
 };
 const querySKU = urlParams.get('sku')
 let product = GET(apiUrl + "/product?sku=" + querySKU).response
-const productImages = GET(apiUrl + "/product-images?sku=" + querySKU).response
 titleCrumb.innerHTML = product.title
 titleLabel.innerHTML = product.title
 descriptionLabel.innerHTML = product.description
 document.getElementById("categoryLabel").innerHTML = product.categories
 document.getElementById("tagsLabel").innerHTML = product.tags
 refresh();
-// buildImageGallery(productImages);
 
 function getColorValue() {
     const ele = document.getElementsByName('radioColor');
@@ -89,60 +87,4 @@ function isColorSet() {
 function refresh() {
     changedQty();
     updateShoppingCartModal();
-};
-
-function buildImages(images) {
-    const divi = document.getElementById("imageGallery");
-    removeAllChildNodes(divi);
-    divi.setAttribute("class", "swiper product-gallery-swiper2");
-    const wrapper = document.createElement("div");
-    wrapper.setAttribute("class", "swiper-wrapper");
-    wrapper.setAttribute("id", "lightgallery");
-    images.forEach(renderImages);
-    function renderImages(element, _, _) {
-        const image = document.createElement("img");
-        image.setAttribute("src", element['file_path']);
-        const feather = document.createElement("i");
-        feather.setAttribute("class", "feather icon-maximize dz-maximize top-left");
-        const link = document.createElement("a");
-        link.setAttribute("class", "mfp-link lg-item");
-        link.setAttribute("href", element['file_path']);
-        link.setAttribute("data-src", element['file_path']);
-        link.appendChild(feather);
-        const media = document.createElement("div");
-        media.setAttribute("class", "dz-media DZoomImage");
-        media.appendChild(link);
-        const slide = document.createElement("div");
-        slide.setAttribute("class", "swiper-slide");
-        slide.appendChild(media);
-        wrapper.appendChild(slide);
-    }
-    divi.appendChild(wrapper);
-};
-
-function buildThumbnails(images) {
-    const divi = document.getElementById("photoThumbnails");
-    removeAllChildNodes(divi);
-    divi.setAttribute("class", "swiper product-gallery-swiper thumb-swiper-lg");
-    const wrapper = document.createElement("div");
-    wrapper.setAttribute("class", "swiper-wrapper");
-    images.forEach(renderThumbnails);
-    function renderThumbnails(element, _, _) {
-        const image = document.createElement("img");
-        image.setAttribute("src", element['file_path']);
-        const slider = document.createElement("div");
-        slider.setAttribute("class", "swiper-slide");
-        slider.appendChild(image);
-        wrapper.appendChild(slider);
-    }
-    divi.appendChild(wrapper);
-    return divi
-};
-
-function buildImageGallery(images) {
-    const productImageGallery = document.getElementById("productImageGallery");
-    removeAllChildNodes(productImageGallery);
-    productImageGallery.appendChild(buildImages(images));
-    productImageGallery.appendChild(buildThumbnails(images));
-    console.log(productImageGallery)
 };
