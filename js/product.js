@@ -15,6 +15,7 @@ if (env == 'dev') {
 };
 const querySKU = urlParams.get('sku')
 let product = GET(apiUrl + "/product?sku=" + querySKU).response
+const productImages = GET(apiUrl + "/product-images?sku=" + querySKU).response
 titleCrumb.innerHTML = product.title
 titleLabel.innerHTML = product.title
 descriptionLabel.innerHTML = product.description
