@@ -180,28 +180,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 						<div class="col-xl-4 col-md-4">
 							<div class="dz-product-detail sticky-top">
 								<div id="productImageGallery" class="swiper-btn-center-lr">
-									<div class="swiper product-gallery-swiper2">
-										<div class="swiper-wrapper" id="lightgallery">
-											<div class="swiper-slide">
-												<div class="dz-media DZoomImage">
-													<a class="mfp-link lg-item" data-src="">
-														<i class="feather icon-maximize dz-maximize top-left"></i>
-													</a>
-													<img src="" alt="image">
-												</div>
-											</div>
-											<div class="swiper-slide">
-												<img src="" alt="image">
-											</div>
-
-
-										</div>
-									</div>
-									<div class="swiper product-gallery-swiper thumb-swiper-lg">
-										<div id="photoThumbnails" class="swiper-wrapper">
-											
-										</div>
-									</div>
+									
 								</div>
 							</div>
 						</div>
