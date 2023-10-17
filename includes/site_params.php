@@ -31,7 +31,6 @@ function snakeToCamelCase($string, $capitalizeFirstCharacter = false)
 
 $result = mysqli_query($params_conn, $params_sql);
 $site_params = [];
-$site_params_js = "const env = '$env'; let siteParams = {};";
 
 if ($result) {
     while ($row = mysqli_fetch_array($result)) {
@@ -46,25 +45,21 @@ if ($result) {
                 $value = json_encode($row['value']);
                 $param = snakeToCamelCase($row['parameter']);
                 $jsparam = 'siteParams["' . $param . '"] = JSON.parse(' . $value . ');';
-                $site_params_js = $site_params_js . $jsparam;
                 break;
             case "int":
                 $value = $row['value'];
                 $param = snakeToCamelCase($row['parameter']);
                 $jsparam = 'siteParams["' . $param . '"] = ' . $value . ';';
-                $site_params_js = $site_params_js . $jsparam;
                 break;
             case "bool":
                 $value = $row['value'];
                 $param = snakeToCamelCase($row['parameter']);
                 $jsparam = 'siteParams["' . $param . '"] = ' . $value . ';';
-                $site_params_js = $site_params_js . $jsparam;
                 break;
             case "string":
                 $value = $row['value'];
                 $param = snakeToCamelCase($row['parameter']);
                 $jsparam = 'siteParams["' . $param . '"] = "' . $value . '";';
-                $site_params_js = $site_params_js . $jsparam;
                 break;
             default:
                 break;
