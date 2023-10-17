@@ -52,7 +52,11 @@ addToCartButton.addEventListener("click", function () {
 
 function changedQty() {
     const qty = document.getElementById('qty').value;
+    const isOnSaleBadge = document.getElementById('isOnSaleBadge');
     const productPrice = GET(apiUrl + "/product-price?sku=" + querySKU + "&quantity=" + qty).response
+    if (productPrice.isOnSale) {
+        isOnSaleBadge.removeAttribute("hidden")
+    }
     let totalPrice = productPrice.price
     // Update total price on qty change (and give wholesale price if >=10)
     if (productPrice.price !== productPrice.originalPrice) {
