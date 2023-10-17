@@ -104,9 +104,9 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 
 	<!-- FAVICONS ICON -->
 	<link rel="icon" type="image/x-icon" href="images/favicon.png">
-	<script nonce="<?php echo $nonce; ?>" rel="preload" src="js/http-methods.js"></script>
+	<script nonce="<?php echo $nonce; ?>" src="js/http-methods.js"></script>
 	<script nonce="<?php echo $nonce; ?>" src="js/cookies.js"></script>
-	<script nonce="<?php echo $nonce; ?>" rel="preload" src="env.js"></script>
+	<script nonce="<?php echo $nonce; ?>" src="env.js"></script>
 	<script nonce="<?php echo $nonce; ?>" src="js/default.js"></script>
 
 	<!-- PAGE TITLE HERE -->
