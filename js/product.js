@@ -14,6 +14,22 @@ const querySKU = urlParams.get('sku')
 let product = GET(apiUrl + "/product?sku=" + querySKU).response
 refresh();
 
+function getColorValue() {
+    const ele = document.getElementsByName('radioColor');
+    for (i = 0; i < ele.length; i++) {
+        if (ele[i].checked)
+            return ele[i].value;
+    }
+    return "000";
+};
+
+function changedColor() {
+    const color_id = getColorValue();
+    const base_sku = product.sku_parts.base_sku;
+    const qty = document.getElementById('qty').value;
+    let sku = base_sku + '-' + color_id;
+    skuLabel.innerHTML = sku;
+};
 
 changeQty.addEventListener("change", function () {
     changedQty();
@@ -53,14 +69,7 @@ function changedQty() {
     changedColor();
 };
 
-function getColorValue() {
-    const ele = document.getElementsByName('radioColor');
-    for (i = 0; i < ele.length; i++) {
-        if (ele[i].checked)
-            return ele[i].value;
-    }
-    return "000";
-};
+
 
 function isColorSet() {
     const ele = document.getElementsByName('radioColor');
