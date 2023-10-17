@@ -29,24 +29,24 @@ addToCartButton.addEventListener("click", function () {
 
 function changedQty() {
     const qty = document.getElementById('qty').value;
-    let productPrice = GET(apiUrl + "/product-price?sku=" + querySKU + "&qty=" + qty)
+    const productPrice = GET(apiUrl + "/product-price?sku=" + querySKU + "&qty=" + qty)
     let totalPrice = productPrice.price
     // Update total price on qty change (and give wholesale price if >=10)
     if (isOnSale()) {
-        totalPrice = discountPrice * qty;
-        const originalTotal = originalPrice * qty;
-        priceLabel.innerHTML = '$' + discountPrice + ' <del>$' + originalPrice + '</del>';
+        totalPrice = productPrice.discountPrice * qty;
+        const originalTotal = productPrice.originalPrice * qty;
+        priceLabel.innerHTML = '$' + productPrice.discountPrice + ' <del>$' + productPrice.originalPrice + '</del>';
         const newTotalPriceLabel = '$' + totalPrice + ' <del>$' + originalTotal + '</del>';
         totalPriceLabel.innerHTML = newTotalPriceLabel;
-    } else if (qty < wholesaleQty) {
-        totalPrice = price * qty;
-        priceLabel.textContent = '$' + price;
+    } else if (qty < productPrice.wholesaleQty) {
+        totalPrice = productPrice.price * qty;
+        priceLabel.textContent = '$' + productPrice.price;
         const newTotalPriceLabel = '$' + totalPrice;
         totalPriceLabel.textContent = newTotalPriceLabel;
     } else {
-        totalPrice = wholesale_price * qty;
-        const originalTotal = price * qty;
-        priceLabel.innerHTML = '$' + wholesale_price + ' <del>$' + price + '</del>';
+        totalPrice = productPrice.wholesale_price * qty;
+        const originalTotal = productPrice.price * qty;
+        priceLabel.innerHTML = '$' + productPrice.wholesale_price + ' <del>$' + productPrice.price + '</del>';
         const newTotalPriceLabel = '$' + totalPrice + ' <del>$' + originalTotal + '</del>';
         totalPriceLabel.innerHTML = newTotalPriceLabel;
     }
