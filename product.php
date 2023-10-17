@@ -145,6 +145,8 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap"
 		rel="stylesheet">
 
+		<script nonce="<?php echo $nonce; ?>" src="js/product.js"></script>
+
 </head>
 
 <body>
@@ -179,7 +181,9 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 							<div class="dz-product-detail sticky-top">
 								<div id="productImageGallery" class="swiper-btn-center-lr">
 									<div class="swiper product-gallery-swiper2">
-
+										<div class="swiper-wrapper" id="lightgallery">
+											
+										</div>
 									</div>
 									<div class="swiper product-gallery-swiper thumb-swiper-lg">
 										<div id="photoThumbnails" class="swiper-wrapper">
@@ -198,8 +202,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 										<div class="dz-content">
 											<div class="dz-content-footer">
 												<div class="dz-content-start">
-													<span id="isOnSaleBadge" class="badge bg-warning mb-2" hidden>On
-														Sale</span>
+													<span id="isOnSaleBadge" class="badge bg-warning mb-2" hidden>On Sale</span>
 													<h4 id="titleLabel" class="title mb-1"></h4>
 												</div>
 											</div>
@@ -329,7 +332,6 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		<script nonce="<?php echo $nonce; ?>" src="vendor-js/nouislider/nouislider.min.js"></script>
 		<!-- NOUSLIDER MIN JS-->
 		<script nonce="<?php echo $nonce; ?>" src="js/dz.carousel.js"></script>
-		<script nonce="<?php echo $nonce; ?>" src="js/product.js"></script>
 		<!-- DZ CAROUSEL JS -->
 		<script nonce="<?php echo $nonce; ?>" src="vendor-js/lightgallery/dist/lightgallery.min.js"></script>
 		<script nonce="<?php echo $nonce; ?>"
