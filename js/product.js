@@ -50,23 +50,17 @@ function changedQty() {
     console.log(productPrice)
     let totalPrice = productPrice.price
     // Update total price on qty change (and give wholesale price if >=10)
-    if (productPrice.isOnSale) {
-        totalPrice = productPrice.discountPrice * qty;
+    if (productPrice.price !== productPrice.originalPrice) {
+        totalPrice = productPrice.price * qty;
         const originalTotal = productPrice.originalPrice * qty;
-        priceLabel.innerHTML = '$' + productPrice.discountPrice + ' <del>$' + productPrice.originalPrice + '</del>';
+        priceLabel.innerHTML = '$' + productPrice.price + ' <del>$' + productPrice.originalPrice + '</del>';
         const newTotalPriceLabel = '$' + totalPrice + ' <del>$' + originalTotal + '</del>';
         totalPriceLabel.innerHTML = newTotalPriceLabel;
-    } else if (qty < productPrice.wholesaleQty) {
+    } else {
         totalPrice = productPrice.price * qty;
         priceLabel.textContent = '$' + productPrice.price;
         const newTotalPriceLabel = '$' + totalPrice;
         totalPriceLabel.textContent = newTotalPriceLabel;
-    } else {
-        totalPrice = productPrice.wholesale_price * qty;
-        const originalTotal = productPrice.price * qty;
-        priceLabel.innerHTML = '$' + productPrice.wholesale_price + ' <del>$' + productPrice.price + '</del>';
-        const newTotalPriceLabel = '$' + totalPrice + ' <del>$' + originalTotal + '</del>';
-        totalPriceLabel.innerHTML = newTotalPriceLabel;
     }
     changedColor();
 };
