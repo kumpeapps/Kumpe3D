@@ -22,7 +22,7 @@ function buildShoppingCartModalList() {
         const sku = element["id"];
         let li = document.createElement('li');
         let div1 = document.createElement('div');
-        div1.setAttribute('class','cart-widget');
+        div1.setAttribute('class', 'cart-widget');
         let div11 = document.createElement('div');
         div11.setAttribute('class', 'dz-media me-4');
         let img111 = document.createElement('img');
@@ -90,8 +90,16 @@ function clearCart() {
 function updateCartBadge() {
     const addToCartButton = document.querySelector("#cart_badge");
     const shoppingCartBadge = document.querySelector("#shopping_cart_badge");
-    addToCartButton.innerHTML = cartLS.list().length;
-    shoppingCartBadge.innerHTML =cartLS.list().length;
+    try {
+        addToCartButton.innerHTML = cartLS.list().length;
+    } catch {
+        addToCartButton.innerHTML = 0
+    }
+    try {
+        shoppingCartBadge.innerHTML = cartLS.list().length;
+    } catch {
+        shoppingCartBadge.innerHTML = 0
+    }
 };
 
 function updateShoppingCartModal() {
