@@ -87,7 +87,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		style-src 'self' https://fonts.googleapis.com 'nonce-<?php echo $nonce; ?>';
 		object-src 'none';
 		base-uri 'self';
-		connect-src 'self' https://api.preprod.kumpe3d.com;
+		connect-src 'self' https://api.preprod.kumpe3d.com https://api.kumpe3d.com;
 		font-src 'self' data: https://fonts.gstatic.com;
 		frame-src 'self';
 		img-src *;
@@ -167,9 +167,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 					<ul class="breadcrumb mb-0">
 						<li class="breadcrumb-item"><a href="index.php"> Home</a></li>
 						<li class="breadcrumb-item">Products</li>
-						<li id="titleCrumb" class="breadcrumb-item">
-							<?php echo $product['title']; ?>
-						</li>
+						<li id="titleCrumb" class="breadcrumb-item"></li>
 					</ul>
 				</nav>
 			</div>
@@ -190,13 +188,13 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 												while ($photo = mysqli_fetch_array($photo_query)) {
 													$photo_images = $photo_images .
 														'<div class="swiper-slide">
-														<div class="dz-media DZoomImage">
-															<a class="mfp-link lg-item" data-src="' . $photo['file_path'] . '">
-																<i class="feather icon-maximize dz-maximize top-left"></i>
-															</a>
-															<img src="' . $photo['file_path'] . '" alt="image">
-														</div>
-													</div>';
+															<div class="dz-media DZoomImage">
+																<a class="mfp-link lg-item" data-src="' . $photo['file_path'] . '">
+																	<i class="feather icon-maximize dz-maximize top-left"></i>
+																</a>
+																<img src="' . $photo['file_path'] . '" alt="image">
+															</div>
+														</div>';
 													$photo_thumbnails = $photo_thumbnails . '
 													<div class="swiper-slide">
 														<img src="' . $photo['file_path'] . '" alt="image">
@@ -224,20 +222,14 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 										<div class="dz-content">
 											<div class="dz-content-footer">
 												<div class="dz-content-start">
-													<h4 id="titleLabel" class="title mb-1">
-														<?php echo $product['title']; ?>
-													</h4>
+													<h4 id="titleLabel" class="title mb-1"></h4>
 												</div>
 											</div>
-											<p id="descriptionLabel" class="para-text">
-												<?php echo $product['description']; ?>
-											</p>
+											<p id="descriptionLabel" class="para-text"></p>
 											<div class="meta-content m-b20 d-flex align-items-end">
 												<div class="me-3">
 													<span class="price-name">Price</span>
-													<span id="priceLabel" class="price-num">$
-														<?php echo $product['price']; ?>
-													</span>
+													<span id="priceLabel" class="price-num"></span>
 												</div>
 											</div>
 											<div class="product-num">

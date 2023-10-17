@@ -3,6 +3,9 @@ const priceLabel = document.querySelector("#priceLabel");
 const totalPriceLabel = document.querySelector("#totalPriceLabel");
 const skuLabel = document.querySelector("#skuLabel");
 const addToCartButton = document.querySelector("#addToCartButton");
+const titleCrumb = document.querySelector("#titleCrumb");
+const titleLabel = document.querySelector("#titleLabel");
+const descriptionLabel = document.querySelector("#descriptionLabel");
 if (env == 'dev') {
     Swal.fire(
         'Pre-Prod Server!',
@@ -12,6 +15,9 @@ if (env == 'dev') {
 };
 const querySKU = urlParams.get('sku')
 let product = GET(apiUrl + "/product?sku=" + querySKU).response
+titleCrumb.innerHTML = product.title
+titleLabel.innerHTML = product.title
+descriptionLabel.innerHTML = product.description
 refresh();
 
 function getColorValue() {
