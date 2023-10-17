@@ -365,10 +365,6 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 
 		<script nonce="<?php echo $nonce; ?>">
 
-			$(".image-radio img").click(function () {
-				$(this).prev().attr('checked', true);
-			});
-
 			function changedColor() {
 				const color_id = getColorValue();
 				const base_sku = '<?php echo $base_sku; ?>';
