@@ -179,7 +179,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 							<div class="dz-product-detail sticky-top">
 								<div id="productImageGallery"class="swiper-btn-center-lr">
 									<div class="swiper product-gallery-swiper2">
-										<div class="swiper-wrapper" id="lightgallery">
+										<div id="imageGallery" class="swiper-wrapper" id="lightgallery">
 											<?php
 											if ($photo_query = mysqli_query($conn, $photo_sql)) {
 												// Loop through each row in the result set
