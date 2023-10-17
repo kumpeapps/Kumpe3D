@@ -75,17 +75,6 @@ function refresh() {
     updateShoppingCartModal();
 };
 
-function onload() {
-    refresh();
-    if (env == 'dev') {
-        Swal.fire(
-            'Pre-Prod Server!',
-            'You are viewing the Pre-Production/Dev server. Orders submitted via this site will not be filled or charged. Only PayPal sandbox accounts/credit cards will work.',
-            'warning'
-        );
-    };
-};
-
 function isOnSale() {
     const currentDate = new Date();
     const currentTime = currentDate.getTime()

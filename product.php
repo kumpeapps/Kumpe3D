@@ -92,6 +92,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 	<!-- FAVICONS ICON -->
 	<link rel="icon" type="image/x-icon" href="images/favicon.png">
 	<script nonce="<?php echo $nonce; ?>" rel="preload" src="js/http-methods.js"></script>
+	<script nonce="<?php echo $nonce; ?>" src="js/cookies.js"></script>
 	<script nonce="<?php echo $nonce; ?>" rel="preload" src="env.js"></script>
 	<script nonce="<?php echo $nonce; ?>" src="js/default.js"></script>
 
@@ -119,8 +120,8 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css"
 		href="vendor-js/lightgallery/dist/css/lg-zoom.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="css/style.css">
-	<script nonce="<?php echo $nonce; ?>" rel="preload" src="https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js"
-		type="text/javascript"></script>
+	<script nonce="<?php echo $nonce; ?>" rel="preload"
+		src="https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js" type="text/javascript"></script>
 
 	<!-- GOOGLE FONTS-->
 	<link nonce="<?php echo $nonce; ?>" rel="preconnect" href="https://fonts.googleapis.com">
@@ -151,7 +152,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 					<ul class="breadcrumb mb-0">
 						<li class="breadcrumb-item"><a href="index.php"> Home</a></li>
 						<li class="breadcrumb-item">Products</li>
-						<li class="breadcrumb-item">
+						<li id="titleCrumb" class="breadcrumb-item">
 							<?php echo $product['title']; ?>
 						</li>
 					</ul>
@@ -208,12 +209,12 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 										<div class="dz-content">
 											<div class="dz-content-footer">
 												<div class="dz-content-start">
-													<h4 class="title mb-1">
+													<h4 id="titleLabel" class="title mb-1">
 														<?php echo $product['title']; ?>
 													</h4>
 												</div>
 											</div>
-											<p class="para-text">
+											<p id="descriptionLabel" class="para-text">
 												<?php echo $product['description']; ?>
 											</p>
 											<div class="meta-content m-b20 d-flex align-items-end">
@@ -244,7 +245,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 											</div> -->
 												<div class="meta-content">
 													<label class="form-label">Color</label>
-													<div class="d-flex align-items-center block-row">
+													<div id="colorOptions" class="d-flex align-items-center block-row">
 														<?php
 														if ($filaments_query = mysqli_query($conn, $filaments_sql)) {
 															// Loop through each row in the result set
@@ -272,11 +273,15 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 													</li>
 													<li>
 														<strong>Category:</strong>
-														<?php echo $product['categories']; ?>
+														<span id="categoryLabel">
+															<?php echo $product['categories']; ?>
+														</span>
 													</li>
 													<li>
 														<strong>Tags:</strong>
-														<?php echo $product['tags']; ?>
+														<span id="tagsLabel">
+															<?php echo $product['tags']; ?>
+														</span>
 													</li>
 												</ul>
 											</div>
@@ -356,7 +361,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		<!-- CUSTOM JS -->
 		<script nonce="<?php echo $nonce; ?>" ref="preload" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 		<!-- SweetAlerts -->
-	<script nonce="<?php echo $nonce; ?>" src="js/product.js"></script>
+		<script nonce="<?php echo $nonce; ?>" src="js/product.js"></script>
 
 		<script nonce="<?php echo $nonce; ?>">
 
