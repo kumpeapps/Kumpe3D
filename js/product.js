@@ -45,7 +45,9 @@ addToCartButton.addEventListener("click", function () {
 
 function changedQty() {
     const qty = document.getElementById('qty').value;
+    console.log(qty)
     const productPrice = GET(apiUrl + "/product-price?sku=" + querySKU + "&quantity=" + qty).response
+    console.log(productPrice)
     let totalPrice = productPrice.price
     // Update total price on qty change (and give wholesale price if >=10)
     if (productPrice.isOnSale) {
@@ -68,8 +70,6 @@ function changedQty() {
     }
     changedColor();
 };
-
-
 
 function isColorSet() {
     const ele = document.getElementsByName('radioColor');
