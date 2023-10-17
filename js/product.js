@@ -92,8 +92,8 @@ function refresh() {
 };
 
 function buildImages(images) {
-    const div1 = document.createElement("div");
-    div1.setAttribute("class", "swiper product-gallery-swiper2");
+    const divi = document.createElement("div");
+    divi.setAttribute("class", "swiper product-gallery-swiper2");
     const wrapper = document.createElement("div");
     wrapper.setAttribute("class", "swiper-wrapper");
     wrapper.setAttribute("id", "lightgallery");
@@ -116,13 +116,13 @@ function buildImages(images) {
         slide.appendChild(media);
         wrapper.appendChild(slide);
     }
-    div1.appendChild(wrapper);
-    return div1
+    divi.appendChild(wrapper);
+    return divi
 };
 
 function buildThumbnails(images) {
-    const div1 = document.createElement("div");
-    div1.setAttribute("class", "swiper product-gallery-swiper thumb-swiper-lg");
+    const divi = document.createElement("div");
+    divi.setAttribute("class", "swiper product-gallery-swiper thumb-swiper-lg");
     const wrapper = document.createElement("div");
     wrapper.setAttribute("class", "swiper-wrapper");
     images.forEach(renderThumbnails);
@@ -134,8 +134,8 @@ function buildThumbnails(images) {
         slider.appendChild(image);
         wrapper.appendChild(slider);
     }
-    div1.appendChild(wrapper);
-    return div1
+    divi.appendChild(wrapper);
+    return divi
 };
 
 function buildImageGallery(images) {
