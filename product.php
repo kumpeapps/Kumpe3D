@@ -275,21 +275,15 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 												<ul>
 													<li>
 														<strong>SKU:</strong>
-														<span id="skuLabel">
-															<?php echo $product['sku']; ?>
-														</span>
+														<span id="skuLabel"></span>
 													</li>
 													<li>
 														<strong>Category:</strong>
-														<span id="categoryLabel">
-															<?php echo $product['categories']; ?>
-														</span>
+														<span id="categoryLabel"></span>
 													</li>
 													<li>
 														<strong>Tags:</strong>
-														<span id="tagsLabel">
-															<?php echo $product['tags']; ?>
-														</span>
+														<span id="tagsLabel"></span>
 													</li>
 												</ul>
 											</div>

@@ -19,6 +19,8 @@ const productImages = GET(apiUrl + "/product-images?sku=" + querySKU).response
 titleCrumb.innerHTML = product.title
 titleLabel.innerHTML = product.title
 descriptionLabel.innerHTML = product.description
+document.getElementById("categoryLabel").innerHTML = product.categories
+document.getElementById("tagLabel").innerHTML = product.tags
 refresh();
 
 function getColorValue() {
