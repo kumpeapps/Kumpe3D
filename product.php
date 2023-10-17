@@ -82,7 +82,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 	<meta http-equiv="Content-Security-Policy" content="
 		default-src 'self';
 		script-src *;
-		style-src 'self' https://fonts.googleapis.com 'nonce-<?php echo $nonce; ?>' 'unsafe-inline';
+		style-src * https://fonts.googleapis.com 'nonce-<?php echo $nonce; ?>' 'unsafe-inline';
 		object-src *;
 		base-uri 'self';
 		connect-src 'self' https://api.preprod.kumpe3d.com https://api.kumpe3d.com;
