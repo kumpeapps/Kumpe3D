@@ -85,7 +85,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		default-src 'self';
 		script-src 'self' nonce-<?php echo $nonce; ?>;
 		style-src 'self' https://fonts.googleapis.com;
-		object-src 'none';
+		object-src 'none' nonce-<?php echo $nonce; ?>;
 		base-uri 'self';
 		connect-src 'self' https://api.preprod.kumpe3d.com;
 		font-src 'self' data: https://fonts.gstatic.com;
