@@ -22,7 +22,7 @@ descriptionLabel.innerHTML = product.description
 document.getElementById("categoryLabel").innerHTML = product.categories
 document.getElementById("tagsLabel").innerHTML = product.tags
 refresh();
-buildImageGallery(productImages);
+// buildImageGallery(productImages);
 
 function getColorValue() {
     const ele = document.getElementsByName('radioColor');
