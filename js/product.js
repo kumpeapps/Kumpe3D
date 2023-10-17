@@ -54,6 +54,8 @@ function changedQty() {
     const qty = document.getElementById('qty').value;
     const isOnSaleBadge = document.getElementById('isOnSaleBadge');
     const productPrice = GET(apiUrl + "/product-price?sku=" + querySKU + "&quantity=" + qty).response
+    console.log(productPrice)
+    console.log(Boolean(productPrice.isOnSale))
     if (Boolean(productPrice.isOnSale)) {
         isOnSaleBadge.removeAttribute("hidden")
     }
