@@ -3,7 +3,7 @@ const priceLabel = document.querySelector("#priceLabel");
 const totalPriceLabel = document.querySelector("#totalPriceLabel");
 const skuLabel = document.querySelector("#skuLabel");
 const addToCartButton = document.querySelector("#addToCartButton");
-// refresh();
+refresh();
 if (env == 'dev') {
     Swal.fire(
         'Pre-Prod Server!',
