@@ -29,7 +29,7 @@ addToCartButton.addEventListener("click", function () {
 
 function changedQty() {
     const qty = document.getElementById('qty').value;
-    const productPrice = GET(apiUrl + "/product-price?sku=" + querySKU + "&qty=" + qty)
+    const productPrice = GET(apiUrl + "/product-price?sku=" + querySKU + "&quantity=" + qty)
     let totalPrice = productPrice.price
     // Update total price on qty change (and give wholesale price if >=10)
     if (isOnSale()) {
