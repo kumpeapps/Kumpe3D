@@ -32,7 +32,7 @@ function changedQty() {
     const productPrice = GET(apiUrl + "/product-price?sku=" + querySKU + "&quantity=" + qty).response
     let totalPrice = productPrice.price
     // Update total price on qty change (and give wholesale price if >=10)
-    if (isOnSale()) {
+    if (productPrice.isOnSale) {
         totalPrice = productPrice.discountPrice * qty;
         const originalTotal = productPrice.originalPrice * qty;
         priceLabel.innerHTML = '$' + productPrice.discountPrice + ' <del>$' + productPrice.originalPrice + '</del>';
