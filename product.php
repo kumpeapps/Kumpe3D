@@ -80,7 +80,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 <head>
 	<!-- Meta -->
 	<meta 
-	http-equiv="Content-Security-Policy" 
+	http-equiv="Content-Security-Policy-Report-Only" 
 	content="
 		default-src 'self';
 		script-src 'self';
@@ -93,8 +93,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		img-src 'self' https://images.kumpeapps.com;
 		manifest-src 'self';
 		media-src 'self';
-		worker-src 'none';
-		Content-Security-Policy-Report-Only;">
+		worker-src 'none';">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="keywords" content="<?php echo $product['tags']; ?>">
