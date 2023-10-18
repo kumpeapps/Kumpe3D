@@ -235,9 +235,9 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 													<span id="priceLabel" class="price-num"></span>
 												</div>
 											</div>
-											<div id="test3" class="product-num" hidden>
+											<div id="sizeOptionsBlock" class="product-num" hidden>
 												<!-- Start Size -->
-												<div id="sizeOptionsBlock" class="d-block">
+												<div class="d-block">
 													<label class="form-label">Size</label>
 													<div id="sizeOptions" class="btn-group product-size mb-0">
 														<input type="radio" class="btn-check" name="btnradio1"
