@@ -34,7 +34,7 @@ function addColorChangedListener() {
     const ele = document.getElementsByName('radioColor');
     for (i = 0; i < ele.length; i++) {
         if (ele[i].checked)
-            ele[i].addEventListener("change", changedColor());
+            ele[i].addEventListener("change", function() {changedColor();});
     }
 };
 
