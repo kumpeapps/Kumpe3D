@@ -241,8 +241,8 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 													<label class="form-label">Size</label>
 													<div id="sizeOptions"class="btn-group product-size mb-0">
 														<input type="radio" class="btn-check" name="btnradio1"
-															id="sizeRadio" checked="" value="N">
-														<label class="btn btn-light" for="btnradio11">N/A</label>
+															id="sizeRadioN" checked="" value="N">
+														<label class="btn btn-light" for="sizeRadioN">N/A</label>
 
 														<input type="radio" class="btn-check" name="btnradio1"
 															id="btnradio21">
