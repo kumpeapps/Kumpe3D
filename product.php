@@ -247,8 +247,9 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 												</div>
 											</div>
 											<!-- End Size -->
+											<!-- TODO: Layer Quality Block -->
 											<!-- Start Layer Quality -->
-											<div id="layerQualityBlock" class="product-num" hidden>
+											<!-- <div id="layerQualityBlock" class="product-num" hidden>
 												<div class="d-block">
 													<label class="form-label">Layer Quality</label>
 													<div id="layerQualityOptions" class="btn-group product-size mb-0">
@@ -263,10 +264,10 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 														<label class="btn btn-light" for="layerQualityZ">Standard (0.2)<br>Fuzzy Skin</label>
 													</div>
 												</div>
-											</div>
+											</div> -->
 											<!-- End Layer Quality -->
+											<!-- TODO: Customization Field -->
 											<div class="product-num">
-
 												<div class="meta-content">
 													<label class="form-label">Color</label>
 													<div id="colorOptions" class="d-flex align-items-center block-row">
@@ -276,7 +277,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 															while ($filament = mysqli_fetch_array($filaments_query)) {
 																echo '
 																<div class="radio-value image-radio">
-																	<input onchange="changedColor()" class="form-check-input radio-value" type="radio" name="radioColor" id="radioColor" value="' . $filament['swatch_id'] . '" aria-label="...">
+																	<input class="form-check-input radio-value" type="radio" name="radioColor" id="radioColor" value="' . $filament['swatch_id'] . '" aria-label="...">
 																	<br>' . $filament['type'] . ' ' . $filament['color_name'] . '
 																	<br>' . $filament['status'] . '
 																	<img src="https://images.kumpeapps.com/filament?swatch=' . $filament['swatch_id'] . '_' . $base_sku . '">
