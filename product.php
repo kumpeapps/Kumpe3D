@@ -236,27 +236,19 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 												</div>
 											</div>
 											<div class="product-num">
-														<!-- Start Size -->
-														<div class="d-block">
+												<!-- Start Size -->
+												<div id="sizeOptionsBlock" class="d-block" hidden>
 													<label class="form-label">Size</label>
-													<div id="sizeOptions"class="btn-group product-size mb-0">
+													<div id="sizeOptions" class="btn-group product-size mb-0">
 														<input type="radio" class="btn-check" name="btnradio1"
 															id="sizeRadioN" checked="" value="N">
 														<label class="btn btn-light" for="sizeRadioN">N/A</label>
-
-														<input type="radio" class="btn-check" name="btnradio1"
-															id="btnradio21">
-														<label class="btn btn-light" for="btnradio21">M</label>
-
-														<input type="radio" class="btn-check" name="btnradio1"
-															id="btnradio31">
-														<label class="btn btn-light" for="btnradio31">L</label>
 													</div>
 												</div>
 												<!-- End Size -->
-										</div>
+											</div>
 											<div class="product-num">
-										
+
 												<div class="meta-content">
 													<label class="form-label">Color</label>
 													<div id="colorOptions" class="d-flex align-items-center block-row">
