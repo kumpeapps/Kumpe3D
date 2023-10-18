@@ -243,6 +243,14 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 														<input type="radio" class="btn-check" name="btnradio1"
 															id="sizeRadio" checked="" value="N">
 														<label class="btn btn-light" for="btnradio11">N/A</label>
+
+														<input type="radio" class="btn-check" name="btnradio1"
+															id="btnradio21">
+														<label class="btn btn-light" for="btnradio21">M</label>
+
+														<input type="radio" class="btn-check" name="btnradio1"
+															id="btnradio31">
+														<label class="btn btn-light" for="btnradio31">L</label>
 													</div>
 												</div>
 												<!-- End Size -->
