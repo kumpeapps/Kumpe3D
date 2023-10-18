@@ -177,8 +177,9 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 					<div class="row">
 						<div class="col-xl-4 col-md-4">
 							<div class="dz-product-detail sticky-top">
-								<div id="productImageGallery"class="swiper-btn-center-lr">
+								<div id="productImageGallery" class="swiper-btn-center-lr">
 									<div class="swiper product-gallery-swiper2">
+										<!-- Tried building this in JS but can not get it to work. Need to circle back around to it. -->
 										<div id="imageGallery" class="swiper-wrapper" id="lightgallery">
 											<?php
 											if ($photo_query = mysqli_query($conn, $photo_sql)) {
@@ -222,7 +223,8 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 										<div class="dz-content">
 											<div class="dz-content-footer">
 												<div class="dz-content-start">
-													<span id="isOnSaleBadge" class="badge bg-warning mb-2" hidden>On Sale</span>
+													<span id="isOnSaleBadge" class="badge bg-warning mb-2" hidden>On
+														Sale</span>
 													<h4 id="titleLabel" class="title mb-1"></h4>
 												</div>
 											</div>
@@ -234,23 +236,16 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 												</div>
 											</div>
 											<div class="product-num">
-												<!-- <div class="btn-quantity light d-xl-block d-sm-none d-none">
-												<label class="form-label">Quantity</label>
-												<input min="1" id="qty" type="number" value="1" name="qty" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
-											</div> -->
-												<!-- <div class="d-block">
-												<label class="form-label">Size</label>
-												<div class="btn-group product-size mb-0">
-													<input type="radio" class="btn-check" name="btnradio1" id="btnradio11" checked="">
-													<label class="btn btn-light" for="btnradio11">S</label>
-
-													<input type="radio" class="btn-check" name="btnradio1" id="btnradio21">
-													<label class="btn btn-light" for="btnradio21">M</label>
-
-													<input type="radio" class="btn-check" name="btnradio1" id="btnradio31">
-													<label class="btn btn-light" for="btnradio31">L</label>
+												<!-- Start Size -->
+												<div class="d-block">
+													<label class="form-label">Size</label>
+													<div id="sizeOptions"class="btn-group product-size mb-0">
+														<input type="radio" class="btn-check" name="btnradio1"
+															id="sizeRadio" checked="" value="N">
+														<label class="btn btn-light" for="btnradio11">N/A</label>
+													</div>
 												</div>
-											</div> -->
+												<!-- End Size -->
 												<div class="meta-content">
 													<label class="form-label">Color</label>
 													<div id="colorOptions" class="d-flex align-items-center block-row">
@@ -304,9 +299,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 													<td>
 														<h6 class="mb-0">Total</h6>
 													</td>
-													<td id="totalPriceLabel" class="price">
-														<?php echo '$' . $product['price']; ?>
-													</td>
+													<td id="totalPriceLabel" class="price"></td>
 												</tr>
 											</tbody>
 										</table>
