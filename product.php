@@ -235,8 +235,8 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 													<span id="priceLabel" class="price-num"></span>
 												</div>
 											</div>
+											<!-- Start Size -->
 											<div id="sizeOptionsBlock" class="product-num" hidden>
-												<!-- Start Size -->
 												<div class="d-block">
 													<label class="form-label">Size</label>
 													<div id="sizeOptions" class="btn-group product-size mb-0">
@@ -245,8 +245,26 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 														<label class="btn btn-light" for="sizeRadioN">N/A</label>
 													</div>
 												</div>
-												<!-- End Size -->
 											</div>
+											<!-- End Size -->
+											<!-- Start Layer Quality -->
+											<div id="layerQualityBlock" class="product-num" hidden>
+												<div class="d-block">
+													<label class="form-label">Layer Quality</label>
+													<div id="layerQualityOptions" class="btn-group product-size mb-0">
+														<input type="radio" class="btn-check" name="btnradio1"
+															id="layerQualityN" checked="" value="N">
+														<label class="btn btn-light" for="layerQualityN">N/A</label>
+														<input type="radio" class="btn-check" name="btnradio1"
+															id="layerQualityS" checked="" value="S">
+														<label class="btn btn-light" for="layerQualityS">Standard (0.2)</label>
+														<input type="radio" class="btn-check" name="btnradio1"
+															id="layerQualityZ" checked="" value="N">
+														<label class="btn btn-light" for="layerQualityZ">Standard (0.2)<br>Fuzzy Skin</label>
+													</div>
+												</div>
+											</div>
+											<!-- End Layer Quality -->
 											<div class="product-num">
 
 												<div class="meta-content">
