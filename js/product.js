@@ -30,6 +30,13 @@ function getColorValue() {
     }
     return "000";
 };
+function getColorValue() {
+    const ele = document.getElementsByName('radioColor');
+    for (i = 0; i < ele.length; i++) {
+        if (ele[i].checked)
+            ele[i].addEventListener("change", changedColor());
+    }
+};
 
 function changedColor() {
     const color_id = getColorValue();
