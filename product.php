@@ -252,7 +252,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 															id="btnradio31">
 														<label class="btn btn-light" for="btnradio31">L</label>
 													</div>
-												</div>
+												</div><br>
 												<!-- End Size -->
 												<div class="meta-content">
 													<label class="form-label">Color</label>
