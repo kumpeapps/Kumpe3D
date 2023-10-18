@@ -263,7 +263,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 																	<input onchange="changedColor()" class="form-check-input radio-value" type="radio" name="radioColor" id="radioColor" value="' . $filament['swatch_id'] . '" aria-label="...">
 																	<br>' . $filament['type'] . ' ' . $filament['color_name'] . '
 																	<br>' . $filament['status'] . '
-																	<img src="https://images.kumpeapps.com/filament_swatch?swatch=' . $filament['swatch_id'] . '_' . $base_sku . '">
+																	<img src="https://images.kumpeapps.com/filament?swatch=' . $filament['swatch_id'] . '_' . $base_sku . '">
 																</div>';
 															}
 														}
