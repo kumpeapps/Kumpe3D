@@ -119,9 +119,9 @@ function cartQtyChange(event) {
 };
 
 function updateBanner() {
-    if (siteParams['store_noticebanner'] !== '') {
+    if (siteParams['storeNoticebanner'] !== '') {
         const siteBanner = document.getElementById("notificationBanner");
-        siteBanner.setAttribute("class", siteParams['store_noticebanner_class']);
-        siteBanner.innerHTML = siteParams['store_noticebanner'];
+        siteBanner.setAttribute("class", siteParams['storeNoticebannerClass']);
+        siteBanner.innerHTML = siteParams['storeNoticebanner'];
     }
 };
