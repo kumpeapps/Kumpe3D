@@ -59,14 +59,14 @@ function buildColorOptions() {
         const img = document.createElement("img");
         img.setAttribute("class", "rounded");
         img.setAttribute("src", "https://images.kumpeapps.com/filament?swatch=" + element['swatch_id'] + "_" + base_sku);
+        if (element['status'] == "Made to Order") {
+            input.disabled = true;
+        };
         div.appendChild(input);
         div.appendChild(span1);
         div.appendChild(span2);
         div.appendChild(status);
         div.appendChild(img);
-        if (element['status'] == "Made to Order") {
-            div.setAttribute("disabled", "True");
-        };
         colorOptionsBlock.appendChild(div);
     };
         var rad = document.colorOptions.radioColor;
