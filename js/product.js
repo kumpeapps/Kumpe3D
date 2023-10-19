@@ -64,6 +64,9 @@ function buildColorOptions() {
         div.appendChild(span2);
         div.appendChild(status);
         div.appendChild(img);
+        if (element['status'] == "Made to Order") {
+            div.setAttribute("disabled", "True");
+        };
         colorOptionsBlock.appendChild(div);
     };
         var rad = document.colorOptions.radioColor;
