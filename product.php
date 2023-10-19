@@ -223,7 +223,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 										<div class="dz-content">
 											<div class="dz-content-footer">
 												<div class="dz-content-start">
-													<span id="isOnSaleBadge" class="badge bg-warning mb-2" hidden>On
+													<span id="isOnSaleBadge" class="badge-pill bg-warning mb-2" hidden>On
 														Sale</span>
 													<h4 id="titleLabel" class="title mb-1"></h4>
 												</div>
