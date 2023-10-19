@@ -1,6 +1,7 @@
-const sessionID = getCookie("PHPSESSID")
+const sessionID = getCookie("PHPSESSID");
 
-updateShoppingCartModal()
+updateShoppingCartModal();
+updateBanner();
 
 function buildShoppingCartModalList() {
     const ul = document.getElementById('shoppingCartModal');
@@ -114,5 +115,13 @@ function cartQtyChange(event) {
     refresh();
     if (qty < 1) {
         deleteItem(sku);
+    }
+};
+
+function updateBanner() {
+    if (siteParams['store_noticebanner'] !== '') {
+        const siteBanner = document.getElementById("notificationBanner");
+        siteBanner.setAttribute("class", siteParams['store_noticebanner_class']);
+        siteBanner.innerHTML = siteParams['store_noticebanner'];
     }
 };
