@@ -38,7 +38,7 @@ function buildColorOptions() {
     const colorOptionsBlock = document.getElementById("colorOptions");
     console.log(colorOptions)
     removeAllChildNodes(colorOptionsBlock);
-    colorOptions.forEach(build());
+    colorOptions.forEach(build);
     function build(element, _, _) {
         console.info(element)
         const div = document.createElement("div");
