@@ -56,7 +56,7 @@ function buildColorOptions() {
         status.setAttribute("class", "badge mb-2 " + element['badge']);
         status.innerHTML = element['status'];
         const img = document.createElement("img");
-        img.setAttribute("rounded")
+        img.setAttribute("class", "rounded")
         img.setAttribute("src", "https://images.kumpeapps.com/filament?swatch=" + element['swatch_id'] + "_" + base_sku);
         div.appendChild(input);
         div.appendChild(span1);
