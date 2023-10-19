@@ -119,7 +119,6 @@ function cartQtyChange(event) {
 };
 
 function updateBanner() {
-    siteParams = siteParams.response;
     if (siteParams['storeNoticebanner'] !== '') {
         const siteBanner = document.getElementById("notificationBanner");
         siteBanner.setAttribute("class", siteParams['storeNoticebannerClass']);
