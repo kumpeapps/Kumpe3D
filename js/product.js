@@ -36,9 +36,11 @@ function buildColorOptions() {
     const base_sku = product.sku_parts.base_sku;
     const colorOptions = GET(apiUrl + "/filament?sku=" + base_sku + "&filter=" + product['filament_filter']).response;
     const colorOptionsBlock = document.getElementById("colorOptions");
+    console.log(colorOptions)
     removeAllChildNodes(colorOptionsBlock);
     colorOptions.forEach(build());
     function build(element, _, _) {
+        console.info(element)
         const div = document.createElement("div");
         div.setAttribute("class", "radio-value image-radio");
         const input = document.createElement("input");
