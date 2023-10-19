@@ -271,7 +271,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 											<div class="product-num">
 												<div class="meta-content">
 													<label class="form-label">Color</label>
-													<div class="d-flex align-items-center block-row" id="colorOptions"
+													<form class="d-flex align-items-center block-row" id="colorOptions"
 														name="colorOptions">
 														<?php
 														// if ($filaments_query = mysqli_query($conn, $filaments_sql)) {
@@ -287,7 +287,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 														// 	}
 														// }
 														?>
-													</div>
+													</form>
 												</div>
 											</div>
 											<div class="dz-info">
