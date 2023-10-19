@@ -46,8 +46,9 @@ function buildColorOptions() {
         input.setAttribute("type", "radio");
         input.setAttribute("name", "radioColor");
         input.setAttribute("id", "radioColor");
-        input.setAttribute("value", element['swatch_id'])
+        input.setAttribute("value", element['swatch_id']);
         input.setAttribute("aria-label", "...");
+        input.setAttribute("onchange", "changedColor()");
         const span1 = document.createElement("span");
         const span2 = document.createElement("span");
         span1.innerHTML = element['type'] + " " + element['swatch_id'];
@@ -56,7 +57,7 @@ function buildColorOptions() {
         status.setAttribute("class", "badge mb-2 " + element['badge']);
         status.innerHTML = element['status'];
         const img = document.createElement("img");
-        img.setAttribute("class", "rounded")
+        img.setAttribute("class", "rounded");
         img.setAttribute("src", "https://images.kumpeapps.com/filament?swatch=" + element['swatch_id'] + "_" + base_sku);
         div.appendChild(input);
         div.appendChild(span1);
