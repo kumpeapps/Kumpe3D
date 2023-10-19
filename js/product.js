@@ -49,15 +49,19 @@ function buildColorOptions() {
         input.setAttribute("name", "radioColor");
         input.setAttribute("id", "radioColor");
         input.setAttribute("value", element['swatch_id'])
-        input.setAttribute("aria-label", "...")
-        const html = "<br>" + element['type'] + " " + element['swatch_id'] +
-            "<br>" + element['color_name'];
+        input.setAttribute("aria-label", "...");
+        const span1 = document.createElement("span");
+        const span2 = document.createElement("span");
+        span1.innerHTML = element['type'] + " " + element['swatch_id'];
+        span2.innerHTML = element['color_name'];
         const status = document.createElement("span");
         status.setAttribute("class", "badge mb-2 " + element['badge']);
         status.innerHTML = element['status'];
         const img = document.createElement("img");
         img.setAttribute("src", "https://images.kumpeapps.com/filament?swatch=" + element['swatch_id'] + "_" + base_sku);
         div.appendChild(input);
+        div.appendChild(span1);
+        div.appendChild(span2);
         div.appendChild(status);
         div.appendChild(img);
         colorOptionsBlock.appendChild(div);
