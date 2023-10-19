@@ -40,7 +40,7 @@ function buildColorOptions() {
     colorOptions.forEach(build);
     function build(element, _, _) {
         const div = document.createElement("div");
-        div.setAttribute("class", "radio-value image-radio border border-primary");
+        div.setAttribute("class", "radio-value image-radio border border-primary rounded");
         const input = document.createElement("input");
         input.setAttribute("class", "form-check-input radio-value");
         input.setAttribute("type", "radio");
