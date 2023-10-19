@@ -122,4 +122,5 @@ function isColorSet() {
 function refresh() {
     changedQty();
     updateShoppingCartModal();
+    buildColorOptions();
 };
