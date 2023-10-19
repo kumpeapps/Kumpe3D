@@ -271,23 +271,22 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 											<div class="product-num">
 												<div class="meta-content">
 													<label class="form-label">Color</label>
-													<div class="d-flex align-items-center block-row">
-														<form id="colorOptions" name="colorOptions">
-															<?php
-															// if ($filaments_query = mysqli_query($conn, $filaments_sql)) {
-															// 	// Loop through each row in the result set
-															// 	while ($filament = mysqli_fetch_array($filaments_query)) {
-															// 		echo '
-															// 		<div class="radio-value image-radio">
-															// 			<input class="form-check-input radio-value" type="radio" name="radioColor" id="radioColor" value="' . $filament['swatch_id'] . '" aria-label="...">
-															// 			<br>' . $filament['type'] . ' ' . $filament['color_name'] . '
-															// 			<br>' . $filament['status'] . '
-															// 			<img src="https://images.kumpeapps.com/filament?swatch=' . $filament['swatch_id'] . '_' . $base_sku . '">
-															// 		</div>';
-															// 	}
-															// }
-															?>
-														</form>
+													<div class="d-flex align-items-center block-row" id="colorOptions"
+														name="colorOptions">
+														<?php
+														// if ($filaments_query = mysqli_query($conn, $filaments_sql)) {
+														// 	// Loop through each row in the result set
+														// 	while ($filament = mysqli_fetch_array($filaments_query)) {
+														// 		echo '
+														// 		<div class="radio-value image-radio">
+														// 			<input class="form-check-input radio-value" type="radio" name="radioColor" id="radioColor" value="' . $filament['swatch_id'] . '" aria-label="...">
+														// 			<br>' . $filament['type'] . ' ' . $filament['color_name'] . '
+														// 			<br>' . $filament['status'] . '
+														// 			<img src="https://images.kumpeapps.com/filament?swatch=' . $filament['swatch_id'] . '_' . $base_sku . '">
+														// 		</div>';
+														// 	}
+														// }
+														?>
 													</div>
 												</div>
 											</div>
