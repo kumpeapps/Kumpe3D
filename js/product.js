@@ -33,8 +33,8 @@ function getColorValue() {
 };
 
 function buildColorOptions() {
-    const colorOptions = GET("GET https://api.preprod.kumpe3d.com/filament?sku=" + base_sku + "&filter=" + product['filament_filter']).response;
     const base_sku = product.sku_parts.base_sku;
+    const colorOptions = GET("GET https://api.preprod.kumpe3d.com/filament?sku=" + base_sku + "&filter=" + product['filament_filter']).response;
     const colorOptionsBlock = document.getElementById("colorOptions");
     removeAllChildNodes(colorOptionsBlock);
     colorOptions.forEach(build());
