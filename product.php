@@ -223,7 +223,8 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 										<div class="dz-content">
 											<div class="dz-content-footer">
 												<div class="dz-content-start">
-													<span id="isOnSaleBadge" class="badge badge-pill bg-warning mb-2" hidden>On
+													<span id="isOnSaleBadge" class="badge badge-pill bg-warning mb-2"
+														hidden>On
 														Sale</span>
 													<h4 id="titleLabel" class="title mb-1"></h4>
 												</div>
@@ -270,21 +271,23 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 											<div class="product-num">
 												<div class="meta-content">
 													<label class="form-label">Color</label>
-													<div id="colorOptions" class="d-flex align-items-center block-row">
-														<?php
-														// if ($filaments_query = mysqli_query($conn, $filaments_sql)) {
-														// 	// Loop through each row in the result set
-														// 	while ($filament = mysqli_fetch_array($filaments_query)) {
-														// 		echo '
-														// 		<div class="radio-value image-radio">
-														// 			<input class="form-check-input radio-value" type="radio" name="radioColor" id="radioColor" value="' . $filament['swatch_id'] . '" aria-label="...">
-														// 			<br>' . $filament['type'] . ' ' . $filament['color_name'] . '
-														// 			<br>' . $filament['status'] . '
-														// 			<img src="https://images.kumpeapps.com/filament?swatch=' . $filament['swatch_id'] . '_' . $base_sku . '">
-														// 		</div>';
-														// 	}
-														// }
-														?>
+													<div class="d-flex align-items-center block-row">
+														<form id="colorOptions" name="colorOptions">
+															<?php
+															// if ($filaments_query = mysqli_query($conn, $filaments_sql)) {
+															// 	// Loop through each row in the result set
+															// 	while ($filament = mysqli_fetch_array($filaments_query)) {
+															// 		echo '
+															// 		<div class="radio-value image-radio">
+															// 			<input class="form-check-input radio-value" type="radio" name="radioColor" id="radioColor" value="' . $filament['swatch_id'] . '" aria-label="...">
+															// 			<br>' . $filament['type'] . ' ' . $filament['color_name'] . '
+															// 			<br>' . $filament['status'] . '
+															// 			<img src="https://images.kumpeapps.com/filament?swatch=' . $filament['swatch_id'] . '_' . $base_sku . '">
+															// 		</div>';
+															// 	}
+															// }
+															?>
+														</form>
 													</div>
 												</div>
 											</div>

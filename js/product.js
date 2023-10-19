@@ -66,6 +66,12 @@ function buildColorOptions() {
         div.appendChild(img);
         colorOptionsBlock.appendChild(div);
     };
+        var rad = document.colorOptions.radioColor;
+        for (var i = 0; i < rad.length; i++) {
+            rad[i].addEventListener('change', function() {
+                changedColor();
+            });
+        }
 };
 
 function changedColor() {
