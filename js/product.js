@@ -59,7 +59,7 @@ function buildColorOptions() {
         const img = document.createElement("img");
         img.setAttribute("class", "rounded");
         img.setAttribute("src", "https://images.kumpeapps.com/filament?swatch=" + element['swatch_id'] + "_" + base_sku);
-        if (element['status'] == "Made to Order") {
+        if (element['status'] == "Backordered" || element['status'] == "Discontinued") {
             input.disabled = true;
         };
         div.appendChild(input);
