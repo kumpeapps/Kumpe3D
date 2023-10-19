@@ -15,6 +15,7 @@ if (env == 'dev') {
 };
 const querySKU = urlParams.get('sku')
 let product = GET(apiUrl + "/product?sku=" + querySKU).response
+
 titleCrumb.innerHTML = product.title
 titleLabel.innerHTML = product.title
 descriptionLabel.innerHTML = product.description
@@ -30,12 +31,34 @@ function getColorValue() {
     }
     return "000";
 };
-function addColorChangedListener() {
-    const ele = document.getElementsByName('radioColor');
-    for (i = 0; i < ele.length; i++) {
-        if (ele[i].checked)
-            ele[i].addEventListener("change", function() {changedColor();});
-    }
+
+function buildColorOptions(colorOptions) {
+    const base_sku = product.sku_parts.base_sku;
+    const colorOptionsBlock = document.getElementById("colorOptions");
+    removeAllChildNodes(colorOptionsBlock);
+    colorOptions.forEach(build());
+    function build(element, _, _) {
+        const div = document.createElement("div");
+        div.setAttribute("class", "radio-value image-radio");
+        const input = document.createElement("input");
+        input.setAttribute("class", "form-check-input radio-value");
+        input.setAttribute("type", "radio");
+        input.setAttribute("name", "radioColor");
+        input.setAttribute("id", "radioColor");
+        input.setAttribute("value", element['swatch_id'])
+        input.setAttribute("aria-label", "...")
+        const html = "<br>" + element['type'] + " " + element['swatch_id'] +
+            "<br>" + element['color_name'];
+        const status = document.createElement("span");
+        status.setAttribute("class", "badge mb-2 " + element['badge']);
+        status.innerHTML = element['status'];
+        const img = document.createElement("img");
+        img.setAttribute("src", "https://images.kumpeapps.com/filament?swatch=" + element['swatch_id'] + "_" + base_sku);
+        div.appendChild(input);
+        div.appendChild(status);
+        div.appendChild(img);
+        colorOptionsBlock.appendChild(div);
+    };
 };
 
 function changedColor() {
