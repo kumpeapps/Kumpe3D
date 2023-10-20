@@ -366,7 +366,7 @@ function getArkansasTaxes() {
 function isValidCheck() {
     const isValidArray = Object.values(isValid);
     const isAllValid = allTrue(isValidArray);
-    const state = document.getElementById("stateInput");
+    const state = document.getElementById("stateInput").value;
     if (state === 'AR' || state === 'Arkansas') {
         getArkansasTaxes();
     }
