@@ -22,7 +22,7 @@ function buildShoppingCartModalList() {
         const original_price = element["originalPrice"];
         let price = '$' + (element["totalPrice"]);
         if (element["totalPrice"] != original_price) {
-            price = price + ' <del>$' + (original_price) + '</del>';
+            price = price + ' <del>$' + (element['originalTotal']) + '</del>';
         }
         const sku = element["sku"];
         let li = document.createElement('li');
