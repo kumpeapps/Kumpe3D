@@ -194,10 +194,8 @@ require_once 'includes/site_params.php';
 										<label class="label-title">Town / City *</label>
 										<input
 											id="cityInput" name="dzName" required=""
-											class="form-control m-b15 is-invalid"
+											class="form-control m-b15"
 											placeholder="City">
-										<div class="valid-feedback">Looks Good!</div>
-										<div class="invalid-feedback">Please Enter City</div>
 									</div>
 								</div>
 								<div class="col-md-12" id="stateContainer" hidden>
@@ -205,10 +203,8 @@ require_once 'includes/site_params.php';
 										<label class="label-title">State *</label>
 										<input
 											id="stateInput" name="dzName" required=""
-											class="form-control m-b15 is-invalid"
+											class="form-control m-b15"
 											placeholder="State">
-										<div class="valid-feedback">Looks Good!</div>
-										<div class="invalid-feedback">Please Enter State</div>
 									</div>
 								</div>
 								<div class="col-md-12">
