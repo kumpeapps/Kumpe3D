@@ -360,7 +360,7 @@ function fieldValidated(fieldID, valid = true) {
 };
 
 function getArkansasTaxes() {
-    console.warn("Arkansas taxes required");
+    console.info("Arkansas taxes required");
 };
 
 function isValidCheck() {
