@@ -7,9 +7,9 @@ function buildShoppingCartModalList() {
     const ul = document.getElementById('shoppingCartModal');
     const subtotalLabel = document.getElementById('subtotalLabel');
     removeAllChildNodes(ul);
-    subtotalLabel.innerHTML = '$' + cartLS.total();
-    cart = cartLS.list();
-    cart.forEach(renderShoppingCartModalList);
+    cart = GET(apiUrl + "/cart?user_id=0&session_id=" + sessionID).response;
+    subtotalLabel.innerHTML = '$' + cart.subtotal;
+    cart.list.forEach(renderShoppingCartModalList);
 
     function renderShoppingCartModalList(element, _, _) {
         const img_url = element["image_url"];
