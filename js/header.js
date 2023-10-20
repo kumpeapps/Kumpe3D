@@ -1,10 +1,11 @@
 const sessionID = getCookie("PHPSESSID");
+const spinHandle = loadingOverlay();
 
 updateShoppingCartModal();
 updateBanner();
 
 function buildShoppingCartModalList() {
-    const spinHandle = loadingOverlay().activate();
+    loadingOverlay().activate(spinHandle)
     const ul = document.getElementById('shoppingCartModal');
     const subtotalLabel = document.getElementById('subtotalLabel');
     removeAllChildNodes(ul);
@@ -80,7 +81,7 @@ function buildShoppingCartModalList() {
 
         ul.appendChild(li);
     }
-    loadingOverlay().cancel(spinHandle);
+    
 };
 
 function removeAllChildNodes(parent) {
@@ -90,11 +91,10 @@ function removeAllChildNodes(parent) {
 };
 
 function deleteItem(sku) {
-    const spinHandle = loadingOverlay().activate();
-    const data = {"sku": sku}
+    loadingOverlay().activate(spinHandle);
+    const data = {"sku": sku};
     deleteJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data, false);
     refresh();
-    loadingOverlay().cancel(spinHandle);
 };
 
 function clearCart() {
@@ -106,7 +106,7 @@ function updateShoppingCartModal() {
 };
 
 function cartQtyChange(event) {
-    const spinHandle = loadingOverlay().activate();
+    loadingOverlay().activate(spinHandle)
     const sku = event.srcElement.id;
     const customization = "";
     const qty = parseInt(event.srcElement.value);

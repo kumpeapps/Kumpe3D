@@ -137,6 +137,7 @@ function refresh() {
     changedQty();
     updateShoppingCartModal();
     buildColorOptions();
+    loadingOverlay().cancel(spinHandle);
 };
 
 function addToCart() {
