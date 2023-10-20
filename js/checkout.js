@@ -339,7 +339,7 @@ function validateZipCode() {
     const field = document.getElementById(fieldID).value;
     const valid = validator.isPostalCode(field, country);
     if (valid) {
-        zipData = GET(apiUrl + "/zipcode?single_record=1&zip=" + field);
+        zipData = GET(apiUrl + "/zipcode?single_record=1&zip=" + field).response;
         document.getElementById("stateInput").value = zipData.state_id;
         document.getElementById("cityInput").value = zipData.city;
         document.getElementById("cityContainer").removeAttribute("hidden");
