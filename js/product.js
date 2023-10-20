@@ -77,8 +77,7 @@ function buildColorOptions() {
 function changedColor() {
     const color_id = getColorValue();
     const base_sku = product.sku_parts.base_sku;
-    const qty = document.getElementById('qty').value;
-    let sku = base_sku + '-' + color_id;
+    const sku = base_sku + '-' + color_id;
     skuLabel.innerHTML = sku;
 };
 
