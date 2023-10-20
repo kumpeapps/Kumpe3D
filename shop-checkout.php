@@ -353,15 +353,9 @@ mysqli_close($conn);
 										<tr class="taxes">
 											<!-- Start Taxes -->
 											<td id="stateTax">
-												<tr>
-													Arkansas: $10
-												</tr>
-												<tr>
-													Rogers: $5
-												</tr>
-												<tr>
-													Benton County: $2
-												</tr>
+													Arkansas: $10<br>
+													Rogers: $5<br>
+													Benton County: $2<br>
 											</td>
 											<td id="totalTax" class="price">
 												Total Tax $17
