@@ -16,15 +16,15 @@ function buildShoppingCartModalList() {
     shoppingCartBadge.innerHTML = cart.list.length;
 
     function renderShoppingCartModalList(element, _, _) {
-        const img_url = element["image_url"];
-        const title = element["name"];
+        const img_url = element["img_url"];
+        const title = element["title"];
         const qty = element["quantity"];
-        const original_price = element["original_price"];
-        let price = '$' + (element["price"] * qty);
-        if (element["price"] != original_price) {
+        const original_price = element["originalPrice"];
+        let price = '$' + (element["totalPrice"] * qty);
+        if (element["totalPrice"] != original_price) {
             price = price + ' <del>$' + (original_price * qty) + '</del>';
         }
-        const sku = element["id"];
+        const sku = element["sku"];
         let li = document.createElement('li');
         let div1 = document.createElement('div');
         div1.setAttribute('class','cart-widget');
