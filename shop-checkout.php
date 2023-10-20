@@ -352,7 +352,7 @@ mysqli_close($conn);
 										</tr>
 										<tr class="taxes">
 											<!-- Start Taxes -->
-											<td id="stateTax">
+											<td id="taxes">
 											</td>
 											<td id="totalTax" class="price">
 												Total Tax $0
