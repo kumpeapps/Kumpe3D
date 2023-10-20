@@ -235,24 +235,24 @@ mysqli_close($conn);
 											placeholder="Apartment, suite, unit, etc. (optional)">
 									</div>
 								</div>
-								<div class="col-md-12">
+								<div class="col-md-12" id="cityContainer" hidden>
 									<div class="m-b25">
 										<label class="label-title">Town / City *</label>
 										<input
 											id="cityInput" name="dzName" required=""
 											class="form-control m-b15 is-invalid"
-											placeholder="House number and street name" hidden>
+											placeholder="House number and street name">
 										<div class="valid-feedback">Looks Good!</div>
 										<div class="invalid-feedback">Please Enter City</div>
 									</div>
 								</div>
-								<div class="col-md-12">
+								<div class="col-md-12" id="stateContainer" hidden>
 									<div class="m-b25">
 										<label class="label-title">State *</label>
 										<input
 											id="stateInput" name="dzName" required=""
 											class="form-control m-b15 is-invalid"
-											placeholder="House number and street name" hidden>
+											placeholder="House number and street name">
 										<div class="valid-feedback">Looks Good!</div>
 										<div class="invalid-feedback">Please Enter State</div>
 									</div>
