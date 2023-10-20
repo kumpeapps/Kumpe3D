@@ -134,8 +134,6 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css"
 		href="vendor-js/lightgallery/dist/css/lg-zoom.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="css/style.css">
-	<script nonce="<?php echo $nonce; ?>" src="https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js"
-		type="text/javascript"></script>
 	<script nonce="<?php echo $nonce; ?>" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<!-- SweetAlerts -->
 

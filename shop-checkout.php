@@ -1,8 +1,4 @@
 <?php
-// **PREVENTING SESSION HIJACKING**
-// Prevents javascript XSS attacks aimed to steal the session ID
-ini_set('session.cookie_httponly', 1);
-
 // **PREVENTING SESSION FIXATION**
 // Session ID cannot be passed through URLs
 ini_set('session.use_only_cookies', 1);
@@ -74,6 +70,11 @@ mysqli_close($conn);
 
 	<!-- FAVICONS ICON -->
 	<link rel="icon" type="image/x-icon" href="images/favicon.png">
+	<script nonce="<?php echo $nonce; ?>" src="js/loadingOverlay.js"></script>
+	<script nonce="<?php echo $nonce; ?>" src="js/http-methods.js"></script>
+	<script nonce="<?php echo $nonce; ?>" src="js/cookies.js"></script>
+	<script nonce="<?php echo $nonce; ?>" src="env.js"></script>
+	<script nonce="<?php echo $nonce; ?>" src="js/default.js"></script>
 
 	<!-- PAGE TITLE HERE -->
 	<title>
@@ -84,8 +85,6 @@ mysqli_close($conn);
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- STYLESHEETS -->
-	<script nonce="<?php echo $nonce; ?>" src="http-methods.js"></script>
-	<script nonce="<?php echo $nonce; ?>" src="env.js"></script>
 	<link rel="stylesheet" type="text/css" href="vendor-js/bootstrap-select/dist/css/bootstrap-select.min.css">
 	<link rel="stylesheet" type="text/css" href="icons/fontawesome/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="icons/themify/themify-icons.css">
@@ -97,8 +96,7 @@ mysqli_close($conn);
 	<link rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-thumbnail.css">
 	<link rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-zoom.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script src="https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js"
-		type="text/javascript"></script>
+	<script nonce="<?php echo $nonce; ?>" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	<!-- GOOGLE FONTS-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -240,23 +238,29 @@ mysqli_close($conn);
 								<div class="col-md-12">
 									<div class="m-b25">
 										<label class="label-title">Town / City *</label>
-										<select id="citySelect" class="form-select w-100">
-											<!-- <option selected>Rogers</option> -->
-										</select>
+										<input
+											id="cityInput" name="dzName" required=""
+											class="form-control m-b15 is-invalid"
+											placeholder="House number and street name" hidden>
+										<div class="valid-feedback">Looks Good!</div>
+										<div class="invalid-feedback">Please Enter City</div>
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="m-b25">
 										<label class="label-title">State *</label>
-										<select onchange="buildCities()" id="stateSelect" class="form-select w-100">
-											<!-- <option selected>Arkansas</option> -->
-										</select>
+										<input
+											id="stateInput" name="dzName" required=""
+											class="form-control m-b15 is-invalid"
+											placeholder="House number and street name" hidden>
+										<div class="valid-feedback">Looks Good!</div>
+										<div class="invalid-feedback">Please Enter State</div>
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group m-b25">
 										<label class="label-title">ZIP Code *</label>
-										<input onchange="validateZipCode()" onkeyup="validateZipCode()"
+										<input
 											id="zipCodeInput" name="dzName" required="" class="form-control is-invalid">
 										<div class="valid-feedback">Looks Good!</div>
 										<div class="invalid-feedback">Please Enter Zip Code</div>
@@ -265,7 +269,7 @@ mysqli_close($conn);
 								<div class="col-md-12">
 									<div class="form-group m-b25">
 										<label class="label-title">Phone *</label>
-										<input onchange="validatePhone()" onkeyup="validatePhone()" id="phoneInput"
+										<input id="phoneInput"
 											name="dzName" required="" class="form-control is-invalid">
 										<div class="valid-feedback">Looks Good!</div>
 										<div class="invalid-feedback">Please Enter Phone Number</div>
@@ -274,7 +278,7 @@ mysqli_close($conn);
 								<div class="col-md-12">
 									<div class="form-group m-b25">
 										<label class="label-title">Email address *</label>
-										<input onchange="validateEmail()" onkeyup="validateEmail()" id="emailInput"
+										<input id="emailInput"
 											name="dzName" required="" class="form-control is-invalid">
 										<div class="valid-feedback">Looks Good!</div>
 										<div class="invalid-feedback">Please Enter a Valid Email Address</div>
@@ -333,12 +337,27 @@ mysqli_close($conn);
 														class="form-check-input radio" type="radio"
 														name="flexRadioDefault" id="flexRadioDefault2" checked>
 													<label class="form-check-label" for="flexRadioDefault2">
-														Flat Rate: $10
+														US Flat Rate: $10
 													</label>
 												</div>
 												<!-- End Shipping Option -->
 											</td>
 											<td class="price">$10.00</td>
+										</tr>
+										<tr class="taxes">
+											<!-- Start Taxes -->
+											<td id="stateTax">
+												Arkansas: $5
+											</td>
+											<td id="cityTax">
+												Rogers: $5
+											</td>
+											<td id="countyTax">
+												Benton County: $2
+											</td>
+											<td id="totalTax" class="price">
+												$12
+											</td>
 										</tr>
 										<tr class="total">
 											<td>Total</td>
@@ -396,17 +415,11 @@ mysqli_close($conn);
 	<script src="js/dz.ajax.js"></script><!-- AJAX -->
 	<script src="js/custom.js"></script><!-- CUSTOM JS -->
 	<!-- Checkout JS -->
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- SweetAlerts -->
 	<script src="https://unpkg.com/validator@latest/validator.min.js"></script>
 	<?php
 	echo "<script src='https://www.paypal.com/sdk/js?&client-id=$paypal_clientid&currency=USD&components=" . $site_params['store_paypal_components'] . "&disable-funding=" . $site_params['store_paypal_disablefunding'] . "&enable-funding=" . $site_params['store_paypal_enablefunding'] . "&integration-date=2023-10-01' data-page-type=\"checkout\"></script>";
 	?>
-	<script id="envScript"></script>
-	<script src="cookies.js"></script>
-	<script src="checkout.js"></script>
-	<script>
-		const sessionID = <?php echo "'" . session_id() . "'"; ?>;
-	</script>
+	<script nonce="<?php echo $nonce; ?>" src="js/checkout.js"></script>
 
 </body>
 

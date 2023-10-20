@@ -38,16 +38,8 @@ function load() {
 function getColorValue() {
     const ele = document.getElementsByName('radioColor');
     for (i = 0; i < ele.length; i++) {
-        if (ele[i].checked) {
-            console.error(ele[i].parentNode);
-            // ele[i].parentNode.setAttribute("class", "radio-value image-radio border border-danger rounded");
-            // console.info(ele[i].parentNode);
+        if (ele[i].checked)
             return ele[i].value;
-        } else {
-            console.error(ele[i].parentNode);
-            // ele[i].parentNode.setAttribute("class", "radio-value image-radio border border-secondary rounded");
-            // console.info(ele[i].parentNode);
-        }
     }
     return "000";
 };
@@ -60,7 +52,7 @@ function buildColorOptions() {
     colorOptions.forEach(build);
     function build(element, _, _) {
         const div = document.createElement("div");
-        div.setAttribute("class", "radio-value border border-success rounded");
+        div.setAttribute("class", "radio-value border border-secondary rounded");
         const input = document.createElement("input");
         input.setAttribute("class", "form-check-input radio-value");
         input.setAttribute("type", "radio");
