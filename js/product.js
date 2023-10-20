@@ -141,15 +141,7 @@ function refresh() {
 
 function addToCart() {
     const sku = skuLabel.innerHTML;
-    const base_sku = product.sku_parts.base_sku;
-    const color_id = getColorValue();
     const qty = document.getElementById('qty').value;
-    const newBaseSKU = base_sku;
-    let itemPrice = price;
-
-    if (qty >= wholesaleQty) {
-        itemPrice = wholesale_price;
-    }
     if (!isColorSet()) {
         Swal.fire(
             'Error!',
