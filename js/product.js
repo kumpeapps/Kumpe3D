@@ -60,7 +60,7 @@ function buildColorOptions() {
     colorOptions.forEach(build);
     function build(element, _, _) {
         const div = document.createElement("div");
-        div.setAttribute("class", "radio-value image-radio border border-success rounded");
+        div.setAttribute("class", "radio-value border border-success rounded");
         const input = document.createElement("input");
         input.setAttribute("class", "form-check-input radio-value");
         input.setAttribute("type", "radio");
