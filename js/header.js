@@ -9,7 +9,8 @@ function buildShoppingCartModalList() {
     const ul = document.getElementById('shoppingCartModal');
     const subtotalLabel = document.getElementById('subtotalLabel');
     removeAllChildNodes(ul);
-    cart = GET("https://api.preprod.kumpe3d.com/cart?user_id=0&session_id=" + sessionID).response;
+    const user = getCookie("user_id")
+    cart = GET(apiUrl + "/cart?user_id=" + user + "&session_id=" + sessionID).response;
     let subtotal = cart.subtotal;
     if (subtotal === null) {
         subtotal = 0;
@@ -93,7 +94,8 @@ function removeAllChildNodes(parent) {
 function deleteItem(sku) {
     loadingOverlay().activate(spinHandle);
     const data = {"sku": sku};
-    deleteJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data, false);
+    const user = getCookie("user_id")
+    deleteJSON(apiUrl + "/cart?user_id=" + user + "&session_id=" + sessionID, data, false);
     refresh();
 };
 
@@ -115,7 +117,8 @@ function cartQtyChange(event) {
         "quantity": qty,
         "customization": customization
     }
-    putJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data);
+    const user = getCookie("user_id")
+    putJSON(apiUrl + "/cart?user_id=" + user + "&session_id=" + sessionID, data);
     refresh();
     if (qty < 1) {
         deleteItem(sku);

@@ -1,4 +1,5 @@
 let fundingSource;
+let cart;
 onload();
 
 paypal.Buttons({
@@ -145,7 +146,7 @@ function setListeners() {
     });
     document.getElementById("emailInput").addEventListener("change", function () {
         validateEmail();
-    });document.getElementById("firstNameInput").addEventListener("keyup", function () {
+    }); document.getElementById("firstNameInput").addEventListener("keyup", function () {
         validateFName();
     });
     document.getElementById("lastNameInput").addEventListener("keyup", function () {
@@ -358,9 +359,32 @@ function fieldValidated(fieldID, valid = true) {
     }
     isValidCheck();
 };
-
+// TODO:
 function getArkansasTaxes() {
-    console.info("Arkansas taxes required");
+    const address = document.getElementById("streetAddressInput").value;
+    const city = document.getElementById("cityInput").value;
+    const state = document.getElementById("stateInput").value;
+    const zip = document.getElementById("zipCodeInput").value;
+    const taxes = document.getElementById("taxes");
+    const taxTotalLabel = document.getElementById("totalTax");
+    const subtotal = cart.subtotal;
+    const tax_data = GET(apiUrl + "/taxes?address=" + address + "&city=" + city + "&state=" + state + "&zip=" + zip + "&subtotal=" + subtotal).response;
+    let taxLabel = "";
+    let taxTotal = 0;
+    if (tax_data.is_state_taxable) {
+        taxLabel = taxLabel + tax_data.taxable_state + ": $" + tax_data.state_tax + "<br>";
+        taxTotal = taxTotal + tax_data.state_tax;
+    }
+    if (tax_data.is_county_taxable) {
+        taxLabel = taxLabel + tax_data.taxable_county + ": $" + tax_data.county_tax + "<br>";
+        taxTotal = taxTotal = tax_data.county_tax;
+    }
+    if (tax_data.is_city_taxable) {
+        taxLabel = taxLabel + tax_data.taxable_city + ": $" + tax_data.city_tax + "<br>";
+        taxTotal = taxTotal + tax_data.city_tax;
+    }
+    taxes.innerHTML = taxLabel;
+    taxTotalLabel.innerHTML = "Tax Total: $" + taxTotal;
 };
 
 function isValidCheck() {
@@ -387,6 +411,8 @@ function showPayPal(show = true) {
 };
 
 function refresh() {
+    user = getCookie("user_id");
+    cart = GET(apiUrl + "/cart?user_id=" + user + "&session_id=" + sessionID).response;
     updateShoppingCartModal();
     buildCheckout();
     buildCountries();
