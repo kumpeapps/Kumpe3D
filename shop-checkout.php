@@ -8,50 +8,6 @@ ini_set('session.cookie_secure', 1);
 
 session_start();
 require_once 'includes/site_params.php';
-$conn = mysqli_connect(
-	$_ENV['mysql_host'],
-	$_ENV['mysql_user'],
-	$_ENV['mysql_pass'],
-	'Web_3dprints'
-) or die("Couldn't connect to server.");
-
-$enabled_countries = $site_params['shipping_countries'];
-$countries_sql = "
-		SELECT 
-			*
-		FROM
-			Public.vw_Addresses__Countries
-		WHERE 1 = 1 
-			AND country_abbrv IN($enabled_countries);
-	";
-$states_sql = "
-		SELECT 
-			*
-		FROM
-			Public.vw_Addresses__States
-		WHERE 1 = 1 
-			AND country_abbrv IN($enabled_countries);
-	";
-$cities_sql = "
-		SELECT 
-			*
-		FROM
-			Public.vw_Addresses__Cities
-		WHERE 1 = 1 
-			AND country_abbrv IN($enabled_countries);
-	";
-
-if (mysqli_connect_errno()) {
-	echo "Failed to connect to MySQL: " . mysqli_connect_error();
-	exit();
-}
-$cities = mysqli_query($conn, $cities_sql);
-$cities = mysqli_fetch_all($cities);
-$states = mysqli_query($conn, $states_sql);
-$states = mysqli_fetch_all($states);
-$countries = mysqli_query($conn, $countries_sql);
-$countries = mysqli_fetch_all($countries);
-mysqli_close($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +25,7 @@ mysqli_close($conn);
 	<meta name="format-detection" content="telephone=no">
 
 	<!-- FAVICONS ICON -->
-	<link rel="icon" type="image/x-icon" href="images/favicon.png">
+	<link nonce="<?php echo $nonce; ?>" rel="icon" type="image/x-icon" href="images/favicon.png">
 	<script nonce="<?php echo $nonce; ?>" src="js/loadingOverlay.js"></script>
 	<script nonce="<?php echo $nonce; ?>" src="js/http-methods.js"></script>
 	<script nonce="<?php echo $nonce; ?>" src="js/cookies.js"></script>
@@ -85,26 +41,27 @@ mysqli_close($conn);
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- STYLESHEETS -->
-	<link rel="stylesheet" type="text/css" href="vendor-js/bootstrap-select/dist/css/bootstrap-select.min.css">
-	<link rel="stylesheet" type="text/css" href="icons/fontawesome/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="icons/themify/themify-icons.css">
-	<link rel="stylesheet" type="text/css" href="icons/flaticon/flaticon_mooncart.css">
-	<link rel="stylesheet" type="text/css" href="vendor-js/swiper/swiper-bundle.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor-js/nouislider/nouislider.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor-js/animate/animate.css">
-	<link rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lightgallery.css">
-	<link rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-thumbnail.css">
-	<link rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-zoom.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/bootstrap-select/dist/css/bootstrap-select.min.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="icons/fontawesome/css/all.min.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="icons/themify/themify-icons.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="icons/flaticon/flaticon_mooncart.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/swiper/swiper-bundle.min.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/nouislider/nouislider.min.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/animate/animate.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lightgallery.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-thumbnail.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-zoom.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="css/style.css">
 	<script nonce="<?php echo $nonce; ?>" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	<!-- GOOGLE FONTS-->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link nonce="<?php echo $nonce; ?>" rel="preconnect" href="https://fonts.googleapis.com">
+	<link nonce="<?php echo $nonce; ?>" rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link
-		href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap"
+	nonce="<?php echo $nonce; ?>" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap"
 		rel="stylesheet">
 
+		<!-- TODO: Move to js file -->
 	<script>
 		const allTrue = arr => arr.every(e => e);
 		let isValid = {
@@ -115,13 +72,10 @@ mysqli_close($conn);
 			phoneInput: false,
 			emailInput: false
 		};
-		const cities = <?php echo json_encode($cities); ?>;
-		const states = <?php echo json_encode($states); ?>;
-		const countries = <?php echo json_encode($countries); ?>;
 	</script>
 </head>
 
-<body onload="onload();">
+<body>
 	<div class="page-wraper">
 		<div id="loading-area" class="preloader-wrapper-1">
 			<div>
@@ -155,7 +109,7 @@ mysqli_close($conn);
 				<div class="container">
 					<div class="row shop-checkout">
 						<div class="col-xl-8">
-							<h4 class="title m-b15">Billing details</h4>
+							<h4 class="title m-b15">Shipping Details</h4>
 							<div class="accordion dz-accordion accordion-sm" id="accordionFaq">
 								<!-- TODO: Customer Login -->
 								<!-- <div class="accordion-item">
@@ -190,7 +144,7 @@ mysqli_close($conn);
 								<div class="col-md-6">
 									<div class="form-group m-b25">
 										<label class="label-title">First Name</label>
-										<input onchange="validateFName()" onkeyup="validateFName()" id="firstNameInput"
+										<input id="firstNameInput"
 											name="dzName" required="" class="form-control is-invalid">
 										<div class="valid-feedback">Looks Good!</div>
 										<div class="invalid-feedback">Please Enter First Name</div>
@@ -199,7 +153,7 @@ mysqli_close($conn);
 								<div class="col-md-6">
 									<div class="form-group m-b25">
 										<label class="label-title">Last Name</label>
-										<input onchange="validateLName()" onkeyup="validateLName()" id="lastNameInput"
+										<input id="lastNameInput"
 											name="dzName" required="" class="form-control is-invalid">
 										<div class="valid-feedback">Looks Good!</div>
 										<div class="invalid-feedback">Please Enter Last Name</div>
@@ -215,9 +169,9 @@ mysqli_close($conn);
 									<div class="m-b25">
 										<label class="label-title">Country / Region *</label>
 										<div class="form-select">
-											<select onchange="buildStates()" id="countrySelect"
+											<select id="countrySelect"
 												class="default-select w-100">
-												<option value="US" selected>USA</option>
+												<option value="US" selected>🇺🇸 United States of America</option>
 											</select>
 										</div>
 									</div>
@@ -225,7 +179,7 @@ mysqli_close($conn);
 								<div class="col-md-12">
 									<div class="form-group m-b25">
 										<label class="label-title">Street address *</label>
-										<input onchange="validateAddress()" onkeyup="validateAddress()"
+										<input
 											id="streetAddressInput" name="dzName" required=""
 											class="form-control m-b15 is-invalid"
 											placeholder="House number and street name">
@@ -241,7 +195,7 @@ mysqli_close($conn);
 										<input
 											id="cityInput" name="dzName" required=""
 											class="form-control m-b15 is-invalid"
-											placeholder="House number and street name">
+											placeholder="City">
 										<div class="valid-feedback">Looks Good!</div>
 										<div class="invalid-feedback">Please Enter City</div>
 									</div>
@@ -252,7 +206,7 @@ mysqli_close($conn);
 										<input
 											id="stateInput" name="dzName" required=""
 											class="form-control m-b15 is-invalid"
-											placeholder="House number and street name">
+											placeholder="State">
 										<div class="valid-feedback">Looks Good!</div>
 										<div class="invalid-feedback">Please Enter State</div>
 									</div>

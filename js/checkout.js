@@ -1,4 +1,6 @@
 let fundingSource;
+onload();
+setListeners();
 
 paypal.Buttons({
     style: {
@@ -125,6 +127,27 @@ paypal.Buttons({
         );
     }
 }).render('#paypal-button-container');
+
+function setListeners() {
+    document.getElementById("firstNameInput").addEventListener("change", function () {
+        validateFName();
+    });
+    document.getElementById("lastNameInput").addEventListener("change", function () {
+        validateLName();
+    });
+    document.getElementById("streetAddressInput").addEventListener("change", function () {
+        validateAddress();
+    });
+    document.getElementById("zipCodeInput").addEventListener("change", function () {
+        validateZipCode();
+    });
+    document.getElementById("phoneInput").addEventListener("change", function () {
+        validatePhone();
+    });
+    document.getElementById("emailInput").addEventListener("change", function () {
+        validateEmail();
+    });
+};
 
 function orderSuccess() {
     showPayPal(false);
@@ -298,6 +321,13 @@ function validateZipCode() {
     const country = document.getElementById("countrySelect").value;
     const field = document.getElementById(fieldID).value;
     const valid = validator.isPostalCode(field, country);
+    if (valid) {
+        zipData = GET(apiUrl + "/zipcode?single_record=1&zip=" + field);
+        document.getElementById("stateInput").value = zipData.state_id;
+        document.getElementById("cityInput").value = zipData.city;
+        document.getElementById("cityContainer").removeAttribute("hidden");
+        document.getElementById("stateContainer").removeAttribute("hidden");
+    }
     fieldValidated(fieldID, valid);
 };
 
@@ -335,65 +365,4 @@ function refresh() {
     updateShoppingCartModal();
     buildCheckout();
     buildCountries();
-};
-
-// buildCountries(): Builds country select options
-function buildCountries() {
-    const countrySelect = document.getElementById('countrySelect');
-    countryList = countries;
-    removeAllChildNodes(countrySelect);
-    countryList.forEach(renderCountrySelect);
-    function renderCountrySelect(element, _, _) {
-        const countryName = element[1];
-        const countryAbbrv = element[3];
-        const countryFlagEmoji = element[6];
-        let option = document.createElement("option");
-        option.setAttribute("value", countryAbbrv);
-        option.innerHTML = countryFlagEmoji + countryName;
-        if (countryAbbrv === 'US') {
-            option.setAttribute("selected", true);
-        }
-        countrySelect.appendChild(option);
-    };
-    buildStates();
-};
-
-// buildStates(): Buildes state select options based on selected country
-function buildStates() {
-    const stateSelect = document.getElementById('stateSelect');
-    const countrySelect = document.getElementById('countrySelect');
-    const selectedCountry = countrySelect.value;
-    removeAllChildNodes(stateSelect);
-    states.forEach(renderStateSelect);
-    function renderStateSelect(element, _, _) {
-        const stateName = element[1];
-        const countryAbbrv = element[3];
-        const stateAbbrv = element[4];
-        if (countryAbbrv === selectedCountry) {
-            let option = document.createElement("option");
-            option.setAttribute("value", stateAbbrv);
-            option.innerHTML = stateName;
-            stateSelect.appendChild(option);
-        }
-    };
-    buildCities();
-};
-
-// buildCities(): Build city select options based on selected state
-function buildCities() {
-    let citySelect = document.getElementById('citySelect');
-    const stateSelect = document.getElementById('stateSelect');
-    const selectedState = stateSelect.value
-    removeAllChildNodes(citySelect);
-    cities.forEach(renderCitySelect);
-    function renderCitySelect(element, _, _) {
-        const cityName = element[1];
-        const stateAbbrv = element[3];
-        if (stateAbbrv === selectedState) {
-            let option = document.createElement("option");
-            option.setAttribute("value", cityName);
-            option.innerHTML = cityName;
-            citySelect.appendChild(option);
-        }
-    };
 };
