@@ -10,6 +10,18 @@ function GET(yourUrl, return_json = true) {
     }
 };
 
+function POST(yourUrl, data, return_json = true) {
+    var Httpreq = new XMLHttpRequest(); // a new request
+    Httpreq.open("POST", yourUrl, false);
+    Httpreq.send(data);
+    response = Httpreq.responseText;
+    if (return_json) {
+        return JSON.parse(response);
+    } else {
+        return response;
+    }
+};
+
 const getJSON = async url => {
     const response = await fetch(url);
     if (!response.ok) // check if response worked (no 404 errors etc...)

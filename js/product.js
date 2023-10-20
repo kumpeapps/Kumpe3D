@@ -141,10 +141,10 @@ function refresh() {
 
 function addToCart() {
     const sku = skuLabel.innerHTML;
-    const base_sku = '';
+    const base_sku = product.sku_parts.base_sku;
     const color_id = getColorValue();
     const qty = document.getElementById('qty').value;
-    const newBaseSKU = base_sku
+    const newBaseSKU = base_sku;
     let itemPrice = price;
 
     if (qty >= wholesaleQty) {
@@ -157,20 +157,13 @@ function addToCart() {
             'error'
         );
     } else {
-        cartLS.add(
-            {
-                id: sku,
-                sku: sku,
-                name: " (" + color_id + ")",
-                price: itemPrice,
-                image_url: image_url,
-                original_price: originalPrice,
-                wholesale_price: wholesale_price,
-                baseSKU: newBaseSKU,
-                colorID: color_id
-            }, parseInt(qty)
-        );
-        cartLS.update("price", itemPrice);
+        const data = {
+            "sku": sku,
+            "quantity": qty,
+            "customization": ""
+        };
+        POST(apiUrl + "/cart?user_id=0&" + sessionID, data);
+        
         document.getElementById("cartButton").click();
     }
     updateShoppingCartModal();
