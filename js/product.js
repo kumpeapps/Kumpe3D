@@ -1,13 +1,16 @@
+const changeQty = document.querySelector("#qty");
+const priceLabel = document.querySelector("#priceLabel");
+const totalPriceLabel = document.querySelector("#totalPriceLabel");
+const addToCartButton = document.querySelector("#addToCartButton");
+const titleCrumb = document.querySelector("#titleCrumb");
+const titleLabel = document.querySelector("#titleLabel");
+const descriptionLabel = document.querySelector("#descriptionLabel");
+let product
+const querySKU = urlParams.get('sku')
 refresh();
 
 function load() {
-    const changeQty = document.querySelector("#qty");
-    const priceLabel = document.querySelector("#priceLabel");
-    const totalPriceLabel = document.querySelector("#totalPriceLabel");
-    const addToCartButton = document.querySelector("#addToCartButton");
-    const titleCrumb = document.querySelector("#titleCrumb");
-    const titleLabel = document.querySelector("#titleLabel");
-    const descriptionLabel = document.querySelector("#descriptionLabel");
+
     if (env == 'dev') {
         Swal.fire(
             'Pre-Prod Server!',
@@ -15,8 +18,8 @@ function load() {
             'warning'
         );
     };
-    const querySKU = urlParams.get('sku')
-    let product = GET(apiUrl + "/product?sku=" + querySKU).response
+    
+    product = GET(apiUrl + "/product?sku=" + querySKU).response
 
     titleCrumb.innerHTML = product.title
     titleLabel.innerHTML = product.title
