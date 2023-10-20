@@ -1,4 +1,6 @@
 let fundingSource;
+let cart;
+onload();
 
 paypal.Buttons({
     style: {
@@ -10,17 +12,21 @@ paypal.Buttons({
     onClick: (data) => {
         // fundingSource = "venmo"
         fundingSource = data.fundingSource;
-        console.log(fundingSource);
+        console.info("Funding Source: " + fundingSource);
     },
     createOrder: function (data, actions) {
+        const debugEnabled = getCookie("debug")
         const checkoutData = getCheckoutData();
+        if (debugEnabled) {
+            console.debug(checkoutData);
+        }
         let itemsArray = [];
         for (product in checkoutData['cart']) {
             const productdata = checkoutData['cart'][product];
             itemsArray.push({
-                name: productdata['name'],
+                name: productdata['title'],
                 quantity: productdata['quantity'],
-                sku: productdata['id'],
+                sku: productdata['sku'],
                 unit_amount: {
                     currency_code: "USD",
                     value: productdata['price']
@@ -94,30 +100,39 @@ paypal.Buttons({
     onApprove: function (data, actions) {
         // Payment Approved
         return actions.order.capture().then(function (details) {
+            debugEnabled = getCookie("debug");
+            if (debugEnabled) {
+                console.debug(details);
+            }
+            const transactionID = details['id'];
             const purchaseUnits = details['purchase_units'];
             const payments = purchaseUnits[0]['payments'];
-            const transactionID = payments['captures'][0]['id'];
+            const captureID = payments['captures'][0]['id'];
             let checkoutData = getCheckoutData();
-            let orderID = "unavailable.";
+            const client_ip = GET("https://api.ipify.org", false);
+            const browser = navigator.userAgent;
             checkoutData.ppTransactionID = transactionID;
+            checkoutData.ppCaptureID = captureID;
             checkoutData.paymentMethod = fundingSource;
-            checkoutData.statusID = 3;
-            orderSuccess();
-            fetch("submit_order.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    checkout_data: checkoutData,
-                    session_id: sessionID
-                })
-            });
+            checkoutData.client_ip = client_ip;
+            checkoutData.browser = browser;
+            checkoutData.referral_code = referral_code;
+            if (!debugEnabled) {
+                orderSuccess();
+            }
+            post_body = { "checkout_data": checkoutData, "session_id": sessionID };
+            if (debugEnabled) {
+                console.debug("CheckoutData: " + checkoutData);
+                console.debug("Session ID" + sessionID);
+                console.debug(post_body);
+                document.getElementById("orderNotes").value = JSON.stringify(post_body);
+            }
+            postJSON(apiUrl + "/checkout-final?session_id=" + sessionID, checkoutData);
         });
     },
 
     onError(err) {
-        console.log(err);
+        console.error(JSON.stringify(err));
         Swal.fire(
             'PayPal Error',
             'An error occurred while processing your PayPal payment. Please try again.',
@@ -126,20 +141,60 @@ paypal.Buttons({
     }
 }).render('#paypal-button-container');
 
+function setListeners() {
+    document.getElementById("firstNameInput").addEventListener("change", function () {
+        validateFName();
+    });
+    document.getElementById("lastNameInput").addEventListener("change", function () {
+        validateLName();
+    });
+    document.getElementById("streetAddressInput").addEventListener("change", function () {
+        validateAddress();
+    });
+    document.getElementById("zipCodeInput").addEventListener("change", function () {
+        validateZipCode();
+    });
+    document.getElementById("phoneInput").addEventListener("change", function () {
+        validatePhone();
+    });
+    document.getElementById("emailInput").addEventListener("change", function () {
+        validateEmail();
+    }); document.getElementById("firstNameInput").addEventListener("keyup", function () {
+        validateFName();
+    });
+    document.getElementById("lastNameInput").addEventListener("keyup", function () {
+        validateLName();
+    });
+    document.getElementById("streetAddressInput").addEventListener("keyup", function () {
+        validateAddress();
+    });
+    document.getElementById("zipCodeInput").addEventListener("keyup", function () {
+        validateZipCode();
+    });
+    document.getElementById("phoneInput").addEventListener("keyup", function () {
+        validatePhone();
+    });
+    document.getElementById("emailInput").addEventListener("keyup", function () {
+        validateEmail();
+    });
+    document.getElementById("countrySelect").addEventListener("change", function () {
+        buildCheckout();
+    });
+};
+
 function orderSuccess() {
     showPayPal(false);
-    cartLS.destroy();
-    onload();
+    refresh();
     Swal.fire(
         'Success',
         'Your order has been submitted!',
         'success'
-    );
-    onload();
-    showPayPal(false);
+    ).then(function () {
+        location.reload();
+    });
 };
 
-function devData() {
+function devData(cc = 'US') {
     const firstName = document.getElementById("firstNameInput");
     const lastName = document.getElementById("lastNameInput");
     const companyName = document.getElementById("companyName");
@@ -147,13 +202,47 @@ function devData() {
     const zip = document.getElementById("zipCodeInput");
     const email = document.getElementById("emailInput");
     const phone = document.getElementById("phoneInput");
-    firstName.value = "Justin";
-    lastName.value = "Doe";
-    address.value = "123 Easy St";
-    zip.value = "72103";
-    phone.value = "5555555555";
-    email.value = "jakumpe@dev.kumpes.com";
-    companyName.value = "KumpeApps Dev"
+    const state = document.getElementById("stateInput");
+    const city = document.getElementById("cityInput");
+    const country = document.getElementById("countrySelect");
+    const countryOptions = country.options.length;
+    for (let i = 0; i < countryOptions; i++) {
+        if (country.options[i].value == cc) {
+            country.options[i].selected = true;
+            break;
+        }
+    }
+    if (cc == 'US') {
+        firstName.value = "Justin";
+        lastName.value = "Doe";
+        address.value = "700 W Walnut St";
+        zip.value = "72756";
+        phone.value = "5555555555";
+        email.value = "jakumpe@dev.kumpes.com";
+        companyName.value = "KumpeApps Dev"
+    } else if (cc == 'CA') {
+        firstName.value = "Justin";
+        lastName.value = "Doe";
+        address.value = "1403 Charing Cross Rd";
+        country.value = cc;
+        city.value = "Chatham";
+        state.value = "Ontario";
+        zip.value = "N7M 2G9";
+        phone.value = "5555555555";
+        email.value = "jakumpe@dev.kumpes.com";
+        companyName.value = "KumpeApps Dev"
+    } else if (cc == 'GB') {
+        firstName.value = "Justin";
+        lastName.value = "Doe";
+        address.value = "33 Station Road";
+        country.value = cc;
+        city.value = "NA";
+        state.value = "Leicester";
+        zip.value = "LE28 1NR";
+        phone.value = "5555555555";
+        email.value = "jakumpe@dev.kumpes.com";
+        companyName.value = "KumpeApps Dev"
+    }
     validateAddress();
     validateEmail();
     validateFName();
@@ -163,64 +252,118 @@ function devData() {
 };
 
 function getCheckoutData() {
-    const customerID = 0;
-    const firstName = document.getElementById("firstNameInput");
-    const lastName = document.getElementById("lastNameInput");
-    const address = document.getElementById("streetAddressInput");
-    const address2 = document.getElementById("streetAddress2Input");
-    const city = document.getElementById("citySelect");
-    const state = document.getElementById("stateSelect");
-    const zip = document.getElementById("zipCodeInput");
-    const country = document.getElementById("countrySelect");
-    const shipping = document.getElementById("shippingCost");
-    const companyName = document.getElementById("companyName");
-    const orderNotes = document.getElementById("orderNotes");
-    const emailAddress = document.getElementById("emailInput");
-    const cart = cartLS.list();
-    const subtotal = cartLS.total();
-    const taxes = 0;
-    const total = subtotal + taxes + parseFloat(shipping.value);
+    const customerID = getCookie("user_id");
+    const firstName = document.getElementById("firstNameInput").value;
+    const lastName = document.getElementById("lastNameInput").value;
+    const address = document.getElementById("streetAddressInput").value;
+    const address2 = document.getElementById("streetAddress2Input").value;
+    const city = document.getElementById("cityInput").value;
+    let state = document.getElementById("stateInput").value;
+    const zip = document.getElementById("zipCodeInput").value;
+    const country = document.getElementById("countrySelect").value;
+    const companyName = document.getElementById("companyName").value;
+    const orderNotes = document.getElementById("orderNotes").value;
+    const emailAddress = document.getElementById("emailInput").value;
+    if (state === 'Arkansas') {
+        state = 'AR';
+    }
+    const addressInfo = {
+        "fName": firstName,
+        "lName": lastName,
+        "company": companyName,
+        "address": address,
+        "address2": address2,
+        "city": city,
+        "state": state,
+        "zip": zip,
+        "country": country,
+        "comments": orderNotes,
+        "email": emailAddress
+    };
+    const checkoutData = postJSON(apiUrl + "/checkout?user_id=" + customerID + "&session_id=" + sessionID, addressInfo).response;
+    const cart = checkoutData.cart.list;
+    const subtotal = checkoutData.cart.subtotal;
+    const taxes = checkoutData.taxTotal;
+    const total = checkoutData.grandTotal;
     const checkout = {
         customerID: customerID,
-        firstName: firstName.value,
-        lastName: lastName.value,
-        companyName: companyName.value,
-        address: address.value,
-        address2: address2.value,
-        city: city.value,
-        state: state.value,
-        zip: zip.value,
-        country: country.value,
-        shippingCost: parseFloat(shipping.value),
+        firstName: firstName,
+        lastName: lastName,
+        companyName: companyName,
+        address: address,
+        address2: address2,
+        city: city,
+        state: state,
+        zip: zip,
+        country: country,
+        shippingCost: checkoutData.shippingCost,
         cart: cart,
         subtotal: subtotal,
         taxes: taxes,
         discount: 0.00,
         total: total,
-        orderNotes: orderNotes.value,
-        emailAddress: emailAddress.value
+        orderNotes: orderNotes,
+        emailAddress: emailAddress,
+        taxData: checkoutData.taxes
     };
     return checkout;
 }
 
 function buildCheckout() {
+    const user = getCookie("user_id");
+    const firstName = document.getElementById("firstNameInput").value;
+    const lastName = document.getElementById("lastNameInput").value;
+    const address = document.getElementById("streetAddressInput").value;
+    const address2 = document.getElementById("streetAddress2Input").value;
+    const city = document.getElementById("cityInput").value;
+    let state = document.getElementById("stateInput").value;
+    const zip = document.getElementById("zipCodeInput").value;
+    const country = document.getElementById("countrySelect").value;
+    const companyName = document.getElementById("companyName").value;
+    const orderNotes = document.getElementById("orderNotes").value;
+    const emailAddress = document.getElementById("emailInput").value;
+    if (state === 'Arkansas') {
+        state = 'AR';
+    }
+    const addressInfo = {
+        "fName": firstName,
+        "lName": lastName,
+        "company": companyName,
+        "address": address,
+        "address2": address2,
+        "city": city,
+        "state": state,
+        "zip": zip,
+        "country": country,
+        "comments": orderNotes,
+        "email": emailAddress
+    };
+    const checkoutData = postJSON(apiUrl + "/checkout?user_id=" + user + "&session_id=" + sessionID, addressInfo).response;
+    const cart = checkoutData.cart.list;
     const itemsDiv = document.getElementById('checkout_items');
     const subtotalLabel = document.getElementById('cart_subtotal');
     const totalLabel = document.getElementById('cart_total');
+    const paylaterMessage = document.getElementById('paylater_message');
+    const shippingCostValue = document.getElementById('shippingCost');
+    const shippingLabel = document.getElementById('shippingLabel');
+    const shippingCostLabel = document.getElementById('shippingCostLabel');
     removeAllChildNodes(itemsDiv);
-    subtotalLabel.innerHTML = '$' + cartLS.total();
-    totalLabel.innerHTML = '$' + (cartLS.total() + 10)
-    cart = cartLS.list();
+    subtotalLabel.innerHTML = '$' + checkoutData.cart.subtotal;
+    shippingCostValue.value = checkoutData.shippingCost;
+    shippingLabel.innerHTML = 'Flat Rate: $' + checkoutData.shippingCost;
+    shippingCostLabel.innerHTML = '$' + checkoutData.shippingCost;
+    totalLabel.innerHTML = '$' + checkoutData.grandTotal;
+    paylaterMessage.setAttribute("data-pp-message", checkoutData.grandTotal);
     cart.forEach(renderCheckoutList);
 
     function renderCheckoutList(element, _, _) {
-        const img_url = element["image_url"];
-        const title = element["name"];
-        const qty = element["quantity"];
-        const original_price = element["original_price"];
-        let price = '$' + (element["price"] * qty);
-        if (element["price"] != original_price) {
-            price = price + ' <del>$' + (original_price * qty) + '</del>';
+        const img_url = element["img_url"];
+        const title = element["title"];
+        const original_price = element["originalTotal"];
+        const customization = element['customization'];
+        let price = '$' + (element["totalPrice"]);
+        if (element["totalPrice"] != original_price) {
+            price = price + ' <del>$' + (original_price) + '</del>';
         }
         const sku = element["id"];
         let div1 = document.createElement("div");
@@ -247,15 +390,9 @@ function buildCheckout() {
 };
 
 function onload() {
+    setListeners();
     refresh();
     isValidCheck();
-    if (env == 'dev') {
-        Swal.fire(
-            'PreProd Server!',
-            'You are viewing the Pre-Production/Dev server. Orders submitted via this site will not be filled or charged. Only PayPal sandbox accounts/credit cards will work.',
-            'warning'
-        );
-    };
 };
 
 function validateFName() {
@@ -298,6 +435,15 @@ function validateZipCode() {
     const country = document.getElementById("countrySelect").value;
     const field = document.getElementById(fieldID).value;
     const valid = validator.isPostalCode(field, country);
+    if (valid) {
+        if (country == 'US') {
+            zipData = GET(apiUrl + "/zipcode?single_record=1&zip=" + field).response;
+            document.getElementById("stateInput").value = zipData.state_id;
+            document.getElementById("cityInput").value = zipData.city;
+        }
+        document.getElementById("cityContainer").removeAttribute("hidden");
+        document.getElementById("stateContainer").removeAttribute("hidden");
+    }
     fieldValidated(fieldID, valid);
 };
 
@@ -312,9 +458,41 @@ function fieldValidated(fieldID, valid = true) {
     isValidCheck();
 };
 
+function getArkansasTaxes() {
+    const address = document.getElementById("streetAddressInput").value;
+    const city = document.getElementById("cityInput").value;
+    const state = document.getElementById("stateInput").value;
+    const zip = document.getElementById("zipCodeInput").value;
+    const taxes = document.getElementById("taxes");
+    const taxTotalLabel = document.getElementById("totalTax");
+    const subtotal = cart.subtotal;
+    const tax_data = GET(apiUrl + "/taxes?address=" + address + "&city=" + city + "&state=" + state + "&zip=" + zip + "&subtotal=" + subtotal).response;
+    let taxLabel = "";
+    let taxTotal = 0;
+    if (tax_data.is_state_taxable) {
+        taxLabel = taxLabel + tax_data.taxable_state + ": $" + tax_data.state_tax + "<br>";
+        taxTotal = taxTotal + tax_data.state_tax;
+    }
+    if (tax_data.is_county_taxable) {
+        taxLabel = taxLabel + tax_data.taxable_county + " County: $" + tax_data.county_tax + "<br>";
+        taxTotal = taxTotal + tax_data.county_tax;
+    }
+    if (tax_data.is_city_taxable) {
+        taxLabel = taxLabel + tax_data.taxable_city + ": $" + tax_data.city_tax + "<br>";
+        taxTotal = taxTotal + tax_data.city_tax;
+    }
+    taxes.innerHTML = taxLabel;
+    taxTotalLabel.innerHTML = "Tax Total: $" + taxTotal;
+    refresh();
+};
+
 function isValidCheck() {
     const isValidArray = Object.values(isValid);
     const isAllValid = allTrue(isValidArray);
+    const state = document.getElementById("stateInput").value;
+    if (state === 'AR' || state === 'Arkansas') {
+        getArkansasTaxes();
+    }
     showPayPal(isAllValid);
 };
 
@@ -332,68 +510,8 @@ function showPayPal(show = true) {
 };
 
 function refresh() {
+    user = getCookie("user_id");
+    cart = GET(apiUrl + "/cart?user_id=" + user + "&session_id=" + sessionID).response;
     updateShoppingCartModal();
     buildCheckout();
-    buildCountries();
-};
-
-// buildCountries(): Builds country select options
-function buildCountries() {
-    const countrySelect = document.getElementById('countrySelect');
-    countryList = countries;
-    removeAllChildNodes(countrySelect);
-    countryList.forEach(renderCountrySelect);
-    function renderCountrySelect(element, _, _) {
-        const countryName = element[1];
-        const countryAbbrv = element[3];
-        const countryFlagEmoji = element[6];
-        let option = document.createElement("option");
-        option.setAttribute("value", countryAbbrv);
-        option.innerHTML = countryFlagEmoji + countryName;
-        if (countryAbbrv === 'US') {
-            option.setAttribute("selected", true);
-        }
-        countrySelect.appendChild(option);
-    };
-    buildStates();
-};
-
-// buildStates(): Buildes state select options based on selected country
-function buildStates() {
-    const stateSelect = document.getElementById('stateSelect');
-    const countrySelect = document.getElementById('countrySelect');
-    const selectedCountry = countrySelect.value;
-    removeAllChildNodes(stateSelect);
-    states.forEach(renderStateSelect);
-    function renderStateSelect(element, _, _) {
-        const stateName = element[1];
-        const countryAbbrv = element[3];
-        const stateAbbrv = element[4];
-        if (countryAbbrv === selectedCountry) {
-            let option = document.createElement("option");
-            option.setAttribute("value", stateAbbrv);
-            option.innerHTML = stateName;
-            stateSelect.appendChild(option);
-        }
-    };
-    buildCities();
-};
-
-// buildCities(): Build city select options based on selected state
-function buildCities() {
-    let citySelect = document.getElementById('citySelect');
-    const stateSelect = document.getElementById('stateSelect');
-    const selectedState = stateSelect.value
-    removeAllChildNodes(citySelect);
-    cities.forEach(renderCitySelect);
-    function renderCitySelect(element, _, _) {
-        const cityName = element[1];
-        const stateAbbrv = element[3];
-        if (stateAbbrv === selectedState) {
-            let option = document.createElement("option");
-            option.setAttribute("value", cityName);
-            option.innerHTML = cityName;
-            citySelect.appendChild(option);
-        }
-    };
 };

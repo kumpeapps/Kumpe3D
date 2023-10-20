@@ -1,0 +1,4 @@
+UPDATE Web_3dprints.site_parameters SET `value` = "Our website is currently down for scheduled maitenance. We are updating our website to host multiple products which will allow us to also simplify the color choices on a given product page. We expect this upgrade to take 1-4hrs. Please check back after 9pm Central Time." WHERE `parameter` = 'store_maitenance_text';
+UPDATE Web_3dprints.site_parameters SET `value` = 1 WHERE `parameter` = 'store_maitenance_mode';
+UPDATE Web_3dprints.site_parameters SET `value` = "We recently released a major update to our website which allows us to sell multiple products and allows us to better serve our customers. If you have any issues or need help or get confused please reach out to us at sales@kumpe3d.com or via FaceBook Messenger." WHERE `parameter` = 'store_noticebanner';
+UPDATE Web_3dprints.site_parameters SET `value` = "alert alert-success" WHERE `parameter` = 'store_noticebanner_class';

@@ -1,31 +1,41 @@
 const sessionID = getCookie("PHPSESSID");
 const spinHandle = loadingOverlay();
-
+refreshSiteParams();
 updateShoppingCartModal();
 updateBanner();
+buildHeaderCatalogs();
+buildHeaderCategories();
 
 function buildShoppingCartModalList() {
     loadingOverlay().activate(spinHandle)
     const ul = document.getElementById('shoppingCartModal');
     const subtotalLabel = document.getElementById('subtotalLabel');
     removeAllChildNodes(ul);
-    cart = GET("https://api.preprod.kumpe3d.com/cart?user_id=0&session_id=" + sessionID).response;
+    const user = getCookie("user_id")
+    cart = GET(apiUrl + "/cart?user_id=" + user + "&session_id=" + sessionID).response;
     let subtotal = cart.subtotal;
     if (subtotal === null) {
         subtotal = 0;
     }
     subtotalLabel.innerHTML = '$' + subtotal;
     cart.list.forEach(renderShoppingCartModalList);
-    const addToCartButton = document.querySelector("#cart_badge");
+    const showCartButton = document.querySelector("#cart_badge");
     const shoppingCartBadge = document.querySelector("#shopping_cart_badge");
-    addToCartButton.innerHTML = cart.list.length;
+    showCartButton.innerHTML = cart.list.length;
     shoppingCartBadge.innerHTML = cart.list.length;
 
     function renderShoppingCartModalList(element, _, _) {
         const img_url = element["img_url"];
-        const title = element["productTitle"] + "<br>(" + element['colorTitle'] + ")";
+        const customization = element['customization'];
+        let title = element["productTitle"] + "<br>(" + element['colorTitle'] + ")";
+        if (element['colorTitle'] == null) {
+            title = element["productTitle"];
+        }
+        if (customization !== "") {
+            title = title + "<br>Customization: " + customization;
+        }
         const qty = element["quantity"];
-        const original_price = element["originalPrice"];
+        const original_price = element["originalTotal"];
         let price = '$' + (element["totalPrice"]);
         if (element["totalPrice"] != original_price) {
             price = price + ' <del>$' + (element['originalTotal']) + '</del>';
@@ -81,7 +91,6 @@ function buildShoppingCartModalList() {
 
         ul.appendChild(li);
     }
-    
 };
 
 function removeAllChildNodes(parent) {
@@ -93,7 +102,8 @@ function removeAllChildNodes(parent) {
 function deleteItem(sku) {
     loadingOverlay().activate(spinHandle);
     const data = {"sku": sku};
-    deleteJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data, false);
+    const user = getCookie("user_id")
+    deleteJSON(apiUrl + "/cart?user_id=" + user + "&session_id=" + sessionID, data, false);
     refresh();
 };
 
@@ -115,7 +125,8 @@ function cartQtyChange(event) {
         "quantity": qty,
         "customization": customization
     }
-    putJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data);
+    const user = getCookie("user_id")
+    putJSON(apiUrl + "/cart?user_id=" + user + "&session_id=" + sessionID, data);
     refresh();
     if (qty < 1) {
         deleteItem(sku);
@@ -128,5 +139,35 @@ function updateBanner() {
         const siteBanner = document.getElementById("notificationBanner");
         siteBanner.setAttribute("class", siteParams['storeNoticebannerClass']);
         siteBanner.innerHTML = siteParams['storeNoticebanner'];
+    }
+};
+
+function buildHeaderCategories() {
+    const shopCategories = document.getElementById("shopCategories");
+    const categories = GET(apiUrl + "/products/categories?header=true").response;
+    removeAllChildNodes(shopCategories);
+    categories.forEach(build);
+    function build(element, _, _) {
+        const categoryOption = document.createElement("li");
+        const categoryLink = document.createElement("a");
+        categoryLink.setAttribute("href", "shop?category=" + element.category);
+        categoryLink.innerHTML = element.name;
+        categoryOption.appendChild(categoryLink);
+        shopCategories.appendChild(categoryOption);
+    }
+};
+
+function buildHeaderCatalogs() {
+    const shopCatalogs = document.getElementById("shopCatalogs");
+    const categories = GET(apiUrl + "/products/catalogs?ignore_catalog=%").response;
+    removeAllChildNodes(shopCatalogs);
+    categories.forEach(build);
+    function build(element, _, _) {
+        const catalogOption = document.createElement("li");
+        const catalogLink = document.createElement("a");
+        catalogLink.setAttribute("href", "shop?catalog=" + element.catalog);
+        catalogLink.innerHTML = element.name;
+        catalogOption.appendChild(catalogLink);
+        shopCatalogs.appendChild(catalogOption);
     }
 };

@@ -695,7 +695,7 @@ style=\"height:39px; v-text-anchor:middle; width:122px\" arcsize=\"13%\" strokec
                                                                             <td align=\"left\" style=\"padding:0;Margin:0\">
                                                                                 <p
                                                                                     style=\"Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:tahoma, verdana, segoe, sans-serif;line-height:24px;color:#4D4D4D;font-size:16px\">
-                                                                                    Subtotal<br>Shipping</p>
+                                                                                    Subtotal<br>Shipping<br>Taxes</p>
                                                                             </td>
                                                                         </tr>
                                                                     </table>
@@ -718,7 +718,7 @@ style=\"height:39px; v-text-anchor:middle; width:122px\" arcsize=\"13%\" strokec
                                                                                 style=\"padding:0;Margin:0\">
                                                                                 <p
                                                                                     style=\"Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:tahoma, verdana, segoe, sans-serif;line-height:24px;color:#4D4D4D;font-size:16px\">
-                                                                                    $email_subtotal<br>$email_shipping</p>
+                                                                                    $email_subtotal<br>$email_shipping<br>$email_taxes</p>
                                                                             </td>
                                                                         </tr>
                                                                     </table>

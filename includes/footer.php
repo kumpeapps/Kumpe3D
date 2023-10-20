@@ -16,14 +16,16 @@ $conn = mysqli_connect(
 				<div class="col-xl-3 col-md-4 col-sm-6">
 					<div class="widget widget_about me-2">
 						<div class="footer-logo logo-white">
-							<a href="index.php"><img src="<?php echo $site_params['store_logo_url']; ?>" alt="/"></a>
+							<a href="index.php"><img src="<?php echo $site_params['store_footer_logo_url']; ?>"
+									alt="/"></a>
 						</div>
 						<ul class="widget-address">
 							<li>
 								<p><span>Address</span> : <br><?php echo $site_params['store_address']; ?><br>
-								<?php echo $site_params['store_city']; ?>, 
-								<?php echo $site_params['store_state']; ?> 
-								<?php echo $site_params['store_zip']; ?></p>
+									<?php echo $site_params['store_city']; ?>,
+									<?php echo $site_params['store_state']; ?>
+									<?php echo $site_params['store_zip']; ?>
+								</p>
 							</li>
 							<li>
 								<p><span>E-mail</span> : <?php echo $site_params['store_email']; ?></p>
@@ -71,4 +73,13 @@ $conn = mysqli_connect(
 	<a href="#" onclick="window.displayPreferenceModal();return false;" id="termly-consent-preferences">Consent
 		Preferences</a>
 </footer>
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+<script nonce="<?php echo $nonce; ?>" src="js/facebook.js"></script>
+<!-- Sale Popup Start -->
+<script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+<script src="https://kumpeapps.instatus.com/en/9b677db0/widget/script.js">
+</script>
+<div class="elfsight-app-1ad75bf1-1310-4ec3-8ffb-1cc0fb600b1c" data-elfsight-app-lazy></div>
+<!-- Sale Popup End -->
 <!-- Footer End -->
