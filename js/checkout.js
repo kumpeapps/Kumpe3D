@@ -359,9 +359,17 @@ function fieldValidated(fieldID, valid = true) {
     isValidCheck();
 };
 
+function getArkansasTaxes() {
+    console.warn("Arkansas taxes required");
+};
+
 function isValidCheck() {
     const isValidArray = Object.values(isValid);
     const isAllValid = allTrue(isValidArray);
+    const state = document.getElementById("stateInput");
+    if (state === 'AR' || state === 'Arkansas') {
+        getArkansasTaxes();
+    }
     showPayPal(isAllValid);
 };
 
