@@ -85,7 +85,7 @@ function removeAllChildNodes(parent) {
 
 function deleteItem(sku) {
     const data = {"sku": sku}
-    deleteJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data);
+    deleteJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data, false);
     refresh();
 };
 
