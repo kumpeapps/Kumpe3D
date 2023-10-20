@@ -8,7 +8,11 @@ function buildShoppingCartModalList() {
     const subtotalLabel = document.getElementById('subtotalLabel');
     removeAllChildNodes(ul);
     cart = GET("https://api.preprod.kumpe3d.com/cart?user_id=0&session_id=" + sessionID).response;
-    subtotalLabel.innerHTML = '$' + cart.subtotal;
+    let subtotal = cart.subtotal;
+    if (subtotal === null) {
+        subtotal = 0;
+    }
+    subtotalLabel.innerHTML = '$' + subtotal;
     cart.list.forEach(renderShoppingCartModalList);
     const addToCartButton = document.querySelector("#cart_badge");
     const shoppingCartBadge = document.querySelector("#shopping_cart_badge");
