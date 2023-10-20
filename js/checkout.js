@@ -457,7 +457,7 @@ function fieldValidated(fieldID, valid = true) {
     }
     isValidCheck();
 };
-
+// TODO:
 function getArkansasTaxes() {
     const address = document.getElementById("streetAddressInput").value;
     const city = document.getElementById("cityInput").value;
