@@ -1,15 +1,12 @@
-const changeQty = document.querySelector("#qty");
-const priceLabel = document.querySelector("#priceLabel");
-const totalPriceLabel = document.querySelector("#totalPriceLabel");
-const addToCartButton = document.querySelector("#addToCartButton");
-const titleCrumb = document.querySelector("#titleCrumb");
-const titleLabel = document.querySelector("#titleLabel");
-const descriptionLabel = document.querySelector("#descriptionLabel");
 let product
-const querySKU = urlParams.get('sku')
+let querySKU
 refresh();
 
 function load() {
+    const titleCrumb = document.querySelector("#titleCrumb");
+    const titleLabel = document.querySelector("#titleLabel");
+    const descriptionLabel = document.querySelector("#descriptionLabel");
+    querySKU = urlParams.get('sku')
 
     if (env == 'dev') {
         Swal.fire(
@@ -24,6 +21,18 @@ function load() {
     titleCrumb.innerHTML = product.title
     titleLabel.innerHTML = product.title
     descriptionLabel.innerHTML = product.description
+    const changeQty = document.querySelector("#qty");
+    const addToCartButton = document.querySelector("#addToCartButton");
+    changeQty.addEventListener("change", function () {
+        changedQty();
+    });
+    
+    changeQty.addEventListener("keyup", function () {
+        changedQty();
+    });
+    addToCartButton.addEventListener("click", function () {
+        addToCart();
+    });
 };
 
 function getColorValue() {
@@ -86,19 +95,13 @@ function changedColor() {
     skuLabel.innerHTML = sku;
 };
 
-changeQty.addEventListener("change", function () {
-    changedQty();
-});
 
-changeQty.addEventListener("keyup", function () {
-    changedQty();
-});
 
-addToCartButton.addEventListener("click", function () {
-    addToCart();
-});
+
 
 function changedQty() {
+    const priceLabel = document.querySelector("#priceLabel");
+    const totalPriceLabel = document.querySelector("#totalPriceLabel");
     const qty = document.getElementById('qty').value;
     const isOnSaleBadge = document.getElementById('isOnSaleBadge');
     const productPrice = GET(apiUrl + "/product-price?sku=" + querySKU + "&quantity=" + qty).response
