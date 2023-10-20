@@ -1,6 +1,5 @@
 let fundingSource;
 onload();
-setListeners();
 
 paypal.Buttons({
     style: {
@@ -287,6 +286,7 @@ function buildCheckout() {
 };
 
 function onload() {
+    setListeners();
     refresh();
     isValidCheck();
     if (env == 'dev') {
