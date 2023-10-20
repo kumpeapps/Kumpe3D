@@ -39,10 +39,10 @@ function getColorValue() {
     const ele = document.getElementsByName('radioColor');
     for (i = 0; i < ele.length; i++) {
         if (ele[i].checked) {
-            ele[i].setAttribute("class", "radio-value image-radio border border-danger rounded");
+            ele[i].parentNode.setAttribute("class", "radio-value image-radio border border-danger rounded");
             return ele[i].value;
         } else {
-            ele[i].setAttribute("class", "radio-value image-radio border border-secondary rounded");
+            ele[i].parentNode.setAttribute("class", "radio-value image-radio border border-secondary rounded");
         }
     }
     return "000";
