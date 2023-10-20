@@ -80,7 +80,7 @@ function buildShoppingCartModalList() {
 
         ul.appendChild(li);
     }
-    spinHandle.cancel();
+    loadingOverlay().cancel(spinHandle);
 };
 
 function removeAllChildNodes(parent) {
@@ -94,7 +94,7 @@ function deleteItem(sku) {
     const data = {"sku": sku}
     deleteJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data, false);
     refresh();
-    spinHandle.cancel();
+    loadingOverlay().cancel(spinHandle);
 };
 
 function clearCart() {
@@ -120,7 +120,7 @@ function cartQtyChange(event) {
     if (qty < 1) {
         deleteItem(sku);
     }
-    spinHandle.cancel()
+    loadingOverlay().cancel(spinHandle)
 };
 
 function updateBanner() {
