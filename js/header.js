@@ -20,9 +20,9 @@ function buildShoppingCartModalList() {
         const title = element["productTitle"] + "<br>(" + element['colorTitle'] + ")";
         const qty = element["quantity"];
         const original_price = element["originalPrice"];
-        let price = '$' + (element["totalPrice"] * qty);
+        let price = '$' + (element["totalPrice"]);
         if (element["totalPrice"] != original_price) {
-            price = price + ' <del>$' + (original_price * qty) + '</del>';
+            price = price + ' <del>$' + (original_price) + '</del>';
         }
         const sku = element["sku"];
         let li = document.createElement('li');
