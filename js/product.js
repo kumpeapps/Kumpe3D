@@ -70,9 +70,7 @@ function buildColorOptions() {
     };
         var rad = document.colorOptions.radioColor;
         for (var i = 0; i < rad.length; i++) {
-            rad[i].addEventListener('change', function() {
-                changedColor();
-            });
+            rad[i].addEventListener('change', changedColor());
         }
 };
 
