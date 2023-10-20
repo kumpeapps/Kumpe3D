@@ -10,6 +10,10 @@ function buildShoppingCartModalList() {
     cart = GET("https://api.preprod.kumpe3d.com/cart?user_id=0&session_id=" + sessionID).response;
     subtotalLabel.innerHTML = '$' + cart.subtotal;
     cart.list.forEach(renderShoppingCartModalList);
+    const addToCartButton = document.querySelector("#cart_badge");
+    const shoppingCartBadge = document.querySelector("#shopping_cart_badge");
+    addToCartButton.innerHTML = cart.list.length;
+    shoppingCartBadge.innerHTML = cart.list.length;
 
     function renderShoppingCartModalList(element, _, _) {
         const img_url = element["image_url"];
@@ -88,15 +92,7 @@ function clearCart() {
     cartLS.destroy();
 };
 
-function updateCartBadge() {
-    const addToCartButton = document.querySelector("#cart_badge");
-    const shoppingCartBadge = document.querySelector("#shopping_cart_badge");
-    addToCartButton.innerHTML = cartLS.list().length;
-    shoppingCartBadge.innerHTML =cartLS.list().length;
-};
-
 function updateShoppingCartModal() {
-    updateCartBadge();
     buildShoppingCartModalList();
 };
 
