@@ -1,10 +1,10 @@
-const changeQty = document.querySelector("#qty");
-const priceLabel = document.querySelector("#priceLabel");
-const totalPriceLabel = document.querySelector("#totalPriceLabel");
-const addToCartButton = document.querySelector("#addToCartButton");
-const titleCrumb = document.querySelector("#titleCrumb");
-const titleLabel = document.querySelector("#titleLabel");
-const descriptionLabel = document.querySelector("#descriptionLabel");
+// const changeQty = document.querySelector("#qty");
+// const priceLabel = document.querySelector("#priceLabel");
+// const totalPriceLabel = document.querySelector("#totalPriceLabel");
+// const addToCartButton = document.querySelector("#addToCartButton");
+// const titleCrumb = document.querySelector("#titleCrumb");
+// const titleLabel = document.querySelector("#titleLabel");
+// const descriptionLabel = document.querySelector("#descriptionLabel");
 if (env == 'dev') {
     Swal.fire(
         'Pre-Prod Server!',
