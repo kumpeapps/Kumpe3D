@@ -81,7 +81,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 	<!-- Meta -->
 	<meta http-equiv="Content-Security-Policy" content="
 		default-src 'self';
-		script-src 'self' 'nonce-<?php echo $nonce; ?>' 'unsafe-inline';
+		script-src 'self' 'nonce-<?php echo $nonce; ?>' data: blob: 'unsafe-inline';
 		style-src * data: blob: 'unsafe-inline';
 		object-src 'none';
 		base-uri 'self';
