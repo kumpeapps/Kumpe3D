@@ -1,7 +1,6 @@
 const changeQty = document.querySelector("#qty");
 const priceLabel = document.querySelector("#priceLabel");
 const totalPriceLabel = document.querySelector("#totalPriceLabel");
-const skuLabel = document.querySelector("#skuLabel");
 const addToCartButton = document.querySelector("#addToCartButton");
 const titleCrumb = document.querySelector("#titleCrumb");
 const titleLabel = document.querySelector("#titleLabel");
@@ -75,6 +74,7 @@ function buildColorOptions() {
 };
 
 function changedColor() {
+    const skuLabel = document.querySelector("#skuLabel");
     const color_id = getColorValue();
     const base_sku = product.sku_parts.base_sku;
     const sku = base_sku + '-' + color_id;
