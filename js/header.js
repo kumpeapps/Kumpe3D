@@ -7,7 +7,7 @@ function buildShoppingCartModalList() {
     const ul = document.getElementById('shoppingCartModal');
     const subtotalLabel = document.getElementById('subtotalLabel');
     removeAllChildNodes(ul);
-    cart = GET(apiUrl + "/cart?user_id=0&session_id=" + sessionID).response;
+    cart = GET("https://api.preprod.kumpe3d.com/cart?user_id=0&session_id=" + sessionID).response;
     subtotalLabel.innerHTML = '$' + cart.subtotal;
     cart.list.forEach(renderShoppingCartModalList);
 
