@@ -4,6 +4,7 @@ updateShoppingCartModal();
 updateBanner();
 
 function buildShoppingCartModalList() {
+    const spinHandle = loadingOverlay().activate();
     const ul = document.getElementById('shoppingCartModal');
     const subtotalLabel = document.getElementById('subtotalLabel');
     removeAllChildNodes(ul);
@@ -79,6 +80,7 @@ function buildShoppingCartModalList() {
 
         ul.appendChild(li);
     }
+    spinHandle.cancel();
 };
 
 function removeAllChildNodes(parent) {
@@ -88,9 +90,11 @@ function removeAllChildNodes(parent) {
 };
 
 function deleteItem(sku) {
+    const spinHandle = loadingOverlay().activate();
     const data = {"sku": sku}
     deleteJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data, false);
     refresh();
+    spinHandle.cancel();
 };
 
 function clearCart() {
@@ -102,6 +106,7 @@ function updateShoppingCartModal() {
 };
 
 function cartQtyChange(event) {
+    const spinHandle = loadingOverlay().activate();
     const sku = event.srcElement.id;
     const customization = "";
     const qty = parseInt(event.srcElement.value);
@@ -115,6 +120,7 @@ function cartQtyChange(event) {
     if (qty < 1) {
         deleteItem(sku);
     }
+    spinHandle.cancel()
 };
 
 function updateBanner() {
