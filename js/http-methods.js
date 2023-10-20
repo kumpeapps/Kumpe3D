@@ -26,7 +26,7 @@ function postJSON(yourUrl, data, return_json = true) {
     var Httpreq = new XMLHttpRequest(); // a new request
     data = JSON.stringify(data);
     Httpreq.open("POST", yourUrl, false);
-    Httpreq.setRequestHeader("Content-Type", "application/json");
+    // Httpreq.setRequestHeader("Content-Type", "application/json");
     Httpreq.send(data);
     response = Httpreq.responseText;
     if (return_json) {
