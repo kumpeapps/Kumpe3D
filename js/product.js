@@ -15,7 +15,7 @@ function load() {
             'warning'
         );
     };
-    
+
     product = GET(apiUrl + "/product?sku=" + querySKU).response
 
     titleCrumb.innerHTML = product.title
@@ -26,7 +26,7 @@ function load() {
     changeQty.addEventListener("change", function () {
         changedQty();
     });
-    
+
     changeQty.addEventListener("keyup", function () {
         changedQty();
     });
@@ -81,10 +81,10 @@ function buildColorOptions() {
         div.appendChild(img);
         colorOptionsBlock.appendChild(div);
     };
-        var rad = document.colorOptions.radioColor;
-        for (var i = 0; i < rad.length; i++) {
-            rad[i].addEventListener('change', changedColor);
-        }
+    var rad = document.colorOptions.radioColor;
+    for (var i = 0; i < rad.length; i++) {
+        rad[i].addEventListener('change', changedColor);
+    }
 };
 
 function changedColor() {
@@ -94,10 +94,6 @@ function changedColor() {
     const sku = base_sku + '-' + color_id;
     skuLabel.innerHTML = sku;
 };
-
-
-
-
 
 function changedQty() {
     const priceLabel = document.querySelector("#priceLabel");
