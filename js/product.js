@@ -132,9 +132,9 @@ function isColorSet() {
 };
 
 function refresh() {
+    load();
     document.getElementById("categoryLabel").innerHTML = product.categories
     document.getElementById("tagsLabel").innerHTML = product.tags
-    load();
     changedQty();
     updateShoppingCartModal();
     buildColorOptions();
