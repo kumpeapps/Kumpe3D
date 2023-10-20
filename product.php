@@ -81,7 +81,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 	<!-- Meta -->
 	<meta http-equiv="Content-Security-Policy" content="
 		default-src 'self';
-		script-src 'self' 'nonce-<?php echo $nonce; ?>' data: blob: 'unsafe-inline';
+		script-src 'self' 'nonce-<?php echo $nonce; ?>';
 		style-src * data: blob: 'unsafe-inline';
 		object-src 'none';
 		base-uri 'self';
@@ -380,11 +380,11 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		<!-- CUSTOM JS -->
 		<script nonce="<?php echo $nonce; ?>" src="js/product.js"></script>
 
-		<!-- <script nonce="">
+		<script nonce="<?php echo $nonce; ?>">
 
 			function addToCart() {
 				const sku = skuLabel.innerHTML;
-				const base_sku = '';
+				const base_sku = '<?php echo $base_sku; ?>';
 				const color_id = getColorValue();
 				const image_url_base = 'https://images.kumpeapps.com/filament_swatch?sku=';
 				const image_url = image_url_base + base_sku + '-' + color_id;
@@ -406,7 +406,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 						{
 							id: sku,
 							sku: sku,
-							name: " (" + color_id + ")",
+							name: "<?php echo $product['title']; ?> (" + color_id + ")",
 							price: itemPrice,
 							image_url: image_url,
 							original_price: originalPrice,
@@ -421,7 +421,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 				updateShoppingCartModal();
 			};
 
-		</script> -->
+		</script>
 
 </body>
 

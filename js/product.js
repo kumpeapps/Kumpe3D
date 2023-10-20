@@ -138,3 +138,40 @@ function refresh() {
     updateShoppingCartModal();
     buildColorOptions();
 };
+
+function addToCart() {
+    const sku = skuLabel.innerHTML;
+    const base_sku = '';
+    const color_id = getColorValue();
+    const qty = document.getElementById('qty').value;
+    const newBaseSKU = base_sku
+    let itemPrice = price;
+
+    if (qty >= wholesaleQty) {
+        itemPrice = wholesale_price;
+    }
+    if (!isColorSet()) {
+        Swal.fire(
+            'Error!',
+            'Please select a color',
+            'error'
+        );
+    } else {
+        cartLS.add(
+            {
+                id: sku,
+                sku: sku,
+                name: " (" + color_id + ")",
+                price: itemPrice,
+                image_url: image_url,
+                original_price: originalPrice,
+                wholesale_price: wholesale_price,
+                baseSKU: newBaseSKU,
+                colorID: color_id
+            }, parseInt(qty)
+        );
+        cartLS.update("price", itemPrice);
+        document.getElementById("cartButton").click();
+    }
+    updateShoppingCartModal();
+};
