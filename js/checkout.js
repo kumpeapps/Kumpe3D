@@ -146,6 +146,23 @@ function setListeners() {
     });
     document.getElementById("emailInput").addEventListener("change", function () {
         validateEmail();
+    });document.getElementById("firstNameInput").addEventListener("keyup", function () {
+        validateFName();
+    });
+    document.getElementById("lastNameInput").addEventListener("keyup", function () {
+        validateLName();
+    });
+    document.getElementById("streetAddressInput").addEventListener("keyup", function () {
+        validateAddress();
+    });
+    document.getElementById("zipCodeInput").addEventListener("keyup", function () {
+        validateZipCode();
+    });
+    document.getElementById("phoneInput").addEventListener("keyup", function () {
+        validatePhone();
+    });
+    document.getElementById("emailInput").addEventListener("keyup", function () {
+        validateEmail();
     });
 };
 
