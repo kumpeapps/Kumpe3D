@@ -19,8 +19,7 @@ let product = GET(apiUrl + "/product?sku=" + querySKU).response
 titleCrumb.innerHTML = product.title
 titleLabel.innerHTML = product.title
 descriptionLabel.innerHTML = product.description
-document.getElementById("categoryLabel").innerHTML = product.categories
-document.getElementById("tagsLabel").innerHTML = product.tags
+
 refresh();
 
 function getColorValue() {
@@ -131,6 +130,8 @@ function isColorSet() {
 };
 
 function refresh() {
+    document.getElementById("categoryLabel").innerHTML = product.categories
+    document.getElementById("tagsLabel").innerHTML = product.tags
     changedQty();
     updateShoppingCartModal();
     buildColorOptions();
