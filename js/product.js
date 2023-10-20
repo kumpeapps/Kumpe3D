@@ -1,25 +1,27 @@
-// const changeQty = document.querySelector("#qty");
-// const priceLabel = document.querySelector("#priceLabel");
-// const totalPriceLabel = document.querySelector("#totalPriceLabel");
-// const addToCartButton = document.querySelector("#addToCartButton");
-// const titleCrumb = document.querySelector("#titleCrumb");
-// const titleLabel = document.querySelector("#titleLabel");
-// const descriptionLabel = document.querySelector("#descriptionLabel");
-if (env == 'dev') {
-    Swal.fire(
-        'Pre-Prod Server!',
-        'You are viewing the Pre-Production/Dev server. Orders submitted via this site will not be filled or charged. Only PayPal sandbox accounts/credit cards will work.',
-        'warning'
-    );
-};
-const querySKU = urlParams.get('sku')
-let product = GET(apiUrl + "/product?sku=" + querySKU).response
-
-titleCrumb.innerHTML = product.title
-titleLabel.innerHTML = product.title
-descriptionLabel.innerHTML = product.description
-
 refresh();
+
+function load() {
+    const changeQty = document.querySelector("#qty");
+    const priceLabel = document.querySelector("#priceLabel");
+    const totalPriceLabel = document.querySelector("#totalPriceLabel");
+    const addToCartButton = document.querySelector("#addToCartButton");
+    const titleCrumb = document.querySelector("#titleCrumb");
+    const titleLabel = document.querySelector("#titleLabel");
+    const descriptionLabel = document.querySelector("#descriptionLabel");
+    if (env == 'dev') {
+        Swal.fire(
+            'Pre-Prod Server!',
+            'You are viewing the Pre-Production/Dev server. Orders submitted via this site will not be filled or charged. Only PayPal sandbox accounts/credit cards will work.',
+            'warning'
+        );
+    };
+    const querySKU = urlParams.get('sku')
+    let product = GET(apiUrl + "/product?sku=" + querySKU).response
+
+    titleCrumb.innerHTML = product.title
+    titleLabel.innerHTML = product.title
+    descriptionLabel.innerHTML = product.description
+};
 
 function getColorValue() {
     const ele = document.getElementsByName('radioColor');
@@ -129,6 +131,7 @@ function isColorSet() {
 function refresh() {
     document.getElementById("categoryLabel").innerHTML = product.categories
     document.getElementById("tagsLabel").innerHTML = product.tags
+    load();
     changedQty();
     updateShoppingCartModal();
     buildColorOptions();
