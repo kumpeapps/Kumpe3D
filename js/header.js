@@ -17,7 +17,7 @@ function buildShoppingCartModalList() {
 
     function renderShoppingCartModalList(element, _, _) {
         const img_url = element["img_url"];
-        const title = element["title"];
+        const title = element["productTitle"] + "<br>(" + element['colorTitle'] + ")";
         const qty = element["quantity"];
         const original_price = element["originalPrice"];
         let price = '$' + (element["totalPrice"] * qty);
@@ -27,7 +27,7 @@ function buildShoppingCartModalList() {
         const sku = element["sku"];
         let li = document.createElement('li');
         let div1 = document.createElement('div');
-        div1.setAttribute('class','cart-widget');
+        div1.setAttribute('class', 'cart-widget');
         let div11 = document.createElement('div');
         div11.setAttribute('class', 'dz-media me-4');
         let img111 = document.createElement('img');
