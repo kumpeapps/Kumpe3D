@@ -154,7 +154,7 @@ function addToCart() {
             "quantity": qty,
             "customization": ""
         };
-        POST(apiUrl + "/cart?user_id=0&session_id" + sessionID, data);
+        POST(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data);
         
         document.getElementById("cartButton").click();
     }
