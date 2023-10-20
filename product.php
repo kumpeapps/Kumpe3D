@@ -349,7 +349,6 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		<!-- JQUERY MIN JS -->
 		<script nonce="<?php echo $nonce; ?>" src="vendor-js/wow/wow.min.js"></script>
 		<!-- WOW JS -->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<script nonce="<?php echo $nonce; ?>" src="vendor-js/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 		<!-- BOOTSTRAP MIN JS -->
 		<script nonce="<?php echo $nonce; ?>" src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
