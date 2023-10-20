@@ -84,7 +84,8 @@ function removeAllChildNodes(parent) {
 };
 
 function deleteItem(sku) {
-    cartLS.remove(sku);
+    const data = {"sku": sku}
+    deleteJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data);
     refresh();
 };
 
@@ -98,16 +99,14 @@ function updateShoppingCartModal() {
 
 function cartQtyChange(event) {
     const sku = event.srcElement.id;
-    const product = cartLS.get(sku);
-    const oprice = product['original_price'];
-    const wprice = product['wholesale_price'];
+    const customization = "";
     const qty = parseInt(event.srcElement.value);
-    cartLS.update(sku, 'quantity', qty);
-    if (qty < 10) {
-        cartLS.update(sku, 'price', oprice);
-    } else {
-        cartLS.update(sku, 'price', wprice);
+    const data = {
+        "sku": sku,
+        "quantity": qty,
+        "customization": customization
     }
+    putJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data);
     refresh();
     if (qty < 1) {
         deleteItem(sku);

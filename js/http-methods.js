@@ -35,6 +35,32 @@ function postJSON(yourUrl, data, return_json = true) {
     }
 };
 
+function deleteJSON(yourUrl, data, return_json = true) {
+    var Httpreq = new XMLHttpRequest(); // a new request
+    data = JSON.stringify(data);
+    Httpreq.open("DELETE", yourUrl, false);
+    Httpreq.send(data);
+    response = Httpreq.responseText;
+    if (return_json) {
+        return JSON.parse(response);
+    } else {
+        return response;
+    }
+};
+
+function putJSON(yourUrl, data, return_json = true) {
+    var Httpreq = new XMLHttpRequest(); // a new request
+    data = JSON.stringify(data);
+    Httpreq.open("PUT", yourUrl, false);
+    Httpreq.send(data);
+    response = Httpreq.responseText;
+    if (return_json) {
+        return JSON.parse(response);
+    } else {
+        return response;
+    }
+};
+
 const getJSON = async url => {
     const response = await fetch(url);
     if (!response.ok) // check if response worked (no 404 errors etc...)
