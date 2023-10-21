@@ -181,7 +181,7 @@ function setListeners() {
         buildCheckout();
     });
 };
-
+// TODO:
 function orderSuccess() {
     showPayPal(false);
     refresh();
@@ -250,7 +250,7 @@ function devData(cc = 'US') {
     validatePhone();
     validateZipCode();
 };
-
+// TODO:
 function getCheckoutData() {
     const customerID = getCookie("user_id");
     const firstName = document.getElementById("firstNameInput").value;
@@ -308,7 +308,7 @@ function getCheckoutData() {
     };
     return checkout;
 }
-
+// TODO:
 function buildCheckout() {
     const user = getCookie("user_id");
     const firstName = document.getElementById("firstNameInput").value;
@@ -457,7 +457,7 @@ function fieldValidated(fieldID, valid = true) {
     }
     isValidCheck();
 };
-// TODO:
+
 function getArkansasTaxes() {
     const address = document.getElementById("streetAddressInput").value;
     const city = document.getElementById("cityInput").value;
