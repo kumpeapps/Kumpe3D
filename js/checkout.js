@@ -166,16 +166,19 @@ function setListeners() {
         validateEmail();
     });
 };
-// TODO:
+
 function orderSuccess() {
     showPayPal(false);
     refresh();
-    Swal.fire(
-        'Success',
-        'Your order has been submitted!',
-        'success'
+    Swal.fire({
+        title: 'Success',
+        text: 'Your order has been submitted!',
+        type: 'success'},
+        function(){ 
+            showPayPal(false);
+            location.reload();
+        }
     );
-    showPayPal(false);
 };
 
 function devData() {
