@@ -232,7 +232,7 @@ function getCheckoutData() {
     };
     const checkoutData = postJSON(apiUrl + "/checkout?user_id=" + customerID + "&session_id=" + sessionID, addressInfo).response;
     const cart = checkoutData.cart.list;
-    const subtotal = cart.subtotal;
+    const subtotal = checkoutData.cart.subtotal;
     const taxes = checkoutData.taxTotal;
     const total = checkoutData.grandTotal;
     const checkout = {
