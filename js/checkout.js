@@ -292,18 +292,17 @@ function buildCheckout() {
     const subtotalLabel = document.getElementById('cart_subtotal');
     const totalLabel = document.getElementById('cart_total');
     removeAllChildNodes(itemsDiv);
-    subtotalLabel.innerHTML = '$' + cart.subtotal;
+    subtotalLabel.innerHTML = '$' + checkoutData.subtotal;
     totalLabel.innerHTML = '$' + checkoutData.grandTotal;
     cart.forEach(renderCheckoutList);
 
     function renderCheckoutList(element, _, _) {
         const img_url = element["image_url"];
         const title = element["name"];
-        const qty = element["quantity"];
-        const original_price = element["original_price"];
-        let price = '$' + (element["price"] * qty);
+        const original_price = element["originalTotal"];
+        let price = '$' + (element["totalPrice"]);
         if (element["price"] != original_price) {
-            price = price + ' <del>$' + (original_price * qty) + '</del>';
+            price = price + ' <del>$' + (original_price) + '</del>';
         }
         const sku = element["id"];
         let div1 = document.createElement("div");
