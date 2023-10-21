@@ -292,12 +292,12 @@ function buildCheckout() {
     const subtotalLabel = document.getElementById('cart_subtotal');
     const totalLabel = document.getElementById('cart_total');
     removeAllChildNodes(itemsDiv);
-    subtotalLabel.innerHTML = '$' + checkoutData.subtotal;
+    subtotalLabel.innerHTML = '$' + cart.subtotal;
     totalLabel.innerHTML = '$' + checkoutData.grandTotal;
     cart.forEach(renderCheckoutList);
 
     function renderCheckoutList(element, _, _) {
-        const img_url = element["image_url"];
+        const img_url = element["img_url"];
         const title = element["name"];
         const original_price = element["originalTotal"];
         let price = '$' + (element["totalPrice"]);
