@@ -207,12 +207,15 @@ function getCheckoutData() {
     const address = document.getElementById("streetAddressInput").value;
     const address2 = document.getElementById("streetAddress2Input").value;
     const city = document.getElementById("cityInput").value;
-    const state = document.getElementById("stateInput").value;
+    let state = document.getElementById("stateInput").value;
     const zip = document.getElementById("zipCodeInput").value;
     const country = document.getElementById("countrySelect").value;
     const companyName = document.getElementById("companyName").value;
     const orderNotes = document.getElementById("orderNotes").value;
     const emailAddress = document.getElementById("emailInput").value;
+    if (state === 'Arkansas') {
+        state = 'AR';
+    }
     const addressInfo = {
         "fName": firstName,
         "lName": lastName,
@@ -226,41 +229,44 @@ function getCheckoutData() {
         "comments": orderNotes,
         "email": emailAddress
     };
-    checkoutData = postJSON(apiUrl + "/checkout?user_id=" + user + "&session_id=" + sessionID, addressInfo).response;
+    const checkoutData = postJSON(apiUrl + "/checkout?user_id=" + customerID + "&session_id=" + sessionID, addressInfo).response;
+    const cart = checkoutData.cart;
     const subtotal = cart.subtotal;
-    const taxes = 0;
-    const total = subtotal + taxes + parseFloat(shipping.value);
+    const taxes = checkoutData.taxTotal;
+    const total = checkoutData.grandTotal;
     const checkout = {
         customerID: customerID,
-        firstName: firstName.value,
-        lastName: lastName.value,
-        companyName: companyName.value,
-        address: address.value,
-        address2: address2.value,
-        city: city.value,
-        state: state.value,
-        zip: zip.value,
-        country: country.value,
-        shippingCost: parseFloat(shipping.value),
+        firstName: firstName,
+        lastName: lastName,
+        companyName: companyName,
+        address: address,
+        address2: address2,
+        city: city,
+        state: state,
+        zip: zip,
+        country: country,
+        shippingCost: checkoutData.shippingTotal,
         cart: cart,
         subtotal: subtotal,
         taxes: taxes,
         discount: 0.00,
         total: total,
-        orderNotes: orderNotes.value,
-        emailAddress: emailAddress.value
+        orderNotes: orderNotes,
+        emailAddress: emailAddress
     };
     return checkout;
 }
 // TODO:
 function buildCheckout() {
-    cart = GET(apiUrl + "/cart?user_id=" + user + "&session_id=" + sessionID).response;
+    const user = getCookie("user_id");
+    const checkoutData = postJSON(apiUrl + "/checkout?user_id=" + user + "&session_id=" + sessionID, addressInfo).response;
+    const cart = checkoutData.cart;
     const itemsDiv = document.getElementById('checkout_items');
     const subtotalLabel = document.getElementById('cart_subtotal');
     const totalLabel = document.getElementById('cart_total');
     removeAllChildNodes(itemsDiv);
     subtotalLabel.innerHTML = '$' + cart.subtotal;
-    totalLabel.innerHTML = '$' + (cartLS.total() + 10)
+    totalLabel.innerHTML = '$' + checkoutData.grandTotal;
     cart.forEach(renderCheckoutList);
 
     function renderCheckoutList(element, _, _) {
