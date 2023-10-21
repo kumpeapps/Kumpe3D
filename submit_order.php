@@ -239,6 +239,13 @@ if ($submit_session_id == session_id() && $refDomain == $base_url) {
         $data['statusID']
     );
     $stmt->execute();
+
+    $stmt = $db->prepare("DELETE FROM Web_3dprints.cart__items WHERE session_id = ?");
+    $stmt->bind_param(
+        "s",
+        $submit_session_id
+    );
+    $stmt->execute();
     require_once 'order_confirm_email.php';
     //Create an instance; passing `true` enables exceptions
     $mail = new PHPMailer(true);
