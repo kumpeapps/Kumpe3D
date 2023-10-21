@@ -287,14 +287,13 @@ function buildCheckout() {
         "email": emailAddress
     };
     const checkoutData = postJSON(apiUrl + "/checkout?user_id=" + user + "&session_id=" + sessionID, addressInfo).response;
-    const cart = checkoutData.cart;
+    const cart = checkoutData.cart.list;
     const itemsDiv = document.getElementById('checkout_items');
     const subtotalLabel = document.getElementById('cart_subtotal');
     const totalLabel = document.getElementById('cart_total');
     removeAllChildNodes(itemsDiv);
     subtotalLabel.innerHTML = '$' + cart.subtotal;
     totalLabel.innerHTML = '$' + checkoutData.grandTotal;
-    console.error(cart)
     cart.forEach(renderCheckoutList);
 
     function renderCheckoutList(element, _, _) {
