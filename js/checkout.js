@@ -292,7 +292,7 @@ function buildCheckout() {
     const subtotalLabel = document.getElementById('cart_subtotal');
     const totalLabel = document.getElementById('cart_total');
     removeAllChildNodes(itemsDiv);
-    subtotalLabel.innerHTML = '$' + cart.subtotal;
+    subtotalLabel.innerHTML = '$' + checkoutData.cart.subtotal;
     totalLabel.innerHTML = '$' + checkoutData.grandTotal;
     cart.forEach(renderCheckoutList);
 
