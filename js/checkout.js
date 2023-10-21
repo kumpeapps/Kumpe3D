@@ -165,17 +165,15 @@ function setListeners() {
         validateEmail();
     });
 };
-
+// TODO:
 function orderSuccess() {
     showPayPal(false);
-    cartLS.destroy();
-    onload();
+    refresh();
     Swal.fire(
         'Success',
         'Your order has been submitted!',
         'success'
     );
-    onload();
     showPayPal(false);
 };
 
@@ -201,23 +199,34 @@ function devData() {
     validatePhone();
     validateZipCode();
 };
-
+// TODO:
 function getCheckoutData() {
-    const customerID = 0;
-    const firstName = document.getElementById("firstNameInput");
-    const lastName = document.getElementById("lastNameInput");
-    const address = document.getElementById("streetAddressInput");
-    const address2 = document.getElementById("streetAddress2Input");
-    const city = document.getElementById("citySelect");
-    const state = document.getElementById("stateSelect");
-    const zip = document.getElementById("zipCodeInput");
-    const country = document.getElementById("countrySelect");
-    const shipping = document.getElementById("shippingCost");
-    const companyName = document.getElementById("companyName");
-    const orderNotes = document.getElementById("orderNotes");
-    const emailAddress = document.getElementById("emailInput");
-    const cart = cartLS.list();
-    const subtotal = cartLS.total();
+    const customerID = getCookie("user_id");
+    const firstName = document.getElementById("firstNameInput").value;
+    const lastName = document.getElementById("lastNameInput").value;
+    const address = document.getElementById("streetAddressInput").value;
+    const address2 = document.getElementById("streetAddress2Input").value;
+    const city = document.getElementById("cityInput").value;
+    const state = document.getElementById("stateInput").value;
+    const zip = document.getElementById("zipCodeInput").value;
+    const country = document.getElementById("countrySelect").value;
+    const companyName = document.getElementById("companyName").value;
+    const orderNotes = document.getElementById("orderNotes").value;
+    const emailAddress = document.getElementById("emailInput").value;
+    const addressInfo = {
+        "fName": firstName,
+        "lName": lastName,
+        "address": address,
+        "address2": address2,
+        "city": city,
+        "state": state,
+        "zip": zip,
+        "country": country,
+        "comments": orderNotes,
+        "email": emailAddress
+    };
+    checkoutData = POST(apiUrl + "/checkout?user_id=" + user + "&session_id=" + sessionID, addressInfo).response;
+    const subtotal = cart.subtotal;
     const taxes = 0;
     const total = subtotal + taxes + parseFloat(shipping.value);
     const checkout = {
@@ -242,15 +251,15 @@ function getCheckoutData() {
     };
     return checkout;
 }
-
+// TODO:
 function buildCheckout() {
+    cart = GET(apiUrl + "/cart?user_id=" + user + "&session_id=" + sessionID).response;
     const itemsDiv = document.getElementById('checkout_items');
     const subtotalLabel = document.getElementById('cart_subtotal');
     const totalLabel = document.getElementById('cart_total');
     removeAllChildNodes(itemsDiv);
-    subtotalLabel.innerHTML = '$' + cartLS.total();
+    subtotalLabel.innerHTML = '$' + cart.subtotal;
     totalLabel.innerHTML = '$' + (cartLS.total() + 10)
-    cart = cartLS.list();
     cart.forEach(renderCheckoutList);
 
     function renderCheckoutList(element, _, _) {
@@ -359,7 +368,7 @@ function fieldValidated(fieldID, valid = true) {
     }
     isValidCheck();
 };
-// TODO:
+
 function getArkansasTaxes() {
     const address = document.getElementById("streetAddressInput").value;
     const city = document.getElementById("cityInput").value;
@@ -376,8 +385,8 @@ function getArkansasTaxes() {
         taxTotal = taxTotal + tax_data.state_tax;
     }
     if (tax_data.is_county_taxable) {
-        taxLabel = taxLabel + tax_data.taxable_county + ": $" + tax_data.county_tax + "<br>";
-        taxTotal = taxTotal = tax_data.county_tax;
+        taxLabel = taxLabel + tax_data.taxable_county + " County: $" + tax_data.county_tax + "<br>";
+        taxTotal = taxTotal + tax_data.county_tax;
     }
     if (tax_data.is_city_taxable) {
         taxLabel = taxLabel + tax_data.taxable_city + ": $" + tax_data.city_tax + "<br>";
@@ -385,6 +394,7 @@ function getArkansasTaxes() {
     }
     taxes.innerHTML = taxLabel;
     taxTotalLabel.innerHTML = "Tax Total: $" + taxTotal;
+    refresh();
 };
 
 function isValidCheck() {
@@ -415,5 +425,4 @@ function refresh() {
     cart = GET(apiUrl + "/cart?user_id=" + user + "&session_id=" + sessionID).response;
     updateShoppingCartModal();
     buildCheckout();
-    buildCountries();
 };
