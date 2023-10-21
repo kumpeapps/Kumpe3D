@@ -62,7 +62,7 @@ $db = new mysqli(
     'Web_3dprints',
     "3306"
 );
-if ($submit_session_id == session_id() && $db->connect_errno) {
+if ($db->connect_errno) {
     $email_products = "";
     $email_name = $data['firstName'];
     $email_shippingname = $data['firstName'] . " " . $email_shippingname = $data['lastName'];
