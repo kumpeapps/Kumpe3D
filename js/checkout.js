@@ -216,6 +216,7 @@ function getCheckoutData() {
     const addressInfo = {
         "fName": firstName,
         "lName": lastName,
+        "company": companyName,
         "address": address,
         "address2": address2,
         "city": city,
