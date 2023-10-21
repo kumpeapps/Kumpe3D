@@ -294,6 +294,7 @@ function buildCheckout() {
     removeAllChildNodes(itemsDiv);
     subtotalLabel.innerHTML = '$' + cart.subtotal;
     totalLabel.innerHTML = '$' + checkoutData.grandTotal;
+    console.error(cart)
     cart.forEach(renderCheckoutList);
 
     function renderCheckoutList(element, _, _) {
