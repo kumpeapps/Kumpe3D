@@ -19,7 +19,7 @@ paypal.Buttons({
         console.warn(checkoutData);
         let itemsArray = [];
         for (product in checkoutData['cart']) {
-            const productdata = checkoutData['cart']['list'][product];
+            const productdata = checkoutData['cart'][product];
             itemsArray.push({
                 name: productdata['title'],
                 quantity: productdata['quantity'],
