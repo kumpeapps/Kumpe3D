@@ -147,12 +147,12 @@ if ($submit_session_id == session_id() && $refDomain == $base_url) {
             "issdi",
             $order_id,
             $item['sku'],
-            $item['name'],
+            $item['title'],
             $item['price'],
             $item['quantity']
         );
         $product_img = $item['img_url'];
-        $product_name = $item['name'];
+        $product_name = $item['title'];
         $product_sku = $item['sku'];
         $product_quantity = $item['quantity'];
         $product_price = "$" . $item['price'];
