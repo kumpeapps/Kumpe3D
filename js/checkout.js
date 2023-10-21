@@ -170,15 +170,13 @@ function setListeners() {
 function orderSuccess() {
     showPayPal(false);
     refresh();
-    Swal.fire({
-        title: 'Success',
-        text: 'Your order has been submitted!',
-        type: 'success'},
-        function(){ 
-            showPayPal(false);
-            location.reload();
-        }
-    );
+    Swal.fire(
+        'Success',
+        'Your order has been submitted!',
+        'success'
+    ).then(function(){
+        location.reload();
+    });
 };
 
 function devData() {
@@ -256,7 +254,8 @@ function getCheckoutData() {
         discount: 0.00,
         total: total,
         orderNotes: orderNotes,
-        emailAddress: emailAddress
+        emailAddress: emailAddress,
+        taxData: checkoutData.taxes
     };
     return checkout;
 }

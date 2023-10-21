@@ -51,9 +51,15 @@ $sql = "
             `status_id`,
             `payment_method`,
             `paypal_transaction_id`,
-            `notes`)
+            `notes`,
+            `taxable_state`,
+            `taxable_county`,
+            `taxable_city`,
+            `state_tax`,
+            `county_tax`,
+            `city_tax`)
         VALUES
-            (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?, ?, ?, ?);
+            (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
     ";
 $db = new mysqli(
     $_ENV['mysql_host'],
@@ -108,7 +114,13 @@ if (1==1) {
         $data['statusID'],
         $data['paymentMethod'],
         $data['ppTransactionID'],
-        $data['orderNotes']
+        $data['orderNotes'],
+        $data['tax_data']['taxable_state'],
+        $data['tax_data']['taxable_county'],
+        $data['tax_data']['taxable_city'],
+        $data['tax_data']['state_tax'],
+        $data['tax_data']['county_tax'],
+        $data['tax_data']['city_tax']
     );
     $stmt->execute();
     $order_id = $db->insert_id;
