@@ -181,7 +181,7 @@ function setListeners() {
         buildCheckout();
     });
 };
-// TODO:
+
 function orderSuccess() {
     showPayPal(false);
     refresh();
