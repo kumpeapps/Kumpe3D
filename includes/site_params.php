@@ -70,7 +70,7 @@ if ($result) {
     echo mysqli_error($params_conn);
 }
 mysqli_close($params_conn);
-if ($site_params['store_maitenance_mode']) {
+if ($site_params['store_maitenance_mode'] && !isset($_COOKIE['maitenance_mode_override'])) {
     http_response_code(503);
     include('./under-construction.php');
     die();
