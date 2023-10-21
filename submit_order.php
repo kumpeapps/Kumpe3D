@@ -115,12 +115,12 @@ if (1==1) {
         $data['paymentMethod'],
         $data['ppTransactionID'],
         $data['orderNotes'],
-        $data['tax_data']['taxable_state'],
-        $data['tax_data']['taxable_county'],
-        $data['tax_data']['taxable_city'],
-        $data['tax_data']['state_tax'],
-        $data['tax_data']['county_tax'],
-        $data['tax_data']['city_tax']
+        $data['taxData']['taxable_state'],
+        $data['taxData']['taxable_county'],
+        $data['taxData']['taxable_city'],
+        $data['taxData']['state_tax'],
+        $data['taxData']['county_tax'],
+        $data['taxData']['city_tax']
     );
     $stmt->execute();
     $order_id = $db->insert_id;
