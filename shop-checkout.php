@@ -41,27 +41,31 @@ require_once 'includes/site_params.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- STYLESHEETS -->
-	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/bootstrap-select/dist/css/bootstrap-select.min.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css"
+		href="vendor-js/bootstrap-select/dist/css/bootstrap-select.min.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="icons/fontawesome/css/all.min.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="icons/themify/themify-icons.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="icons/flaticon/flaticon_mooncart.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/swiper/swiper-bundle.min.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/nouislider/nouislider.min.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/animate/animate.css">
-	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lightgallery.css">
-	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-thumbnail.css">
-	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-zoom.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css"
+		href="vendor-js/lightgallery/dist/css/lightgallery.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css"
+		href="vendor-js/lightgallery/dist/css/lg-thumbnail.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css"
+		href="vendor-js/lightgallery/dist/css/lg-zoom.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="css/style.css">
 	<script nonce="<?php echo $nonce; ?>" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	<!-- GOOGLE FONTS-->
 	<link nonce="<?php echo $nonce; ?>" rel="preconnect" href="https://fonts.googleapis.com">
 	<link nonce="<?php echo $nonce; ?>" rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-	nonce="<?php echo $nonce; ?>" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap"
+	<link nonce="<?php echo $nonce; ?>"
+		href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap"
 		rel="stylesheet">
 
-		<!-- TODO: Move to js file -->
+	<!-- TODO: Move to js file -->
 	<script>
 		const allTrue = arr => arr.every(e => e);
 		let isValid = {
@@ -144,8 +148,8 @@ require_once 'includes/site_params.php';
 								<div class="col-md-6">
 									<div class="form-group m-b25">
 										<label class="label-title">First Name</label>
-										<input id="firstNameInput"
-											name="dzName" required="" class="form-control is-invalid">
+										<input id="firstNameInput" name="dzName" required=""
+											class="form-control is-invalid">
 										<div class="valid-feedback">Looks Good!</div>
 										<div class="invalid-feedback">Please Enter First Name</div>
 									</div>
@@ -153,8 +157,8 @@ require_once 'includes/site_params.php';
 								<div class="col-md-6">
 									<div class="form-group m-b25">
 										<label class="label-title">Last Name</label>
-										<input id="lastNameInput"
-											name="dzName" required="" class="form-control is-invalid">
+										<input id="lastNameInput" name="dzName" required=""
+											class="form-control is-invalid">
 										<div class="valid-feedback">Looks Good!</div>
 										<div class="invalid-feedback">Please Enter Last Name</div>
 									</div>
@@ -166,11 +170,28 @@ require_once 'includes/site_params.php';
 									</div>
 								</div>
 								<div class="col-md-12">
+									<div class="form-group m-b25">
+										<label class="label-title">Phone *</label>
+										<input id="phoneInput" name="dzName" required=""
+											class="form-control is-invalid">
+										<div class="valid-feedback">Looks Good!</div>
+										<div class="invalid-feedback">Please Enter Phone Number</div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group m-b25">
+										<label class="label-title">Email address *</label>
+										<input id="emailInput" name="dzName" required=""
+											class="form-control is-invalid">
+										<div class="valid-feedback">Looks Good!</div>
+										<div class="invalid-feedback">Please Enter a Valid Email Address</div>
+									</div>
+								</div>
+								<div class="col-md-12">
 									<div class="m-b25">
 										<label class="label-title">Country / Region *</label>
 										<div class="form-select">
-											<select id="countrySelect"
-												class="default-select w-100">
+											<select id="countrySelect" class="default-select w-100">
 												<option value="US" selected>🇺🇸 United States of America</option>
 											</select>
 										</div>
@@ -179,8 +200,7 @@ require_once 'includes/site_params.php';
 								<div class="col-md-12">
 									<div class="form-group m-b25">
 										<label class="label-title">Street address *</label>
-										<input
-											id="streetAddressInput" name="dzName" required=""
+										<input id="streetAddressInput" name="dzName" required=""
 											class="form-control m-b15 is-invalid"
 											placeholder="House number and street name">
 										<div class="valid-feedback">Looks Good!</div>
@@ -192,46 +212,24 @@ require_once 'includes/site_params.php';
 								<div class="col-md-12" id="cityContainer" hidden>
 									<div class="m-b25">
 										<label class="label-title">Town / City *</label>
-										<input
-											id="cityInput" name="dzName" required=""
-											class="form-control m-b15"
+										<input id="cityInput" name="dzName" required="" class="form-control m-b15"
 											placeholder="City">
 									</div>
 								</div>
 								<div class="col-md-12" id="stateContainer" hidden>
 									<div class="m-b25">
 										<label class="label-title">State *</label>
-										<input
-											id="stateInput" name="dzName" required=""
-											class="form-control m-b15"
+										<input id="stateInput" name="dzName" required="" class="form-control m-b15"
 											placeholder="State">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group m-b25">
 										<label class="label-title">ZIP Code *</label>
-										<input
-											id="zipCodeInput" name="dzName" required="" class="form-control is-invalid">
+										<input id="zipCodeInput" name="dzName" required=""
+											class="form-control is-invalid">
 										<div class="valid-feedback">Looks Good!</div>
 										<div class="invalid-feedback">Please Enter Zip Code</div>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group m-b25">
-										<label class="label-title">Phone *</label>
-										<input id="phoneInput"
-											name="dzName" required="" class="form-control is-invalid">
-										<div class="valid-feedback">Looks Good!</div>
-										<div class="invalid-feedback">Please Enter Phone Number</div>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group m-b25">
-										<label class="label-title">Email address *</label>
-										<input id="emailInput"
-											name="dzName" required="" class="form-control is-invalid">
-										<div class="valid-feedback">Looks Good!</div>
-										<div class="invalid-feedback">Please Enter a Valid Email Address</div>
 									</div>
 								</div>
 								<div class="col-md-12 m-b25">

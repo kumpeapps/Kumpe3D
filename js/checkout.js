@@ -298,10 +298,10 @@ function buildCheckout() {
 
     function renderCheckoutList(element, _, _) {
         const img_url = element["img_url"];
-        const title = element["name"];
+        const title = element["title"];
         const original_price = element["originalTotal"];
         let price = '$' + (element["totalPrice"]);
-        if (element["price"] != original_price) {
+        if (element["totalPrice"] != original_price) {
             price = price + ' <del>$' + (original_price) + '</del>';
         }
         const sku = element["id"];
