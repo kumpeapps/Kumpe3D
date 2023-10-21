@@ -1,6 +1,6 @@
 const sessionID = getCookie("PHPSESSID");
 const spinHandle = loadingOverlay();
-
+refreshSiteParams();
 updateShoppingCartModal();
 updateBanner();
 
