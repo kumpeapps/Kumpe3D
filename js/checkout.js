@@ -225,7 +225,7 @@ function getCheckoutData() {
         "comments": orderNotes,
         "email": emailAddress
     };
-    checkoutData = POST(apiUrl + "/checkout?user_id=" + user + "&session_id=" + sessionID, addressInfo).response;
+    checkoutData = postJSON(apiUrl + "/checkout?user_id=" + user + "&session_id=" + sessionID, addressInfo).response;
     const subtotal = cart.subtotal;
     const taxes = 0;
     const total = subtotal + taxes + parseFloat(shipping.value);
