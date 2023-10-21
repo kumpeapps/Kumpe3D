@@ -246,7 +246,7 @@ function getCheckoutData() {
         state: state,
         zip: zip,
         country: country,
-        shippingCost: checkoutData.shippingTotal,
+        shippingCost: checkoutData.shippingCost,
         cart: cart,
         subtotal: subtotal,
         taxes: taxes,
