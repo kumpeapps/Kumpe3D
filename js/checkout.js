@@ -259,6 +259,33 @@ function getCheckoutData() {
 // TODO:
 function buildCheckout() {
     const user = getCookie("user_id");
+    const firstName = document.getElementById("firstNameInput").value;
+    const lastName = document.getElementById("lastNameInput").value;
+    const address = document.getElementById("streetAddressInput").value;
+    const address2 = document.getElementById("streetAddress2Input").value;
+    const city = document.getElementById("cityInput").value;
+    let state = document.getElementById("stateInput").value;
+    const zip = document.getElementById("zipCodeInput").value;
+    const country = document.getElementById("countrySelect").value;
+    const companyName = document.getElementById("companyName").value;
+    const orderNotes = document.getElementById("orderNotes").value;
+    const emailAddress = document.getElementById("emailInput").value;
+    if (state === 'Arkansas') {
+        state = 'AR';
+    }
+    const addressInfo = {
+        "fName": firstName,
+        "lName": lastName,
+        "company": companyName,
+        "address": address,
+        "address2": address2,
+        "city": city,
+        "state": state,
+        "zip": zip,
+        "country": country,
+        "comments": orderNotes,
+        "email": emailAddress
+    };
     const checkoutData = postJSON(apiUrl + "/checkout?user_id=" + user + "&session_id=" + sessionID, addressInfo).response;
     const cart = checkoutData.cart;
     const itemsDiv = document.getElementById('checkout_items');
