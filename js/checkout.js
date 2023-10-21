@@ -308,7 +308,7 @@ function getCheckoutData() {
     };
     return checkout;
 }
-// TODO:
+
 function buildCheckout() {
     const user = getCookie("user_id");
     const firstName = document.getElementById("firstNameInput").value;
