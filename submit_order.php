@@ -62,7 +62,7 @@ $db = new mysqli(
     'Web_3dprints',
     "3306"
 );
-if ($db->connect_errno) {
+if (1==1) {
     $email_products = "";
     $email_name = $data['firstName'];
     $email_shippingname = $data['firstName'] . " " . $email_shippingname = $data['lastName'];
