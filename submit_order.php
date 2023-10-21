@@ -151,7 +151,7 @@ if ($submit_session_id == session_id() && $refDomain == $base_url) {
             $item['price'],
             $item['quantity']
         );
-        $product_img = $item['image_url'];
+        $product_img = $item['img_url'];
         $product_name = $item['name'];
         $product_sku = $item['sku'];
         $product_quantity = $item['quantity'];
