@@ -7,6 +7,7 @@ use PHPMailer\PHPMailer\Exception;
 include 'vendor/autoload.php';
 $base_url = $_SERVER['SERVER_NAME'];
 $ref = $_SERVER['HTTP_REFERER'];
+session_destroy();
 $refData = parse_url($ref);
 $refDomain = $refData['host'];
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
