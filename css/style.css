@@ -7240,11 +7240,6 @@ select.is-invalid {
   margin-top: 25px;  /* Magic! */
   display: inline-block;
   justify-content: space-around;
-  outline: 1px solid grey;
-}
-
-div.image-radio input[type="radio"]:checked + img{
-    outline:10px solid red;
 }
 
 .d-inline-flex {

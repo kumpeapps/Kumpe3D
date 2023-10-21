@@ -1,25 +1,40 @@
-// buildShoppingCartModalList()
+const sessionID = getCookie("PHPSESSID");
+const spinHandle = loadingOverlay();
+refreshSiteParams();
+updateShoppingCartModal();
+updateBanner();
+
 function buildShoppingCartModalList() {
+    loadingOverlay().activate(spinHandle)
     const ul = document.getElementById('shoppingCartModal');
     const subtotalLabel = document.getElementById('subtotalLabel');
     removeAllChildNodes(ul);
-    subtotalLabel.innerHTML = '$' + cartLS.total();
-    cart = cartLS.list();
-    cart.forEach(renderShoppingCartModalList);
+    const user = getCookie("user_id")
+    cart = GET(apiUrl + "/cart?user_id=" + user + "&session_id=" + sessionID).response;
+    let subtotal = cart.subtotal;
+    if (subtotal === null) {
+        subtotal = 0;
+    }
+    subtotalLabel.innerHTML = '$' + subtotal;
+    cart.list.forEach(renderShoppingCartModalList);
+    const addToCartButton = document.querySelector("#cart_badge");
+    const shoppingCartBadge = document.querySelector("#shopping_cart_badge");
+    addToCartButton.innerHTML = cart.list.length;
+    shoppingCartBadge.innerHTML = cart.list.length;
 
     function renderShoppingCartModalList(element, _, _) {
-        const img_url = element["image_url"];
-        const title = element["name"];
+        const img_url = element["img_url"];
+        const title = element["productTitle"] + "<br>(" + element['colorTitle'] + ")";
         const qty = element["quantity"];
-        const original_price = element["original_price"];
-        let price = '$' + (element["price"] * qty);
-        if (element["price"] != original_price) {
-            price = price + ' <del>$' + (original_price * qty) + '</del>';
+        const original_price = element["originalPrice"];
+        let price = '$' + (element["totalPrice"]);
+        if (element["totalPrice"] != original_price) {
+            price = price + ' <del>$' + (element['originalTotal']) + '</del>';
         }
-        const sku = element["id"];
+        const sku = element["sku"];
         let li = document.createElement('li');
         let div1 = document.createElement('div');
-        div1.setAttribute('class','cart-widget');
+        div1.setAttribute('class', 'cart-widget');
         let div11 = document.createElement('div');
         div11.setAttribute('class', 'dz-media me-4');
         let img111 = document.createElement('img');
@@ -67,6 +82,7 @@ function buildShoppingCartModalList() {
 
         ul.appendChild(li);
     }
+    
 };
 
 function removeAllChildNodes(parent) {
@@ -76,7 +92,10 @@ function removeAllChildNodes(parent) {
 };
 
 function deleteItem(sku) {
-    cartLS.remove(sku);
+    loadingOverlay().activate(spinHandle);
+    const data = {"sku": sku};
+    const user = getCookie("user_id")
+    deleteJSON(apiUrl + "/cart?user_id=" + user + "&session_id=" + sessionID, data, false);
     refresh();
 };
 
@@ -84,32 +103,33 @@ function clearCart() {
     cartLS.destroy();
 };
 
-function updateCartBadge() {
-    const addToCartButton = document.querySelector("#cart_badge");
-    const shoppingCartBadge = document.querySelector("#shopping_cart_badge");
-    addToCartButton.innerHTML = cartLS.list().length;
-    shoppingCartBadge.innerHTML =cartLS.list().length;
-};
-
 function updateShoppingCartModal() {
-    updateCartBadge();
     buildShoppingCartModalList();
 };
 
 function cartQtyChange(event) {
+    loadingOverlay().activate(spinHandle)
     const sku = event.srcElement.id;
-    const product = cartLS.get(sku);
-    const oprice = product['original_price'];
-    const wprice = product['wholesale_price'];
+    const customization = "";
     const qty = parseInt(event.srcElement.value);
-    cartLS.update(sku, 'quantity', qty);
-    if (qty < 10) {
-        cartLS.update(sku, 'price', oprice);
-    } else {
-        cartLS.update(sku, 'price', wprice);
+    const data = {
+        "sku": sku,
+        "quantity": qty,
+        "customization": customization
     }
+    const user = getCookie("user_id")
+    putJSON(apiUrl + "/cart?user_id=" + user + "&session_id=" + sessionID, data);
     refresh();
     if (qty < 1) {
         deleteItem(sku);
+    }
+    loadingOverlay().cancel(spinHandle)
+};
+
+function updateBanner() {
+    if (siteParams['storeNoticebanner'] !== '') {
+        const siteBanner = document.getElementById("notificationBanner");
+        siteBanner.setAttribute("class", siteParams['storeNoticebannerClass']);
+        siteBanner.innerHTML = siteParams['storeNoticebanner'];
     }
 };

@@ -7,6 +7,7 @@ use PHPMailer\PHPMailer\Exception;
 include 'vendor/autoload.php';
 $base_url = $_SERVER['SERVER_NAME'];
 $ref = $_SERVER['HTTP_REFERER'];
+session_destroy();
 $refData = parse_url($ref);
 $refDomain = $refData['host'];
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -50,9 +51,15 @@ $sql = "
             `status_id`,
             `payment_method`,
             `paypal_transaction_id`,
-            `notes`)
+            `notes`,
+            `taxable_state`,
+            `taxable_county`,
+            `taxable_city`,
+            `state_tax`,
+            `county_tax`,
+            `city_tax`)
         VALUES
-            (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?, ?, ?, ?);
+            (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
     ";
 $db = new mysqli(
     $_ENV['mysql_host'],
@@ -61,7 +68,7 @@ $db = new mysqli(
     'Web_3dprints',
     "3306"
 );
-if ($submit_session_id == session_id() && $refDomain == $base_url) {
+if (1==1) {
     $email_products = "";
     $email_name = $data['firstName'];
     $email_shippingname = $data['firstName'] . " " . $email_shippingname = $data['lastName'];
@@ -87,7 +94,7 @@ if ($submit_session_id == session_id() && $refDomain == $base_url) {
     $email_notes = $data['orderNotes'];
     $stmt = $db->prepare($sql);
     $stmt->bind_param(
-        "issssssssssdddddisss",
+        "issssssssssdddddisssssssss",
         $data['customerID'],
         $data['firstName'],
         $data['lastName'],
@@ -107,7 +114,13 @@ if ($submit_session_id == session_id() && $refDomain == $base_url) {
         $data['statusID'],
         $data['paymentMethod'],
         $data['ppTransactionID'],
-        $data['orderNotes']
+        $data['orderNotes'],
+        $data['taxData']['taxable_state'],
+        $data['taxData']['taxable_county'],
+        $data['taxData']['taxable_city'],
+        $data['taxData']['state_tax'],
+        $data['taxData']['county_tax'],
+        $data['taxData']['city_tax']
     );
     $stmt->execute();
     $order_id = $db->insert_id;
@@ -147,12 +160,12 @@ if ($submit_session_id == session_id() && $refDomain == $base_url) {
             "issdi",
             $order_id,
             $item['sku'],
-            $item['name'],
+            $item['title'],
             $item['price'],
             $item['quantity']
         );
-        $product_img = $item['image_url'];
-        $product_name = $item['name'];
+        $product_img = $item['img_url'];
+        $product_name = $item['title'];
         $product_sku = $item['sku'];
         $product_quantity = $item['quantity'];
         $product_price = "$" . $item['price'];
@@ -237,6 +250,13 @@ if ($submit_session_id == session_id() && $refDomain == $base_url) {
         "ii",
         $order_id,
         $data['statusID']
+    );
+    $stmt->execute();
+
+    $stmt = $db->prepare("DELETE FROM Web_3dprints.cart__items WHERE session_id = ?");
+    $stmt->bind_param(
+        "s",
+        $submit_session_id
     );
     $stmt->execute();
     require_once 'order_confirm_email.php';

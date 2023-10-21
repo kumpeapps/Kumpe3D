@@ -1,4 +1,10 @@
 <?php
+// **PREVENTING SESSION FIXATION**
+// Session ID cannot be passed through URLs
+ini_set('session.use_only_cookies', 1);
+
+// Uses a secure connection (HTTPS) if possible
+ini_set('session.cookie_secure', 1);
 session_start();
 require_once 'includes/site_params.php';
 $conn = mysqli_connect(
@@ -73,20 +79,19 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 
 <head>
 	<!-- Meta -->
-	<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self';
-script-src https://cdn.jsdelivr.net/npm/sweetalert2@11 https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js 'nonce-<?php echo $nonce; ?>';
-style-src 'report-sample' 'self' https://fonts.googleapis.com 'nonce-<?php echo $nonce; ?>';
-object-src 'nonce-<?php echo $nonce; ?>';
-base-uri 'self' 'nonce-<?php echo $nonce; ?>';
-connect-src 'self' 'nonce-<?php echo $nonce; ?>';
-font-src 'self' data: https://fonts.gstatic.com 'nonce-<?php echo $nonce; ?>';
-frame-src 'self';
-img-src *;
-manifest-src 'self' 'nonce-<?php echo $nonce; ?>';
-media-src 'self' 'nonce-<?php echo $nonce; ?>';
-report-uri https://6525dec50fcafd85d341f4c1.endpoint.csper.io/?v=0;
-worker-src 'nonce-<?php echo $nonce; ?>';
-disown-opener;" /> -->
+	<meta http-equiv="Content-Security-Policy-Report-Only" content="
+		default-src 'self';
+		script-src 'self' 'nonce-<?php echo $nonce; ?>';
+		style-src * data: blob: 'unsafe-inline';
+		object-src 'none';
+		base-uri 'self';
+		connect-src 'self' https://api.preprod.kumpe3d.com https://api.kumpe3d.com;
+		font-src 'self' data: https://fonts.gstatic.com;
+		frame-src 'self';
+		img-src *;
+		manifest-src 'self';
+		media-src 'self';
+		worker-src 'none';">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="keywords" content="<?php echo $product['tags']; ?>">
@@ -99,6 +104,11 @@ disown-opener;" /> -->
 
 	<!-- FAVICONS ICON -->
 	<link rel="icon" type="image/x-icon" href="images/favicon.png">
+	<script nonce="<?php echo $nonce; ?>" src="js/loadingOverlay.js"></script>
+	<script nonce="<?php echo $nonce; ?>" src="js/http-methods.js"></script>
+	<script nonce="<?php echo $nonce; ?>" src="js/cookies.js"></script>
+	<script nonce="<?php echo $nonce; ?>" src="env.js"></script>
+	<script nonce="<?php echo $nonce; ?>" src="js/default.js"></script>
 
 	<!-- PAGE TITLE HERE -->
 	<title>
@@ -124,8 +134,8 @@ disown-opener;" /> -->
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css"
 		href="vendor-js/lightgallery/dist/css/lg-zoom.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="css/style.css">
-	<script nonce="<?php echo $nonce; ?>" src="https://unpkg.com/cart-localstorage@1.1.4/dist/cart-localstorage.min.js"
-		type="text/javascript"></script>
+	<script nonce="<?php echo $nonce; ?>" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!-- SweetAlerts -->
 
 	<!-- GOOGLE FONTS-->
 	<link nonce="<?php echo $nonce; ?>" rel="preconnect" href="https://fonts.googleapis.com">
@@ -136,7 +146,7 @@ disown-opener;" /> -->
 
 </head>
 
-<body onload="onload()">
+<body>
 	<div class="page-wraper">
 		<div id="loading-area" class="preloader-wrapper-1">
 			<div>
@@ -156,9 +166,7 @@ disown-opener;" /> -->
 					<ul class="breadcrumb mb-0">
 						<li class="breadcrumb-item"><a href="index.php"> Home</a></li>
 						<li class="breadcrumb-item">Products</li>
-						<li class="breadcrumb-item">
-							<?php echo $product['title']; ?>
-						</li>
+						<li id="titleCrumb" class="breadcrumb-item"></li>
 					</ul>
 				</nav>
 			</div>
@@ -168,9 +176,10 @@ disown-opener;" /> -->
 					<div class="row">
 						<div class="col-xl-4 col-md-4">
 							<div class="dz-product-detail sticky-top">
-								<div class="swiper-btn-center-lr">
+								<div id="productImageGallery" class="swiper-btn-center-lr">
 									<div class="swiper product-gallery-swiper2">
-										<div class="swiper-wrapper" id="lightgallery">
+										<!-- Tried building this in JS but can not get it to work. Need to circle back around to it. -->
+										<div id="imageGallery" class="swiper-wrapper" id="lightgallery">
 											<?php
 											if ($photo_query = mysqli_query($conn, $photo_sql)) {
 												// Loop through each row in the result set
@@ -179,13 +188,13 @@ disown-opener;" /> -->
 												while ($photo = mysqli_fetch_array($photo_query)) {
 													$photo_images = $photo_images .
 														'<div class="swiper-slide">
-														<div class="dz-media DZoomImage">
-															<a class="mfp-link lg-item" data-src="' . $photo['file_path'] . '">
-																<i class="feather icon-maximize dz-maximize top-left"></i>
-															</a>
-															<img src="' . $photo['file_path'] . '" alt="image">
-														</div>
-													</div>';
+															<div class="dz-media DZoomImage">
+																<a class="mfp-link lg-item" data-src="' . $photo['file_path'] . '">
+																	<i class="feather icon-maximize dz-maximize top-left"></i>
+																</a>
+																<img src="' . $photo['file_path'] . '" alt="image">
+															</div>
+														</div>';
 													$photo_thumbnails = $photo_thumbnails . '
 													<div class="swiper-slide">
 														<img src="' . $photo['file_path'] . '" alt="image">
@@ -197,7 +206,7 @@ disown-opener;" /> -->
 										</div>
 									</div>
 									<div class="swiper product-gallery-swiper thumb-swiper-lg">
-										<div class="swiper-wrapper">
+										<div id="photoThumbnails" class="swiper-wrapper">
 											<?php
 											echo $photo_thumbnails;
 											?>
@@ -213,75 +222,86 @@ disown-opener;" /> -->
 										<div class="dz-content">
 											<div class="dz-content-footer">
 												<div class="dz-content-start">
-													<h4 class="title mb-1">
-														<?php echo $product['title']; ?>
-													</h4>
+													<span id="isOnSaleBadge" class="badge badge-pill bg-warning mb-2"
+														hidden>On
+														Sale</span>
+													<h4 id="titleLabel" class="title mb-1"></h4>
 												</div>
 											</div>
-											<p class="para-text">
-												<?php echo $product['description']; ?>
-											</p>
+											<p id="descriptionLabel" class="para-text"></p>
 											<div class="meta-content m-b20 d-flex align-items-end">
 												<div class="me-3">
 													<span class="price-name">Price</span>
-													<span id="priceLabel" class="price-num">$
-														<?php echo $product['price']; ?>
-													</span>
+													<span id="priceLabel" class="price-num"></span>
 												</div>
 											</div>
-											<div class="product-num">
-												<!-- <div class="btn-quantity light d-xl-block d-sm-none d-none">
-												<label class="form-label">Quantity</label>
-												<input min="1" id="qty" type="number" value="1" name="qty" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
-											</div> -->
-												<!-- <div class="d-block">
-												<label class="form-label">Size</label>
-												<div class="btn-group product-size mb-0">
-													<input type="radio" class="btn-check" name="btnradio1" id="btnradio11" checked="">
-													<label class="btn btn-light" for="btnradio11">S</label>
-
-													<input type="radio" class="btn-check" name="btnradio1" id="btnradio21">
-													<label class="btn btn-light" for="btnradio21">M</label>
-
-													<input type="radio" class="btn-check" name="btnradio1" id="btnradio31">
-													<label class="btn btn-light" for="btnradio31">L</label>
+											<!-- Start Size -->
+											<div id="sizeOptionsBlock" class="product-num" hidden>
+												<div class="d-block">
+													<label class="form-label">Size</label>
+													<div id="sizeOptions" class="btn-group product-size mb-0">
+														<input type="radio" class="btn-check" name="btnradio1"
+															id="sizeRadioN" checked="" value="N">
+														<label class="btn btn-light" for="sizeRadioN">N/A</label>
+													</div>
+												</div>
+											</div>
+											<!-- End Size -->
+											<!-- TODO: Layer Quality Block -->
+											<!-- Start Layer Quality -->
+											<!-- <div id="layerQualityBlock" class="product-num" hidden>
+												<div class="d-block">
+													<label class="form-label">Layer Quality</label>
+													<div id="layerQualityOptions" class="btn-group product-size mb-0">
+														<input type="radio" class="btn-check" name="btnradio1"
+															id="layerQualityN" checked="" value="N">
+														<label class="btn btn-light" for="layerQualityN">N/A</label>
+														<input type="radio" class="btn-check" name="btnradio1"
+															id="layerQualityS" checked="" value="S">
+														<label class="btn btn-light" for="layerQualityS">Standard (0.2)</label>
+														<input type="radio" class="btn-check" name="btnradio1"
+															id="layerQualityZ" checked="" value="N">
+														<label class="btn btn-light" for="layerQualityZ">Standard (0.2)<br>Fuzzy Skin</label>
+													</div>
 												</div>
 											</div> -->
+											<!-- End Layer Quality -->
+											<!-- TODO: Customization Field -->
+											<div class="product-num">
 												<div class="meta-content">
 													<label class="form-label">Color</label>
-													<div class="d-flex align-items-center block-row">
+													<form class="d-flex align-items-center block-row" id="colorOptions"
+														name="colorOptions">
 														<?php
-														if ($filaments_query = mysqli_query($conn, $filaments_sql)) {
-															// Loop through each row in the result set
-															while ($filament = mysqli_fetch_array($filaments_query)) {
-																echo '
-																<div class="radio-value image-radio">
-																	<input onchange="changedColor()" class="form-check-input radio-value" type="radio" name="radioColor" id="radioColor" value="' . $filament['swatch_id'] . '" aria-label="...">
-																	<br>' . $filament['type'] . ' ' . $filament['color_name'] . '
-																	<br>' . $filament['status'] . '
-																	<img src="https://images.kumpeapps.com/filament_swatch?swatch=' . $filament['swatch_id'] . '_' . $base_sku . '">
-																</div>';
-															}
-														}
+														// if ($filaments_query = mysqli_query($conn, $filaments_sql)) {
+														// 	// Loop through each row in the result set
+														// 	while ($filament = mysqli_fetch_array($filaments_query)) {
+														// 		echo '
+														// 		<div class="radio-value image-radio">
+														// 			<input class="form-check-input radio-value" type="radio" name="radioColor" id="radioColor" value="' . $filament['swatch_id'] . '" aria-label="...">
+														// 			<br>' . $filament['type'] . ' ' . $filament['color_name'] . '
+														// 			<br>' . $filament['status'] . '
+														// 			<img src="https://images.kumpeapps.com/filament?swatch=' . $filament['swatch_id'] . '_' . $base_sku . '">
+														// 		</div>';
+														// 	}
+														// }
 														?>
-													</div>
+													</form>
 												</div>
 											</div>
 											<div class="dz-info">
 												<ul>
 													<li>
 														<strong>SKU:</strong>
-														<span id="skuLabel">
-															<?php echo $product['sku']; ?>
-														</span>
+														<span id="skuLabel"></span>
 													</li>
 													<li>
 														<strong>Category:</strong>
-														<?php echo $product['categories']; ?>
+														<span id="categoryLabel"></span>
 													</li>
 													<li>
 														<strong>Tags:</strong>
-														<?php echo $product['tags']; ?>
+														<span id="tagsLabel"></span>
 													</li>
 												</ul>
 											</div>
@@ -302,9 +322,7 @@ disown-opener;" /> -->
 													<td>
 														<h6 class="mb-0">Total</h6>
 													</td>
-													<td id="totalPriceLabel" class="price">
-														<?php echo '$' . $product['price']; ?>
-													</td>
+													<td id="totalPriceLabel" class="price"></td>
 												</tr>
 											</tbody>
 										</table>
@@ -359,75 +377,7 @@ disown-opener;" /> -->
 		<!-- AJAX -->
 		<script nonce="<?php echo $nonce; ?>" src="js/custom.js"></script>
 		<!-- CUSTOM JS -->
-		<script nonce="<?php echo $nonce; ?>" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-		<!-- SweetAlerts -->
-		<script nonce="<?php echo $nonce; ?>" src="product.js"></script>
-		<!-- product scripts -->
-
-		<script nonce="<?php echo $nonce; ?>">
-
-			$(".image-radio img").click(function () {
-				$(this).prev().attr('checked', true);
-			});
-			<?php
-			echo 'let price = ' . $product['price'] . ';';
-			echo 'const originalPrice = ' . $product['price'] . ';';
-			echo 'const wholesale_price = ' . $product['wholesale_price'] . ';';
-			echo 'const discountPrice = ' . $product['discount_price'] . ';';
-			echo 'const discountStart = new Date("' . $product['discount_start'] . '");';
-			echo 'const discountEnd = new Date("' . $product['discount_end'] . '");';
-			echo 'const wholesaleQty = ' . $product['wholesale_qty'] . ';';
-			?>
-			const sessionID = <?php echo "'" . session_id() . "'"; ?>;
-
-			function changedColor() {
-				const color_id = getColorValue();
-				const base_sku = '<?php echo $base_sku; ?>';
-				const qty = document.getElementById('qty').value;
-				let sku = base_sku + '-' + color_id;
-				skuLabel.innerHTML = sku;
-			};
-
-			function addToCart() {
-				const sku = skuLabel.innerHTML;
-				const base_sku = '<?php echo $base_sku; ?>';
-				const color_id = getColorValue();
-				const image_url_base = 'https://images.kumpeapps.com/filament_swatch?sku=';
-				const image_url = image_url_base + base_sku + '-' + color_id;
-				const qty = document.getElementById('qty').value;
-				const newBaseSKU = base_sku
-				let itemPrice = price;
-
-				if (qty >= wholesaleQty) {
-					itemPrice = wholesale_price;
-				}
-				if (!isColorSet()) {
-					Swal.fire(
-						'Error!',
-						'Please select a color',
-						'error'
-					);
-				} else {
-					cartLS.add(
-						{
-							id: sku,
-							sku: sku,
-							name: "<?php echo $product['title']; ?> (" + color_id + ")",
-							price: itemPrice,
-							image_url: image_url,
-							original_price: originalPrice,
-							wholesale_price: wholesale_price,
-							baseSKU: newBaseSKU,
-							colorID: color_id
-						}, parseInt(qty)
-					);
-					cartLS.update("price", itemPrice);
-					document.getElementById("cartButton").click();
-				}
-				updateShoppingCartModal();
-			};
-
-		</script>
+		<script nonce="<?php echo $nonce; ?>" src="js/product.js"></script>
 
 </body>
 

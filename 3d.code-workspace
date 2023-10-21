@@ -2,9 +2,16 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../Kumpe3D-API"
 		}
 	],
 	"settings": {
-		"standard.enable": false
+		"standard.enable": false,
+		"[python]": {
+			"editor.defaultFormatter": "ms-python.black-formatter"
+		},
+		"python.formatting.provider": "none"
 	}
 }
