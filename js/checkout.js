@@ -16,6 +16,7 @@ paypal.Buttons({
     },
     createOrder: function (data, actions) {
         const checkoutData = getCheckoutData();
+        console.warn(checkoutData);
         let itemsArray = [];
         for (product in checkoutData['cart']) {
             const productdata = checkoutData['cart'][product];
