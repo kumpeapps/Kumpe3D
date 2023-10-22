@@ -95,7 +95,7 @@ if (1==1) {
     $email_notes = $data['orderNotes'];
     $stmt = $db->prepare($sql);
     $stmt->bind_param(
-        "issssssssssdddddisssssssss",
+        "issssssssssdddddissssssssss",
         $data['customerID'],
         $data['firstName'],
         $data['lastName'],
