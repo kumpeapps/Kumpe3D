@@ -250,7 +250,7 @@ function devData(cc = 'US') {
     validatePhone();
     validateZipCode();
 };
-// TODO:
+
 function getCheckoutData() {
     const customerID = getCookie("user_id");
     const firstName = document.getElementById("firstNameInput").value;
