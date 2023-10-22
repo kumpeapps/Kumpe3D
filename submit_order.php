@@ -60,7 +60,7 @@ $sql = "
             `county_tax`,
             `city_tax`)
         VALUES
-            (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+            (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
     ";
 $db = new mysqli(
     $_ENV['mysql_host'],
@@ -124,7 +124,6 @@ if (1==1) {
         $data['taxData']['county_tax'],
         $data['taxData']['city_tax']
     );
-    error_log($stmt);
     $stmt->execute();
     $order_id = $db->insert_id;
     $email_orderid = $order_id;
