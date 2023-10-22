@@ -200,8 +200,8 @@ function devData() {
     const phone = document.getElementById("phoneInput");
     firstName.value = "Justin";
     lastName.value = "Doe";
-    address.value = "123 Easy St";
-    zip.value = "72103";
+    address.value = "700 W Walnut St";
+    zip.value = "72756";
     phone.value = "5555555555";
     email.value = "jakumpe@dev.kumpes.com";
     companyName.value = "KumpeApps Dev"
@@ -212,7 +212,7 @@ function devData() {
     validatePhone();
     validateZipCode();
 };
-// TODO:
+
 function getCheckoutData() {
     const customerID = getCookie("user_id");
     const firstName = document.getElementById("firstNameInput").value;
