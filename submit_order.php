@@ -51,6 +51,7 @@ $sql = "
             `status_id`,
             `payment_method`,
             `paypal_transaction_id`,
+            `paypal_capture_id`,
             `notes`,
             `taxable_state`,
             `taxable_county`,
@@ -59,7 +60,7 @@ $sql = "
             `county_tax`,
             `city_tax`)
         VALUES
-            (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+            (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
     ";
 $db = new mysqli(
     $_ENV['mysql_host'],
@@ -94,7 +95,7 @@ if (1==1) {
     $email_notes = $data['orderNotes'];
     $stmt = $db->prepare($sql);
     $stmt->bind_param(
-        "issssssssssdddddisssssssss",
+        "issssssssssdddddissssssssss",
         $data['customerID'],
         $data['firstName'],
         $data['lastName'],
@@ -114,6 +115,7 @@ if (1==1) {
         $data['statusID'],
         $data['paymentMethod'],
         $data['ppTransactionID'],
+        $data['ppCaptureID'],
         $data['orderNotes'],
         $data['taxData']['taxable_state'],
         $data['taxData']['taxable_county'],

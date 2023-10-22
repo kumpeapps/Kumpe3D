@@ -12,11 +12,14 @@ paypal.Buttons({
     onClick: (data) => {
         // fundingSource = "venmo"
         fundingSource = data.fundingSource;
-        console.log(fundingSource);
+        console.info("Funding Source: " + fundingSource);
     },
     createOrder: function (data, actions) {
+        const debugEnabled = getCookie("debug")
         const checkoutData = getCheckoutData();
-        console.warn(checkoutData);
+        if (debugEnabled) {
+            console.debug(checkoutData);
+        }
         let itemsArray = [];
         for (product in checkoutData['cart']) {
             const productdata = checkoutData['cart'][product];
@@ -97,15 +100,23 @@ paypal.Buttons({
     onApprove: function (data, actions) {
         // Payment Approved
         return actions.order.capture().then(function (details) {
+            debugEnabled = getCookie("debug");
+            if (debugEnabled) {
+                console.debug(details);
+            }
+            const transactionID = details['id'];
             const purchaseUnits = details['purchase_units'];
             const payments = purchaseUnits[0]['payments'];
-            const transactionID = payments['captures'][0]['id'];
+            const captureID = payments['captures'][0]['id'];
             let checkoutData = getCheckoutData();
             let orderID = "unavailable.";
             checkoutData.ppTransactionID = transactionID;
+            checkoutData.ppCaptureID = captureID;
             checkoutData.paymentMethod = fundingSource;
             checkoutData.statusID = 3;
-            orderSuccess();
+            if (!debugEnabled) {
+                orderSuccess();
+            }
             fetch("submit_order.php", {
                 method: "POST",
                 headers: {
@@ -120,7 +131,7 @@ paypal.Buttons({
     },
 
     onError(err) {
-        console.log(err);
+        console.error(err);
         Swal.fire(
             'PayPal Error',
             'An error occurred while processing your PayPal payment. Please try again.',
@@ -189,8 +200,8 @@ function devData() {
     const phone = document.getElementById("phoneInput");
     firstName.value = "Justin";
     lastName.value = "Doe";
-    address.value = "123 Easy St";
-    zip.value = "72103";
+    address.value = "700 W Walnut St";
+    zip.value = "72756";
     phone.value = "5555555555";
     email.value = "jakumpe@dev.kumpes.com";
     companyName.value = "KumpeApps Dev"
@@ -201,7 +212,7 @@ function devData() {
     validatePhone();
     validateZipCode();
 };
-// TODO:
+
 function getCheckoutData() {
     const customerID = getCookie("user_id");
     const firstName = document.getElementById("firstNameInput").value;
