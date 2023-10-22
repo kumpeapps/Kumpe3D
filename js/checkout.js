@@ -12,11 +12,14 @@ paypal.Buttons({
     onClick: (data) => {
         // fundingSource = "venmo"
         fundingSource = data.fundingSource;
-        console.log(fundingSource);
+        console.info("Funding Source: " + fundingSource);
     },
     createOrder: function (data, actions) {
+        const debugEnabled = getCookie("debug")
         const checkoutData = getCheckoutData();
-        console.warn(checkoutData);
+        if (debugEnabled) {
+            console.debug(checkoutData);
+        }
         let itemsArray = [];
         for (product in checkoutData['cart']) {
             const productdata = checkoutData['cart'][product];
@@ -128,7 +131,7 @@ paypal.Buttons({
     },
 
     onError(err) {
-        console.log(err);
+        console.error(err);
         Swal.fire(
             'PayPal Error',
             'An error occurred while processing your PayPal payment. Please try again.',
