@@ -97,7 +97,8 @@ paypal.Buttons({
     onApprove: function (data, actions) {
         // Payment Approved
         return actions.order.capture().then(function (details) {
-            if (getCookie("debug") === 1) {
+            debugEnabled = getCookie("debug");
+            if (debugEnabled) {
                 console.debug(details);
             }
             const purchaseUnits = details['purchase_units'];
@@ -108,7 +109,7 @@ paypal.Buttons({
             checkoutData.ppTransactionID = transactionID;
             checkoutData.paymentMethod = fundingSource;
             checkoutData.statusID = 3;
-            if (getCookie("debug") !== 1) {
+            if (!debugEnabled) {
                 orderSuccess();
             }
             fetch("submit_order.php", {
