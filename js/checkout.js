@@ -97,6 +97,9 @@ paypal.Buttons({
     onApprove: function (data, actions) {
         // Payment Approved
         return actions.order.capture().then(function (details) {
+            if (getCookie("debug") === 1) {
+                console.debug(details);
+            }
             const purchaseUnits = details['purchase_units'];
             const payments = purchaseUnits[0]['payments'];
             const transactionID = payments['captures'][0]['id'];
