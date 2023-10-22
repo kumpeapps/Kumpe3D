@@ -124,6 +124,7 @@ if (1==1) {
         $data['taxData']['county_tax'],
         $data['taxData']['city_tax']
     );
+    error_log($stmt);
     $stmt->execute();
     $order_id = $db->insert_id;
     $email_orderid = $order_id;
