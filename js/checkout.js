@@ -101,12 +101,14 @@ paypal.Buttons({
             if (debugEnabled) {
                 console.debug(details);
             }
+            const transactionID = details['id'];
             const purchaseUnits = details['purchase_units'];
             const payments = purchaseUnits[0]['payments'];
-            const transactionID = payments['captures'][0]['id'];
+            const captureID = payments['captures'][0]['id'];
             let checkoutData = getCheckoutData();
             let orderID = "unavailable.";
             checkoutData.ppTransactionID = transactionID;
+            checkoutData.ppCaptureID = captureID;
             checkoutData.paymentMethod = fundingSource;
             checkoutData.statusID = 3;
             if (!debugEnabled) {
