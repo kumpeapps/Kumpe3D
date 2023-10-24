@@ -110,9 +110,13 @@ paypal.Buttons({
             const captureID = payments['captures'][0]['id'];
             let checkoutData = getCheckoutData();
             let orderID = "unavailable.";
+            const client_ip = GET("https://api.ipify.org", false);
+            const browser = navigator.userAgent;
             checkoutData.ppTransactionID = transactionID;
             checkoutData.ppCaptureID = captureID;
             checkoutData.paymentMethod = fundingSource;
+            checkoutData.client_ip = client_ip;
+            checkoutData.browser = browser;
             checkoutData.statusID = 3;
             if (!debugEnabled) {
                 orderSuccess();

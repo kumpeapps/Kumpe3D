@@ -13,6 +13,8 @@ require_once 'includes/site_params.php';
 <html lang="en">
 
 <head>
+	<script nonce="<?php echo $nonce; ?>" type="text/javascript" src="https://app.termly.io/embed.min.js"
+		data-auto-block="off" data-website-uuid="f0526f09-9728-4a75-853d-72961022b400"></script>
 	<!-- Meta -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
