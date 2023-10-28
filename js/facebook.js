@@ -10,6 +10,14 @@ window.fbAsyncInit = function () {
     });
 };
 
+window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '713602057316972',
+      xfbml            : true,
+      version          : 'v18.0'
+    });
+  };
+
 (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
