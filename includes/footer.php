@@ -71,4 +71,6 @@ $conn = mysqli_connect(
 	<a href="#" onclick="window.displayPreferenceModal();return false;" id="termly-consent-preferences">Consent
 		Preferences</a>
 </footer>
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
 <!-- Footer End -->
