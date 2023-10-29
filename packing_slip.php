@@ -147,9 +147,6 @@ while($item = mysqli_fetch_array($items_result)) {
 
 <body>
   <!-- Order Header - THIS SECTION CAN BE MODIFIED AS NEEDED -->
-  <header>
-    <img src="images/logo.png"><br>
-  </header>
   <table cellspacing=0 cellpadding="2" border=0 style="width:4in">
     <thead>
       <tr>
