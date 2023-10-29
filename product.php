@@ -385,13 +385,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		<script nonce="<?php echo $nonce; ?>" src="js/custom.js"></script>
 		<!-- CUSTOM JS -->
 		<script nonce="<?php echo $nonce; ?>" src="js/product.js"></script>
-		<!-- Messenger Chat Plugin Code -->
-		<script nonce="<?php echo $nonce; ?>" async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-		<script nonce="<?php echo $nonce; ?>" src="js/facebook.js"></script>
 
-<!-- Your Chat Plugin code -->
-<div id="fb-customer-chat" class="fb-customerchat">
-</div>
 
 </body>
 
