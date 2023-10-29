@@ -152,7 +152,7 @@ if (1==1) {
             `qty`)
         VALUES
             (?, ?, 0 - ?)
-        ON DUPLICATE KEY UPDATE    
+        ON DUPLICATE KEY UPDATE
             qty = qty - ?;
     ";
 
@@ -279,8 +279,8 @@ if (1==1) {
         //Recipients
         $mail->setFrom($_ENV['email_user'], 'Kumpe3D');
         $mail->addAddress($data['emailAddress'], $data['firstName'] . " " . $data['lastName']); //Add a recipient
-        $mail->addReplyTo('sales@kumpeapps.com', 'Kumpe3D');
-        $mail->addBCC('sales@kumpeapps.com');
+        $mail->addReplyTo('sales@kumpe3d.com', 'Kumpe3D');
+        $mail->addBCC('sales@kumpe3d.com');
 
         //Attachments
         // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments

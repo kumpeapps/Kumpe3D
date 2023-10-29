@@ -109,7 +109,6 @@ paypal.Buttons({
             const payments = purchaseUnits[0]['payments'];
             const captureID = payments['captures'][0]['id'];
             let checkoutData = getCheckoutData();
-            let orderID = "unavailable.";
             const client_ip = GET("https://api.ipify.org", false);
             const browser = navigator.userAgent;
             checkoutData.ppTransactionID = transactionID;
@@ -117,20 +116,11 @@ paypal.Buttons({
             checkoutData.paymentMethod = fundingSource;
             checkoutData.client_ip = client_ip;
             checkoutData.browser = browser;
-            checkoutData.statusID = 3;
             if (!debugEnabled) {
                 orderSuccess();
             }
-            fetch("submit_order.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    checkout_data: checkoutData,
-                    session_id: sessionID
-                })
-            });
+            post_body = {checkout_data: checkoutData, session_id: sessionID}
+            putJSON(apiUrl + "/checkout")
         });
     },
 
