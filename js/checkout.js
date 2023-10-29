@@ -120,7 +120,10 @@ paypal.Buttons({
                 orderSuccess();
             }
             post_body = {checkout_data: checkoutData, session_id: sessionID}
-            putJSON(apiUrl + "/checkout")
+            checkout_response = putJSON(apiUrl + "/checkout")
+            if (debugEnabled) {
+                console.debug(checkout_response)
+            }
         });
     },
 
