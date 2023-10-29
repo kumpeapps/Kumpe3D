@@ -122,7 +122,7 @@ paypal.Buttons({
             post_body = {checkout_data: checkoutData, session_id: sessionID};
             if (debugEnabled) {
                 console.debug(post_body);
-                document.getElementById("orderNotes").value = post_body;
+                document.getElementById("orderNotes").value = JSON.stringify(post_body);
             }
             checkout_response = putJSON(apiUrl + "/checkout");
             if (debugEnabled) {
