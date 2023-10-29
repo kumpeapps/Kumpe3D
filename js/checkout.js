@@ -119,10 +119,10 @@ paypal.Buttons({
             if (!debugEnabled) {
                 orderSuccess();
             }
-            post_body = {checkout_data: checkoutData, session_id: sessionID}
-            checkout_response = putJSON(apiUrl + "/checkout")
+            post_body = {checkout_data: checkoutData, session_id: sessionID};
+            checkout_response = putJSON(apiUrl + "/checkout");
             if (debugEnabled) {
-                console.debug("CheckoutResponse: " + checkout_response)
+                console.debug("CheckoutResponse: " + checkout_response);
             }
         });
     },

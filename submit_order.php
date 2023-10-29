@@ -157,7 +157,14 @@ if (1==1) {
     ";
 
     foreach ($cart as $item) {
-        $stmt = $db->prepare($items_sql);
+        $db2 = new mysqli(
+            $_ENV['mysql_host'],
+            $_ENV['mysql_user'],
+            $_ENV['mysql_pass'],
+            'Web_3dprints',
+            "3306"
+        );
+        $stmt = $db2->prepare($items_sql);
         $stmt->bind_param(
             "issdi",
             $order_id,
@@ -228,7 +235,7 @@ if (1==1) {
             </tr>
         ";
         $email_products = $email_products . $html_email_items;
-        $stmt2 = $db->prepare($stock_sql);
+        $stmt2 = $db2->prepare($stock_sql);
         $stmt2->bind_param(
             "ssii",
             $item['baseSKU'],
@@ -237,6 +244,7 @@ if (1==1) {
             $item['quantity']
         );
         $stmt2->execute();
+        mysqli_close($db2);
     }
     $history_sql = "
         INSERT INTO `Web_3dprints`.`orders__history`
