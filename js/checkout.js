@@ -119,12 +119,12 @@ paypal.Buttons({
             if (!debugEnabled) {
                 orderSuccess();
             }
-            post_body = {checkout_data: checkoutData, session_id: sessionID};
+            post_body = {"checkout_data": checkoutData, "session_id": sessionID};
             if (debugEnabled) {
                 console.debug(post_body);
                 document.getElementById("orderNotes").value = JSON.stringify(post_body);
             }
-            postJSON(apiUrl + "/checkout-final?session_id=" + sessionID, post_body);
+            putJSON(apiUrl + "/checkout", post_body);
         });
     },
 
