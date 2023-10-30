@@ -124,8 +124,8 @@ paypal.Buttons({
                 console.debug(post_body);
                 document.getElementById("orderNotes").value = JSON.stringify(post_body);
             }
-            fetch(apiUrl + "/checkout", {
-                method: "PUT",
+            fetch(apiUrl + "/checkout-final", {
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
