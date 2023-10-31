@@ -142,7 +142,7 @@ function refresh() {
 
 function addToCart() {
     const sku = skuLabel.innerHTML;
-    const qty = document.getElementById('qty').value;
+    const qty = document.getElementById('productQuantity').value;
     if (!isColorSet()) {
         Swal.fire(
             'Error!',

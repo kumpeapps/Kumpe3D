@@ -322,7 +322,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 												<tr>
 													<div class="btn-quantity light d-xl-block">
 														<label class="form-label">Quantity</label>
-														<input min="1" id="qty" type="number" value="1" name="qty">
+														<input min="1" id="productQuantity" type="number" value="1" name="qty">
 													</div>
 												</tr>
 												<tr class="total">
