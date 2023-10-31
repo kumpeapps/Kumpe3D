@@ -26,7 +26,7 @@ function buildShoppingCartModalList() {
         const img_url = element["img_url"];
         const title = element["productTitle"] + "<br>(" + element['colorTitle'] + ")";
         const qty = element["quantity"];
-        const original_price = element["originalPrice"];
+        const original_price = element["originalTotal"];
         let price = '$' + (element["totalPrice"]);
         if (element["totalPrice"] != original_price) {
             price = price + ' <del>$' + (element['originalTotal']) + '</del>';
