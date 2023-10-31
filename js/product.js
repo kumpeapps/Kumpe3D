@@ -21,7 +21,7 @@ function load() {
     titleCrumb.innerHTML = product.title
     titleLabel.innerHTML = product.title
     descriptionLabel.innerHTML = product.description
-    const changeQty = document.querySelector("#qty");
+    const changeQty = document.querySelector("#productQuantity");
     const addToCartButton = document.querySelector("#addToCartButton");
     changeQty.addEventListener("change", function () {
         changedQty();
