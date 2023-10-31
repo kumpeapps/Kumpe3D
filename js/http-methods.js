@@ -53,8 +53,6 @@ function putJSON(yourUrl, data, return_json = true) {
     var Httpreq = new XMLHttpRequest(); // a new request
     data = JSON.stringify(data);
     Httpreq.open("PUT", yourUrl, true);
-    Httpreq.setRequestHeader(
-        'Content-type', 'application/json');
     Httpreq.send(data);
     response = Httpreq.responseText;
     if (return_json) {
