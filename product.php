@@ -333,7 +333,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 												</tr>
 											</tbody>
 										</table>
-										<a id='addToCartButton' class="btn btn-secondary w-100">ADD TO CART</a>
+										<a id='addToCartButton' class="btn btn-secondary w-100 nav-link cart-btn">ADD TO CART</a>
 									</div>
 								</div>
 							</div>
