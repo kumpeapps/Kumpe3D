@@ -98,7 +98,7 @@ function changedColor() {
 function changedQty() {
     const priceLabel = document.querySelector("#priceLabel");
     const totalPriceLabel = document.querySelector("#totalPriceLabel");
-    const qty = document.getElementById('qty').value;
+    const qty = document.getElementById('productQuantity').value;
     const isOnSaleBadge = document.getElementById('isOnSaleBadge');
     const productPrice = GET(apiUrl + "/product-price?sku=" + querySKU + "&quantity=" + qty).response
     if (Boolean(productPrice.isOnSale)) {
