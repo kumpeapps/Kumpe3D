@@ -70,7 +70,11 @@ function buildColorOptions() {
         status.innerHTML = element['status'];
         const img = document.createElement("img");
         img.setAttribute("class", "rounded");
-        img.setAttribute("src", "https://images.kumpeapps.com/filament?swatch=" + element['swatch_id'] + "_" + base_sku);
+        if (getCookie("qr_images")) {
+            img.setAttribute("src", "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + base_sku + "-" + element['swatch_id']);
+        } else {
+            img.setAttribute("src", "https://images.kumpeapps.com/filament?swatch=" + element['swatch_id'] + "_" + base_sku);
+        }
         if (element['status'] == "Backordered" || element['status'] == "Discontinued") {
             input.disabled = true;
         };
@@ -157,7 +161,7 @@ function addToCart() {
         };
         console.debug(data)
         postJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data);
-        
+
         // document.getElementById("cartButton").click();
     }
     updateShoppingCartModal();
