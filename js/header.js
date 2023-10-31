@@ -17,9 +17,9 @@ function buildShoppingCartModalList() {
     }
     subtotalLabel.innerHTML = '$' + subtotal;
     cart.list.forEach(renderShoppingCartModalList);
-    const addToCartButton = document.querySelector("#cart_badge");
+    const showCartButton = document.querySelector("#cart_badge");
     const shoppingCartBadge = document.querySelector("#shopping_cart_badge");
-    addToCartButton.innerHTML = cart.list.length;
+    showCartButton.innerHTML = cart.list.length;
     shoppingCartBadge.innerHTML = cart.list.length;
 
     function renderShoppingCartModalList(element, _, _) {

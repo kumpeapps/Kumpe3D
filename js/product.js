@@ -30,7 +30,7 @@ function load() {
     changeQty.addEventListener("keyup", function () {
         changedQty();
     });
-    addToCartButton.addEventListener("keyup", function () {
+    addToCartButton.addEventListener("click", function () {
         addToCart();
     });
 };
