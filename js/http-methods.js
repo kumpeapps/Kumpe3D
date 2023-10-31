@@ -49,10 +49,9 @@ function deleteJSON(yourUrl, data, return_json = true) {
 };
 
 function putJSON(yourUrl, data, return_json = true) {
-    console.log(yourUrl)
     var Httpreq = new XMLHttpRequest(); // a new request
     data = JSON.stringify(data);
-    Httpreq.open("PUT", yourUrl, true);
+    Httpreq.open("PUT", yourUrl, false);
     Httpreq.send(data);
     response = Httpreq.responseText;
     if (return_json) {
