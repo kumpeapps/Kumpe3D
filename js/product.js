@@ -142,7 +142,7 @@ function refresh() {
 
 function addToCart() {
     const sku = skuLabel.innerHTML;
-    const qty = document.getElementById('productQuantity').value;
+    const productQuantity = document.getElementById('productQuantity').value;
     if (!isColorSet()) {
         Swal.fire(
             'Error!',
@@ -152,7 +152,7 @@ function addToCart() {
     } else {
         const data = {
             "sku": sku,
-            "quantity": qty,
+            "quantity": productQuantity,
             "customization": ""
         };
         postJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data);
