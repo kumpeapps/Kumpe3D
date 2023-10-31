@@ -158,7 +158,7 @@ function addToCart() {
         console.debug(data)
         postJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data);
         
-        document.getElementById("cartButton").click();
+        // document.getElementById("cartButton").click();
     }
     updateShoppingCartModal();
 };
