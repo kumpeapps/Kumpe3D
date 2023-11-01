@@ -147,7 +147,6 @@ function refresh() {
 
 function addToCart(element) {
     const addToCartButtonTag = "addToCartButton" + addToCartCount;
-    console.debug("start add to cart " + element.id);
     if (element.id == addToCartButtonTag) {
         removeAllChildNodes(document.getElementById("addToCartContainer"));
         addingToCart = true;
@@ -165,14 +164,11 @@ function addToCart(element) {
                 "quantity": productQuantity,
                 "customization": ""
             };
-            console.debug(data)
             postJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data);
 
             // document.getElementById("cartButton").click();
         }
-        console.debug("call update modal");
         updateShoppingCartModal();
-        console.debug("after modal");
         addToCartCount += 1;
         const addToCartButtonTagNew = "addToCartButton" + addToCartCount;
         const button = document.createElement("a");
@@ -184,6 +180,5 @@ function addToCart(element) {
         addToCartButton.addEventListener("click", function () {
             addToCart(this);
         }, once= true);
-        console.debug("end");
     }
 };

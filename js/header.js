@@ -5,7 +5,6 @@ updateShoppingCartModal();
 updateBanner();
 
 function buildShoppingCartModalList() {
-    console.debug("start build modal")
     loadingOverlay().activate(spinHandle)
     const ul = document.getElementById('shoppingCartModal');
     const subtotalLabel = document.getElementById('subtotalLabel');
@@ -83,7 +82,6 @@ function buildShoppingCartModalList() {
 
         ul.appendChild(li);
     }
-    console.debug("end build modal")
 };
 
 function removeAllChildNodes(parent) {
@@ -105,7 +103,6 @@ function clearCart() {
 };
 
 function updateShoppingCartModal() {
-    console.debug("start update shopping cart modal");
     buildShoppingCartModalList();
 };
 
