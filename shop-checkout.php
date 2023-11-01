@@ -222,7 +222,7 @@ require_once 'includes/site_params.php';
 								</div>
 								<div class="col-md-12" id="stateContainer" hidden>
 									<div class="m-b25">
-										<label id="stateTitle" class="label-title">State/Locality *</label>
+										<label id="stateTitle" class="label-title">State/Locality/Province *</label>
 										<input id="stateInput" name="dzName" required="" class="form-control m-b15"
 											placeholder="State">
 									</div>

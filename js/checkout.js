@@ -191,7 +191,7 @@ function orderSuccess() {
     });
 };
 
-function devData() {
+function devData(cc = 'US') {
     const firstName = document.getElementById("firstNameInput");
     const lastName = document.getElementById("lastNameInput");
     const companyName = document.getElementById("companyName");
@@ -199,13 +199,39 @@ function devData() {
     const zip = document.getElementById("zipCodeInput");
     const email = document.getElementById("emailInput");
     const phone = document.getElementById("phoneInput");
-    firstName.value = "Justin";
-    lastName.value = "Doe";
-    address.value = "700 W Walnut St";
-    zip.value = "72756";
-    phone.value = "5555555555";
-    email.value = "jakumpe@dev.kumpes.com";
-    companyName.value = "KumpeApps Dev"
+    const country = document.getElementById("countrySelect");
+    if (cc == 'US') {
+        firstName.value = "Justin";
+        lastName.value = "Doe";
+        address.value = "700 W Walnut St";
+        country.value = cc;
+        zip.value = "72756";
+        phone.value = "5555555555";
+        email.value = "jakumpe@dev.kumpes.com";
+        companyName.value = "KumpeApps Dev"
+    } else if (cc == 'CA') {
+        firstName.value = "Justin";
+        lastName.value = "Doe";
+        address.value = "1403 Charing Cross Rd";
+        country.value = cc;
+        city.value = "Chatham";
+        state.value = "Ontario";
+        zip.value = "N7M 2G9";
+        phone.value = "5555555555";
+        email.value = "jakumpe@dev.kumpes.com";
+        companyName.value = "KumpeApps Dev"
+    } else if (cc == 'GB') {
+        firstName.value = "Justin";
+        lastName.value = "Doe";
+        address.value = "33 Station Road";
+        country.value = cc;
+        city.value = "NA";
+        state.value = "Leicester";
+        zip.value = "LE28 1NR";
+        phone.value = "5555555555";
+        email.value = "jakumpe@dev.kumpes.com";
+        companyName.value = "KumpeApps Dev"
+    }
     validateAddress();
     validateEmail();
     validateFName();
