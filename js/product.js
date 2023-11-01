@@ -30,8 +30,8 @@ function load() {
     changeQty.addEventListener("keyup", function () {
         changedQty();
     });
-    addToCartButton.addEventListener("onmouseup", function () {
-        addToCart();
+    addToCartButton.addEventListener("click", function () {
+        addToCart(this);
     }, once= true);
 };
 
@@ -144,8 +144,8 @@ function refresh() {
     loadingOverlay().cancel(spinHandle);
 };
 
-function addToCart() {
-    console.debug("start add to cart");
+function addToCart(this) {
+    console.debug("start add to cart " + this.id);
     removeAllChildNodes(document.getElementById("addToCartContainer"));
     addingToCart = true;
     const sku = skuLabel.innerHTML;
@@ -176,8 +176,8 @@ function addToCart() {
     button.innerHTML = "ADD TO CART";
     document.getElementById("addToCartContainer").appendChild(button);
     const addToCartButton = document.querySelector("#addToCartButton2");
-    addToCartButton.addEventListener("onmouseup", function () {
-        addToCart();
+    addToCartButton.addEventListener("click", function () {
+        addToCart(this);
     }, once= true);
     console.debug("end");
 };
