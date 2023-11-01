@@ -144,8 +144,8 @@ function refresh() {
     loadingOverlay().cancel(spinHandle);
 };
 
-function addToCart(this) {
-    console.debug("start add to cart " + this.id);
+function addToCart(element) {
+    console.debug("start add to cart " + element.id);
     removeAllChildNodes(document.getElementById("addToCartContainer"));
     addingToCart = true;
     const sku = skuLabel.innerHTML;
