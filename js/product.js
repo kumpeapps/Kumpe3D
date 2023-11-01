@@ -207,5 +207,5 @@ function addToCart(element) {
     updateShoppingCartModal();
     addToCartButton.addEventListener("click", function () {
         addToCart();
-    });
+    }, once= true);
 };
