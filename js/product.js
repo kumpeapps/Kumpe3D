@@ -205,8 +205,13 @@ function addToCart(element) {
         document.getElementById("cartButton").click();
     }
     updateShoppingCartModal();
-    // const addToCartButton = document.querySelector("#addToCartButton");
-    // addToCartButton.addEventListener("click", function () {
-    //     addToCart();
-    // }, once= true);
+    const button = document.createElement("a");
+    button.setAttribute("class", "btn btn-secondary w-100");
+    button.setAttribute("id", "addToCartButton");
+    button.innerHTML = "ADD TO CART";
+    document.getElementById("addToCartContainer").appendChild(button);
+    const addToCartButton = document.querySelector("#addToCartButton");
+    addToCartButton.addEventListener("click", function () {
+        addToCart();
+    }, once= true);
 };
