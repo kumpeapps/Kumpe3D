@@ -205,8 +205,8 @@ function addToCart(element) {
         document.getElementById("cartButton").click();
     }
     updateShoppingCartModal();
-    const addToCartButton = document.querySelector("#addToCartButton");
-    addToCartButton.addEventListener("click", function () {
-        addToCart();
-    }, once= true);
+    // const addToCartButton = document.querySelector("#addToCartButton");
+    // addToCartButton.addEventListener("click", function () {
+    //     addToCart();
+    // }, once= true);
 };
