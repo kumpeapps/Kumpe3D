@@ -214,25 +214,25 @@ require_once 'includes/site_params.php';
 								</div>
 								<div class="col-md-12" id="cityContainer" hidden>
 									<div class="m-b25">
-										<label class="label-title">Town / City *</label>
+										<label id="cityTitle" class="label-title">Town / City *</label>
 										<input id="cityInput" name="dzName" required="" class="form-control m-b15"
 											placeholder="City">
 									</div>
 								</div>
 								<div class="col-md-12" id="stateContainer" hidden>
 									<div class="m-b25">
-										<label class="label-title">State *</label>
+										<label id="stateTitle" class="label-title">State/Locality *</label>
 										<input id="stateInput" name="dzName" required="" class="form-control m-b15"
 											placeholder="State">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group m-b25">
-										<label class="label-title">ZIP Code *</label>
+										<label id="zipTitle" class="label-title">ZIP/Postal Code *</label>
 										<input id="zipCodeInput" name="dzName" required=""
 											class="form-control is-invalid">
 										<div class="valid-feedback">Looks Good!</div>
-										<div class="invalid-feedback">Please Enter Zip Code</div>
+										<div class="invalid-feedback">Please Enter Zip/Postal Code</div>
 									</div>
 								</div>
 								<div class="col-md-12 m-b25">
