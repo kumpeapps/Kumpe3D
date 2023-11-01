@@ -204,17 +204,4 @@ function addToCart(element) {
         }, once = true);
         document.getElementById("cartButton").click();
     }
-    console.debug("call update modal");
-    updateShoppingCartModal();
-    console.debug("after modal");
-    const button = document.createElement("a");
-    button.setAttribute("class", "btn btn-secondary w-100");
-    button.setAttribute("id", "addToCartButton2");
-    button.innerHTML = "ADD TO CART";
-    document.getElementById("addToCartContainer").appendChild(button);
-    const addToCartButton = document.querySelector("#addToCartButton2");
-    addToCartButton.addEventListener("click", function () {
-        addToCart(this);
-    }, once= true);
-    console.debug("end");
 };
