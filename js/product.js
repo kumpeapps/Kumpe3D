@@ -180,5 +180,6 @@ function addToCart(element) {
         addToCartButton.addEventListener("click", function () {
             addToCart(this);
         }, once= true);
+        document.getElementById("cartButton").click();
     }
 };
