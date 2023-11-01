@@ -146,7 +146,6 @@ function refresh() {
 
 function addToCart() {
     const addToCartButton = document.querySelector("#addToCartButton");
-    addToCartButton.removeEventListener()
     addingToCart = true;
     const sku = skuLabel.innerHTML;
     const productQuantity = document.getElementById('productQuantity').value;
