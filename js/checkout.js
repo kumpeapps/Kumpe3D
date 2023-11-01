@@ -199,6 +199,8 @@ function devData(cc = 'US') {
     const zip = document.getElementById("zipCodeInput");
     const email = document.getElementById("emailInput");
     const phone = document.getElementById("phoneInput");
+    const state = document.getElementById("stateInput");
+    const city = document.getElementById("cityInput");
     const country = document.getElementById("countrySelect");
     if (cc == 'US') {
         firstName.value = "Justin";
