@@ -195,7 +195,8 @@ require_once 'includes/site_params.php';
 										<div class="form-select">
 											<select id="countrySelect" class="default-select w-100">
 												<option value="US" selected>🇺🇸 United States of America</option>
-												<option value="UK">🇬🇧 United Kingdom</option>
+												<option value="GB">🇬🇧 United Kingdom</option>
+												<option value="CA">🇨🇦 Canada</option>
 											</select>
 										</div>
 									</div>
