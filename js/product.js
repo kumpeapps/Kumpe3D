@@ -145,6 +145,7 @@ function refresh() {
 };
 
 function addToCart() {
+    console.debug("start add to cart");
     removeAllChildNodes(document.getElementById("addToCartContainer"));
     addingToCart = true;
     const sku = skuLabel.innerHTML;
@@ -166,7 +167,9 @@ function addToCart() {
 
         // document.getElementById("cartButton").click();
     }
+    console.debug("call update modal");
     updateShoppingCartModal();
+    console.debug("after modal");
     const button = document.createElement("a");
     button.setAttribute("class", "btn btn-secondary w-100");
     button.setAttribute("id", "addToCartButton");
@@ -176,4 +179,5 @@ function addToCart() {
     addToCartButton.addEventListener("click", function () {
         addToCart();
     }, once= true);
+    console.debug("end");
 };
