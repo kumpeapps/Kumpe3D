@@ -204,4 +204,5 @@ function addToCart(element) {
         }, once = true);
         document.getElementById("cartButton").click();
     }
+    updateShoppingCartModal();
 };
