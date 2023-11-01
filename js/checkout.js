@@ -202,11 +202,17 @@ function devData(cc = 'US') {
     const state = document.getElementById("stateInput");
     const city = document.getElementById("cityInput");
     const country = document.getElementById("countrySelect");
+    const countryOptions = country.options.length;
+    for (let i=0; i<countryOptions; i++) {
+        if (country.options[i].value == cc) {
+            country.options[i].selected = true;
+            break;
+        }
+    }
     if (cc == 'US') {
         firstName.value = "Justin";
         lastName.value = "Doe";
         address.value = "700 W Walnut St";
-        country.value = cc;
         zip.value = "72756";
         phone.value = "5555555555";
         email.value = "jakumpe@dev.kumpes.com";
