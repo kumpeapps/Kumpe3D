@@ -172,7 +172,7 @@ function addToCart(element) {
     console.debug("after modal");
     const button = document.createElement("a");
     button.setAttribute("class", "btn btn-secondary w-100");
-    button.setAttribute("id", "addToCartButton2-");
+    button.setAttribute("id", "addToCartButton2");
     button.innerHTML = "ADD TO CART";
     document.getElementById("addToCartContainer").appendChild(button);
     const addToCartButton = document.querySelector("#addToCartButton2");
