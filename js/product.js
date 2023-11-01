@@ -213,7 +213,7 @@ function addToCart(element) {
     button.innerHTML = "ADD TO CART";
     document.getElementById("addToCartContainer").appendChild(button);
     const addToCartButton = document.querySelector("#addToCartButton2");
-    addToCartButton.addEventListener("click", function () {
+    addToCartButton.addEventListener("onmouseup", function () {
         addToCart();
     }, once= true);
     console.debug("end");
