@@ -205,4 +205,7 @@ function addToCart(element) {
         document.getElementById("cartButton").click();
     }
     updateShoppingCartModal();
+    addToCartButton.addEventListener("click", function () {
+        addToCart();
+    });
 };
