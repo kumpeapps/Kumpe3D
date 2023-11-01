@@ -145,7 +145,7 @@ function refresh() {
 };
 
 function addToCart() {
-    const addToCartButton = document.querySelector("#addToCartButton");
+    removeAllChildNodes(document.getElementById("addToCartContainer"));
     addingToCart = true;
     const sku = skuLabel.innerHTML;
     const productQuantity = document.getElementById('productQuantity').value;
@@ -167,6 +167,7 @@ function addToCart() {
         // document.getElementById("cartButton").click();
     }
     updateShoppingCartModal();
+    const addToCartButton = document.querySelector("#addToCartButton");
     addToCartButton.addEventListener("click", function () {
         addToCart();
     }, once= true);
