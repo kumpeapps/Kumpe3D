@@ -180,7 +180,7 @@ function addToCart(element) {
         button.setAttribute("id", addToCartButtonTagNew);
         button.innerHTML = "ADD TO CART";
         document.getElementById("addToCartContainer").appendChild(button);
-        const addToCartButton = document.querySelector("#addToCartButtonTagNew");
+        const addToCartButton = document.querySelector("#" + addToCartButtonTagNew);
         addToCartButton.addEventListener("click", function () {
             addToCart(this);
         }, once= true);
