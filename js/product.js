@@ -30,7 +30,7 @@ function load() {
     changeQty.addEventListener("keyup", function () {
         changedQty();
     });
-    addToCartButton.addEventListener("click", function () {
+    addToCartButton.addEventListener("onmouseup", function () {
         addToCart();
     }, once= true);
 };
@@ -176,7 +176,7 @@ function addToCart() {
     button.innerHTML = "ADD TO CART";
     document.getElementById("addToCartContainer").appendChild(button);
     const addToCartButton = document.querySelector("#addToCartButton2");
-    addToCartButton.addEventListener("click", function () {
+    addToCartButton.addEventListener("onmouseup", function () {
         addToCart();
     }, once= true);
     console.debug("end");
