@@ -1,5 +1,6 @@
 let product;
 let querySKU;
+let addToCartCount = 1;
 refresh();
 
 function load() {
@@ -22,7 +23,7 @@ function load() {
     titleLabel.innerHTML = product.title
     descriptionLabel.innerHTML = product.description
     const changeQty = document.querySelector("#productQuantity");
-    const addToCartButton = document.querySelector("#addToCartButton");
+    const addToCartButton = document.querySelector("#addToCartButton1");
     changeQty.addEventListener("change", function () {
         changedQty();
     });
@@ -145,39 +146,44 @@ function refresh() {
 };
 
 function addToCart(element) {
+    const addToCartButtonTag = "addToCartButton" + addToCartCount;
     console.debug("start add to cart " + element.id);
-    removeAllChildNodes(document.getElementById("addToCartContainer"));
-    addingToCart = true;
-    const sku = skuLabel.innerHTML;
-    const productQuantity = document.getElementById('productQuantity').value;
-    if (!isColorSet()) {
-        Swal.fire(
-            'Error!',
-            'Please select a color',
-            'error'
-        );
-    } else {
-        const data = {
-            "sku": sku,
-            "quantity": productQuantity,
-            "customization": ""
-        };
-        console.debug(data)
-        postJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data);
+    if (element.id == addToCartButtonTag) {
+        removeAllChildNodes(document.getElementById("addToCartContainer"));
+        addingToCart = true;
+        const sku = skuLabel.innerHTML;
+        const productQuantity = document.getElementById('productQuantity').value;
+        if (!isColorSet()) {
+            Swal.fire(
+                'Error!',
+                'Please select a color',
+                'error'
+            );
+        } else {
+            const data = {
+                "sku": sku,
+                "quantity": productQuantity,
+                "customization": ""
+            };
+            console.debug(data)
+            postJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data);
 
-        // document.getElementById("cartButton").click();
+            // document.getElementById("cartButton").click();
+        }
+        console.debug("call update modal");
+        updateShoppingCartModal();
+        console.debug("after modal");
+        addToCartCount += 1;
+        const addToCartButtonTagNew = "addToCartButton" + addToCartCount;
+        const button = document.createElement("a");
+        button.setAttribute("class", "btn btn-secondary w-100");
+        button.setAttribute("id", addToCartButtonTagNew);
+        button.innerHTML = "ADD TO CART";
+        document.getElementById("addToCartContainer").appendChild(button);
+        const addToCartButton = document.querySelector("#addToCartButtonTagNew");
+        addToCartButton.addEventListener("click", function () {
+            addToCart(this);
+        }, once= true);
+        console.debug("end");
     }
-    console.debug("call update modal");
-    updateShoppingCartModal();
-    console.debug("after modal");
-    const button = document.createElement("a");
-    button.setAttribute("class", "btn btn-secondary w-100");
-    button.setAttribute("id", "addToCartButton2");
-    button.innerHTML = "ADD TO CART";
-    document.getElementById("addToCartContainer").appendChild(button);
-    const addToCartButton = document.querySelector("#addToCartButton2");
-    addToCartButton.addEventListener("click", function () {
-        addToCart(this);
-    }, once= true);
-    console.debug("end");
 };
