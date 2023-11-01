@@ -174,6 +174,9 @@ function setListeners() {
     document.getElementById("emailInput").addEventListener("keyup", function () {
         validateEmail();
     });
+    document.getElementById("countrySelect").addEventListener("change", function () {
+        buildCheckout();
+    });
 };
 
 function orderSuccess() {
