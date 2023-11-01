@@ -145,7 +145,7 @@ function refresh() {
 };
 
 function addToCart() {
-    document.getElementById("addToCartButton").setAttribute("disabled", "true")
+    document.getElementById("addToCartButton").style.pointerEvents = 'none';
     const sku = skuLabel.innerHTML;
     const productQuantity = document.getElementById('productQuantity').value;
     if (!isColorSet()) {
