@@ -195,6 +195,7 @@ require_once 'includes/site_params.php';
 										<div class="form-select">
 											<select id="countrySelect" class="default-select w-100">
 												<option value="US" selected>🇺🇸 United States of America</option>
+												<option value="UK">🇬🇧 United Kingdom</option>
 											</select>
 										</div>
 									</div>
@@ -286,13 +287,13 @@ require_once 'includes/site_params.php';
 													<input id="shippingCost" value="10.00"
 														class="form-check-input radio" type="radio"
 														name="flexRadioDefault" id="flexRadioDefault2" checked>
-													<label class="form-check-label" for="flexRadioDefault2">
-														US Flat Rate: $10
+													<label id="shippingLabel" class="form-check-label" for="flexRadioDefault2">
+														Flat Rate: $10
 													</label>
 												</div>
 												<!-- End Shipping Option -->
 											</td>
-											<td class="price">$10.00</td>
+											<td id="shippingCostLabel" class="price">$10.00</td>
 										</tr>
 										<tr class="title">
 											<td>

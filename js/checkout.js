@@ -303,8 +303,14 @@ function buildCheckout() {
     const itemsDiv = document.getElementById('checkout_items');
     const subtotalLabel = document.getElementById('cart_subtotal');
     const totalLabel = document.getElementById('cart_total');
+    const shippingCostValue = document.getElementById('shippingCost');
+    const shippingLabel = document.getElementById('shippingLabel');
+    const shippingCostLabel = document.getElementById('shippingCostLabel');
     removeAllChildNodes(itemsDiv);
     subtotalLabel.innerHTML = '$' + checkoutData.cart.subtotal;
+    shippingCostValue.value = checkoutData.shippingCost;
+    shippingLabel.innerHTML = 'Flat Rate: $' + checkoutData.shippingCost;
+    shippingCostLabel.innerHTML = '$' + checkoutData.shippingCost;
     totalLabel.innerHTML = '$' + checkoutData.grandTotal;
     cart.forEach(renderCheckoutList);
 
@@ -394,9 +400,11 @@ function validateZipCode() {
     const field = document.getElementById(fieldID).value;
     const valid = validator.isPostalCode(field, country);
     if (valid) {
-        zipData = GET(apiUrl + "/zipcode?single_record=1&zip=" + field).response;
-        document.getElementById("stateInput").value = zipData.state_id;
-        document.getElementById("cityInput").value = zipData.city;
+        if (country == 'US') {
+            zipData = GET(apiUrl + "/zipcode?single_record=1&zip=" + field).response;
+            document.getElementById("stateInput").value = zipData.state_id;
+            document.getElementById("cityInput").value = zipData.city;
+        }
         document.getElementById("cityContainer").removeAttribute("hidden");
         document.getElementById("stateContainer").removeAttribute("hidden");
     }
