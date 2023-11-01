@@ -82,7 +82,6 @@ function buildShoppingCartModalList() {
 
         ul.appendChild(li);
     }
-    addingToCart = false;
 };
 
 function removeAllChildNodes(parent) {

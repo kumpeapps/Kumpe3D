@@ -1,6 +1,5 @@
 let product;
 let querySKU;
-let addingToCart = false;
 refresh();
 
 function load() {
@@ -146,7 +145,8 @@ function refresh() {
 };
 
 function addToCart() {
-    if (addingToCart) {return;}
+    const addToCartButton = document.querySelector("#addToCartButton");
+    addToCartButton.removeEventListener("click");
     addingToCart = true;
     const sku = skuLabel.innerHTML;
     const productQuantity = document.getElementById('productQuantity').value;
@@ -168,4 +168,7 @@ function addToCart() {
         // document.getElementById("cartButton").click();
     }
     updateShoppingCartModal();
+    addToCartButton.addEventListener("click", function () {
+        addToCart();
+    });
 };
