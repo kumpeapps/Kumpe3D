@@ -13,6 +13,8 @@ require_once 'includes/site_params.php';
 <html lang="en">
 
 <head>
+	<script nonce="<?php echo $nonce; ?>" type="text/javascript" src="https://app.termly.io/embed.min.js"
+		data-auto-block="off" data-website-uuid="f0526f09-9728-4a75-853d-72961022b400"></script>
 	<!-- Meta -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -193,6 +195,8 @@ require_once 'includes/site_params.php';
 										<div class="form-select">
 											<select id="countrySelect" class="default-select w-100">
 												<option value="US" selected>🇺🇸 United States of America</option>
+												<option value="GB">🇬🇧 United Kingdom</option>
+												<option value="CA">🇨🇦 Canada</option>
 											</select>
 										</div>
 									</div>
@@ -211,25 +215,25 @@ require_once 'includes/site_params.php';
 								</div>
 								<div class="col-md-12" id="cityContainer" hidden>
 									<div class="m-b25">
-										<label class="label-title">Town / City *</label>
+										<label id="cityTitle" class="label-title">Town / City *</label>
 										<input id="cityInput" name="dzName" required="" class="form-control m-b15"
 											placeholder="City">
 									</div>
 								</div>
 								<div class="col-md-12" id="stateContainer" hidden>
 									<div class="m-b25">
-										<label class="label-title">State *</label>
+										<label id="stateTitle" class="label-title">State/Locality/Province *</label>
 										<input id="stateInput" name="dzName" required="" class="form-control m-b15"
 											placeholder="State">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group m-b25">
-										<label class="label-title">ZIP Code *</label>
+										<label id="zipTitle" class="label-title">ZIP/Postal Code *</label>
 										<input id="zipCodeInput" name="dzName" required=""
 											class="form-control is-invalid">
 										<div class="valid-feedback">Looks Good!</div>
-										<div class="invalid-feedback">Please Enter Zip Code</div>
+										<div class="invalid-feedback">Please Enter Zip/Postal Code</div>
 									</div>
 								</div>
 								<div class="col-md-12 m-b25">
@@ -284,13 +288,13 @@ require_once 'includes/site_params.php';
 													<input id="shippingCost" value="10.00"
 														class="form-check-input radio" type="radio"
 														name="flexRadioDefault" id="flexRadioDefault2" checked>
-													<label class="form-check-label" for="flexRadioDefault2">
-														US Flat Rate: $10
+													<label id="shippingLabel" class="form-check-label" for="flexRadioDefault2">
+														Flat Rate: $10
 													</label>
 												</div>
 												<!-- End Shipping Option -->
 											</td>
-											<td class="price">$10.00</td>
+											<td id="shippingCostLabel" class="price">$10.00</td>
 										</tr>
 										<tr class="title">
 											<td>

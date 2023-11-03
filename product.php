@@ -78,6 +78,13 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 <html lang="en">
 
 <head>
+<script
+	nonce="<?php echo $nonce; ?>"
+  type="text/javascript"
+  src="https://app.termly.io/embed.min.js"
+  data-auto-block="off"
+  data-website-uuid="f0526f09-9728-4a75-853d-72961022b400"
+></script>
 	<!-- Meta -->
 	<meta http-equiv="Content-Security-Policy-Report-Only" content="
 		default-src 'self';
@@ -315,7 +322,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 												<tr>
 													<div class="btn-quantity light d-xl-block">
 														<label class="form-label">Quantity</label>
-														<input min="1" id="qty" type="number" value="1" name="qty">
+														<input min="1" id="productQuantity" type="number" value="1" name="qty">
 													</div>
 												</tr>
 												<tr class="total">
@@ -326,7 +333,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 												</tr>
 											</tbody>
 										</table>
-										<a id='addToCartButton' class="btn btn-secondary w-100">ADD TO CART</a>
+										<div id="addToCartContainer"><a id='addToCartButton1' class="btn btn-secondary w-100">ADD TO CART</a></div>
 									</div>
 								</div>
 							</div>
@@ -378,6 +385,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		<script nonce="<?php echo $nonce; ?>" src="js/custom.js"></script>
 		<!-- CUSTOM JS -->
 		<script nonce="<?php echo $nonce; ?>" src="js/product.js"></script>
+
 
 </body>
 

@@ -17,16 +17,16 @@ function buildShoppingCartModalList() {
     }
     subtotalLabel.innerHTML = '$' + subtotal;
     cart.list.forEach(renderShoppingCartModalList);
-    const addToCartButton = document.querySelector("#cart_badge");
+    const showCartButton = document.querySelector("#cart_badge");
     const shoppingCartBadge = document.querySelector("#shopping_cart_badge");
-    addToCartButton.innerHTML = cart.list.length;
+    showCartButton.innerHTML = cart.list.length;
     shoppingCartBadge.innerHTML = cart.list.length;
 
     function renderShoppingCartModalList(element, _, _) {
         const img_url = element["img_url"];
         const title = element["productTitle"] + "<br>(" + element['colorTitle'] + ")";
         const qty = element["quantity"];
-        const original_price = element["originalPrice"];
+        const original_price = element["originalTotal"];
         let price = '$' + (element["totalPrice"]);
         if (element["totalPrice"] != original_price) {
             price = price + ' <del>$' + (element['originalTotal']) + '</del>';
@@ -82,7 +82,6 @@ function buildShoppingCartModalList() {
 
         ul.appendChild(li);
     }
-    
 };
 
 function removeAllChildNodes(parent) {

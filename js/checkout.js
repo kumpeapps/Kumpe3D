@@ -109,29 +109,27 @@ paypal.Buttons({
             const payments = purchaseUnits[0]['payments'];
             const captureID = payments['captures'][0]['id'];
             let checkoutData = getCheckoutData();
-            let orderID = "unavailable.";
+            const client_ip = GET("https://api.ipify.org", false);
+            const browser = navigator.userAgent;
             checkoutData.ppTransactionID = transactionID;
             checkoutData.ppCaptureID = captureID;
             checkoutData.paymentMethod = fundingSource;
-            checkoutData.statusID = 3;
+            checkoutData.client_ip = client_ip;
+            checkoutData.browser = browser;
             if (!debugEnabled) {
                 orderSuccess();
             }
-            fetch("submit_order.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    checkout_data: checkoutData,
-                    session_id: sessionID
-                })
-            });
+            post_body = {"checkout_data": checkoutData, "session_id": sessionID};
+            if (debugEnabled) {
+                console.debug(post_body);
+                document.getElementById("orderNotes").value = JSON.stringify(post_body);
+            }
+            postJSON(apiUrl + "/checkout-final?session_id=" + sessionID, checkoutData);
         });
     },
 
     onError(err) {
-        console.error(err);
+        console.error(JSON.stringify(err));
         Swal.fire(
             'PayPal Error',
             'An error occurred while processing your PayPal payment. Please try again.',
@@ -176,6 +174,9 @@ function setListeners() {
     document.getElementById("emailInput").addEventListener("keyup", function () {
         validateEmail();
     });
+    document.getElementById("countrySelect").addEventListener("change", function () {
+        buildCheckout();
+    });
 };
 
 function orderSuccess() {
@@ -190,7 +191,7 @@ function orderSuccess() {
     });
 };
 
-function devData() {
+function devData(cc = 'US') {
     const firstName = document.getElementById("firstNameInput");
     const lastName = document.getElementById("lastNameInput");
     const companyName = document.getElementById("companyName");
@@ -198,13 +199,47 @@ function devData() {
     const zip = document.getElementById("zipCodeInput");
     const email = document.getElementById("emailInput");
     const phone = document.getElementById("phoneInput");
-    firstName.value = "Justin";
-    lastName.value = "Doe";
-    address.value = "700 W Walnut St";
-    zip.value = "72756";
-    phone.value = "5555555555";
-    email.value = "jakumpe@dev.kumpes.com";
-    companyName.value = "KumpeApps Dev"
+    const state = document.getElementById("stateInput");
+    const city = document.getElementById("cityInput");
+    const country = document.getElementById("countrySelect");
+    const countryOptions = country.options.length;
+    for (let i=0; i<countryOptions; i++) {
+        if (country.options[i].value == cc) {
+            country.options[i].selected = true;
+            break;
+        }
+    }
+    if (cc == 'US') {
+        firstName.value = "Justin";
+        lastName.value = "Doe";
+        address.value = "700 W Walnut St";
+        zip.value = "72756";
+        phone.value = "5555555555";
+        email.value = "jakumpe@dev.kumpes.com";
+        companyName.value = "KumpeApps Dev"
+    } else if (cc == 'CA') {
+        firstName.value = "Justin";
+        lastName.value = "Doe";
+        address.value = "1403 Charing Cross Rd";
+        country.value = cc;
+        city.value = "Chatham";
+        state.value = "Ontario";
+        zip.value = "N7M 2G9";
+        phone.value = "5555555555";
+        email.value = "jakumpe@dev.kumpes.com";
+        companyName.value = "KumpeApps Dev"
+    } else if (cc == 'GB') {
+        firstName.value = "Justin";
+        lastName.value = "Doe";
+        address.value = "33 Station Road";
+        country.value = cc;
+        city.value = "NA";
+        state.value = "Leicester";
+        zip.value = "LE28 1NR";
+        phone.value = "5555555555";
+        email.value = "jakumpe@dev.kumpes.com";
+        companyName.value = "KumpeApps Dev"
+    }
     validateAddress();
     validateEmail();
     validateFName();
@@ -305,8 +340,14 @@ function buildCheckout() {
     const itemsDiv = document.getElementById('checkout_items');
     const subtotalLabel = document.getElementById('cart_subtotal');
     const totalLabel = document.getElementById('cart_total');
+    const shippingCostValue = document.getElementById('shippingCost');
+    const shippingLabel = document.getElementById('shippingLabel');
+    const shippingCostLabel = document.getElementById('shippingCostLabel');
     removeAllChildNodes(itemsDiv);
     subtotalLabel.innerHTML = '$' + checkoutData.cart.subtotal;
+    shippingCostValue.value = checkoutData.shippingCost;
+    shippingLabel.innerHTML = 'Flat Rate: $' + checkoutData.shippingCost;
+    shippingCostLabel.innerHTML = '$' + checkoutData.shippingCost;
     totalLabel.innerHTML = '$' + checkoutData.grandTotal;
     cart.forEach(renderCheckoutList);
 
@@ -396,9 +437,11 @@ function validateZipCode() {
     const field = document.getElementById(fieldID).value;
     const valid = validator.isPostalCode(field, country);
     if (valid) {
-        zipData = GET(apiUrl + "/zipcode?single_record=1&zip=" + field).response;
-        document.getElementById("stateInput").value = zipData.state_id;
-        document.getElementById("cityInput").value = zipData.city;
+        if (country == 'US') {
+            zipData = GET(apiUrl + "/zipcode?single_record=1&zip=" + field).response;
+            document.getElementById("stateInput").value = zipData.state_id;
+            document.getElementById("cityInput").value = zipData.city;
+        }
         document.getElementById("cityContainer").removeAttribute("hidden");
         document.getElementById("stateContainer").removeAttribute("hidden");
     }

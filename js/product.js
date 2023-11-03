@@ -1,5 +1,6 @@
-let product
-let querySKU
+let product;
+let querySKU;
+let addToCartCount = 1;
 refresh();
 
 function load() {
@@ -21,8 +22,8 @@ function load() {
     titleCrumb.innerHTML = product.title
     titleLabel.innerHTML = product.title
     descriptionLabel.innerHTML = product.description
-    const changeQty = document.querySelector("#qty");
-    const addToCartButton = document.querySelector("#addToCartButton");
+    const changeQty = document.querySelector("#productQuantity");
+    const addToCartButton = document.querySelector("#addToCartButton1");
     changeQty.addEventListener("change", function () {
         changedQty();
     });
@@ -31,8 +32,8 @@ function load() {
         changedQty();
     });
     addToCartButton.addEventListener("click", function () {
-        addToCart();
-    });
+        addToCart(this);
+    }, once= true);
 };
 
 function getColorValue() {
@@ -70,7 +71,11 @@ function buildColorOptions() {
         status.innerHTML = element['status'];
         const img = document.createElement("img");
         img.setAttribute("class", "rounded");
-        img.setAttribute("src", "https://images.kumpeapps.com/filament?swatch=" + element['swatch_id'] + "_" + base_sku);
+        if (getCookie("qr_images")) {
+            img.setAttribute("src", "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + base_sku + "-" + element['swatch_id']);
+        } else {
+            img.setAttribute("src", "https://images.kumpeapps.com/filament?swatch=" + element['swatch_id'] + "_" + base_sku);
+        }
         if (element['status'] == "Backordered" || element['status'] == "Discontinued") {
             input.disabled = true;
         };
@@ -98,7 +103,7 @@ function changedColor() {
 function changedQty() {
     const priceLabel = document.querySelector("#priceLabel");
     const totalPriceLabel = document.querySelector("#totalPriceLabel");
-    const qty = document.getElementById('qty').value;
+    const qty = document.getElementById('productQuantity').value;
     const isOnSaleBadge = document.getElementById('isOnSaleBadge');
     const productPrice = GET(apiUrl + "/product-price?sku=" + querySKU + "&quantity=" + qty).response
     if (Boolean(productPrice.isOnSale)) {
@@ -140,24 +145,41 @@ function refresh() {
     loadingOverlay().cancel(spinHandle);
 };
 
-function addToCart() {
-    const sku = skuLabel.innerHTML;
-    const qty = document.getElementById('qty').value;
-    if (!isColorSet()) {
-        Swal.fire(
-            'Error!',
-            'Please select a color',
-            'error'
-        );
-    } else {
-        const data = {
-            "sku": sku,
-            "quantity": qty,
-            "customization": ""
-        };
-        postJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data);
-        
+function addToCart(element) {
+    const addToCartButtonTag = "addToCartButton" + addToCartCount;
+    if (element.id == addToCartButtonTag) {
+        removeAllChildNodes(document.getElementById("addToCartContainer"));
+        addingToCart = true;
+        const sku = skuLabel.innerHTML;
+        const productQuantity = document.getElementById('productQuantity').value;
+        if (!isColorSet()) {
+            Swal.fire(
+                'Error!',
+                'Please select a color',
+                'error'
+            );
+        } else {
+            const data = {
+                "sku": sku,
+                "quantity": productQuantity,
+                "customization": ""
+            };
+            postJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data);
+
+            // document.getElementById("cartButton").click();
+        }
+        updateShoppingCartModal();
+        addToCartCount += 1;
+        const addToCartButtonTagNew = "addToCartButton" + addToCartCount;
+        const button = document.createElement("a");
+        button.setAttribute("class", "btn btn-secondary w-100");
+        button.setAttribute("id", addToCartButtonTagNew);
+        button.innerHTML = "ADD TO CART";
+        document.getElementById("addToCartContainer").appendChild(button);
+        const addToCartButton = document.querySelector("#" + addToCartButtonTagNew);
+        addToCartButton.addEventListener("click", function () {
+            addToCart(this);
+        }, once= true);
         document.getElementById("cartButton").click();
     }
-    updateShoppingCartModal();
 };
