@@ -416,7 +416,7 @@ $conn = mysqli_connect(
 											<div class="shop-card">
 												<div class="dz-media">
 													<img src="images/shop/product/2.png" alt="image">										
-													<div class="shop-meta">
+													<!-- <div class="shop-meta">
 														<a href="javascript:void(0);" class="btn btn-secondary btn-icon" data-bs-toggle="modal" data-bs-target="#exampleModal">
 															<i class="fa-solid fa-eye d-md-none d-block"></i>
 															<span class="d-md-block d-none">Quick View</span>
@@ -438,11 +438,11 @@ $conn = mysqli_connect(
 																<path d="M6.61539 11.9676C6.57716 11.0948 5.85687 10.4077 4.98324 10.4108C4.08483 10.4471 3.38595 11.2048 3.42225 12.1032C3.45708 12.9653 4.15833 13.6505 5.02092 13.6653H5.06017C5.95846 13.626 6.65474 12.8658 6.61539 11.9676Z" fill="white"/>
 															</svg>
 														</div>
-													</div>
+													</div> -->
 												</div>
 												<div class="dz-content">
 													<h5 class="title"><a href="shop-list.html">Wooden Cup</a></h5>
-													<ul class="star-rating">
+													<!-- <ul class="star-rating">
 														<li>
 															<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 																<path d="M7.24805 0.734375L9.22301 5.01608L13.9054 5.57126L10.4436 8.77267L11.3625 13.3975L7.24805 11.0944L3.13355 13.3975L4.0525 8.77267L0.590651 5.57126L5.27309 5.01608L7.24805 0.734375Z" fill="#FF8A00"></path>
@@ -468,7 +468,7 @@ $conn = mysqli_connect(
 																<path d="M7.24805 0.734375L9.22301 5.01608L13.9054 5.57126L10.4436 8.77267L11.3625 13.3975L7.24805 11.0944L3.13355 13.3975L4.0525 8.77267L0.590651 5.57126L5.27309 5.01608L7.24805 0.734375Z" fill="#E4E5E8"></path>
 															</svg>
 														</li>
-													</ul>
+													</ul> -->
 													<h6 class="price">
 														<del>$25.00</del>
 														$10.00
