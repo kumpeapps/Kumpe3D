@@ -7,7 +7,6 @@ $conn = mysqli_connect(
 	'Web_3dprints'
 ) or die("Couldn't connect to server.");
 ?>
-</hr>
 <!-- Footer -->
 <footer class="site-footer style-1">
 	<!-- Footer Top -->
