@@ -506,6 +506,7 @@ $conn = mysqli_connect(
 	<script nonce="<?php echo $nonce; ?>" src="vendor-js/lightgallery/dist/plugins/zoom/lg-zoom.min.js"></script>
 	<script nonce="<?php echo $nonce; ?>" src="js/dz.ajax.js"></script><!-- AJAX -->
 	<script nonce="<?php echo $nonce; ?>" src="js/custom.js"></script><!-- CUSTOM JS -->
+	<script nonce="<?php echo $nonce; ?>" src="js/shop.js"></script>
 
 </body>
 

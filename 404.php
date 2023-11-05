@@ -106,7 +106,7 @@ $conn = mysqli_connect(
 							</div>
 							<div class="error-inner">
 								<h1 class="dz_error">404</h1>
-								<p class="error-head">Oh, no! This page does not exist.</p>
+								<p class="error-head">Oh, no! This page or product does not exist.</p>
 								<a href="index.php" class="btn btn-secondary  text-uppercase">Go to Main Page</a>
 							</div>
 						</div>
