@@ -67,16 +67,16 @@ $conn = mysqli_connect(
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<!-- STYLESHEETS -->
-	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/bootstrap-select/dist/css/bootstrap-select.min.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="icons/fontawesome/css/all.min.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="icons/themify/themify-icons.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="icons/flaticon/flaticon_mooncart.css">
-	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor/swiper/swiper-bundle.min.css">
-	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor/nouislider/nouislider.min.css">
-	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor/lightgallery/dist/css/lightgallery.css" >
-    <link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor/lightgallery/dist/css/lg-thumbnail.css">
-    <link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor/lightgallery/dist/css/lg-zoom.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/swiper/swiper-bundle.min.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/nouislider/nouislider.min.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/animate/animate.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lightgallery.css" >
+    <link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-thumbnail.css">
+    <link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-zoom.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="css/style.css">
 	<script nonce="<?php echo $nonce; ?>" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	
@@ -3779,24 +3779,24 @@ $conn = mysqli_connect(
 
 <!-- JAVASCRIPT FILES ========================================= -->
 <script nonce="<?php echo $nonce; ?>" src="js/jquery.min.js"></script><!-- JQUERY MIN JS -->
-<script nonce="<?php echo $nonce; ?>" src="vendor/wow/wow.min.js"></script><!-- WOW JS -->
-<script nonce="<?php echo $nonce; ?>" src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP MIN JS -->
-<script nonce="<?php echo $nonce; ?>" src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELECT MIN JS -->
-<script nonce="<?php echo $nonce; ?>" src="vendor/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN JS -->
+<script nonce="<?php echo $nonce; ?>" src="vendor-js/wow/wow.min.js"></script><!-- WOW JS -->
+<script nonce="<?php echo $nonce; ?>" src="vendor-js/bootstrap/dist/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP MIN JS -->
+<script nonce="<?php echo $nonce; ?>" src="vendor-js/bootstrap-select/dist/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELECT MIN JS -->
+<script nonce="<?php echo $nonce; ?>" src="vendor-js/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN JS -->
 
-<script nonce="<?php echo $nonce; ?>" src="vendor/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
-<script nonce="<?php echo $nonce; ?>" src="vendor/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
-<script nonce="<?php echo $nonce; ?>" src="vendor/swiper/swiper-bundle.min.js"></script><!-- SWIPER JS -->
-<script nonce="<?php echo $nonce; ?>" src="vendor/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED-->
-<script nonce="<?php echo $nonce; ?>" src="vendor/masonry/masonry-4.2.2.js"></script><!-- MASONRY -->
-<script nonce="<?php echo $nonce; ?>" src="vendor/masonry/isotope.pkgd.min.js"></script><!-- ISOTOPE -->
-<script nonce="<?php echo $nonce; ?>" src="vendor/countdown/jquery.countdown.js"></script><!-- COUNTDOWN FUCTIONS  -->
-<script nonce="<?php echo $nonce; ?>" src="vendor/wnumb/wNumb.js"></script><!-- WNUMB -->
-<script nonce="<?php echo $nonce; ?>" src="vendor/nouislider/nouislider.min.js"></script><!-- NOUSLIDER MIN JS-->
+<script nonce="<?php echo $nonce; ?>" src="vendor-js/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
+<script nonce="<?php echo $nonce; ?>" src="vendor-js/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
+<script nonce="<?php echo $nonce; ?>" src="vendor-js/swiper/swiper-bundle.min.js"></script><!-- SWIPER JS -->
+<script nonce="<?php echo $nonce; ?>" src="vendor-js/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED-->
+<script nonce="<?php echo $nonce; ?>" src="vendor-js/masonry/masonry-4.2.2.js"></script><!-- MASONRY -->
+<script nonce="<?php echo $nonce; ?>" src="vendor-js/masonry/isotope.pkgd.min.js"></script><!-- ISOTOPE -->
+<script nonce="<?php echo $nonce; ?>" src="vendor-js/countdown/jquery.countdown.js"></script><!-- COUNTDOWN FUCTIONS  -->
+<script nonce="<?php echo $nonce; ?>" src="vendor-js/wnumb/wNumb.js"></script><!-- WNUMB -->
+<script nonce="<?php echo $nonce; ?>" src="vendor-js/nouislider/nouislider.min.js"></script><!-- NOUSLIDER MIN JS-->
 <script nonce="<?php echo $nonce; ?>" src="js/dz.carousel.js"></script><!-- DZ CAROUSEL JS -->
-<script nonce="<?php echo $nonce; ?>" src="vendor/lightgallery/dist/lightgallery.min.js"></script>
-<script nonce="<?php echo $nonce; ?>" src="vendor/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js"></script>
-<script nonce="<?php echo $nonce; ?>" src="vendor/lightgallery/dist/plugins/zoom/lg-zoom.min.js"></script>
+<script nonce="<?php echo $nonce; ?>" src="vendor-js/lightgallery/dist/lightgallery.min.js"></script>
+<script nonce="<?php echo $nonce; ?>" src="vendor-js/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js"></script>
+<script nonce="<?php echo $nonce; ?>" src="vendor-js/lightgallery/dist/plugins/zoom/lg-zoom.min.js"></script>
 <script nonce="<?php echo $nonce; ?>" src="js/dz.ajax.js"></script><!-- AJAX -->
 <script nonce="<?php echo $nonce; ?>" src="js/custom.js"></script><!-- CUSTOM JS -->
 
