@@ -617,7 +617,7 @@ $conn = mysqli_connect(
 													</h6>
 												</div>
 												<div class="product-tag">
-													<span class="badge badge-secondary">-12%</span>
+													<!-- <span class="badge badge-secondary">-12%</span> -->
 													<span class="badge badge-primary">Featured</span>
 												</div>
 											</div>	
