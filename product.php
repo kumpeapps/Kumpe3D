@@ -21,7 +21,7 @@ if (isset($_GET['sku'])) {
 		$sku['sku'] = 'ALO-POO-LSN-000';
 	} else {
 		http_response_code(404);
-		include('./ErrorPages/HTTP404.html');
+		include('./404.php');
 		die();
 	}
 }
