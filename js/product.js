@@ -9,14 +9,6 @@ function load() {
     const descriptionLabel = document.querySelector("#descriptionLabel");
     querySKU = urlParams.get('sku')
 
-    if (env == 'dev') {
-        Swal.fire(
-            'Pre-Prod Server!',
-            'You are viewing the Pre-Production/Dev server. Orders submitted via this site will not be filled or charged. Only PayPal sandbox accounts/credit cards will work.',
-            'warning'
-        );
-    };
-
     product = GET(apiUrl + "/product?sku=" + querySKU).response
 
     titleCrumb.innerHTML = product.title

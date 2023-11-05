@@ -387,13 +387,6 @@ function onload() {
     setListeners();
     refresh();
     isValidCheck();
-    if (env == 'dev') {
-        Swal.fire(
-            'PreProd Server!',
-            'You are viewing the Pre-Production/Dev server. Orders submitted via this site will not be filled or charged. Only PayPal sandbox accounts/credit cards will work.',
-            'warning'
-        );
-    };
 };
 
 function validateFName() {
