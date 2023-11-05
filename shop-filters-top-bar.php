@@ -171,7 +171,7 @@ $conn = mysqli_connect(
 											<option>3 Months</option>
 										</select>
 									</div> -->
-									<div class="form-group Category">
+									<!-- <div class="form-group Category">
 										<select class="default-select">
 											<option>Categories</option>
 											<option>1 Day</option>
@@ -180,7 +180,7 @@ $conn = mysqli_connect(
 											<option>1 Month</option>
 											<option>3 Months</option>
 										</select>
-									</div>
+									</div> -->
 									<div class="shop-tab">
 										<ul class="nav" role="tablist" id="dz-shop-tab">
 											<!-- <li class="nav-item" role="presentation">
