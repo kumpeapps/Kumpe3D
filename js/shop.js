@@ -1,5 +1,5 @@
 let products;
-
+refresh();
 
 function getProducts(sku = "%", category = "%", tag = "%") {
     products = GET(apiUrl + "/product?sku=" + sku + "&category_filter=" + category + "&tag_filter=" + tag).response;
