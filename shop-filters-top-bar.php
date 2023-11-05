@@ -3392,9 +3392,9 @@ $conn = mysqli_connect(
 						</div>
 						<div class="row page mt-0">
 							<div class="col-md-6">
-								<p class="page-text">Showing 1–5 Of 50 Results</p>
+								<p class="page-text">Showing Results</p>
 							</div>
-							<div class="col-md-6">
+							<!-- <div class="col-md-6">
 								<nav aria-label="Blog Pagination">
 									<ul class="pagination style-1">
 										<li class="page-item"><a class="page-link prev" href="javascript:void(0);">Prev</a></li>
@@ -3404,7 +3404,7 @@ $conn = mysqli_connect(
 										<li class="page-item"><a class="page-link next" href="javascript:void(0);">Next</a></li>
 									</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
