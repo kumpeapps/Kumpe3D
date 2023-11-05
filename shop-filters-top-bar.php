@@ -343,7 +343,7 @@ $conn = mysqli_connect(
 						
 						<div class="row">
 							<div class="col-12 tab-content shop-" id="pills-tabContent">
-								<div class="tab-pane fade " id="tab-list-list" role="tabpanel" aria-labelledby="tab-list-list-btn">
+								<!-- <div class="tab-pane fade " id="tab-list-list" role="tabpanel" aria-labelledby="tab-list-list-btn">
 									<div class="row">
 										<div class="col-md-12 col-sm-12 col-xxxl-6">
 											<div class="dz-shop-card style-2">
@@ -1004,8 +1004,8 @@ $conn = mysqli_connect(
 											</div>
 										</div>
 									</div>
-								</div>
-								<!-- <div class="tab-pane fade" id="tab-list-column" role="tabpanel" aria-labelledby="tab-list-column-btn">
+								</div> -->
+								<div class="tab-pane fade" id="tab-list-column" role="tabpanel" aria-labelledby="tab-list-column-btn">
 									<div class="row gx-xl-4 g-3 mb-xl-0 mb-md-0 mb-3">
 										<div class="col-6 col-xl-4 col-lg-6 col-md-6 col-sm-6 m-md-b15 m-sm-b0 m-b30">
 											<div class="shop-card">
@@ -2692,8 +2692,8 @@ $conn = mysqli_connect(
 										</div>
 										
 									</div>
-								</div> -->
-								<div class="tab-pane fade" id="tab-list-collage" role="tabpanel" aria-labelledby="tab-list-collage-btn">
+								</div>
+								<!-- <div class="tab-pane fade" id="tab-list-collage" role="tabpanel" aria-labelledby="tab-list-collage-btn">
 									<div class="row">
 										<div class="col-lg-6">
 											<div class="shop-card">
@@ -3387,7 +3387,7 @@ $conn = mysqli_connect(
 											</div>	
 										</div>
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 						<div class="row page mt-0">
