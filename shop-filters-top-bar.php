@@ -138,7 +138,7 @@ $conn = mysqli_connect(
 										</a>
 									</li>
 								</ul> -->
-								<span id="resultsCount">Showing <div id="resultsCount"></div> Results</span>
+								<span id="resultsCountTop">Showing <span id="resultsCount"></span> Results</span>
 							</div>
 							<!-- <div class="filter-right-area">
 								<div class="form-group">
@@ -3392,7 +3392,7 @@ $conn = mysqli_connect(
 						</div>
 						<div class="row page mt-0">
 							<div class="col-md-6">
-								<p id="resultsCountBottom" class="page-text">Showing <div id="resultsCount"></div> Results</p>
+								<p id="resultsCountBottom" class="page-text">Showing <span id="resultsCount"></span> Results</p>
 							</div>
 							<!-- <div class="col-md-6">
 								<nav aria-label="Blog Pagination">
