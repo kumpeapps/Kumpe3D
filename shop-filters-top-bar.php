@@ -121,7 +121,7 @@ $conn = mysqli_connect(
 					<div class="col-xl-12">
 						<div class="filter-wrapper">
 							<div class="filter-left-area">								
-								<ul class="filter-tag">
+								<!-- <ul class="filter-tag">
 									<li>
 										<a href="javascript:void(0);" class="tag-btn">Bottle 
 											<i class="icon feather icon-x tag-close"></i>
@@ -137,7 +137,7 @@ $conn = mysqli_connect(
 											<i class="icon feather icon-x tag-close"></i>
 										</a>
 									</li>
-								</ul>
+								</ul> -->
 								<span>Showing Results</span>
 							</div>
 							<!-- <div class="filter-right-area">
@@ -169,11 +169,11 @@ $conn = mysqli_connect(
 								</div> -->
 								<div class="shop-tab">
 									<ul class="nav" role="tablist" id="dz-shop-tab">
-										<li class="nav-item" role="presentation">
+										<!-- <li class="nav-item" role="presentation">
 											<a href="#tab-list-list" class="nav-link active" id="tab-list-list-btn" data-bs-toggle="pill" data-bs-target="#tab-list-list" role="tab" aria-controls="tab-list-list" aria-selected="true">
 												<i class="flaticon flaticon-list"></i>
 											</a>
-										</li>
+										</li> -->
 										<li class="nav-item" role="presentation">
 											<a href="#tab-list-column" class="nav-link" id="tab-list-column-btn" data-bs-toggle="pill" data-bs-target="#tab-list-column" role="tab" aria-controls="tab-list-column" aria-selected="false">
 												<i class="flaticon flaticon-blocks"></i>
@@ -184,11 +184,11 @@ $conn = mysqli_connect(
 												<i class="flaticon flaticon-menu"></i>
 											</a>
 										</li>
-										<li class="nav-item" role="presentation">
+										<!-- <li class="nav-item" role="presentation">
 											<a href="#tab-list-collage" class="nav-link" id="tab-list-collage-btn" data-bs-toggle="pill" data-bs-target="#tab-list-collage" role="tab" aria-controls="tab-list-collage" aria-selected="false">
 												<i class="flaticon flaticon-sections"></i>
 											</a>
-										</li>
+										</li> -->
 									</ul>
 								</div>
 							</div>
