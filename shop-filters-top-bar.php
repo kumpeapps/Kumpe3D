@@ -488,7 +488,7 @@ $conn = mysqli_connect(
 											<div class="shop-card">
 												<div class="dz-media">
 													<img src="images/shop/product/1.png" alt="image">
-													<div class="shop-meta">
+													<!-- <div class="shop-meta">
 														<a href="javascript:void(0);" class="btn btn-secondary btn-icon" data-bs-toggle="modal" data-bs-target="#exampleModal">
 															<i class="fa-solid fa-eye d-md-none d-block"></i>
 															<span class="d-md-block d-none">Quick View</span>
@@ -510,7 +510,7 @@ $conn = mysqli_connect(
 																<path d="M6.61539 11.9676C6.57716 11.0948 5.85687 10.4077 4.98324 10.4108C4.08483 10.4471 3.38595 11.2048 3.42225 12.1032C3.45708 12.9653 4.15833 13.6505 5.02092 13.6653H5.06017C5.95846 13.626 6.65474 12.8658 6.61539 11.9676Z" fill="white"/>
 															</svg>
 														</div>
-													</div>	
+													</div>	 -->
 												</div>
 												<div class="dz-content">
 													<h5 class="title"><a href="shop-list.html">Wooden Water Bottles</a></h5>
