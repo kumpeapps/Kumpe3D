@@ -193,7 +193,7 @@ $conn = mysqli_connect(
 								</div>
 							</div> -->
 						</div>
-						<div class="col-xl-12 shop-top-filter">
+						<!-- <div class="col-xl-12 shop-top-filter">
 							<a href="javascript:void(0);" class="panel-close-btn">																	
 								<svg width="35" height="35" viewBox="0 0 51 50" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M37.748 12.5L12.748 37.5" stroke="white" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
@@ -339,7 +339,7 @@ $conn = mysqli_connect(
 									<a href="javascript:void(0);" class="btn btn-sm font-14 btn-primary btn-sharp reset-btn">RESET</a>
 								</aside>
 							</div>
-						</div>
+						</div> -->
 						
 						<div class="row">
 							<div class="col-12 tab-content shop-" id="pills-tabContent">
