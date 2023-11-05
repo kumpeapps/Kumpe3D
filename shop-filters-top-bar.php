@@ -19,13 +19,8 @@ $conn = mysqli_connect(
 <html lang="en">
 
 <head>
-<script
-	nonce="<?php echo $nonce; ?>"
-  type="text/javascript"
-  src="https://app.termly.io/embed.min.js"
-  data-auto-block="off"
-  data-website-uuid="f0526f09-9728-4a75-853d-72961022b400"
-></script>
+	<script nonce="<?php echo $nonce; ?>" type="text/javascript" src="https://app.termly.io/embed.min.js"
+		data-auto-block="off" data-website-uuid="f0526f09-9728-4a75-853d-72961022b400"></script>
 	<!-- Meta -->
 	<meta http-equiv="Content-Security-Policy-Report-Only" content="
 		default-src 'self';
@@ -65,25 +60,31 @@ $conn = mysqli_connect(
 
 	<!-- MOBILE SPECIFIC -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 	<!-- STYLESHEETS -->
-	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/bootstrap-select/dist/css/bootstrap-select.min.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css"
+		href="vendor-js/bootstrap-select/dist/css/bootstrap-select.min.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="icons/fontawesome/css/all.min.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="icons/themify/themify-icons.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="icons/flaticon/flaticon_mooncart.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/swiper/swiper-bundle.min.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/nouislider/nouislider.min.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/animate/animate.css">
-	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lightgallery.css" >
-    <link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-thumbnail.css">
-    <link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="vendor-js/lightgallery/dist/css/lg-zoom.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css"
+		href="vendor-js/lightgallery/dist/css/lightgallery.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css"
+		href="vendor-js/lightgallery/dist/css/lg-thumbnail.css">
+	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css"
+		href="vendor-js/lightgallery/dist/css/lg-zoom.css">
 	<link nonce="<?php echo $nonce; ?>" rel="stylesheet" type="text/css" href="css/style.css">
 	<script nonce="<?php echo $nonce; ?>" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	
+
 	<!-- GOOGLE FONTS-->
 	<link nonce="<?php echo $nonce; ?>" rel="preconnect" href="https://fonts.googleapis.com">
 	<link nonce="<?php echo $nonce; ?>" rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link nonce="<?php echo $nonce; ?>" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+	<link nonce="<?php echo $nonce; ?>"
+		href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap"
+		rel="stylesheet">
 
 </head>
 
@@ -99,29 +100,29 @@ $conn = mysqli_connect(
 		<?php
 		include('./includes/header.php');
 		?>
-	
-	<div class="page-content">
-		<!--banner-->
-		<div class="dz-bnr-inr style-1" style="background-image:url(images/background/bg-shape.jpg);">
-			<div class="container">
-				<div class="dz-bnr-inr-entry">
-					<h1>Shop Kumpe3D</h1>
-					<nav aria-label="breadcrumb" class="breadcrumb-row">
-						<ul class="breadcrumb">
-							<li class="breadcrumb-item"><a href="index.html"> Home</a></li>
-						</ul>
-					</nav>
+
+		<div class="page-content">
+			<!--banner-->
+			<div class="dz-bnr-inr style-1" style="background-image:url(images/background/bg-shape.jpg);">
+				<div class="container">
+					<div class="dz-bnr-inr-entry">
+						<h1>Shop Kumpe3D</h1>
+						<nav aria-label="breadcrumb" class="breadcrumb-row">
+							<ul class="breadcrumb">
+								<li class="breadcrumb-item"><a href="index.html"> Home</a></li>
+							</ul>
+						</nav>
+					</div>
 				</div>
 			</div>
-		</div>
-		
-		<section class="content-inner pt-3 z-index-unset">
-			<div class="container-fluid">
-				<div class="row ">
-					<div class="col-xl-12">
-						<div class="filter-wrapper">
-							<div class="filter-left-area">								
-								<!-- <ul class="filter-tag">
+
+			<section class="content-inner pt-3 z-index-unset">
+				<div class="container-fluid">
+					<div class="row ">
+						<div class="col-xl-12">
+							<div class="filter-wrapper">
+								<div class="filter-left-area">
+									<!-- <ul class="filter-tag">
 									<li>
 										<a href="javascript:void(0);" class="tag-btn">Bottle 
 											<i class="icon feather icon-x tag-close"></i>
@@ -138,62 +139,79 @@ $conn = mysqli_connect(
 										</a>
 									</li>
 								</ul> -->
-								<span>Showing <span id="resultsCountTop"></span> Results</span>
-							</div>
-							<!-- <div class="filter-right-area">
-								<div class="form-group">
-									<a href="javascript:void(0);" class="filter-top-btn" id="filterTopBtn">
-										<svg class="me-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" width="20" height="20"><g id="Layer_29" data-name="Layer 29"><path d="M2.54,5H15v.5A1.5,1.5,0,0,0,16.5,7h2A1.5,1.5,0,0,0,20,5.5V5h2.33a.5.5,0,0,0,0-1H20V3.5A1.5,1.5,0,0,0,18.5,2h-2A1.5,1.5,0,0,0,15,3.5V4H2.54a.5.5,0,0,0,0,1ZM16,3.5a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5v2a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1-.5-.5Z"></path><path d="M22.4,20H18v-.5A1.5,1.5,0,0,0,16.5,18h-2A1.5,1.5,0,0,0,13,19.5V20H2.55a.5.5,0,0,0,0,1H13v.5A1.5,1.5,0,0,0,14.5,23h2A1.5,1.5,0,0,0,18,21.5V21h4.4a.5.5,0,0,0,0-1ZM17,21.5a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1-.5-.5v-2a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5Z"></path><path d="M8.5,15h2A1.5,1.5,0,0,0,12,13.5V13H22.45a.5.5,0,1,0,0-1H12v-.5A1.5,1.5,0,0,0,10.5,10h-2A1.5,1.5,0,0,0,7,11.5V12H2.6a.5.5,0,1,0,0,1H7v.5A1.5,1.5,0,0,0,8.5,15ZM8,11.5a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5v2a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1-.5-.5Z"></path></g></svg>
-										Filter
-									</a>
+									<span>Showing <span id="resultsCountTop"></span> Results</span>
 								</div>
-								<div class="form-group">
-									<select class="default-select">
-										<option>Default sorting</option>
-										<option>1 Day</option>
-										<option>1 Week</option>
-										<option>3 Weeks</option>
-										<option>1 Month</option>
-										<option>3 Months</option>
-									</select>
-								</div>
-								<div class="form-group Category">
-									<select class="default-select">
-										<option>Categories</option>
-										<option>1 Day</option>
-										<option>1 Week</option>
-										<option>3 Weeks</option>
-										<option>1 Month</option>
-										<option>3 Months</option>
-									</select>
-								</div> -->
-								<div class="shop-tab">
-									<ul class="nav" role="tablist" id="dz-shop-tab">
-										<!-- <li class="nav-item" role="presentation">
+								<div class="filter-right-area">
+									<!-- <div class="form-group">
+										<a href="javascript:void(0);" class="filter-top-btn" id="filterTopBtn">
+											<svg class="me-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"
+												width="20" height="20">
+												<g id="Layer_29" data-name="Layer 29">
+													<path
+														d="M2.54,5H15v.5A1.5,1.5,0,0,0,16.5,7h2A1.5,1.5,0,0,0,20,5.5V5h2.33a.5.5,0,0,0,0-1H20V3.5A1.5,1.5,0,0,0,18.5,2h-2A1.5,1.5,0,0,0,15,3.5V4H2.54a.5.5,0,0,0,0,1ZM16,3.5a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5v2a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1-.5-.5Z">
+													</path>
+													<path
+														d="M22.4,20H18v-.5A1.5,1.5,0,0,0,16.5,18h-2A1.5,1.5,0,0,0,13,19.5V20H2.55a.5.5,0,0,0,0,1H13v.5A1.5,1.5,0,0,0,14.5,23h2A1.5,1.5,0,0,0,18,21.5V21h4.4a.5.5,0,0,0,0-1ZM17,21.5a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1-.5-.5v-2a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5Z">
+													</path>
+													<path
+														d="M8.5,15h2A1.5,1.5,0,0,0,12,13.5V13H22.45a.5.5,0,1,0,0-1H12v-.5A1.5,1.5,0,0,0,10.5,10h-2A1.5,1.5,0,0,0,7,11.5V12H2.6a.5.5,0,1,0,0,1H7v.5A1.5,1.5,0,0,0,8.5,15ZM8,11.5a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5v2a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1-.5-.5Z">
+													</path>
+												</g>
+											</svg>
+											Filter
+										</a>
+									</div> -->
+									<!-- <div class="form-group">
+										<select class="default-select">
+											<option>Default sorting</option>
+											<option>1 Day</option>
+											<option>1 Week</option>
+											<option>3 Weeks</option>
+											<option>1 Month</option>
+											<option>3 Months</option>
+										</select>
+									</div> -->
+									<div class="form-group Category">
+										<select class="default-select">
+											<option>Categories</option>
+											<option>1 Day</option>
+											<option>1 Week</option>
+											<option>3 Weeks</option>
+											<option>1 Month</option>
+											<option>3 Months</option>
+										</select>
+									</div>
+									<div class="shop-tab">
+										<ul class="nav" role="tablist" id="dz-shop-tab">
+											<!-- <li class="nav-item" role="presentation">
 											<a href="#tab-list-list" class="nav-link active" id="tab-list-list-btn" data-bs-toggle="pill" data-bs-target="#tab-list-list" role="tab" aria-controls="tab-list-list" aria-selected="true">
 												<i class="flaticon flaticon-list"></i>
 											</a>
 										</li> -->
-										<li class="nav-item" role="presentation">
-											<a href="#tab-list-column" class="nav-link" id="tab-list-column-btn" data-bs-toggle="pill" data-bs-target="#tab-list-column" role="tab" aria-controls="tab-list-column" aria-selected="false">
-												<i class="flaticon flaticon-blocks"></i>
-											</a>
-										</li>
-										<li class="nav-item" role="presentation">
-											<a href="#tab-list-grid" class="nav-link" id="tab-list-grid-btn" data-bs-toggle="pill" data-bs-target="#tab-list-grid" role="tab" aria-controls="tab-list-grid" aria-selected="false">
-												<i class="flaticon flaticon-menu"></i>
-											</a>
-										</li>
-										<!-- <li class="nav-item" role="presentation">
+											<li class="nav-item" role="presentation">
+												<a href="#tab-list-column" class="nav-link" id="tab-list-column-btn"
+													data-bs-toggle="pill" data-bs-target="#tab-list-column" role="tab"
+													aria-controls="tab-list-column" aria-selected="false">
+													<i class="flaticon flaticon-blocks"></i>
+												</a>
+											</li>
+											<li class="nav-item" role="presentation">
+												<a href="#tab-list-grid" class="nav-link" id="tab-list-grid-btn"
+													data-bs-toggle="pill" data-bs-target="#tab-list-grid" role="tab"
+													aria-controls="tab-list-grid" aria-selected="false">
+													<i class="flaticon flaticon-menu"></i>
+												</a>
+											</li>
+											<!-- <li class="nav-item" role="presentation">
 											<a href="#tab-list-collage" class="nav-link" id="tab-list-collage-btn" data-bs-toggle="pill" data-bs-target="#tab-list-collage" role="tab" aria-controls="tab-list-collage" aria-selected="false">
 												<i class="flaticon flaticon-sections"></i>
 											</a>
 										</li> -->
-									</ul>
+										</ul>
+									</div>
 								</div>
 							</div>
-						</div>
-						<!-- <div class="col-xl-12 shop-top-filter">
+							<!-- <div class="col-xl-12 shop-top-filter">
 							<a href="javascript:void(0);" class="panel-close-btn">																	
 								<svg width="35" height="35" viewBox="0 0 51 50" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M37.748 12.5L12.748 37.5" stroke="white" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
@@ -340,94 +358,102 @@ $conn = mysqli_connect(
 								</aside>
 							</div>
 						</div> -->
-						
-						<div class="row">
-							<div class="col-12 tab-content shop-" id="pills-tabContent">
-								<div class="tab-pane fade" id="tab-list-column" role="tabpanel" aria-labelledby="tab-list-column-btn">
-									<div class="row gx-xl-4 g-3 mb-xl-0 mb-md-0 mb-3">
-										<div class="col-6 col-xl-4 col-lg-6 col-md-6 col-sm-6 m-md-b15 m-sm-b0 m-b30">
-											<div class="shop-card">
-												<div class="dz-media">
-													<img src="images/shop/product/1.png" alt="image">
+
+							<div class="row">
+								<div class="col-12 tab-content shop-" id="pills-tabContent">
+									<div class="tab-pane fade" id="tab-list-column" role="tabpanel"
+										aria-labelledby="tab-list-column-btn">
+										<div id="productsColumn" class="row gx-xl-4 g-3 mb-xl-0 mb-md-0 mb-3">
+											<div
+												class="col-6 col-xl-4 col-lg-6 col-md-6 col-sm-6 m-md-b15 m-sm-b0 m-b30">
+												<div class="shop-card">
+													<div class="dz-media">
+														<img src="images/shop/product/1.png" alt="image">
+													</div>
+													<div class="dz-content">
+														<h5 class="title"><a href="shop-list.html">Wooden Water
+																Bottles</a></h5>
+														<h6 class="price">
+															<del>$45.00</del>
+															$40.00
+														</h6>
+													</div>
+													<div class="product-tag">
+														<span class="badge badge-secondary">Sale</span>
+													</div>
 												</div>
-												<div class="dz-content">
-													<h5 class="title"><a href="shop-list.html">Wooden Water Bottles</a></h5>
-													<h6 class="price">
-														<del>$45.00</del>
-														$40.00
-													</h6>
+											</div>
+											<div
+												class="col-6 col-xl-4 col-lg-6 col-md-6 col-sm-6 m-md-b15 m-sm-b0 m-b30">
+												<div class="shop-card">
+													<div class="dz-media">
+														<img src="images/shop/product/2.png" alt="image">
+													</div>
+													<div class="dz-content">
+														<h5 class="title"><a href="shop-list.html">Wooden Cup</a></h5>
+														<h6 class="price">
+															<del>$25.00</del>
+															$10.00
+														</h6>
+													</div>
+													<div class="product-tag">
+														<span class="badge badge-secondary">-10%</span>
+														<span class="badge badge-primary">Featured</span>
+													</div>
 												</div>
-												<div class="product-tag">
-													<span class="badge badge-secondary">Sale</span>
-												</div>
-											</div>	
-										</div>
-										<div class="col-6 col-xl-4 col-lg-6 col-md-6 col-sm-6 m-md-b15 m-sm-b0 m-b30">
-											<div class="shop-card">
-												<div class="dz-media">
-													<img src="images/shop/product/2.png" alt="image">
-												</div>
-												<div class="dz-content">
-													<h5 class="title"><a href="shop-list.html">Wooden Cup</a></h5>
-													<h6 class="price">
-														<del>$25.00</del>
-														$10.00
-													</h6>
-												</div>
-												<div class="product-tag">
-													<span class="badge badge-secondary">-10%</span>
-													<span class="badge badge-primary">Featured</span>
-												</div>
-											</div>	
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="tab-pane fade active show" id="tab-list-grid" role="tabpanel" aria-labelledby="tab-list-grid-btn">
-									<div class="row gx-xl-4 g-3 mb-xl-0 mb-md-0 mb-3">
-										<div class="col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 m-md-b15 m-b30 grid-5">
-											<div class="shop-card">
-												<div class="dz-media">
-													<img src="images/shop/product/1.png" alt="image">
+									<div class="tab-pane fade active show" id="tab-list-grid" role="tabpanel"
+										aria-labelledby="tab-list-grid-btn">
+										<div id="productsGrid" class="row gx-xl-4 g-3 mb-xl-0 mb-md-0 mb-3">
+											<div
+												class="col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 m-md-b15 m-b30 grid-5">
+												<div class="shop-card">
+													<div class="dz-media">
+														<img src="images/shop/product/1.png" alt="image">
+													</div>
+													<div class="dz-content">
+														<h5 class="title"><a href="shop-list.html">Wooden Water
+																Bottles</a></h5>
+														<h6 class="price">
+															<del>$40.00</del>
+															$20.00
+														</h6>
+													</div>
+													<div class="product-tag">
+														<span class="badge badge-secondary">Sale</span>
+													</div>
 												</div>
-												<div class="dz-content">
-													<h5 class="title"><a href="shop-list.html">Wooden Water Bottles</a></h5>
-													<h6 class="price">
-														<del>$40.00</del>
-														$20.00
-													</h6>
+											</div>
+											<div
+												class="col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 m-md-b15 m-b30 grid-5">
+												<div class="shop-card">
+													<div class="dz-media">
+														<img src="images/shop/product/2.png" alt="image">
+													</div>
+													<div class="dz-content">
+														<h5 class="title"><a href="shop-list.html">Wooden Cup</a></h5>
+														<h6 class="price">
+															<del>$52.00</del>
+															$42.00
+														</h6>
+													</div>
+													<div class="product-tag">
+														<span class="badge badge-secondary">-12%</span>
+														<span class="badge badge-primary">Featured</span>
+													</div>
 												</div>
-												<div class="product-tag">
-													<span class="badge badge-secondary">Sale</span>
-												</div>
-											</div>	
-										</div>
-										<div class="col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 m-md-b15 m-b30 grid-5">
-											<div class="shop-card">
-												<div class="dz-media">
-													<img src="images/shop/product/2.png" alt="image">
-												</div>
-												<div class="dz-content">
-													<h5 class="title"><a href="shop-list.html">Wooden Cup</a></h5>
-													<h6 class="price">
-														<del>$52.00</del>
-														$42.00
-													</h6>
-												</div>
-												<div class="product-tag">
-													<span class="badge badge-secondary">-12%</span>
-													<span class="badge badge-primary">Featured</span>
-												</div>
-											</div>	
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row page mt-0">
-							<div class="col-md-6">
-								<p class="page-text">Showing <span id="resultsCountBottom"></span> Results</p>
-							</div>
-							<!-- <div class="col-md-6">
+							<div class="row page mt-0">
+								<div class="col-md-6">
+									<p class="page-text">Showing <span id="resultsCountBottom"></span> Results</p>
+								</div>
+								<!-- <div class="col-md-6">
 								<nav aria-label="Blog Pagination">
 									<ul class="pagination style-1">
 										<li class="page-item"><a class="page-link prev" href="javascript:void(0);">Prev</a></li>
@@ -438,45 +464,51 @@ $conn = mysqli_connect(
 									</ul>
 								</nav>
 							</div> -->
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
-	</div>
-	
-	<?php
+			</section>
+		</div>
+
+		<?php
 		include("./includes/footer.php");
-	?>
+		?>
 
-	<button class="scroltop" type="button"><i class="fas fa-arrow-up"></i></button>
+		<button class="scroltop" type="button"><i class="fas fa-arrow-up"></i></button>
 
-</div>
+	</div>
 
-<!-- JAVASCRIPT FILES ========================================= -->
-<script nonce="<?php echo $nonce; ?>" src="js/jquery.min.js"></script><!-- JQUERY MIN JS -->
-<script nonce="<?php echo $nonce; ?>" src="vendor-js/wow/wow.min.js"></script><!-- WOW JS -->
-<script nonce="<?php echo $nonce; ?>" src="vendor-js/bootstrap/dist/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP MIN JS -->
-<script nonce="<?php echo $nonce; ?>" src="vendor-js/bootstrap-select/dist/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELECT MIN JS -->
-<script nonce="<?php echo $nonce; ?>" src="vendor-js/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN JS -->
+	<!-- JAVASCRIPT FILES ========================================= -->
+	<script nonce="<?php echo $nonce; ?>" src="js/jquery.min.js"></script><!-- JQUERY MIN JS -->
+	<script nonce="<?php echo $nonce; ?>" src="vendor-js/wow/wow.min.js"></script><!-- WOW JS -->
+	<script nonce="<?php echo $nonce; ?>" src="vendor-js/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- BOOTSTRAP MIN JS -->
+	<script nonce="<?php echo $nonce; ?>" src="vendor-js/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+	<!-- BOOTSTRAP SELECT MIN JS -->
+	<script nonce="<?php echo $nonce; ?>" src="vendor-js/bootstrap-touchspin/bootstrap-touchspin.js"></script>
+	<!-- BOOTSTRAP TOUCHSPIN JS -->
 
-<script nonce="<?php echo $nonce; ?>" src="vendor-js/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
-<script nonce="<?php echo $nonce; ?>" src="vendor-js/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
-<script nonce="<?php echo $nonce; ?>" src="vendor-js/swiper/swiper-bundle.min.js"></script><!-- SWIPER JS -->
-<script nonce="<?php echo $nonce; ?>" src="vendor-js/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED-->
-<script nonce="<?php echo $nonce; ?>" src="vendor-js/masonry/masonry-4.2.2.js"></script><!-- MASONRY -->
-<script nonce="<?php echo $nonce; ?>" src="vendor-js/masonry/isotope.pkgd.min.js"></script><!-- ISOTOPE -->
-<script nonce="<?php echo $nonce; ?>" src="vendor-js/countdown/jquery.countdown.js"></script><!-- COUNTDOWN FUCTIONS  -->
-<script nonce="<?php echo $nonce; ?>" src="vendor-js/wnumb/wNumb.js"></script><!-- WNUMB -->
-<script nonce="<?php echo $nonce; ?>" src="vendor-js/nouislider/nouislider.min.js"></script><!-- NOUSLIDER MIN JS-->
-<script nonce="<?php echo $nonce; ?>" src="js/dz.carousel.js"></script><!-- DZ CAROUSEL JS -->
-<script nonce="<?php echo $nonce; ?>" src="vendor-js/lightgallery/dist/lightgallery.min.js"></script>
-<script nonce="<?php echo $nonce; ?>" src="vendor-js/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js"></script>
-<script nonce="<?php echo $nonce; ?>" src="vendor-js/lightgallery/dist/plugins/zoom/lg-zoom.min.js"></script>
-<script nonce="<?php echo $nonce; ?>" src="js/dz.ajax.js"></script><!-- AJAX -->
-<script nonce="<?php echo $nonce; ?>" src="js/custom.js"></script><!-- CUSTOM JS -->
+	<script nonce="<?php echo $nonce; ?>" src="vendor-js/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
+	<script nonce="<?php echo $nonce; ?>" src="vendor-js/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
+	<script nonce="<?php echo $nonce; ?>" src="vendor-js/swiper/swiper-bundle.min.js"></script><!-- SWIPER JS -->
+	<script nonce="<?php echo $nonce; ?>" src="vendor-js/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED-->
+	<script nonce="<?php echo $nonce; ?>" src="vendor-js/masonry/masonry-4.2.2.js"></script><!-- MASONRY -->
+	<script nonce="<?php echo $nonce; ?>" src="vendor-js/masonry/isotope.pkgd.min.js"></script><!-- ISOTOPE -->
+	<script nonce="<?php echo $nonce; ?>" src="vendor-js/countdown/jquery.countdown.js"></script>
+	<!-- COUNTDOWN FUCTIONS  -->
+	<script nonce="<?php echo $nonce; ?>" src="vendor-js/wnumb/wNumb.js"></script><!-- WNUMB -->
+	<script nonce="<?php echo $nonce; ?>" src="vendor-js/nouislider/nouislider.min.js"></script><!-- NOUSLIDER MIN JS-->
+	<script nonce="<?php echo $nonce; ?>" src="js/dz.carousel.js"></script><!-- DZ CAROUSEL JS -->
+	<script nonce="<?php echo $nonce; ?>" src="vendor-js/lightgallery/dist/lightgallery.min.js"></script>
+	<script nonce="<?php echo $nonce; ?>"
+		src="vendor-js/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js"></script>
+	<script nonce="<?php echo $nonce; ?>" src="vendor-js/lightgallery/dist/plugins/zoom/lg-zoom.min.js"></script>
+	<script nonce="<?php echo $nonce; ?>" src="js/dz.ajax.js"></script><!-- AJAX -->
+	<script nonce="<?php echo $nonce; ?>" src="js/custom.js"></script><!-- CUSTOM JS -->
 
 </body>
+
 </html>
 
 <?php
