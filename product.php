@@ -54,7 +54,7 @@ if (mysqli_connect_errno()) {
 	exit();
 }
 
-$sql = "CALL get_products('$base_sku', '%', '%')";
+$sql = "CALL get_products('$base_sku', '%', '%', '%')";
 $product = mysqli_query($conn, $sql);
 $product = mysqli_fetch_array($product);
 
