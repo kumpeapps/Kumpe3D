@@ -39,7 +39,8 @@ function buildProducts() {
         media.setAttribute("class", "dz-media");
         const img = document.createElement("img");
         img.setAttribute("src", element.default_photo);
-        img.setAttribute("href", "product?sku=" + element.sku);
+        const imgLink = document.createElement("a");
+        imgLink.setAttribute("href", "product?sku=" + element.sku);
         const content = document.createElement("class");
         content.setAttribute("class", "dz-content");
         const title = document.createElement("h5");
@@ -72,7 +73,8 @@ function buildProducts() {
         }
         content.appendChild(title);
         content.appendChild(priceLabel);
-        media.appendChild(img);
+        imgLink.appendChild(img)
+        media.appendChild(imgLink);
         card.appendChild(media);
         card.appendChild(content);
         if (element.is_on_sale) {
