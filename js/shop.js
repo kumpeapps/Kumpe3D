@@ -63,7 +63,6 @@ function buildProducts() {
         onSaleTag.appendChild(onSaleSpan);
         if (element.is_on_sale) {
             priceLabel.innerHTML = "<del>$" + element.original_price + "</del> $" + element.price;
-            card.appendChild(onSaleTag);
         } else {
             priceLabel.innerHTML = "$" + element.price;
         }
@@ -75,6 +74,12 @@ function buildProducts() {
         media.appendChild(img);
         card.appendChild(media);
         card.appendChild(content);
+        if (element.is_on_sale) {
+            card.appendChild(onSaleTag);
+        }
+        if (element.is_new) {
+            card.appendChild(newTag);
+        }
         divColumn.appendChild(card);
         divGrid.appendChild(card);
         productsColumn.appendChild(divColumn);
