@@ -52,10 +52,10 @@ function buildProducts() {
         const productTags = document.createElement("div");
         productTags.setAttribute("class", "ribbon ribbon-top-left");
         const onSaleTag = document.createElement("span");
-        // onSaleTag.setAttribute("class", "badge badge-warning");
+        onSaleTag.setAttribute("class", "badge badge-warning");
         onSaleTag.innerHTML = "On Sale";
         const newTag = document.createElement("span");
-        // newTag.setAttribute("class", "badge badge-success");
+        newTag.setAttribute("class", "badge badge-success");
         newTag.innerHTML = "NEW";
         if (element.is_on_sale) {
             priceLabel.innerHTML = "<del>$" + element.original_price + "</del> $" + element.price;
@@ -64,7 +64,7 @@ function buildProducts() {
             priceLabel.innerHTML = "$" + element.price;
         }
         if (element.is_new) {
-            // productTags.appendChild(newTag);
+            productTags.appendChild(newTag);
         }
         content.appendChild(title);
         content.appendChild(priceLabel);
