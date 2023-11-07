@@ -24,6 +24,8 @@ function refresh() {
 function buildProducts() {
     const productsColumn = document.getElementById("productsColumn");
     const productsGrid = document.getElementById("productsGrid");
+    removeAllChildNodes(productsColumn);
+    removeAllChildNodes(productsGrid);
     products.forEach(build);
     function build(element, _, _) {
         const divColumn = document.createElement("div");
