@@ -55,7 +55,7 @@ function buildProducts() {
         onSaleTag.setAttribute("class", "badge badge-warning");
         onSaleTag.innerHTML = "On Sale";
         const newTag = document.createElement("span");
-        newTag.setAttribute("class", "badge badge-purple");
+        newTag.setAttribute("class", "badge badge-success");
         newTag.innerHTML = "NEW";
         if (element.is_on_sale) {
             priceLabel.innerHTML = "<del>$" + element.original_price + "</del> $" + element.price;
