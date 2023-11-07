@@ -38,7 +38,7 @@ function buildProducts() {
         const media = document.createElement("div");
         media.setAttribute("class", "dz-media");
         const img = document.createElement("img");
-        img.setAttribute("img", element.default_photo);
+        img.setAttribute("src", element.default_photo);
         const content = document.createElement("class");
         content.setAttribute("class", "dz-content");
         const title = document.createElement("h5");
