@@ -49,29 +49,32 @@ function buildProducts() {
         title.appendChild(titleLink);
         const priceLabel = document.createElement("h6");
         priceLabel.setAttribute("class", "price");
-        const productTags = document.createElement("div");
-        productTags.setAttribute("class", "ribbon ribbon-top-left");
-        const onSaleTag = document.createElement("span");
-        onSaleTag.setAttribute("class", "badge badge-warning");
-        onSaleTag.innerHTML = "On Sale";
-        const newTag = document.createElement("span");
-        newTag.setAttribute("class", "badge badge-success");
-        newTag.innerHTML = "NEW";
+        const onSaleTag = document.createElement("div");
+        onSaleTag.setAttribute("class", "ribbon ribbon-top-left");
+        const onSaleSpan = document.createElement("span");
+        onSaleSpan.setAttribute("class", "badge badge-warning");
+        onSaleSpan.innerHTML = "On Sale";
+        const newTag = document.createElement("div");
+        newTag.setAttribute("class", "ribbon ribbon-top-right");
+        const newSpan = document.createElement("span");
+        newSpan.setAttribute("class", "badge badge-success");
+        newSpan.innerHTML = "NEW";
+        newTag.appendChild(newSpan);
+        onSaleTag.appendChild(onSaleSpan);
         if (element.is_on_sale) {
             priceLabel.innerHTML = "<del>$" + element.original_price + "</del> $" + element.price;
-            productTags.appendChild(onSaleTag);
+            card.appendChild(onSaleTag);
         } else {
             priceLabel.innerHTML = "$" + element.price;
         }
         if (element.is_new) {
-            productTags.appendChild(newTag);
+            card.appendChild(newTag);
         }
         content.appendChild(title);
         content.appendChild(priceLabel);
         media.appendChild(img);
         card.appendChild(media);
         card.appendChild(content);
-        card.appendChild(productTags);
         divColumn.appendChild(card);
         divGrid.appendChild(card);
         productsColumn.appendChild(divColumn);
