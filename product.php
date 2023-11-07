@@ -171,8 +171,8 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 			<div class="d-sm-flex justify-content-between container-fluid py-3">
 				<nav aria-label="breadcrumb" class="breadcrumb-row">
 					<ul class="breadcrumb mb-0">
-						<li class="breadcrumb-item"><a href="index.php"> Home</a></li>
-						<li class="breadcrumb-item">Products</li>
+						<li class="breadcrumb-item"><a href="/"> Home</a></li>
+						<li class="breadcrumb-item"><a href="/"> Products</a></li>
 						<li id="titleCrumb" class="breadcrumb-item"></li>
 					</ul>
 				</nav>
