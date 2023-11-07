@@ -64,7 +64,7 @@ function buildProducts() {
             priceLabel.innerHTML = "$" + element.price;
         }
         if (element.is_new) {
-            productTags.appendChild(newTag);
+            // productTags.appendChild(newTag);
         }
         content.appendChild(title);
         content.appendChild(priceLabel);
