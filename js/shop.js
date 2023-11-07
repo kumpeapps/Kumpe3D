@@ -52,7 +52,7 @@ function buildProducts() {
         const onSaleTag = document.createElement("div");
         onSaleTag.setAttribute("class", "ribbon ribbon-top-left");
         const onSaleSpan = document.createElement("span");
-        onSaleSpan.setAttribute("class", "badge badge-warning");
+        onSaleSpan.setAttribute("class", "");
         onSaleSpan.innerHTML = "On Sale";
         const newTag = document.createElement("div");
         newTag.setAttribute("class", "ribbon ribbon-top-right");
