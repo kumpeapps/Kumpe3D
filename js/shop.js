@@ -35,7 +35,7 @@ function buildProducts() {
     products.forEach(build);
     function build(element, _, _) {
         const divColumn = document.createElement("div");
-        divColumn.setAttribute("class", "col-6 col-xl-4 col-lg-6 col-md-6 col-sm-6 m-md-b15 m-sm-b0 m-b30");
+        divColumn.setAttribute("class", "col-6 col-xl-4 col-lg-6 col-md-6 col-sm-6 m-md-b15 m-sm-b0 m-b30 box");
         const divGrid = document.createElement("div");
         divGrid.setAttribute("class", "col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 m-md-b15 m-b30 grid-5");
         function buildCard(element) {
