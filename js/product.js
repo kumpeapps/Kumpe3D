@@ -42,7 +42,7 @@ function buildColorOptions() {
     const base_sku = product.sku_parts.base_sku;
     const colorID = product.sku_parts.color;
     removeAllChildNodes(colorOptionsBlock);
-    if (colorID != "NNN") {
+    if (colorID === "NNN") {
         colorOptionsBlock.setAttribute("hidden", "true");
         document.getElementById("color-block").setAttribute("hidden", "true");
         const nnn = {
@@ -53,6 +53,10 @@ function buildColorOptions() {
         if (ele.length === 1) {
             ele[0].setAttribute("checked", true);
         }
+        const skuLabel = document.querySelector("#skuLabel");
+        const base_sku = product.sku_parts.base_sku;
+        const sku = base_sku + '-NNN';
+        skuLabel.innerHTML = sku;
         return;
     }
     const colorOptions = GET(apiUrl + "/filament?sku=" + base_sku + "&filter=" + product['filament_filter'] + "&swatch_filter=" + colorID).response;
