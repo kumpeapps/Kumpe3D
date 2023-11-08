@@ -49,10 +49,17 @@ function buildColorOptions() {
             "swatch_id": "NNN"
         };
         build(nnn, null, null);
-    } else {
-        const colorOptions = GET(apiUrl + "/filament?sku=" + base_sku + "&filter=" + product['filament_filter'] + "&swatch_filter=" + colorID).response;
-        colorOptions.forEach(build);
+        for (var i = 0; i < rad.length; i++) {
+            rad[i].addEventListener('change', changedColor);
+        }
+        const ele = document.getElementsByName('radioColor');
+        if (ele.length === 1) {
+            ele[0].setAttribute("checked", true);
+        }
+        return;
     }
+    const colorOptions = GET(apiUrl + "/filament?sku=" + base_sku + "&filter=" + product['filament_filter'] + "&swatch_filter=" + colorID).response;
+    colorOptions.forEach(build);
     function build(element, _, _) {
         const div = document.createElement("div");
         div.setAttribute("class", "radio-value border border-secondary rounded");
