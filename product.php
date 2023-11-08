@@ -274,7 +274,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 											</div> -->
 											<!-- End Layer Quality -->
 											<!-- TODO: Customization Field -->
-											<div class="product-num">
+											<div id="color-block" class="product-num">
 												<div class="meta-content">
 													<label class="form-label">Color</label>
 													<form class="d-flex align-items-center block-row" id="colorOptions"
