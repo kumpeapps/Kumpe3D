@@ -25,7 +25,7 @@ function load() {
     });
     addToCartButton.addEventListener("click", function () {
         addToCart(this);
-    }, once= true);
+    }, once = true);
 };
 
 function getColorValue() {
@@ -39,7 +39,8 @@ function getColorValue() {
 
 function buildColorOptions() {
     const base_sku = product.sku_parts.base_sku;
-    const colorOptions = GET(apiUrl + "/filament?sku=" + base_sku + "&filter=" + product['filament_filter']).response;
+    const colorID = product.sku_parts.color;
+    const colorOptions = GET(apiUrl + "/filament?sku=" + base_sku + "&filter=" + product['filament_filter'] + "&sku_filter=" + colorID).response;
     const colorOptionsBlock = document.getElementById("colorOptions");
     removeAllChildNodes(colorOptionsBlock);
     colorOptions.forEach(build);
@@ -171,7 +172,7 @@ function addToCart(element) {
         const addToCartButton = document.querySelector("#" + addToCartButtonTagNew);
         addToCartButton.addEventListener("click", function () {
             addToCart(this);
-        }, once= true);
+        }, once = true);
         document.getElementById("cartButton").click();
     }
 };
