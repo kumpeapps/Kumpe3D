@@ -41,13 +41,17 @@ function buildColorOptions() {
     const colorOptionsBlock = document.getElementById("colorOptions");
     const base_sku = product.sku_parts.base_sku;
     const colorID = product.sku_parts.color;
-    if (colorID === "NNN") {
-        colorOptionsBlock.setAttribute("hidden", "true");
-        return
-    }
-    const colorOptions = GET(apiUrl + "/filament?sku=" + base_sku + "&filter=" + product['filament_filter'] + "&swatch_filter=" + colorID).response;
     removeAllChildNodes(colorOptionsBlock);
-    colorOptions.forEach(build);
+    if (colorID != "NNN") {
+        const colorOptions = GET(apiUrl + "/filament?sku=" + base_sku + "&filter=" + product['filament_filter'] + "&swatch_filter=" + colorID).response;
+        colorOptions.forEach(build);
+    } else {
+        const nnn = {
+            "type": "",
+            "color_name": "N/A"
+        }
+    }
+    
     function build(element, _, _) {
         const div = document.createElement("div");
         div.setAttribute("class", "radio-value border border-secondary rounded");
