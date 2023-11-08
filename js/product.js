@@ -45,7 +45,7 @@ function buildColorOptions() {
         colorOptionsBlock.setAttribute("hidden", "true");
         return
     }
-    const colorOptions = GET(apiUrl + "/filament?sku=" + base_sku + "&filter=" + product['filament_filter'] + "&sku_filter=" + colorID).response;
+    const colorOptions = GET(apiUrl + "/filament?sku=" + base_sku + "&filter=" + product['filament_filter'] + "&swatch_filter=" + colorID).response;
     removeAllChildNodes(colorOptionsBlock);
     colorOptions.forEach(build);
     function build(element, _, _) {
