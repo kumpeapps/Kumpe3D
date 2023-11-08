@@ -50,6 +50,7 @@ function buildColorOptions() {
             "type": "",
             "color_name": "N/A"
         }
+        build(nnn, _, _)
     }
     
     function build(element, _, _) {
