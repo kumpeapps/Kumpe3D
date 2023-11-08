@@ -38,10 +38,14 @@ function getColorValue() {
 };
 
 function buildColorOptions() {
+    const colorOptionsBlock = document.getElementById("colorOptions");
     const base_sku = product.sku_parts.base_sku;
     const colorID = product.sku_parts.color;
+    if (colorID === "NNN") {
+        colorOptionsBlock.setAttribute("hidden", "true");
+        return
+    }
     const colorOptions = GET(apiUrl + "/filament?sku=" + base_sku + "&filter=" + product['filament_filter'] + "&sku_filter=" + colorID).response;
-    const colorOptionsBlock = document.getElementById("colorOptions");
     removeAllChildNodes(colorOptionsBlock);
     colorOptions.forEach(build);
     function build(element, _, _) {
