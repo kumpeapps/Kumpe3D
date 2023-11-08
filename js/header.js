@@ -25,7 +25,7 @@ function buildShoppingCartModalList() {
     function renderShoppingCartModalList(element, _, _) {
         const img_url = element["img_url"];
         let title = element["productTitle"] + "<br>(" + element['colorTitle'] + ")";
-        if (element['colorTitle'] == null) {
+        if (element['colorTitle'] == "null") {
             title = element["productTitle"];
         }
         const qty = element["quantity"];
