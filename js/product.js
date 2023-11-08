@@ -103,6 +103,7 @@ function buildColorOptions() {
     const ele = document.getElementsByName('radioColor');
     if (ele.length === 1) {
         ele[0].setAttribute("checked", true);
+        changedColor();
     }
 };
 
