@@ -87,6 +87,10 @@ function buildColorOptions() {
     for (var i = 0; i < rad.length; i++) {
         rad[i].addEventListener('change', changedColor);
     }
+    const ele = document.getElementsByName('radioColor');
+    if (ele.length === 1) {
+        ele[0].setAttribute("checked", true);
+    }
 };
 
 function changedColor() {
