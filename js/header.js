@@ -28,7 +28,7 @@ function buildShoppingCartModalList() {
         const img_url = element["img_url"];
         const customization = element['customization'];
         let title = element["productTitle"] + "<br>(" + element['colorTitle'] + ")";
-        if (element['colorTitle'] == "null") {
+        if (element['colorTitle'] == null) {
             title = element["productTitle"];
         }
         if (customization !== "") {
