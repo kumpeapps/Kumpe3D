@@ -1,7 +1,6 @@
 function GET(yourUrl, return_json = true) {
     var Httpreq = new XMLHttpRequest(); // a new request
     Httpreq.open("GET", yourUrl, false);
-    Httpreq.timeout = 60000;
     Httpreq.send(null);
     response = Httpreq.responseText;
     if (return_json) {
