@@ -116,6 +116,7 @@ paypal.Buttons({
             checkoutData.paymentMethod = fundingSource;
             checkoutData.client_ip = client_ip;
             checkoutData.browser = browser;
+            checkoutData.referral_code = referral_code;
             if (!debugEnabled) {
                 orderSuccess();
             }
@@ -387,13 +388,6 @@ function onload() {
     setListeners();
     refresh();
     isValidCheck();
-    if (env == 'dev') {
-        Swal.fire(
-            'PreProd Server!',
-            'You are viewing the Pre-Production/Dev server. Orders submitted via this site will not be filled or charged. Only PayPal sandbox accounts/credit cards will work.',
-            'warning'
-        );
-    };
 };
 
 function validateFName() {

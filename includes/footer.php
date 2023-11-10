@@ -16,7 +16,7 @@ $conn = mysqli_connect(
 				<div class="col-xl-3 col-md-4 col-sm-6">
 					<div class="widget widget_about me-2">
 						<div class="footer-logo logo-white">
-							<a href="index.php"><img src="<?php echo $site_params['store_logo_url']; ?>" alt="/"></a>
+							<a href="index.php"><img src="<?php echo $site_params['store_footer_logo_url']; ?>" alt="/"></a>
 						</div>
 						<ul class="widget-address">
 							<li>

@@ -21,7 +21,7 @@ if (isset($_GET['sku'])) {
 		$sku['sku'] = 'ALO-POO-LSN-000';
 	} else {
 		http_response_code(404);
-		include('./ErrorPages/HTTP404.html');
+		include('./404.php');
 		die();
 	}
 }
@@ -54,7 +54,7 @@ if (mysqli_connect_errno()) {
 	exit();
 }
 
-$sql = "CALL get_products('$base_sku', '%', '%')";
+$sql = "CALL get_products('$base_sku', '%', '%', '%')";
 $product = mysqli_query($conn, $sql);
 $product = mysqli_fetch_array($product);
 
@@ -171,8 +171,8 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 			<div class="d-sm-flex justify-content-between container-fluid py-3">
 				<nav aria-label="breadcrumb" class="breadcrumb-row">
 					<ul class="breadcrumb mb-0">
-						<li class="breadcrumb-item"><a href="index.php"> Home</a></li>
-						<li class="breadcrumb-item">Products</li>
+						<li class="breadcrumb-item"><a href="/"> Home</a></li>
+						<li class="breadcrumb-item"><a href="/"> Products</a></li>
 						<li id="titleCrumb" class="breadcrumb-item"></li>
 					</ul>
 				</nav>
@@ -274,7 +274,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 											</div> -->
 											<!-- End Layer Quality -->
 											<!-- TODO: Customization Field -->
-											<div class="product-num">
+											<div id="color-block" class="product-num">
 												<div class="meta-content">
 													<label class="form-label">Color</label>
 													<form class="d-flex align-items-center block-row" id="colorOptions"

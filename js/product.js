@@ -9,14 +9,6 @@ function load() {
     const descriptionLabel = document.querySelector("#descriptionLabel");
     querySKU = urlParams.get('sku')
 
-    if (env == 'dev') {
-        Swal.fire(
-            'Pre-Prod Server!',
-            'You are viewing the Pre-Production/Dev server. Orders submitted via this site will not be filled or charged. Only PayPal sandbox accounts/credit cards will work.',
-            'warning'
-        );
-    };
-
     product = GET(apiUrl + "/product?sku=" + querySKU).response
 
     titleCrumb.innerHTML = product.title
@@ -33,7 +25,7 @@ function load() {
     });
     addToCartButton.addEventListener("click", function () {
         addToCart(this);
-    }, once= true);
+    }, once = true);
 };
 
 function getColorValue() {
@@ -46,10 +38,28 @@ function getColorValue() {
 };
 
 function buildColorOptions() {
-    const base_sku = product.sku_parts.base_sku;
-    const colorOptions = GET(apiUrl + "/filament?sku=" + base_sku + "&filter=" + product['filament_filter']).response;
     const colorOptionsBlock = document.getElementById("colorOptions");
+    const base_sku = product.sku_parts.base_sku;
+    const colorID = product.sku_parts.color;
     removeAllChildNodes(colorOptionsBlock);
+    if (colorID === "NNN") {
+        colorOptionsBlock.setAttribute("hidden", "true");
+        document.getElementById("color-block").setAttribute("hidden", "true");
+        const nnn = {
+            "swatch_id": "NNN"
+        };
+        build(nnn, null, null);
+        const ele = document.getElementsByName('radioColor');
+        if (ele.length === 1) {
+            ele[0].setAttribute("checked", true);
+        }
+        const skuLabel = document.querySelector("#skuLabel");
+        const base_sku = product.sku_parts.base_sku;
+        const sku = base_sku + '-NNN';
+        skuLabel.innerHTML = sku;
+        return;
+    }
+    const colorOptions = GET(apiUrl + "/filament?sku=" + base_sku + "&filter=" + product['filament_filter'] + "&swatch_filter=" + colorID).response;
     colorOptions.forEach(build);
     function build(element, _, _) {
         const div = document.createElement("div");
@@ -89,6 +99,11 @@ function buildColorOptions() {
     var rad = document.colorOptions.radioColor;
     for (var i = 0; i < rad.length; i++) {
         rad[i].addEventListener('change', changedColor);
+    }
+    const ele = document.getElementsByName('radioColor');
+    if (ele.length === 1) {
+        ele[0].setAttribute("checked", true);
+        changedColor();
     }
 };
 
@@ -179,7 +194,7 @@ function addToCart(element) {
         const addToCartButton = document.querySelector("#" + addToCartButtonTagNew);
         addToCartButton.addEventListener("click", function () {
             addToCart(this);
-        }, once= true);
+        }, once = true);
         document.getElementById("cartButton").click();
     }
 };
