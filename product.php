@@ -269,7 +269,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 											</div> -->
 											<!-- End Layer Quality -->
 											<!-- TODO: Customization Field -->
-											<div id="customizationInputBlock" class="product-num" hidden>
+											<div id="customizationInputContainer" class="product-num" hidden>
 												<div class="meta-content">
 													<label class="form-label">Customization</label>
 													<input id="customizationInput" name="dzName"
