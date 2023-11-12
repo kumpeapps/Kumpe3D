@@ -41,6 +41,11 @@ function buildColorOptions() {
     const colorOptionsBlock = document.getElementById("colorOptions");
     const base_sku = product.sku_parts.base_sku;
     const colorID = product.sku_parts.color;
+    const design_type = product.sku_parts.design_type;
+    if (design_type === "C") {
+        const customizationInputContainer = document.getElementById("customizationInputContainer");
+        customizationInputContainer.removeAttribute("hidden");
+    }
     removeAllChildNodes(colorOptionsBlock);
     if (colorID === "NNN") {
         colorOptionsBlock.setAttribute("hidden", "true");
@@ -162,6 +167,7 @@ function refresh() {
 
 function addToCart(element) {
     const addToCartButtonTag = "addToCartButton" + addToCartCount;
+    const customization = document.getElementById("cusomizationInput").value
     if (element.id == addToCartButtonTag) {
         removeAllChildNodes(document.getElementById("addToCartContainer"));
         addingToCart = true;
@@ -178,7 +184,7 @@ function addToCart(element) {
                 "sku": sku,
                 "query_sku": urlParams.get("sku"),
                 "quantity": productQuantity,
-                "customization": ""
+                "customization": customization
             };
             postJSON(apiUrl + "/cart?user_id=0&session_id=" + sessionID, data);
 
