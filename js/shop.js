@@ -83,6 +83,7 @@ function buildProducts() {
             if (element.is_new) {
                 card.appendChild(newTag);
             }
+            return card
         }
         divColumn.appendChild(buildCard(element));
         divGrid.appendChild(buildCard(element));
