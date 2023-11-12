@@ -54,7 +54,7 @@ if (mysqli_connect_errno()) {
 	exit();
 }
 
-$sql = "CALL get_products('".$_GET['sku']."', '%', '%', '%')";
+$sql = "CALL get_products('" . $_GET['sku'] . "', '%', '%', '%')";
 $product = mysqli_query($conn, $sql);
 $product = mysqli_fetch_array($product);
 
@@ -70,7 +70,7 @@ if (mysqli_connect_errno()) {
 }
 
 $filament_filter = $product['filament_filter'];
-$photo_sql = "SELECT * FROM Web_3dprints.product_photos WHERE sku = '".$_GET['sku']."';";
+$photo_sql = "SELECT * FROM Web_3dprints.product_photos WHERE sku = '" . $_GET['sku'] . "';";
 $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 
 ?>
@@ -78,13 +78,8 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 <html lang="en">
 
 <head>
-<script
-	nonce="<?php echo $nonce; ?>"
-  type="text/javascript"
-  src="https://app.termly.io/embed.min.js"
-  data-auto-block="off"
-  data-website-uuid="f0526f09-9728-4a75-853d-72961022b400"
-></script>
+	<script nonce="<?php echo $nonce; ?>" type="text/javascript" src="https://app.termly.io/embed.min.js"
+		data-auto-block="off" data-website-uuid="f0526f09-9728-4a75-853d-72961022b400"></script>
 	<!-- Meta -->
 	<meta http-equiv="Content-Security-Policy-Report-Only" content="
 		default-src 'self';
@@ -274,6 +269,13 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 											</div> -->
 											<!-- End Layer Quality -->
 											<!-- TODO: Customization Field -->
+											<div id="customizationInputContainer" class="product-num" hidden>
+												<div class="meta-content">
+													<label class="form-label">Customization</label>
+													<input id="customizationInput" name="dzName"
+														class="form-control">
+												</div>
+											</div>
 											<div id="color-block" class="product-num">
 												<div class="meta-content">
 													<label class="form-label">Color</label>
@@ -322,7 +324,8 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 												<tr>
 													<div class="btn-quantity light d-xl-block">
 														<label class="form-label">Quantity</label>
-														<input min="1" id="productQuantity" type="number" value="1" name="qty">
+														<input min="1" id="productQuantity" type="number" value="1"
+															name="qty">
 													</div>
 												</tr>
 												<tr class="total">
@@ -333,7 +336,8 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 												</tr>
 											</tbody>
 										</table>
-										<div id="addToCartContainer"><a id='addToCartButton1' class="btn btn-secondary w-100">ADD TO CART</a></div>
+										<div id="addToCartContainer"><a id='addToCartButton1'
+												class="btn btn-secondary w-100">ADD TO CART</a></div>
 									</div>
 								</div>
 							</div>
