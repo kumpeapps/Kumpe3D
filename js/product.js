@@ -167,7 +167,7 @@ function refresh() {
 
 function addToCart(element) {
     const addToCartButtonTag = "addToCartButton" + addToCartCount;
-    const customization = document.getElementById("cusomizationInput").value
+    const customization = document.getElementById("customizationInput").value
     if (element.id == addToCartButtonTag) {
         removeAllChildNodes(document.getElementById("addToCartContainer"));
         addingToCart = true;
