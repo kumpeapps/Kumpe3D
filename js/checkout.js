@@ -358,6 +358,7 @@ function buildCheckout() {
         const img_url = element["img_url"];
         const title = element["title"];
         const original_price = element["originalTotal"];
+        const customization = element['customization'];
         let price = '$' + (element["totalPrice"]);
         if (element["totalPrice"] != original_price) {
             price = price + ' <del>$' + (original_price) + '</del>';
