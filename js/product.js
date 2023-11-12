@@ -176,6 +176,7 @@ function addToCart(element) {
         } else {
             const data = {
                 "sku": sku,
+                "query_sku": urlParams.get("sku"),
                 "quantity": productQuantity,
                 "customization": ""
             };

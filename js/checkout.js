@@ -122,6 +122,8 @@ paypal.Buttons({
             }
             post_body = {"checkout_data": checkoutData, "session_id": sessionID};
             if (debugEnabled) {
+                console.debug("CheckoutData: " + checkoutData);
+                console.debug("Session ID" + sessionID);
                 console.debug(post_body);
                 document.getElementById("orderNotes").value = JSON.stringify(post_body);
             }

@@ -54,7 +54,7 @@ if (mysqli_connect_errno()) {
 	exit();
 }
 
-$sql = "CALL get_products('$base_sku', '%', '%', '%')";
+$sql = "CALL get_products('".$_GET['sku']."', '%', '%', '%')";
 $product = mysqli_query($conn, $sql);
 $product = mysqli_fetch_array($product);
 
@@ -70,7 +70,7 @@ if (mysqli_connect_errno()) {
 }
 
 $filament_filter = $product['filament_filter'];
-$photo_sql = "SELECT * FROM Web_3dprints.product_photos WHERE sku = '$base_sku';";
+$photo_sql = "SELECT * FROM Web_3dprints.product_photos WHERE sku = '".$_GET['sku']."';";
 $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 
 ?>
