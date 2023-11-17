@@ -64,7 +64,7 @@ function buildColorOptions() {
         skuLabel.innerHTML = sku;
         return;
     }
-    const colorOptions = GET(apiUrl + "/filament?sku=" + base_sku + "&filter=" + product['filament_filter'] + "&swatch_filter=" + colorID).response;
+    const colorOptions = GET(apiUrl + "/filament?sku=" + querySKU + "&filter=" + product['filament_filter']).response;
     colorOptions.forEach(build);
     function build(element, _, _) {
         const div = document.createElement("div");
