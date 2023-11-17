@@ -389,6 +389,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 		<script nonce="<?php echo $nonce; ?>" src="js/custom.js"></script>
 		<!-- CUSTOM JS -->
 		<script nonce="<?php echo $nonce; ?>" src="js/product.js"></script>
+		<script nonce="<?php echo $nonce; ?>" src="js/facebook.js"></script>
 
 
 </body>
