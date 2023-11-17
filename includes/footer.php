@@ -73,4 +73,5 @@ $conn = mysqli_connect(
 </footer>
 <div id="fb-customer-chat" class="fb-customerchat">
 </div>
+<script nonce="<?php echo $nonce; ?>" src="js/facebook.js"></script>
 <!-- Footer End -->
