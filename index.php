@@ -174,8 +174,8 @@ $conn = mysqli_connect(
 									<div class="form-group Category">
 										<select id='categorySelect' class="default-select">
 											<option value='%'>All Categories</option>
-											<option value='Animals'>Animals</option>
-											<option value='Grooming'>Grooming</option>
+											<!-- <option value='Animals'>Animals</option>
+											<option value='Grooming'>Grooming</option> -->
 										</select>
 									</div>
 									<div class="shop-tab">
