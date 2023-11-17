@@ -10,7 +10,8 @@ function getProducts(sku = "%", category = "%", tag = "%") {
 };
 
 function load() {
-    getProducts();
+    const category = document.getElementById("categorySelect").value;
+    getProducts('%', category);
 }
 
 function refresh() {

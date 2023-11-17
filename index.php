@@ -171,16 +171,13 @@ $conn = mysqli_connect(
 											<option>3 Months</option>
 										</select>
 									</div> -->
-									<!-- <div class="form-group Category">
-										<select class="default-select">
-											<option>Categories</option>
-											<option>1 Day</option>
-											<option>1 Week</option>
-											<option>3 Weeks</option>
-											<option>1 Month</option>
-											<option>3 Months</option>
+									<div class="form-group Category">
+										<select id='categorySelect' class="default-select">
+											<option value='%'>All Categories</option>
+											<!-- <option value='Animals'>Animals</option>
+											<option value='Grooming'>Grooming</option> -->
 										</select>
-									</div> -->
+									</div>
 									<div class="shop-tab">
 										<ul class="nav" role="tablist" id="dz-shop-tab">
 											<!-- <li class="nav-item" role="presentation">
@@ -366,7 +363,7 @@ $conn = mysqli_connect(
 										<div id="productsColumn" class="row gx-xl-4 g-3 mb-xl-0 mb-md-0 mb-3">
 											<div
 												class="col-6 col-xl-4 col-lg-6 col-md-6 col-sm-6 m-md-b15 m-sm-b0 m-b30">
-												<div class="shop-card">
+												<!-- <div class="shop-card">
 													<div class="dz-media">
 														<img src="images/shop/product/1.png" alt="image">
 													</div>
@@ -381,11 +378,11 @@ $conn = mysqli_connect(
 													<div class="product-tag">
 														<span class="badge badge-secondary">Sale</span>
 													</div>
-												</div>
+												</div> -->
 											</div>
 											<div
 												class="col-6 col-xl-4 col-lg-6 col-md-6 col-sm-6 m-md-b15 m-sm-b0 m-b30">
-												<div class="shop-card">
+												<!-- <div class="shop-card">
 													<div class="dz-media">
 														<img src="images/shop/product/2.png" alt="image">
 													</div>
@@ -400,7 +397,7 @@ $conn = mysqli_connect(
 														<span class="badge badge-secondary">-10%</span>
 														<span class="badge badge-primary">Featured</span>
 													</div>
-												</div>
+												</div> -->
 											</div>
 										</div>
 									</div>
@@ -409,7 +406,7 @@ $conn = mysqli_connect(
 										<div id="productsGrid" class="row gx-xl-4 g-3 mb-xl-0 mb-md-0 mb-3">
 											<div
 												class="col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 m-md-b15 m-b30 grid-5">
-												<div class="shop-card">
+												<!-- <div class="shop-card">
 													<div class="dz-media">
 														<img src="images/shop/product/1.png" alt="image">
 													</div>
@@ -423,12 +420,12 @@ $conn = mysqli_connect(
 													</div>
 													<div class="product-tag">
 														<span class="badge badge-secondary">Sale</span>
-													</div>
+													</div> -->
 												</div>
 											</div>
 											<div
 												class="col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 m-md-b15 m-b30 grid-5">
-												<div class="shop-card">
+												<!-- <div class="shop-card">
 													<div class="dz-media">
 														<img src="images/shop/product/2.png" alt="image">
 													</div>
@@ -443,7 +440,7 @@ $conn = mysqli_connect(
 														<span class="badge badge-secondary">-12%</span>
 														<span class="badge badge-primary">Featured</span>
 													</div>
-												</div>
+												</div> -->
 											</div>
 										</div>
 									</div>
