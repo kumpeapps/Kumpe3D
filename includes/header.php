@@ -245,7 +245,7 @@
 									?>
 								</ul>
 							</li>
-							<!-- <toaster-container></toaster-container> -->
+							<toaster-container></toaster-container>
 							<!-- <li><a href="contact-us-1.html">Contact Us</a></li> -->
 						</ul>
 						<div class="dz-social-icon">
@@ -264,7 +264,7 @@
 
 
 		<!-- SearchBar -->
-		<div class="dz-search-area dz-offcanvas offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop">
+		<div class="" tabindex="-1" id="offcanvasTop">
 			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
 				&times;
 			</button>
