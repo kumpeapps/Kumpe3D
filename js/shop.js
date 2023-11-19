@@ -25,7 +25,7 @@ function refresh() {
 
 function buildProducts() {
     const selectedCategory = document.getElementById("categorySelect").value;
-    getProducts(category = selectedCategory);
+    getProducts("%", selectedCategory, "%");
     const productsColumn = document.getElementById("productsColumn");
     const productsGrid = document.getElementById("productsGrid");
     removeAllChildNodes(productsColumn);
