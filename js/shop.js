@@ -12,7 +12,7 @@ function getProducts(sku = "%", category = "%", tag = "%") {
 function load() {
     const categorySelect = document.getElementById("categorySelect");
     const category = categorySelect.value;
-    category.addEventListener("change", function () {
+    categorySelect.addEventListener("change", function () {
         refresh();
     });
     getProducts('%', category);
