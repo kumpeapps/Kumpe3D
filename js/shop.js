@@ -10,12 +10,14 @@ function getProducts(sku = "%", category = "%", tag = "%") {
 
 function load() {
     const categorySelect = document.getElementById("categorySelect");
-    const category = categorySelect.value;
-    categorySelect.setAttribute("onchange", "refresh()");
-    refresh();
+    categorySelect.addEventListener("change", function () {
+        refresh();
+    });
 }
 
 function refresh() {
+    const category = document.getElementById("categorySelect").value;
+    getProducts('%', category);
     buildCategories();
     updateShoppingCartModal();
     loadingOverlay().cancel(spinHandle);
