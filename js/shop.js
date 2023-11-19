@@ -10,7 +10,11 @@ function getProducts(sku = "%", category = "%", tag = "%") {
 };
 
 function load() {
-    const category = document.getElementById("categorySelect").value;
+    const categorySelect = document.getElementById("categorySelect");
+    const category = categorySelect.value;
+    category.addEventListener("change", function () {
+        refresh();
+    });
     getProducts('%', category);
 }
 
