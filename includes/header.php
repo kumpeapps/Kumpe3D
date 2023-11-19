@@ -245,8 +245,8 @@
 									?>
 								</ul>
 							</li>
-							<toaster-container></toaster-container>
-							<li><a href="contact-us-1.html">Contact Us</a></li>
+							<!-- <toaster-container></toaster-container> -->
+							<!-- <li><a href="contact-us-1.html">Contact Us</a></li> -->
 						</ul>
 						<div class="dz-social-icon">
 							<ul>
