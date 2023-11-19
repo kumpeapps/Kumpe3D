@@ -133,6 +133,7 @@ function buildCategories() {
         }
         categorySelect.appendChild(categoryOption);
     }
+    buildProducts();
 };
 
 function buildCatalogs() {
