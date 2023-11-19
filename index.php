@@ -199,7 +199,7 @@ $conn = mysqli_connect(
 						</ul>
 					</div>
 				</div>
-				<div class="banner-social-media">
+				<div class="banner-social-media right">
 					<ul>
 						<li>
 							<a href="https://www.facebook.com/kumpe3d" target="_blank">Facebook</a>
