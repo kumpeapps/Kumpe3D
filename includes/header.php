@@ -36,11 +36,11 @@
 					<div class="extra-nav">
 						<div class="extra-cell">
 							<ul class="header-right">
-								<li class="nav-item login-link">
+								<!-- <li class="nav-item login-link">
 									<a class="nav-link" href="shop-my-account.html">
 										LOGIN / REGISTER
 									</a>
-								</li>
+								</li> -->
 								<li class="nav-item search-link">
 									<a class="nav-link"  href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
 										<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,14 +49,14 @@
 										</svg>
 									</a>
 								</li>
-								<li class="nav-item wishlist-link">
+								<!-- <li class="nav-item wishlist-link">
 									<a class="nav-link" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
 										<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path fill-rule="evenodd" clip-rule="evenodd" d="M2.64119 10.4097C1.74702 7.61808 2.79202 4.42724 5.72285 3.48308C7.26452 2.98558 8.96619 3.27891 10.2479 4.24308C11.4604 3.30558 13.2245 2.98891 14.7645 3.48308C17.6954 4.42724 18.747 7.61808 17.8537 10.4097C16.462 14.8347 10.2479 18.2431 10.2479 18.2431C10.2479 18.2431 4.07952 14.8864 2.64119 10.4097Z" stroke="var(--white)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 											<path d="M13.5813 6.32781C14.473 6.61614 15.103 7.41197 15.1788 8.34614" stroke="var(--white)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 										</svg>
 									</a>
-								</li>
+								</li> -->
 								<li class="nav-item cart-link">
 									<a href="javascript:void(0);" id="cartButton" class="nav-link cart-btn"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
 										<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -77,7 +77,7 @@
 							<a href="index.html"><img src="<?php echo $site_params['store_logo_url']; ?>" alt="/"></a>
 						</div>
 						<ul class="nav navbar-nav dark-nav">
-							<li class="sub-menu sub-menu-down">
+							<!-- <li class="sub-menu sub-menu-down">
 								<a href="javascript:void(0);"><span>Home</span></a>
 								<ul class="sub-menu">
 									<li><a href="index.html">01 Home Page</a></li>
@@ -85,7 +85,7 @@
 									<li><a href="index-3.html">03 Home Page</a></li>
 									<li><a href="index-4.html">04 Home Page</a></li>
 								</ul>
-							</li>
+							</li> -->
 							<li class="has-mega-menu sub-menu-down">
 								<a href="javascript:void(0);"><span>Shop</span></a>
 								<div class="mega-menu shop-menu">
@@ -153,7 +153,7 @@
 									</div>
 								</div>
 							</li>
-							<li class="has-mega-menu sub-menu-down"><a href="javascript:void(0);"><span>Blog</span></a>
+							<!-- <li class="has-mega-menu sub-menu-down"><a href="javascript:void(0);"><span>Blog</span></a>
 								<div class="mega-menu blog-menu">
 									<div class="row">
 										<div class="col-md-6 col-sm-6 col-6">
@@ -231,7 +231,7 @@
 										</div>
 									</div>
 								</div>
-							</li>
+							</li> -->
 							<li class="sub-menu sub-menu-down"><a href="javascript:void(0);"><span>Pages</span></a>
 								<ul class="sub-menu">
 									<?php
