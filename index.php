@@ -114,7 +114,7 @@ $conn = mysqli_connect(
 						</nav>
 					</div>
 				</div>
-				<div class="banner-social-mediaright">
+				<div class="banner-social-media">
 					<ul>
 						<li>
 							<a href="https://www.facebook.com/kumpe3d" target="_blank">Facebook</a>
