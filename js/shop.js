@@ -104,6 +104,9 @@ function buildCategories() {
         const categoryOption = document.createElement("option");
         categoryOption.setAttribute("value", element.category);
         categoryOption.innerHTML = element.name;
+        if (element.category == queryCategory) {
+            categoryOption.setAttribute("selected", true);
+        }
         categorySelect.appendChild(categoryOption);
     }
 };
