@@ -182,6 +182,11 @@ $conn = mysqli_connect(
 										</select>
 									</div> -->
 									<div class="form-group Category">
+										<select onchange="buildCategories()" id='catalogSelect' class="default-select">
+											<option value='%'>Select Catalog</option>
+										</select>
+									</div>
+									<div class="form-group Category">
 										<select onchange="buildProducts()" id='categorySelect' class="default-select">
 											<option value='%'>All Categories</option>
 										</select>
