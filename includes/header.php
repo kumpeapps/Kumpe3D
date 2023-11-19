@@ -77,7 +77,7 @@
 							<a href="index.html"><img src="<?php echo $site_params['store_logo_url']; ?>" alt="/"></a>
 						</div>
 						<ul class="nav navbar-nav dark-nav">
-							<!-- <li class="sub-menu sub-menu-down">
+							<li class="sub-menu sub-menu-down">
 								<a href="javascript:void(0);"><span>Home</span></a>
 								<ul class="sub-menu">
 									<li><a href="index.html">01 Home Page</a></li>
@@ -85,8 +85,8 @@
 									<li><a href="index-3.html">03 Home Page</a></li>
 									<li><a href="index-4.html">04 Home Page</a></li>
 								</ul>
-							</li> -->
-							<!-- <li class="has-mega-menu sub-menu-down">
+							</li>
+							<li class="has-mega-menu sub-menu-down">
 								<a href="javascript:void(0);"><span>Shop</span></a>
 								<div class="mega-menu shop-menu">
 									<div class="row">
@@ -152,8 +152,8 @@
 										</div>
 									</div>
 								</div>
-							</li> -->
-							<!-- <li class="has-mega-menu sub-menu-down"><a href="javascript:void(0);"><span>Blog</span></a>
+							</li>
+							<li class="has-mega-menu sub-menu-down"><a href="javascript:void(0);"><span>Blog</span></a>
 								<div class="mega-menu blog-menu">
 									<div class="row">
 										<div class="col-md-6 col-sm-6 col-6">
@@ -231,7 +231,7 @@
 										</div>
 									</div>
 								</div>
-							</li> -->
+							</li>
 							<li class="sub-menu sub-menu-down"><a href="javascript:void(0);"><span>Pages</span></a>
 								<ul class="sub-menu">
 									<?php
