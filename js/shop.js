@@ -1,6 +1,5 @@
 let products;
-refresh();
-
+load();
 function getProducts(sku = "%", category = "%", tag = "%") {
     topCount = document.getElementById("resultsCountTop");
     bottomCount = document.getElementById("resultsCountBottom");
@@ -15,11 +14,10 @@ function load() {
     categorySelect.addEventListener("change", function () {
         refresh();
     });
-    getProducts('%', category);
+    refresh();
 }
 
 function refresh() {
-    load();
     buildCategories();
     updateShoppingCartModal();
     loadingOverlay().cancel(spinHandle);
