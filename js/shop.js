@@ -16,6 +16,7 @@ function load() {
 
 function refresh() {
     load();
+    buildCategories();
     updateShoppingCartModal();
     loadingOverlay().cancel(spinHandle);
     buildProducts();
