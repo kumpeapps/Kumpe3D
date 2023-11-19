@@ -95,12 +95,7 @@
 												<div class="col-md-4 col-sm-6 col-6">
 													<a href="javascript:;" class="menu-title">Categories</a>
 													<ul>
-														<li><a href="shop-standard.html">Shop Standard</a></li>
-														<li><a href="shop-list.html">Shop List</a></li>
-														<li><a href="shop-with-category.html">Shop With Category</a></li>
-														<li><a href="shop-filters-top-bar.html">Shop Filters Top Bar</a></li>
-														<li><a href="shop-sidebar.html">Shop Sidebar</a></li>
-														<li><a href="shop-style-1.html">Shop Style 1</a></li>
+														<li><a href="shop.php">All Products</a></li>
 													</ul>
 													<!-- <a href="javascript:;" class="menu-title">Product Structure</a>
 													<ul>
@@ -108,17 +103,12 @@
 														<li><a href="product-thumbnail.html">Thumbnail</a></li>
 													</ul> -->
 												</div>
-												<!-- <div class="col-md-3 col-sm-6 col-12">
-													<a href="javascript:;" class="menu-title">Shop Pages</a>
+												<div class="col-md-3 col-sm-6 col-12">
+													<a href="javascript:;" class="menu-title">Catalogs</a>
 													<ul>
-														<li><a href="shop-wishlist.html">Wishlist</a></li>
-														<li><a href="shop-cart.html">Cart</a></li>
-														<li><a href="shop-checkout.html">Checkout</a></li>
-														<li><a href="shop-order-tracking.html">Order Tracking</a></li>
-														<li><a href="shop-my-account.html">My Account</a></li>
-														<li><a href="shop-registration.html">Registration</a></li>
+														<li><a href="shop.php">All Products</a></li>
 													</ul>
-												</div> -->
+												</div>
 												<!-- <div class="col-md-5 col-sm-4 col-6 d-none d-md-block">
 													<div class="adv-media"><img src="images/adv-1.png" alt="/"></div>
 												</div> -->
