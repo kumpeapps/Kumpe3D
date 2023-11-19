@@ -111,6 +111,7 @@ function buildCategories() {
         }
         categorySelect.appendChild(categoryOption);
     }
+    console.debug("buildCatsDone")
     buildProducts();
 };
 
