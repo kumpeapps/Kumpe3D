@@ -13,6 +13,7 @@ function load() {
     categorySelect.addEventListener("change", function () {
         refresh();
     });
+    refresh();
 }
 
 function refresh() {
