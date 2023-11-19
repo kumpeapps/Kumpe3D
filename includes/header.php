@@ -36,7 +36,7 @@
 					<div class="extra-nav">
 						<div class="extra-cell">
 							<ul class="header-right">
-								<li class="nav-item login-link">
+								<!-- <li class="nav-item login-link"> -->
 									<!-- <a class="nav-link" href="shop-my-account.html">
 										LOGIN / REGISTER
 									</a>
