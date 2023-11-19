@@ -19,7 +19,6 @@ function refresh() {
     buildCategories();
     updateShoppingCartModal();
     loadingOverlay().cancel(spinHandle);
-    buildProducts();
 };
 
 
@@ -112,6 +111,7 @@ function buildCategories() {
         }
         categorySelect.appendChild(categoryOption);
     }
+    buildProducts();
 };
 
 function buildCatalogs() {
