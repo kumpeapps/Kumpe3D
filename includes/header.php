@@ -175,19 +175,6 @@
 								<li><a class="fab fa-instagram" target="_blank" href="https://www.instagram.com/kumpe3d/"></a></li>
 							</ul>
 						</div>
-						<div class="banner-social-media style-2 left">
-					<ul>
-						<li>
-							<a href="javascript:void(0);" target="_blank">Instagram</a>
-						</li>
-						<li>
-							<a href="javascript:void(0);" target="_blank">Facebook</a>
-						</li>
-						<li>
-							<a href="javascript:void(0);" target="_blank">twitter</a>
-						</li>
-					</ul>
-				</div>
 					</div>
 				</div>
 			</div>
