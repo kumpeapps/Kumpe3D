@@ -11,9 +11,7 @@ function getProducts(sku = "%", category = "%", tag = "%") {
 function load() {
     const categorySelect = document.getElementById("categorySelect");
     const category = categorySelect.value;
-    categorySelect.addEventListener("change", function () {
-        refresh();
-    });
+    categorySelect.setAttribute("onchange", "refresh()");
     refresh();
 }
 
