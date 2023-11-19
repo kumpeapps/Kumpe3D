@@ -9,10 +9,6 @@ function getProducts(sku = "%", category = "%", tag = "%") {
 };
 
 function load() {
-    const categorySelect = document.getElementById("categorySelect");
-    categorySelect.addEventListener("change", function () {
-        refresh();
-    });
     refresh();
 }
 
