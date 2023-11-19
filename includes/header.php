@@ -264,7 +264,7 @@
 
 
 		<!-- SearchBar -->
-		<div class="dz-search-area dz-offcanvas offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop">
+		<div class="dz-offcanvas offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop">
 			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
 				&times;
 			</button>
