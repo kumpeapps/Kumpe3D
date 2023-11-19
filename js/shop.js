@@ -6,6 +6,7 @@ function getProducts(sku = "%", category = "%", tag = "%", catalog = "%") {
     products = GET(apiUrl + "/product?sku=" + sku + "&category_filter=" + category + "&tag_filter=" + tag + "&search=%&catalog=" + catalog).response;
     topCount.innerHTML = products.length;
     bottomCount.innerHTML = products.length;
+    console.debug("Catalog=" + catalog);
 };
 
 function load() {
