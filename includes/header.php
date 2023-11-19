@@ -41,14 +41,14 @@
 										LOGIN / REGISTER
 									</a>
 								</li> -->
-								<li class="nav-item search-link">
+								<!-- <li class="nav-item search-link">
 									<a class="nav-link"  href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
 										<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<circle cx="10.0535" cy="10.55" r="7.49047" stroke="var(--white)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 											<path d="M15.2632 16.1487L18.1999 19.0778" stroke="var(--white)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 										</svg>
 									</a>
-								</li>
+								</li> -->
 								<!-- <li class="nav-item wishlist-link">
 									<a class="nav-link" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
 										<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +74,7 @@
 					<!-- Main Nav -->
 					<div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
 						<div class="logo-header">
-							<a href="index.html"><img src="<?php echo $site_params['store_logo_url']; ?>" alt="/"></a>
+							<a href="index.php"><img src="<?php echo $site_params['store_logo_url']; ?>" alt="/"></a>
 						</div>
 						<ul class="nav navbar-nav dark-nav">
 							<!-- <li class="sub-menu sub-menu-down">
