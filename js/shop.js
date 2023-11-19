@@ -1,9 +1,9 @@
 let products;
 load();
-function getProducts(sku = "%", category = "%", tag = "%") {
+function getProducts(sku = "%", category = "%", tag = "%", catalog = "%") {
     topCount = document.getElementById("resultsCountTop");
     bottomCount = document.getElementById("resultsCountBottom");
-    products = GET(apiUrl + "/product?sku=" + sku + "&category_filter=" + category + "&tag_filter=" + tag + "&search=%").response;
+    products = GET(apiUrl + "/product?sku=" + sku + "&category_filter=" + category + "&tag_filter=" + tag + "&search=%&catalog=" + catalog).response;
     topCount.innerHTML = products.length;
     bottomCount.innerHTML = products.length;
 };
@@ -24,7 +24,8 @@ function refresh() {
 
 function buildProducts() {
     const selectedCategory = document.getElementById("categorySelect").value;
-    getProducts("%", selectedCategory, "%");
+    const selectedCatalog = document.getElementById("catalogSelect").value;
+    getProducts("%", selectedCategory, "%", selectedCatalog);
     const productsColumn = document.getElementById("productsColumn");
     const productsGrid = document.getElementById("productsGrid");
     removeAllChildNodes(productsColumn);
