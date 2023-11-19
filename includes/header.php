@@ -246,13 +246,11 @@
 								</ul>
 							</li>
 							<toaster-container></toaster-container>
-							<!-- <li><a href="contact-us-1.html">Contact Us</a></li> -->
+							<li><a href="contact-us-1.html">Contact Us</a></li>
 						</ul>
 						<div class="dz-social-icon">
 							<ul>
 								<li><a class="fab fa-facebook-f" target="_blank" href="https://www.facebook.com/kumpe3d"></a></li>
-								<!-- <li><a class="fab fa-twitter" target="_blank" href="javascript:void(0);"></a></li>
-								<li><a class="fab fa-linkedin-in" target="_blank" href="https://www.linkedin.com/showcase/3686700/admin/"></a></li> -->
 								<li><a class="fab fa-instagram" target="_blank" href="https://www.instagram.com/kumpe3d/"></a></li>
 							</ul>
 						</div>
@@ -264,7 +262,7 @@
 
 
 		<!-- SearchBar -->
-		<div class="offcanvas offcanvas-top" data-bs-toggle="offcanvas" tabindex="-1" id="offcanvasTop">
+		<!-- <div class="offcanvas offcanvas-top" data-bs-toggle="offcanvas" tabindex="-1" id="offcanvasTop">
 			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
 				&times;
 			</button>
@@ -400,7 +398,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<!-- SearchBar -->
 
 		<!-- Sidebar cart -->
