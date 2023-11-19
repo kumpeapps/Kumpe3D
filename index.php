@@ -114,16 +114,13 @@ $conn = mysqli_connect(
 						</nav>
 					</div>
 				</div>
-				<div class="banner-social-media style-2 left">
+				<div class="banner-social-mediaright">
 					<ul>
 						<li>
-							<a href="javascript:void(0);" target="_blank">Instagram</a>
+							<a href="https://www.facebook.com/kumpe3d" target="_blank">Facebook</a>
 						</li>
 						<li>
-							<a href="javascript:void(0);" target="_blank">Facebook</a>
-						</li>
-						<li>
-							<a href="javascript:void(0);" target="_blank">twitter</a>
+							<a href="https://www.instagram.com/kumpe3d" target="_blank">Instagram</a>
 						</li>
 					</ul>
 				</div>
