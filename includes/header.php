@@ -123,32 +123,6 @@
 													<div class="adv-media"><img src="images/adv-1.png" alt="/"></div>
 												</div> -->
 											</div>
-											<div class="row">
-												<div class="col-md-12">
-													<div class="month-deal">
-														<div>
-															<h3>Deal of the month</h3>
-															<p class="mb-0">Yes! Send me exclusive offers, personalised, and unique gift ideas, tips for shopping on MoonCart <a href="shop-standard.html" class="dz-link-2">View All Products</a></p>
-														</div>
-														<div class="sale-countdown">
-															<div class="countdown text-center">
-																<div class="date"><span class="time days text-primary"></span>
-																	<span class="work-time">Days</span>
-																</div>
-																<div class="date"><span class="time hours text-primary"></span>
-																	<span class="work-time">Hours</span>
-																</div>
-																<div class="date"><span class="time mins text-primary"></span>
-																	<span class="work-time">Minutess</span>
-																</div>
-																<div class="date"><span class="time secs text-primary"></span>
-																	<span class="work-time">Second</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
 										</div>
 									</div>
 								</div>
