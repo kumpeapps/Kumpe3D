@@ -172,7 +172,7 @@ $conn = mysqli_connect(
 										</select>
 									</div> -->
 									<div class="form-group Category">
-										<select id='categorySelect' class="default-select">
+										<select onchange="refresh()" id='categorySelect' class="default-select">
 											<option value='%'>All Categories</option>
 										</select>
 									</div>
