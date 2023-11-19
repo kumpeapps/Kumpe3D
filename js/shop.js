@@ -92,3 +92,17 @@ function buildProducts() {
         productsGrid.appendChild(divGrid);
     }
 };
+
+function buildCategories() {
+    const queryCategory = urlParams.get('category');
+    const categorySelect = document.getElementById("categorySelect");
+    const categories = GET(apiUrl + "/products/categories").response;
+    removeAllChildNodes(categorySelect);
+    categories.forEach(build);
+    function build(element, _, _) {
+        const categoryOption = document.createElement("option");
+        categoryOption.setAttribute("value", element.category);
+        categoryOption.innerHTML = element.name;
+        categorySelect.appendChild(categoryOption);
+    }
+};
