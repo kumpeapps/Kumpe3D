@@ -93,7 +93,7 @@
 										<div class="col-lg-12 col-md-12 col-sm-12">
 											<div class="row">
 												<div class="col-md-4 col-sm-6 col-6">
-													<a href="javascript:;" class="menu-title">Shop Structure</a>
+													<a href="javascript:;" class="menu-title">Categories</a>
 													<ul>
 														<li><a href="shop-standard.html">Shop Standard</a></li>
 														<li><a href="shop-list.html">Shop List</a></li>
@@ -102,13 +102,13 @@
 														<li><a href="shop-sidebar.html">Shop Sidebar</a></li>
 														<li><a href="shop-style-1.html">Shop Style 1</a></li>
 													</ul>
-													<a href="javascript:;" class="menu-title">Product Structure</a>
+													<!-- <a href="javascript:;" class="menu-title">Product Structure</a>
 													<ul>
 														<li><a href="product-default.html">Default</a></li>
 														<li><a href="product-thumbnail.html">Thumbnail</a></li>
-													</ul>
+													</ul> -->
 												</div>
-												<div class="col-md-3 col-sm-6 col-12">
+												<!-- <div class="col-md-3 col-sm-6 col-12">
 													<a href="javascript:;" class="menu-title">Shop Pages</a>
 													<ul>
 														<li><a href="shop-wishlist.html">Wishlist</a></li>
@@ -118,10 +118,10 @@
 														<li><a href="shop-my-account.html">My Account</a></li>
 														<li><a href="shop-registration.html">Registration</a></li>
 													</ul>
-												</div>
-												<div class="col-md-5 col-sm-4 col-6 d-none d-md-block">
+												</div> -->
+												<!-- <div class="col-md-5 col-sm-4 col-6 d-none d-md-block">
 													<div class="adv-media"><img src="images/adv-1.png" alt="/"></div>
-												</div>
+												</div> -->
 											</div>
 											<div class="row">
 												<div class="col-md-12">
