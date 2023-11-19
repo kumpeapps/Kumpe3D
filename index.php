@@ -199,6 +199,19 @@ $conn = mysqli_connect(
 						</ul>
 					</div>
 				</div>
+				<div class="banner-social-media style-2 left">
+					<ul>
+						<li>
+							<a href="javascript:void(0);" target="_blank">Instagram</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" target="_blank">Facebook</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" target="_blank">twitter</a>
+						</li>
+					</ul>
+				</div>
 			</div>
 			<!--Swiper Banner End-->
 
