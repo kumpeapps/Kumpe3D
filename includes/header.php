@@ -264,7 +264,7 @@
 
 
 		<!-- SearchBar -->
-		<div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop">
+		<div class="offcanvas offcanvas-top" data-bs-toggle="offcanvas" tabindex="-1" id="offcanvasTop">
 			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
 				&times;
 			</button>
