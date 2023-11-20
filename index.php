@@ -1583,47 +1583,8 @@ $conn = mysqli_connect(
 			</section>
 			<!--Recommend Section End-->
 
-			<!-- Newsletter -->
-			<section class="overlay-black-light newsletter-wrapper style-2"
-				style="background-image: url('images/background/bg4.jpg'); background-repeat: no-repeat; background-size: cover;">
-				<div class="container">
-					<div class="subscride-inner wow fadeInUp" data-wow-delay="0.2s">
-						<div class="row justify-content-center text-center">
-							<div class="col-xl-12 col-lg-12">
-								<div class="section-head">
-									<h3 class="title">SUBSCRIBE TO OUR NEWSLETTER</h3>
-									<p class="sub-title">Get latest news, offers and discounts.</p>
-								</div>
-								<form class="dzSubscribe" action="script/mailchamp.php" method="post">
-									<div class="dzSubscribeMsg"></div>
-									<div class="form-group">
-										<div class="input-group mb-0">
-											<input name="dzEmail" required="required" type="email" class="form-control"
-												placeholder="Your Email Address">
-											<div class="input-group-addon">
-												<button name="submit" value="Submit" type="submit" class="btn">
-													<svg width="21" height="21" viewBox="0 0 21 21" fill="none">
-														<path d="M4.20972 10.7344H15.8717" stroke="#0D775E"
-															stroke-width="2" stroke-linecap="round"
-															stroke-linejoin="round" />
-														<path d="M10.0408 4.90112L15.8718 10.7345L10.0408 16.5678"
-															stroke="#0D775E" stroke-width="2" stroke-linecap="round"
-															stroke-linejoin="round" />
-													</svg>
-												</button>
-											</div>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- Newsletter End -->
-
 			<!-- Blog Start -->
-			<section class="content-inner overlay-white-middle">
+			<!-- <section class="content-inner overlay-white-middle">
 				<div class="container">
 					<div class="section-head style-2 wow fadeInUp" data-wow-delay="0.1s">
 						<div class="left-content">
@@ -1657,160 +1618,12 @@ $conn = mysqli_connect(
 									</div>
 								</div>
 							</div>
-							<div class="swiper-slide">
-								<div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.3s">
-									<div class="dz-media">
-										<img src="images/blog/grid/1.jpg" alt="">
-										<div class="post-date">20 Apr 2023</div>
-									</div>
-									<div class="dz-info">
-										<div class="dz-meta">
-											<ul>
-												<li><a href="javascript:void(0);">lifestyle</a></li>
-												<li><a href="javascript:void(0);">Wooden</a></li>
-											</ul>
-										</div>
-										<h4 class="dz-title mb-0">
-											<a href="blog-light-3-column.html">Start Your Day With Yoga And Refreshing
-												Air</a>
-										</h4>
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.4s">
-									<div class="dz-media">
-										<img src="images/blog/grid/3.jpg" alt="">
-										<div class="post-date">15 Dec 2023</div>
-									</div>
-									<div class="dz-info">
-										<div class="dz-meta">
-											<ul>
-												<li><a href="javascript:void(0);">lifestyle</a></li>
-												<li><a href="javascript:void(0);">Wooden</a></li>
-											</ul>
-										</div>
-
-										<h4 class="dz-title mb-0">
-											<a href="blog-light-3-column.html">Explore Something New With Yoga in Your
-												Daily LifeStyle</a>
-										</h4>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
-			</section>
+			</section> -->
 			<!-- Blog End -->
 
-			<!-- Feature Box -->
-			<div class="content-inner py-0 overlay-white-middle">
-				<div class="container-fluid px-0">
-					<div class="row gx-0">
-						<div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-4 wow fadeIn" data-wow-delay="0.1s">
-							<div class="insta-post dz-media dz-img-effect rotate">
-								<a href="javascript:void(0);">
-									<img src="images/gym/feature/1.png" alt="">
-								</a>
-							</div>
-						</div>
-						<div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-4 wow fadeIn" data-wow-delay="0.2s">
-							<div class="insta-post dz-media dz-img-effect rotate">
-								<a href="javascript:void(0);">
-									<img src="images/gym/feature/2.png" alt="">
-								</a>
-							</div>
-						</div>
-						<div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-4 wow fadeIn" data-wow-delay="0.3s">
-							<div class="insta-post dz-media dz-img-effect rotate">
-								<a href="javascript:void(0);">
-									<img src="images/gym/feature/3.png" alt="">
-								</a>
-							</div>
-						</div>
-						<div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-4 wow fadeIn" data-wow-delay="0.4s">
-							<div class="insta-post dz-media dz-img-effect rotate">
-								<a href="javascript:void(0);">
-									<img src="images/gym/feature/4.png" alt="">
-								</a>
-							</div>
-						</div>
-						<div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-4 wow fadeIn" data-wow-delay="0.5s">
-							<div class="insta-post dz-media dz-img-effect rotate">
-								<a href="javascript:void(0);">
-									<img src="images/gym/feature/5.png" alt="">
-								</a>
-							</div>
-						</div>
-						<div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-4 wow fadeIn" data-wow-delay="0.6s">
-							<div class="insta-post dz-media dz-img-effect rotate">
-								<a href="javascript:void(0);">
-									<img src="images/gym/feature/6.png" alt="">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Feature Box End -->
-
-			<!-- Icon Box Start -->
-			<section class="content-inner py-0">
-				<div class="container-fluid px-0">
-					<div class="row gx-0">
-						<div class="col-xl-3 col-lg-3 col-sm-6">
-							<div class="icon-bx-wraper style-2 bg-light wow fadeInUp" data-wow-delay="0.1s">
-								<div class="icon-bx">
-									<img src="images/svg/icon-bx/password-check.svg" alt="">
-								</div>
-								<div class="icon-content">
-									<h5 class="dz-title">Filter & Discover</h5>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-								</div>
-								<div class="data-text">01</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-3 col-sm-6">
-							<div class="icon-bx-wraper style-2 wow fadeInUp" data-wow-delay="0.2s">
-								<div class="icon-bx">
-									<img src="images/svg/icon-bx/cart.svg" alt="">
-								</div>
-								<div class="icon-content">
-									<h5 class="dz-title">Add to cart</h5>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-								</div>
-								<div class="data-text">02</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-3 col-sm-6">
-							<div class="icon-bx-wraper style-2 bg-light wow fadeInUp" data-wow-delay="0.3s">
-								<div class="icon-bx">
-									<img src="images/svg/icon-bx/discovery.svg" alt="">
-								</div>
-								<div class="icon-content">
-									<h5 class="dz-title">Fast Shipping</h5>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-								</div>
-								<div class="data-text">03</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-3 col-sm-6">
-							<div class="icon-bx-wraper style-2 wow fadeInUp" data-wow-delay="0.4s">
-								<div class="icon-bx">
-									<img src="images/svg/icon-bx/box-tick.svg" alt="">
-								</div>
-								<div class="icon-content">
-									<h5 class="dz-title">Enjoy The Product</h5>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-								</div>
-								<div class="data-text">04</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- Icon Box End -->
 		</div>
 
 		<?php
