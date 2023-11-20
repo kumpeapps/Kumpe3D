@@ -110,7 +110,7 @@ $conn = mysqli_connect(
 						<nav aria-label="breadcrumb" class="breadcrumb-row">
 							<ul class="breadcrumb">
 								<li class="breadcrumb-item"><a href="/"> Home</a></li>
-								<li class="breadcrumb-item"><a href="shop"> Shop</a></li>
+								<li class="breadcrumb-item">Shop</li>
 							</ul>
 						</nav>
 					</div>
