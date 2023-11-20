@@ -17,7 +17,6 @@ function refresh() {
     const category = document.getElementById("categorySelect").value;
     getProducts('%', category);
     buildCatalogs();
-    buildCategories();
     updateShoppingCartModal();
     loadingOverlay().cancel(spinHandle);
 };
@@ -132,4 +131,5 @@ function buildCatalogs() {
         }
         catalogSelect.appendChild(categoryOption);
     }
+    buildCategories();
 };
