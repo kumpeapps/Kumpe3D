@@ -18,6 +18,7 @@ function refresh() {
     getProducts('%', category);
     buildCategories();
     buildCatalogs();
+    buildProducts();
     updateShoppingCartModal();
     loadingOverlay().cancel(spinHandle);
 };
