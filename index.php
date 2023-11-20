@@ -189,7 +189,7 @@ $conn = mysqli_connect(
 			<!--Swiper Banner End-->
 
 			<!-- Product Start-->
-			<section class="content-inner-1 py-0 overlay-white-middle">
+			<!-- <section class="content-inner-1 py-0 overlay-white-middle">
 				<div class="container-fluid p-3">
 					<div class="swiper swiper-product">
 						<div class="swiper-wrapper product-style2">
@@ -244,10 +244,10 @@ $conn = mysqli_connect(
 						</div>
 					</div>
 				</div>
-			</section>
+			</section> -->
 			<!-- Product End-->
 
-			<!-- Tranding Start-->
+			<!-- Trending Start-->
 			<section class="content-inner-1 overlay-white-middle overflow-hidden">
 				<div class="container">
 					<div class="section-head style-2 wow fadeInUp" data-wow-delay="0.1s">
@@ -695,7 +695,7 @@ $conn = mysqli_connect(
 					</div>
 				</div>
 			</section>
-			<!-- Tranding Stop-->
+			<!-- Trending Stop-->
 
 			<!-- Blog Start -->
 			<!-- <section class="content-inner overlay-white-middle">
