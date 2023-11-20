@@ -103,7 +103,8 @@ require_once 'includes/site_params.php';
 						<h1>Checkout</h1>
 						<nav aria-label="breadcrumb" class="breadcrumb-row">
 							<ul class="breadcrumb">
-								<li class="breadcrumb-item"><a href="index.php"> Home</a></li>
+								<li class="breadcrumb-item"><a href="/"> Home</a></li>
+								<li class="breadcrumb-item"><a href="shop"> Shop</a></li>
 								<li class="breadcrumb-item">Checkout</li>
 							</ul>
 						</nav>

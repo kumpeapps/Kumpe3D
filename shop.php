@@ -109,7 +109,8 @@ $conn = mysqli_connect(
 						<h1>Shop Kumpe3D</h1>
 						<nav aria-label="breadcrumb" class="breadcrumb-row">
 							<ul class="breadcrumb">
-								<li class="breadcrumb-item"><a href="index.html"> Home</a></li>
+								<li class="breadcrumb-item"><a href="/"> Home</a></li>
+								<li class="breadcrumb-item"><a href="shop"> Shop</a></li>
 							</ul>
 						</nav>
 					</div>
