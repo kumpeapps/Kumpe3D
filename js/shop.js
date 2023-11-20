@@ -16,6 +16,7 @@ function load() {
 function refresh() {
     const category = document.getElementById("categorySelect").value;
     getProducts('%', category);
+    buildCategories();
     buildCatalogs();
     updateShoppingCartModal();
     loadingOverlay().cancel(spinHandle);
@@ -100,7 +101,7 @@ function buildCategories() {
     const catalog = document.getElementById("catalogSelect").value;
     const queryCategory = urlParams.get('category') ?? "%";
     const categorySelect = document.getElementById("categorySelect");
-    const categories = GET(apiUrl + "/products/categories?catalog=" + catalog).response;
+    const categories = GET(apiUrl + "/products/categories").response;
     removeAllChildNodes(categorySelect);
     categories.forEach(build);
     function build(element, _, _) {
@@ -112,8 +113,6 @@ function buildCategories() {
         }
         categorySelect.appendChild(categoryOption);
     }
-    console.debug("buildCatsDone")
-    buildProducts();
 };
 
 function buildCatalogs() {
@@ -131,5 +130,5 @@ function buildCatalogs() {
         }
         catalogSelect.appendChild(categoryOption);
     }
-    buildCategories();
+    buildProducts();
 };
