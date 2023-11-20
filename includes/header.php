@@ -22,7 +22,7 @@
 				<div class="container-fluid clearfix">
 					<!-- Website Logo -->
 					<div class="logo-header logo-dark me-md-5">
-						<a href="index.php"><img src="<?php echo $site_params['store_logo_url']; ?>" alt="logo"></a>
+						<a href="/"><img src="<?php echo $site_params['store_logo_url']; ?>" alt="logo"></a>
 					</div>
 
 					<!-- Nav Toggle Button -->
