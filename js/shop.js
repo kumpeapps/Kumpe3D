@@ -119,7 +119,6 @@ function buildProducts() {
 };
 
 function buildCategories() {
-    const catalog = document.getElementById("catalogSelect").value;
     const queryCategory = urlParams.get('category') ?? "%";
     const categorySelect = document.getElementById("categorySelect");
     const categories = GET(apiUrl + "/products/categories").response;
