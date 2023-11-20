@@ -167,17 +167,13 @@ $conn = mysqli_connect(
 				<div class="banner-social-media style-2 left">
 					<ul>
 						<li>
-							<a href="javascript:void(0);" target="_blank">Instagram</a>
+							<a href="https://www.facebook.com/kumpe3d" target="_blank">Facebook</a>
 						</li>
 						<li>
-							<a href="javascript:void(0);" target="_blank">Facebook</a>
-						</li>
-						<li>
-							<a href="javascript:void(0);" target="_blank">twitter</a>
+							<a href="https://www.instagram.com/kumpe3d" target="_blank">Instagram</a>
 						</li>
 					</ul>
 				</div>
-				<a href="contact-us-1.html" class="service-btn btn-dark">Let’s talk</a>
 			</div>
 		</div>		
 		<!--Swiper Banner End-->
