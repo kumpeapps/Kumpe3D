@@ -181,7 +181,7 @@ $conn = mysqli_connect(
 											<option>3 Months</option>
 										</select>
 									</div> -->
-									<div class="form-group Category">
+									<div class="form-group Catalog">
 										<select onchange="buildCategories()" id='catalogSelect' class="default-select">
 											<option value='%'>Select Catalog</option>
 										</select>
