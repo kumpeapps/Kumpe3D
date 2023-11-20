@@ -159,13 +159,13 @@ function buildHeaderCategories() {
 
 function buildHeaderCatalogs() {
     const shopCatalogs = document.getElementById("shopCatalogs");
-    const categories = GET(apiUrl + "/products/catalogs?header=true").response;
+    const categories = GET(apiUrl + "/products/catalogs?ignore_catalog=%").response;
     removeAllChildNodes(shopCatalogs);
     categories.forEach(build);
     function build(element, _, _) {
         const catalogOption = document.createElement("li");
         const catalogLink = document.createElement("a");
-        catalogLink.setAttribute("href", "shop?category=" + element.catalog);
+        catalogLink.setAttribute("href", "shop?catalog=" + element.catalog);
         catalogLink.innerHTML = element.name;
         catalogOption.appendChild(catalogLink);
         shopCatalogs.appendChild(catalogOption);
