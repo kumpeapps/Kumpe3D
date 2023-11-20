@@ -94,8 +94,8 @@
 											<div class="row">
 												<div class="col-md-4 col-sm-6 col-6">
 													<a href="javascript:;" class="menu-title">Categories</a>
-													<ul>
-														<li><a href="shop.php">All Products</a></li>
+													<ul id="shopCategories">
+														<li><a href="shop">All Products</a></li>
 													</ul>
 													<!-- <a href="javascript:;" class="menu-title">Product Structure</a>
 													<ul>
@@ -105,8 +105,8 @@
 												</div>
 												<div class="col-md-3 col-sm-6 col-12">
 													<a href="javascript:;" class="menu-title">Catalogs</a>
-													<ul>
-														<li><a href="shop.php">All Products</a></li>
+													<ul id="shopCatalogs">
+														<li><a href="shop">All Products</a></li>
 													</ul>
 												</div>
 												<!-- <div class="col-md-5 col-sm-4 col-6 d-none d-md-block">
