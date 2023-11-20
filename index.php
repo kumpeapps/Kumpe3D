@@ -182,7 +182,7 @@ $conn = mysqli_connect(
 										</select>
 									</div> -->
 									<div class="form-group">
-										<select onchange="buildCategories()" id='catalogSelect' class="default-select">
+										<select onchange="buildProducts()" id='catalogSelect' class="default-select">
 											<option value='%'>Select Catalog</option>
 										</select>
 									</div>
@@ -516,7 +516,7 @@ $conn = mysqli_connect(
 	<script nonce="<?php echo $nonce; ?>" src="vendor-js/lightgallery/dist/plugins/zoom/lg-zoom.min.js"></script>
 	<script nonce="<?php echo $nonce; ?>" src="js/dz.ajax.js"></script><!-- AJAX -->
 	<script nonce="<?php echo $nonce; ?>" src="js/custom.js"></script><!-- CUSTOM JS -->
-	<script nonce="<?php echo $nonce; ?>" src="js/shop.js?version=202311191803"></script>
+	<script nonce="<?php echo $nonce; ?>" src="js/shop.js?version=202311191839"></script>
 
 </body>
 
