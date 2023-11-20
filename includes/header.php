@@ -401,4 +401,4 @@
 		<!-- Sidebar cart -->
 	</header>
 	<!-- Header End -->
-	<script nonce="<?php echo $nonce; ?>" src="js/header.js"></script>
+	<script nonce="<?php echo $nonce; ?>" src="js/header.js?version=202311191905"></script>
