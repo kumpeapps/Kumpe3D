@@ -106,7 +106,7 @@ $conn = mysqli_connect(
 			<!--Swiper Banner Start -->
 			<div class="main-slider style-2">
 				<div class="main-swiper">
-					<div class="swiper-wrapper">
+					<!-- <div class="swiper-wrapper">
 						<div class="swiper-slide bg-light">
 							<div class="container">
 								<div class="banner-content">
@@ -173,7 +173,7 @@ $conn = mysqli_connect(
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<div class="banner-social-media style-2 left">
 						<ul>
 							<li>
