@@ -255,7 +255,7 @@ $conn = mysqli_connect(
 							<h2 class="title">What's trending now</h2>
 							<p>Discover the most trending products in Mooncart.</p>
 						</div>
-						<a href="shop-list.html" class="text-secondary font-14 d-flex align-items-center gap-1">See all
+						<a href="shop" class="text-secondary font-14 d-flex align-items-center gap-1">See all
 							products
 							<i class="icon feather icon-chevron-right font-18"></i>
 						</a>
