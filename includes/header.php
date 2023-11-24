@@ -72,6 +72,8 @@
 					</div>
 
 					<!-- Main Nav -->
+					<script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+<div class="elfsight-app-85366724-58b7-4a9f-93e0-d5b58ebe7d6b" data-elfsight-app-lazy></div>
 					<div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
 						<div class="logo-header">
 							<a href="index.php"><img src="<?php echo $site_params['store_logo_url']; ?>" alt="/"></a>
