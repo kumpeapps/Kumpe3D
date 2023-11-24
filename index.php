@@ -188,11 +188,12 @@ $conn = mysqli_connect(
 			</div>
 			<!--Swiper Banner End-->
 
-			<!-- Product Start-->
+			<!-- Categories Start-->
 			<section class="content-inner-1 py-0 overlay-white-middle">
 				<div class="container-fluid p-3">
 					<div class="swiper swiper-product">
-						<div class="swiper-wrapper product-style2">
+						<div id="categoriesSwiper" class="swiper-wrapper product-style2">
+							<!-- Start Category -->
 							<div class="swiper-slide">
 								<div class="product-box style-2 wow fadeInUp" data-wow-delay="0.4s"
 									style="background-image: url('pcloud/3D_Images/categories/ornaments.webp');">
@@ -204,11 +205,12 @@ $conn = mysqli_connect(
 									</div>
 								</div>
 							</div>
+							<!-- End Category -->
 						</div>
 					</div>
 				</div>
 			</section>
-			<!-- Product End-->
+			<!-- Categories End-->
 
 			<!-- Trending Start-->
 			<section class="content-inner-1 overlay-white-middle overflow-hidden">
@@ -735,6 +737,7 @@ $conn = mysqli_connect(
 	<script src="vendor-js/lightgallery/dist/plugins/zoom/lg-zoom.min.js"></script>
 	<script src="js/dz.ajax.js"></script><!-- AJAX -->
 	<script src="js/custom.js"></script><!-- CUSTOM JS -->
+	<script src="js/home.js?version=202311241434"></script>
 </body>
 
 </html>
