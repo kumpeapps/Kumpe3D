@@ -200,12 +200,12 @@ $conn = mysqli_connect(
 							<!-- Start Category -->
 							<div class="swiper-slide">
 								<div class="product-box style-2 wow fadeInUp" data-wow-delay="0.4s"
-									style="background-image: url('pcloud/3D_Images/categories/ornaments.webp');">
+									style="background-image: url('');">
 									<div class="product-content">
 										<div class="main-content">
-											<h2 class="product-name">Ornaments</h2>
+											<h2 class="product-name">All Products</h2>
 										</div>
-										<a href="shop-list.html" class="btn btn-outline-secondary">Shop Now</a>
+										<a href="shop" class="btn btn-outline">Shop Now</a>
 									</div>
 								</div>
 							</div>
