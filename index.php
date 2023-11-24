@@ -89,8 +89,10 @@ $conn = mysqli_connect(
 </head>
 
 <body>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0&appId=313430524972692" nonce="4q6wcyoK"></script>
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous"
+		src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0&appId=313430524972692"
+		nonce="4q6wcyoK"></script>
 	<div class="page-wraper">
 		<div id="loading-area" class="preloader-wrapper-1">
 			<div>
@@ -665,7 +667,7 @@ $conn = mysqli_connect(
 			<!-- Trending Stop-->
 
 			<!-- Blog Start -->
-			<section class="content-inner overlay-white-middle">
+			<!-- <section class="content-inner overlay-white-middle">
 				<div class="container">
 					<div class="section-head style-2 wow fadeInUp" data-wow-delay="0.1s">
 						<div class="left-content">
@@ -687,8 +689,12 @@ $conn = mysqli_connect(
 						</div>
 					</div>
 				</div>
-			</section>
+			</section> -->
 			<!-- Blog End -->
+			<!-- Facebook Reviews Start -->
+			<script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+			<div class="elfsight-app-4678166b-13ea-45e7-b03d-7e659c19efbc" data-elfsight-app-lazy></div>
+			<!-- Facebook Reviews End -->
 
 		</div>
 
