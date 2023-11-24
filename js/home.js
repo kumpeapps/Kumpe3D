@@ -12,7 +12,7 @@ function refresh() {
 
 function buildCategoriesSwiper() {
     const categoriesSwiper = document.getElementById("categoriesSwiper");
-    const categories = GET(apiUrl + "/products/categories").response;
+    const categories = GET(apiUrl + "/products/categories?ignore_category=%").response;
     removeAllChildNodes(categoriesSwiper);
     categories.forEach(build);
     function build(element, _, _) {
