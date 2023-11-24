@@ -231,7 +231,7 @@ $conn = mysqli_connect(
 							</div>
 							<div class="swiper-slide">
 								<div class="product-box style-2 wow fadeInUp" data-wow-delay="0.4s"
-									style="opacity: 0.5 background-image: url('https://images.kumpeapps.com/filament?sku=ALO-POO-LSN-main');">
+									style="background-image: url('pcloud/3D_Images/categories/ornaments.webp');">
 									<div class="product-content">
 										<div class="main-content">
 											<h2 class="product-name">Nike Sports shoes</h2>
