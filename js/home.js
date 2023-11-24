@@ -33,7 +33,7 @@ function buildCategoriesSwiper() {
         console.debug("Category: " + element['category']);
         cat_link.setAttribute("href", "shop?category=" + element['category']);
         cat_link.setAttribute("class", "btn btn-dark");
-        cat_link.innerHTML = "Shop Now";
+        cat_link.innerHTML = "Shop " + element['name'];
         main_content.appendChild(product_name);
         product_content.appendChild(main_content);
         product_content.appendChild(cat_link);
