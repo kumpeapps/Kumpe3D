@@ -30,6 +30,7 @@ function buildCategoriesSwiper() {
         product_name.setAttribute("class", "product-name");
         product_name.innerHTML = element["name"];
         const link = document.createElement["a"];
+        console.debug("Category: " + element['category']);
         link.setAttribute("href", "shop?category=" + element['category']);
         link.setAttribute("class", "btn btn-outline-secondary");
         link.innerHTML = "Shop Now";
