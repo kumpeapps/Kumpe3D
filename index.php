@@ -205,7 +205,7 @@ $conn = mysqli_connect(
 										<div class="main-content">
 											<h2 class="product-name">All Products</h2>
 										</div>
-										<a href="shop" class="btn btn-outline">Shop Now</a>
+										<a href="shop" class="btn btn-dark">Shop Now</a>
 									</div>
 								</div>
 							</div>
