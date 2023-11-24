@@ -668,28 +668,20 @@ $conn = mysqli_connect(
 			<section class="content-inner overlay-white-middle">
 				<div class="container">
 					<div class="section-head style-2 wow fadeInUp" data-wow-delay="0.1s">
-						<div class="fb-post" data-href="https://www.facebook.com/donna.clarke.56808/posts/pfbid02UKgNMuScDtSxud5dUFUX8n6aY18ioYnRd4xdfgQSG4b1Fn7q1Zzzg43Jf3o7Urosl" data-width="350" data-show-text="true"><blockquote cite="https://www.facebook.com/donna.clarke.56808/posts/2558973694279065" class="fb-xfbml-parse-ignore"><p>awesome products! we&#039;re going to see more so I can order and check out your site</p>Posted by <a href="https://www.facebook.com/donna.clarke.56808">Donna Rohrbach</a> on&nbsp;<a href="https://www.facebook.com/donna.clarke.56808/posts/2558973694279065">Sunday, November 12, 2023</a></blockquote></div>
+						<div class="left-content">
+							<h2 class="title">Blog Post</h2>
+							<p>Discover the most trending post.</p>
+						</div>
+						<a href="post-standard.html"
+							class="text-secondary font-14 d-flex align-items-center gap-1 text-nowrap">See all Post
+							<i class="icon feather icon-chevron-right font-18"></i>
+						</a>
 					</div>
 					<div class="swiper swiper-blog-post">
 						<div class="swiper-wrapper">
 							<div class="swiper-slide">
 								<div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.2s">
-									<div class="dz-media">
-										<img src="images/blog/grid/1.jpg" alt="">
-										<div class="post-date">17 May 2023</div>
-									</div>
-									<div class="dz-info">
-										<div class="dz-meta">
-											<ul>
-												<li><a href="javascript:void(0);">lifestyle</a></li>
-												<li><a href="javascript:void(0);">Wooden</a></li>
-											</ul>
-										</div>
-										<h4 class="dz-title mb-0">
-											<a href="blog-light-3-column.html">Uncovering the Beauty Benefits of
-												Plant-Based Skincare</a>
-										</h4>
-									</div>
+									<div class="fb-post" data-href="https://www.facebook.com/donna.clarke.56808/posts/pfbid02UKgNMuScDtSxud5dUFUX8n6aY18ioYnRd4xdfgQSG4b1Fn7q1Zzzg43Jf3o7Urosl" data-width="350" data-show-text="true"><blockquote cite="https://www.facebook.com/donna.clarke.56808/posts/2558973694279065" class="fb-xfbml-parse-ignore"><p>awesome products! we&#039;re going to see more so I can order and check out your site</p>Posted by <a href="https://www.facebook.com/donna.clarke.56808">Donna Rohrbach</a> on&nbsp;<a href="https://www.facebook.com/donna.clarke.56808/posts/2558973694279065">Sunday, November 12, 2023</a></blockquote></div>
 								</div>
 							</div>
 						</div>
