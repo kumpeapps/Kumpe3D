@@ -708,7 +708,7 @@ $conn = mysqli_connect(
 	<script src="vendor-js/lightgallery/dist/plugins/zoom/lg-zoom.min.js"></script>
 	<script src="js/dz.ajax.js"></script><!-- AJAX -->
 	<script src="js/custom.js"></script><!-- CUSTOM JS -->
-	<script src="js/home.js?version=202311241454"></script>
+	<script src="js/home.js?version=202311241648"></script>
 </body>
 
 </html>
