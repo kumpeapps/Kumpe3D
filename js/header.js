@@ -3,6 +3,8 @@ const spinHandle = loadingOverlay();
 refreshSiteParams();
 updateShoppingCartModal();
 updateBanner();
+buildHeaderCatalogs();
+buildHeaderCategories();
 
 function buildShoppingCartModalList() {
     loadingOverlay().activate(spinHandle)
@@ -137,5 +139,35 @@ function updateBanner() {
         const siteBanner = document.getElementById("notificationBanner");
         siteBanner.setAttribute("class", siteParams['storeNoticebannerClass']);
         siteBanner.innerHTML = siteParams['storeNoticebanner'];
+    }
+};
+
+function buildHeaderCategories() {
+    const shopCategories = document.getElementById("shopCategories");
+    const categories = GET(apiUrl + "/products/categories?header=true").response;
+    removeAllChildNodes(shopCategories);
+    categories.forEach(build);
+    function build(element, _, _) {
+        const categoryOption = document.createElement("li");
+        const categoryLink = document.createElement("a");
+        categoryLink.setAttribute("href", "shop?category=" + element.category);
+        categoryLink.innerHTML = element.name;
+        categoryOption.appendChild(categoryLink);
+        shopCategories.appendChild(categoryOption);
+    }
+};
+
+function buildHeaderCatalogs() {
+    const shopCatalogs = document.getElementById("shopCatalogs");
+    const categories = GET(apiUrl + "/products/catalogs?ignore_catalog=%").response;
+    removeAllChildNodes(shopCatalogs);
+    categories.forEach(build);
+    function build(element, _, _) {
+        const catalogOption = document.createElement("li");
+        const catalogLink = document.createElement("a");
+        catalogLink.setAttribute("href", "shop?catalog=" + element.catalog);
+        catalogLink.innerHTML = element.name;
+        catalogOption.appendChild(catalogLink);
+        shopCatalogs.appendChild(catalogOption);
     }
 };

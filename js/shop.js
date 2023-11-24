@@ -1,28 +1,33 @@
 let products;
-refresh();
-
-function getProducts(sku = "%", category = "%", tag = "%") {
+load();
+function getProducts(sku = "%", category = "%", tag = "%", catalog = "%") {
     topCount = document.getElementById("resultsCountTop");
     bottomCount = document.getElementById("resultsCountBottom");
-    products = GET(apiUrl + "/product?sku=" + sku + "&category_filter=" + category + "&tag_filter=" + tag + "&search=%").response;
+    products = GET(apiUrl + "/product?sku=" + sku + "&category_filter=" + category + "&tag_filter=" + tag + "&search=%&catalog=" + catalog).response;
     topCount.innerHTML = products.length;
     bottomCount.innerHTML = products.length;
+    console.debug("Catalog=" + catalog);
 };
 
 function load() {
-    const category = document.getElementById("categorySelect").value;
-    getProducts('%', category);
+    refresh();
 }
 
 function refresh() {
-    load();
+    const category = document.getElementById("categorySelect").value;
+    getProducts('%', category);
+    buildCategories();
+    buildCatalogs();
+    buildProducts();
     updateShoppingCartModal();
     loadingOverlay().cancel(spinHandle);
-    buildProducts();
 };
 
 
 function buildProducts() {
+    const selectedCategory = document.getElementById("categorySelect").value;
+    const selectedCatalog = document.getElementById("catalogSelect").value;
+    getProducts("%", selectedCategory, "%", selectedCatalog);
     const productsColumn = document.getElementById("productsColumn");
     const productsGrid = document.getElementById("productsGrid");
     removeAllChildNodes(productsColumn);
@@ -91,4 +96,39 @@ function buildProducts() {
         productsColumn.appendChild(divColumn);
         productsGrid.appendChild(divGrid);
     }
+};
+
+function buildCategories() {
+    const queryCategory = urlParams.get('category') ?? "%";
+    const categorySelect = document.getElementById("categorySelect");
+    const categories = GET(apiUrl + "/products/categories").response;
+    removeAllChildNodes(categorySelect);
+    categories.forEach(build);
+    function build(element, _, _) {
+        const categoryOption = document.createElement("option");
+        categoryOption.setAttribute("value", element.category);
+        categoryOption.innerHTML = element.name;
+        if (element.category == queryCategory) {
+            categoryOption.setAttribute("selected", true);
+        }
+        categorySelect.appendChild(categoryOption);
+    }
+};
+
+function buildCatalogs() {
+    const queryCatalog = urlParams.get('catalog') ?? "%";
+    const catalogSelect = document.getElementById("catalogSelect");
+    const categories = GET(apiUrl + "/products/catalogs").response;
+    removeAllChildNodes(catalogSelect);
+    categories.forEach(build);
+    function build(element, _, _) {
+        const categoryOption = document.createElement("option");
+        categoryOption.setAttribute("value", element.catalog);
+        categoryOption.innerHTML = element.name;
+        if (element.catalog == queryCatalog) {
+            categoryOption.setAttribute("selected", true);
+        }
+        catalogSelect.appendChild(categoryOption);
+    }
+    buildProducts();
 };

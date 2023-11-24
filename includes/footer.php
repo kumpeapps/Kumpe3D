@@ -74,4 +74,8 @@ $conn = mysqli_connect(
 <div id="fb-customer-chat" class="fb-customerchat">
 </div>
 <script nonce="<?php echo $nonce; ?>" src="js/facebook.js"></script>
+<!-- Sale Popup Start -->
+<script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+<div class="elfsight-app-1ad75bf1-1310-4ec3-8ffb-1cc0fb600b1c" data-elfsight-app-lazy></div>
+<!-- Sale Popup End -->
 <!-- Footer End -->

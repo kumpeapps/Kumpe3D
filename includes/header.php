@@ -22,7 +22,7 @@
 				<div class="container-fluid clearfix">
 					<!-- Website Logo -->
 					<div class="logo-header logo-dark me-md-5">
-						<a href="index.php"><img src="<?php echo $site_params['store_logo_url']; ?>" alt="logo"></a>
+						<a href="/"><img src="<?php echo $site_params['store_logo_url']; ?>" alt="logo"></a>
 					</div>
 
 					<!-- Nav Toggle Button -->
@@ -36,8 +36,8 @@
 					<div class="extra-nav">
 						<div class="extra-cell">
 							<ul class="header-right">
-								<li class="nav-item login-link">
-									<!-- <a class="nav-link" href="shop-my-account.html">
+								<!-- <li class="nav-item login-link">
+									<a class="nav-link" href="shop-my-account.html">
 										LOGIN / REGISTER
 									</a>
 								</li> -->
@@ -72,9 +72,11 @@
 					</div>
 
 					<!-- Main Nav -->
+					<script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+<div class="elfsight-app-85366724-58b7-4a9f-93e0-d5b58ebe7d6b" data-elfsight-app-lazy></div>
 					<div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
 						<div class="logo-header">
-							<a href="index.html"><img src="<?php echo $site_params['store_logo_url']; ?>" alt="/"></a>
+							<a href="index.php"><img src="<?php echo $site_params['store_logo_url']; ?>" alt="/"></a>
 						</div>
 						<ul class="nav navbar-nav dark-nav">
 							<!-- <li class="sub-menu sub-menu-down">
@@ -86,152 +88,37 @@
 									<li><a href="index-4.html">04 Home Page</a></li>
 								</ul>
 							</li> -->
-							<!-- <li class="has-mega-menu sub-menu-down">
+							<li class="has-mega-menu sub-menu-down">
 								<a href="javascript:void(0);"><span>Shop</span></a>
 								<div class="mega-menu shop-menu">
 									<div class="row">
 										<div class="col-lg-12 col-md-12 col-sm-12">
 											<div class="row">
 												<div class="col-md-4 col-sm-6 col-6">
-													<a href="javascript:;" class="menu-title">Shop Structure</a>
-													<ul>
-														<li><a href="shop-standard.html">Shop Standard</a></li>
-														<li><a href="shop-list.html">Shop List</a></li>
-														<li><a href="shop-with-category.html">Shop With Category</a></li>
-														<li><a href="shop-filters-top-bar.html">Shop Filters Top Bar</a></li>
-														<li><a href="shop-sidebar.html">Shop Sidebar</a></li>
-														<li><a href="shop-style-1.html">Shop Style 1</a></li>
+													<a href="javascript:;" class="menu-title">Categories</a>
+													<ul id="shopCategories">
+														<li><a href="shop">All Products</a></li>
 													</ul>
-													<a href="javascript:;" class="menu-title">Product Structure</a>
+													<!-- <a href="javascript:;" class="menu-title">Product Structure</a>
 													<ul>
 														<li><a href="product-default.html">Default</a></li>
 														<li><a href="product-thumbnail.html">Thumbnail</a></li>
-													</ul>
+													</ul> -->
 												</div>
 												<div class="col-md-3 col-sm-6 col-12">
-													<a href="javascript:;" class="menu-title">Shop Pages</a>
-													<ul>
-														<li><a href="shop-wishlist.html">Wishlist</a></li>
-														<li><a href="shop-cart.html">Cart</a></li>
-														<li><a href="shop-checkout.html">Checkout</a></li>
-														<li><a href="shop-order-tracking.html">Order Tracking</a></li>
-														<li><a href="shop-my-account.html">My Account</a></li>
-														<li><a href="shop-registration.html">Registration</a></li>
+													<a href="javascript:;" class="menu-title">Catalogs</a>
+													<ul id="shopCatalogs">
+														<li><a href="shop">All Products</a></li>
 													</ul>
 												</div>
-												<div class="col-md-5 col-sm-4 col-6 d-none d-md-block">
+												<!-- <div class="col-md-5 col-sm-4 col-6 d-none d-md-block">
 													<div class="adv-media"><img src="images/adv-1.png" alt="/"></div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-12">
-													<div class="month-deal">
-														<div>
-															<h3>Deal of the month</h3>
-															<p class="mb-0">Yes! Send me exclusive offers, personalised, and unique gift ideas, tips for shopping on MoonCart <a href="shop-standard.html" class="dz-link-2">View All Products</a></p>
-														</div>
-														<div class="sale-countdown">
-															<div class="countdown text-center">
-																<div class="date"><span class="time days text-primary"></span>
-																	<span class="work-time">Days</span>
-																</div>
-																<div class="date"><span class="time hours text-primary"></span>
-																	<span class="work-time">Hours</span>
-																</div>
-																<div class="date"><span class="time mins text-primary"></span>
-																	<span class="work-time">Minutess</span>
-																</div>
-																<div class="date"><span class="time secs text-primary"></span>
-																	<span class="work-time">Second</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
+												</div> -->
 											</div>
 										</div>
 									</div>
 								</div>
-							</li> -->
-							<!-- <li class="has-mega-menu sub-menu-down"><a href="javascript:void(0);"><span>Blog</span></a>
-								<div class="mega-menu blog-menu">
-									<div class="row">
-										<div class="col-md-6 col-sm-6 col-6">
-											<a href="javascript:;" class="menu-title">Blog Dark Style</a>
-											<ul>
-												<li><a href="blog-dark-2-column.html">Blog 2 Column</a></li>
-												<li><a href="blog-dark-2-column-sidebar.html">Blog 2 Column Sidebar</a></li>
-												<li><a href="blog-dark-3-column.html">Blog 3 Column</a></li>
-												<li><a href="blog-dark-half-image.html">Blog Half Image</a></li>
-											</ul>
-											<a href="javascript:;" class="menu-title">Blog Light Style</a>
-											<ul>
-												<li><a href="blog-light-2-column.html">Blog 2 Column</a></li>
-												<li><a href="blog-light-2-column-sidebar.html">Blog 2 Column Sidebar</a></li>
-												<li><a href="blog-light-3-column.html">Blog 3 Column</a></li>
-												<li><a href="blog-light-half-image.html">Blog Half Image</a></li>
-											</ul>
-											<a href="javascript:;" class="menu-title">Blog Details</a>
-											<ul>
-												<li><a href="post-standard.html">Post Standard</a></li>
-												<li><a href="post-header-image.html">Post Header Image</a></li>
-											</ul>
-										</div>
-										<div class="col-md-6 col-sm-6 col-12">
-											<a href="javascript:;" class="menu-title">Recent Posts</a>
-											<div class="widget widget_post pt-2">
-												<ul>
-													<li>
-														<div class="dz-media">
-															<img src="images/shop/product/small/1.png" alt="">
-														</div>
-														<div class="dz-content">
-															<h6 class="name"><a href="post-standard.html">Wooden Water Bottles</a></h6>
-															<span class="time">July 23, 2023</span>
-														</div>
-													</li>
-													<li>
-														<div class="dz-media">
-															<img src="images/shop/product/small/2.png" alt="">
-														</div>
-														<div class="dz-content">
-															<h6 class="name"><a href="post-standard.html">Eco friendly bags</a></h6>
-															<span class="time">July 23, 2023</span>
-														</div>
-													</li>
-													<li>
-														<div class="dz-media">
-															<img src="images/shop/product/small/3.png" alt="">
-														</div>
-														<div class="dz-content">
-															<h6 class="name"><a href="post-standard.html">Bamboo toothbrushes</a></h6>
-															<span class="time">July 23, 2023</span>
-														</div>
-													</li>
-													<li>
-														<div class="dz-media">
-															<img src="images/shop/product/small/2.png" alt="">
-														</div>
-														<div class="dz-content">
-															<h6 class="name"><a href="post-standard.html">Eco friendly bags</a></h6>
-															<span class="time">July 23, 2023</span>
-														</div>
-													</li>
-													<li>
-														<div class="dz-media">
-															<img src="images/shop/product/small/1.png" alt="">
-														</div>
-														<div class="dz-content">
-															<h6 class="name"><a href="post-standard.html">Wooden Water Bottles</a></h6>
-															<span class="time">July 23, 2023</span>
-														</div>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-							</li> -->
+							</li>
 							<li class="sub-menu sub-menu-down"><a href="javascript:void(0);"><span>Pages</span></a>
 								<ul class="sub-menu">
 									<?php
@@ -251,8 +138,6 @@
 						<div class="dz-social-icon">
 							<ul>
 								<li><a class="fab fa-facebook-f" target="_blank" href="https://www.facebook.com/kumpe3d"></a></li>
-								<!-- <li><a class="fab fa-twitter" target="_blank" href="javascript:void(0);"></a></li>
-								<li><a class="fab fa-linkedin-in" target="_blank" href="https://www.linkedin.com/showcase/3686700/admin/"></a></li> -->
 								<li><a class="fab fa-instagram" target="_blank" href="https://www.instagram.com/kumpe3d/"></a></li>
 							</ul>
 						</div>
@@ -264,7 +149,7 @@
 
 
 		<!-- SearchBar -->
-		<!-- <div class="dz-search-area dz-offcanvas offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop">
+		<!-- <div class="offcanvas offcanvas-top" data-bs-toggle="offcanvas" tabindex="-1" id="offcanvasTop">
 			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
 				&times;
 			</button>
@@ -518,4 +403,4 @@
 		<!-- Sidebar cart -->
 	</header>
 	<!-- Header End -->
-	<script nonce="<?php echo $nonce; ?>" src="js/header.js"></script>
+	<script nonce="<?php echo $nonce; ?>" src="js/header.js?version=202311191931"></script>
