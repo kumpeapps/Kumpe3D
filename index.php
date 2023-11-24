@@ -194,48 +194,11 @@ $conn = mysqli_connect(
 					<div class="swiper swiper-product">
 						<div class="swiper-wrapper product-style2">
 							<div class="swiper-slide">
-								<div class="product-box style-2 wow fadeInUp" data-wow-delay="0.1s"
-									style="background-image: url('images/gym/1.png');">
-									<div class="product-content">
-										<div class="main-content">
-											<h2 class="product-name">Home fitness equipment</h2>
-											<span class="offer">UP TO 60% OFF</span>
-										</div>
-										<a href="shop-list.html" class="btn btn-outline-secondary">Shop Now</a>
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="product-box style-2 wow fadeInUp" data-wow-delay="0.2s"
-									style="background-image: url('images/gym/2.png');">
-									<div class="product-content">
-										<div class="main-content">
-											<h2 class="product-name">Yoga mats and accessories</h2>
-											<span class="offer">UP TO 60% OFF</span>
-										</div>
-										<a href="shop-list.html" class="btn btn-outline-secondary">Shop Now</a>
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="product-box style-2 wow fadeInUp" data-wow-delay="0.3s"
-									style="background-image: url('images/gym/3.png');">
-									<div class="product-content">
-										<div class="main-content">
-											<h2 class="product-name">Plant-based protein supplements</h2>
-											<span class="offer">UP TO 60% OFF</span>
-										</div>
-										<a href="shop-list.html" class="btn btn-outline-secondary">Shop Now</a>
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
 								<div class="product-box style-2 wow fadeInUp" data-wow-delay="0.4s"
 									style="background-image: url('pcloud/3D_Images/categories/ornaments.webp');">
 									<div class="product-content">
 										<div class="main-content">
-											<h2 class="product-name">Nike Sports shoes</h2>
-											<span class="offer">UP TO 60% OFF</span>
+											<h2 class="product-name">Ornaments</h2>
 										</div>
 										<a href="shop-list.html" class="btn btn-outline-secondary">Shop Now</a>
 									</div>
