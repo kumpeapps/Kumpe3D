@@ -29,9 +29,9 @@ function buildCategoriesSwiper() {
         const product_name = document.createElement("h2");
         product_name.setAttribute("class", "product-name");
         product_name.innerHTML = element["name"];
-        const cat_link = document.createElement["a"];
+        const cat_link = document.createElement("a");
         console.debug("Category: " + element['category']);
-        // cat_link.setAttribute("href", "shop?category=" + element['category']);
+        cat_link.setAttribute("href", "shop?category=" + element['category']);
         cat_link.setAttribute("class", "btn btn-outline-secondary");
         cat_link.innerHTML = "Shop Now";
         main_content.appendChild(product_name);
