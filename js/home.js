@@ -6,6 +6,7 @@ function load() {
 
 function refresh() {
     updateShoppingCartModal();
+    buildCategoriesSwiper();
     loadingOverlay().cancel(spinHandle);
 };
 
