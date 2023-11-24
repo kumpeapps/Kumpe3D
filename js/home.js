@@ -40,7 +40,5 @@ function buildCategoriesSwiper() {
         product_box.appendChild(product_content);
         slide.appendChild(product_box);
         categoriesSwiper.appendChild(slide);
-        
-        categoriesSwiper.appendChild(categoryOption);
     }
 };
