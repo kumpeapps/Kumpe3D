@@ -80,6 +80,15 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 <head>
 	<script nonce="<?php echo $nonce; ?>" type="text/javascript" src="https://app.termly.io/embed.min.js"
 		data-auto-block="off" data-website-uuid="f0526f09-9728-4a75-853d-72961022b400"></script>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-05F2DWKXWF"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'G-05F2DWKXWF');
+	</script>
 	<!-- Meta -->
 	<meta http-equiv="Content-Security-Policy-Report-Only" content="
 		default-src 'self';
@@ -272,8 +281,7 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 											<div id="customizationInputContainer" class="product-num" hidden>
 												<div class="meta-content">
 													<label class="form-label">Customization</label>
-													<input id="customizationInput" name="dzName"
-														class="form-control">
+													<input id="customizationInput" name="dzName" class="form-control">
 												</div>
 											</div>
 											<div id="color-block" class="product-num">

@@ -21,6 +21,15 @@ $conn = mysqli_connect(
 <head>
 	<script nonce="<?php echo $nonce; ?>" type="text/javascript" src="https://app.termly.io/embed.min.js"
 		data-auto-block="off" data-website-uuid="f0526f09-9728-4a75-853d-72961022b400"></script>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-05F2DWKXWF"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'G-05F2DWKXWF');
+	</script>
 	<!-- Meta -->
 	<meta http-equiv="Content-Security-Policy-Report-Only" content="
 		default-src 'self';
@@ -435,11 +444,10 @@ $conn = mysqli_connect(
 													<div class="product-tag">
 														<span class="badge badge-secondary">Sale</span>
 													</div> -->
-												</div>
 											</div>
-											<div
-												class="col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 m-md-b15 m-b30 grid-5">
-												<!-- <div class="shop-card">
+										</div>
+										<div class="col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 m-md-b15 m-b30 grid-5">
+											<!-- <div class="shop-card">
 													<div class="dz-media">
 														<img src="images/shop/product/2.png" alt="image">
 													</div>
@@ -455,16 +463,16 @@ $conn = mysqli_connect(
 														<span class="badge badge-primary">Featured</span>
 													</div>
 												</div> -->
-											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="row page mt-0">
-								<div class="col-md-6">
-									<p class="page-text">Showing <span id="resultsCountBottom"></span> Results</p>
-								</div>
-								<!-- <div class="col-md-6">
+						</div>
+						<div class="row page mt-0">
+							<div class="col-md-6">
+								<p class="page-text">Showing <span id="resultsCountBottom"></span> Results</p>
+							</div>
+							<!-- <div class="col-md-6">
 								<nav aria-label="Blog Pagination">
 									<ul class="pagination style-1">
 										<li class="page-item"><a class="page-link prev" href="javascript:void(0);">Prev</a></li>
@@ -475,18 +483,18 @@ $conn = mysqli_connect(
 									</ul>
 								</nav>
 							</div> -->
-							</div>
 						</div>
 					</div>
 				</div>
-			</section>
 		</div>
+		</section>
+	</div>
 
-		<?php
-		include("./includes/footer.php");
-		?>
+	<?php
+	include("./includes/footer.php");
+	?>
 
-		<button class="scroltop" type="button"><i class="fas fa-arrow-up"></i></button>
+	<button class="scroltop" type="button"><i class="fas fa-arrow-up"></i></button>
 
 	</div>
 
