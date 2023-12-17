@@ -15,6 +15,15 @@ require_once 'includes/site_params.php';
 <head>
 	<script nonce="<?php echo $nonce; ?>" type="text/javascript" src="https://app.termly.io/embed.min.js"
 		data-auto-block="off" data-website-uuid="f0526f09-9728-4a75-853d-72961022b400"></script>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-05F2DWKXWF"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'G-05F2DWKXWF');
+	</script>
 	<!-- Meta -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -289,7 +298,8 @@ require_once 'includes/site_params.php';
 													<input id="shippingCost" value="10.00"
 														class="form-check-input radio" type="radio"
 														name="flexRadioDefault" id="flexRadioDefault2" checked>
-													<label id="shippingLabel" class="form-check-label" for="flexRadioDefault2">
+													<label id="shippingLabel" class="form-check-label"
+														for="flexRadioDefault2">
 														Flat Rate: $10
 													</label>
 												</div>

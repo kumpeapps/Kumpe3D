@@ -93,6 +93,8 @@ require_once 'includes/site_params.php';
 	<script src="vendor-js/bootstrap-touchspin/bootstrap-touchspin.js"></script><!-- BOOTSTRAP TOUCHSPIN JS -->
 	<script src="js/dz.ajax.js"></script><!-- AJAX -->
 	<script src="js/custom.js"></script><!-- CUSTOM JS -->
+	<script src="https://kumpeapps.instatus.com/en/9b677db0/widget/script.js">
+</script>
 	<script>
 		// Set the date we're counting down to
 		var countDownDate = new Date("<?php  echo $site_params['store_countdown_date']; ?>").getTime();

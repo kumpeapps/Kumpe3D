@@ -76,6 +76,8 @@ $conn = mysqli_connect(
 <script nonce="<?php echo $nonce; ?>" src="js/facebook.js"></script>
 <!-- Sale Popup Start -->
 <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+<script src="https://kumpeapps.instatus.com/en/9b677db0/widget/script.js">
+</script>
 <div class="elfsight-app-1ad75bf1-1310-4ec3-8ffb-1cc0fb600b1c" data-elfsight-app-lazy></div>
 <!-- Sale Popup End -->
 <!-- Footer End -->

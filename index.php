@@ -21,6 +21,15 @@ $conn = mysqli_connect(
 <head>
 	<script nonce="<?php echo $nonce; ?>" type="text/javascript" src="https://app.termly.io/embed.min.js"
 		data-auto-block="off" data-website-uuid="f0526f09-9728-4a75-853d-72961022b400"></script>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-05F2DWKXWF"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'G-05F2DWKXWF');
+	</script>
 	<!-- Meta -->
 	<meta http-equiv="Content-Security-Policy-Report-Only" content="
 		default-src 'self';
