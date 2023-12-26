@@ -327,9 +327,11 @@ $filaments_sql = "CALL get_filament_options('$base_sku', '$filament_filter');";
 								</div>
 								<div class="col-xl-5">
 									<div class="cart-detail sticky-top">
-									<div class="sketchfab-embed-wrapper"> <iframe title="Dog_dryer_pistol_grip_open_top" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/b252a007e5d948258040130f65282bfa/embed?autospin=1&autostart=1&preload=1&dnt=1"> </iframe> </div>
 										<table>
 											<tbody>
+												<tr>
+												<div class="sketchfab-embed-wrapper"> <iframe title="Dog_dryer_pistol_grip_open_top" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/b252a007e5d948258040130f65282bfa/embed?autospin=1&autostart=1&preload=1&dnt=1"> </iframe> </div>
+												</tr>
 												<tr>
 													<div class="btn-quantity light d-xl-block">
 														<label class="form-label">Quantity</label>
