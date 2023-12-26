@@ -343,6 +343,7 @@ function buildCheckout() {
     const itemsDiv = document.getElementById('checkout_items');
     const subtotalLabel = document.getElementById('cart_subtotal');
     const totalLabel = document.getElementById('cart_total');
+    const paylaterMessage = document.getElementById('paylater_message');
     const shippingCostValue = document.getElementById('shippingCost');
     const shippingLabel = document.getElementById('shippingLabel');
     const shippingCostLabel = document.getElementById('shippingCostLabel');
@@ -352,6 +353,7 @@ function buildCheckout() {
     shippingLabel.innerHTML = 'Flat Rate: $' + checkoutData.shippingCost;
     shippingCostLabel.innerHTML = '$' + checkoutData.shippingCost;
     totalLabel.innerHTML = '$' + checkoutData.grandTotal;
+    paylaterMessage.setAttribute("setAttribute", checkoutData.grandTotal);
     cart.forEach(renderCheckoutList);
 
     function renderCheckoutList(element, _, _) {
