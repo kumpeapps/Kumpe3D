@@ -329,7 +329,7 @@ require_once 'includes/site_params.php';
 								</table>
 
 								<div class="accordion dz-accordion accordion-sm" id="accordionFaq1">
-									<div id="paylater_message" data-pp-message setAttribute="0" data-pp-style-layout="text"
+									<div id="paylater_message" data-pp-message="0" data-pp-style-layout="text"
 										data-pp-style-layout="black" data-pp-style-logo-type="primary"
 										data-pp-style-logo-position="left">
 									</div>

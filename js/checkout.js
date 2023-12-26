@@ -353,7 +353,7 @@ function buildCheckout() {
     shippingLabel.innerHTML = 'Flat Rate: $' + checkoutData.shippingCost;
     shippingCostLabel.innerHTML = '$' + checkoutData.shippingCost;
     totalLabel.innerHTML = '$' + checkoutData.grandTotal;
-    paylaterMessage.setAttribute("setAttribute", checkoutData.grandTotal);
+    paylaterMessage.setAttribute("data-pp-message", checkoutData.grandTotal);
     cart.forEach(renderCheckoutList);
 
     function renderCheckoutList(element, _, _) {
