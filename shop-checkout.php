@@ -329,7 +329,7 @@ require_once 'includes/site_params.php';
 								</table>
 
 								<div class="accordion dz-accordion accordion-sm" id="accordionFaq1">
-									<div data-pp-message data-pp-amount="45" data-pp-style-layout="text"
+									<div data-pp-message data-pp-amount="10" data-pp-style-layout="text"
 										data-pp-style-layout="black" data-pp-style-logo-type="primary"
 										data-pp-style-logo-position="left">
 									</div>
