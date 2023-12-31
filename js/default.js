@@ -3,6 +3,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
 if (urlParams.get("referral") != "" && urlParams.get("referral") != null) {
+    console.debug(urlParams.get("referral"));
     setCookie("referral_code", urlParams.get("referral"), 365);
 }
 const referral_code = getCookie("referral_code");
