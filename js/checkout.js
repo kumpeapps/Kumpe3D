@@ -120,7 +120,7 @@ paypal.Buttons({
             if (!debugEnabled) {
                 orderSuccess();
             }
-            post_body = {"checkout_data": checkoutData, "session_id": sessionID};
+            post_body = { "checkout_data": checkoutData, "session_id": sessionID };
             if (debugEnabled) {
                 console.debug("CheckoutData: " + checkoutData);
                 console.debug("Session ID" + sessionID);
@@ -189,7 +189,7 @@ function orderSuccess() {
         'Success',
         'Your order has been submitted!',
         'success'
-    ).then(function(){
+    ).then(function () {
         location.reload();
     });
 };
@@ -206,7 +206,7 @@ function devData(cc = 'US') {
     const city = document.getElementById("cityInput");
     const country = document.getElementById("countrySelect");
     const countryOptions = country.options.length;
-    for (let i=0; i<countryOptions; i++) {
+    for (let i = 0; i < countryOptions; i++) {
         if (country.options[i].value == cc) {
             country.options[i].selected = true;
             break;
@@ -343,6 +343,7 @@ function buildCheckout() {
     const itemsDiv = document.getElementById('checkout_items');
     const subtotalLabel = document.getElementById('cart_subtotal');
     const totalLabel = document.getElementById('cart_total');
+    const paylaterMessage = document.getElementById('paylater_message');
     const shippingCostValue = document.getElementById('shippingCost');
     const shippingLabel = document.getElementById('shippingLabel');
     const shippingCostLabel = document.getElementById('shippingCostLabel');
@@ -352,6 +353,7 @@ function buildCheckout() {
     shippingLabel.innerHTML = 'Flat Rate: $' + checkoutData.shippingCost;
     shippingCostLabel.innerHTML = '$' + checkoutData.shippingCost;
     totalLabel.innerHTML = '$' + checkoutData.grandTotal;
+    paylaterMessage.setAttribute("data-pp-message", checkoutData.grandTotal);
     cart.forEach(renderCheckoutList);
 
     function renderCheckoutList(element, _, _) {
