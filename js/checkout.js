@@ -120,7 +120,7 @@ paypal.Buttons({
             if (!debugEnabled) {
                 orderSuccess();
             }
-            post_body = {"checkout_data": checkoutData, "session_id": sessionID};
+            post_body = { "checkout_data": checkoutData, "session_id": sessionID };
             if (debugEnabled) {
                 console.debug("CheckoutData: " + checkoutData);
                 console.debug("Session ID" + sessionID);
@@ -189,7 +189,7 @@ function orderSuccess() {
         'Success',
         'Your order has been submitted!',
         'success'
-    ).then(function(){
+    ).then(function () {
         location.reload();
     });
 };
@@ -206,7 +206,7 @@ function devData(cc = 'US') {
     const city = document.getElementById("cityInput");
     const country = document.getElementById("countrySelect");
     const countryOptions = country.options.length;
-    for (let i=0; i<countryOptions; i++) {
+    for (let i = 0; i < countryOptions; i++) {
         if (country.options[i].value == cc) {
             country.options[i].selected = true;
             break;
