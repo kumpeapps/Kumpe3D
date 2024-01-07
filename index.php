@@ -681,6 +681,7 @@ $conn = mysqli_connect(
 			<!-- Facebook Reviews Start -->
 			<script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
 			<div id="reviews" class="elfsight-app-4678166b-13ea-45e7-b03d-7e659c19efbc" data-elfsight-app-lazy></div>
+			<div id="reviews-end"></div>
 			<!-- Facebook Reviews End -->
 
 		</div>
