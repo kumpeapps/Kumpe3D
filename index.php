@@ -103,13 +103,13 @@ $conn = mysqli_connect(
 		src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0&appId=313430524972692"
 		nonce="4q6wcyoK"></script>
 	<div class="page-wraper">
-		<div id="loading-area" class="preloader-wrapper-1">
+		<!-- <div id="loading-area" class="preloader-wrapper-1">
 			<div>
 				<span class="loader-2"></span>
 				<img src="<?php echo $site_params['store_loading_image_url'] ?>" alt="/">
 				<span class="loader"></span>
 			</div>
-		</div>
+		</div> -->
 		<?php
 		include('./includes/header.php');
 		?>
