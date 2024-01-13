@@ -92,13 +92,13 @@ require_once 'includes/site_params.php';
 
 <body>
 	<div class="page-wraper">
-		<div id="loading-area" class="preloader-wrapper-1">
+		<!-- <div id="loading-area" class="preloader-wrapper-1">
 			<div>
 				<span class="loader-2"></span>
 				<img src="<?php echo $site_params['store_loading_image_url']; ?>" alt="/">
 				<span class="loader"></span>
 			</div>
-		</div>
+		</div> -->
 
 		<?php
 		include('./includes/header.php');
