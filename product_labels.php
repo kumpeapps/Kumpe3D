@@ -135,7 +135,7 @@ $qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $sku;
         .qr {
             width: 16mm;
             float: right;
-            padding-top: 0.02mm;
+            padding-top: 0.2mm;
         }
 
         /* * {
