@@ -84,9 +84,9 @@ $qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $sku;
 
         .logo {
             width: 13.5mm;
-            position: absolute;
-            top: 0px;
-            left: 0px;
+            float: left;
+            padding-left: 0.02mm;
+            padding-top: 0.02mm;
         }
 
         .sku {
@@ -127,7 +127,7 @@ $qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $sku;
         .qr {
             width: 16mm;
             float: right;
-            /* padding-right: 12mm; */
+            padding-top: 0.02mm;
         }
 
         /* * {
