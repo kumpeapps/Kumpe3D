@@ -74,12 +74,12 @@ $qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $sku;
         body {
             margin: 0in 0in 0in 0in;
             width: 80mm;
-            height: 49.9mm;
+            height: 49.7mm;
         }
 
         .body {
             width: 80mm;
-            height: 49.9mm;
+            height: 49.7mm;
         }
 
         .logo {
