@@ -163,27 +163,6 @@ $qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $sku;
             <?php echo $filament_type . ' ' . $filamnet_color; ?>
         </b>
     </div>
-
-    <div class="top-container">
-        <img class="logo" src="images/logo.png">
-
-        <img class="qr" src="<?php echo $qr_url; ?>">
-        <div class="sku">
-            <b>
-                <?php echo $sku; ?>
-            </b>
-        </div>
-    </div>
-    <div class="title">
-        <b>
-            <?php echo $title; ?>
-        </b>
-    </div>
-    <div class="color-name">
-        <b>
-            <?php echo $filament_type . ' ' . $filamnet_color; ?>
-        </b>
-    </div>
 </body>
 
 </html>
