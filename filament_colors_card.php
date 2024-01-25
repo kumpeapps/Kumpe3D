@@ -113,9 +113,9 @@ $filamnet_color = $color_data['color_name'];
 </head>
 
 <body>
-        Filament Type: <?php echo $filament_type ?>
-        Filament Name: <?php echo $filamnet_color ?>
-        Manufacture: <?php echo $brand ?>
+        Filament Type: <?php echo $filament_type ?><br>
+        Filament Name: <?php echo $filament_color ?><br>
+        Manufacture: <?php echo $brand ?><br>
         Your Name: Kumpe3D
 </body>
 
