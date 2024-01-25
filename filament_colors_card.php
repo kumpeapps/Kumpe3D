@@ -21,7 +21,8 @@ $color_sql = "
     FROM
         Web_3dprints.filament
     WHERE 1=1
-        AND swatch_id = '$color_id';
+        AND (swatch_id = '$color_id' OR manufacture_barcode = '$color_id')
+    LIMIT 1;
     ";
 $color_result = mysqli_query($conn, $color_sql);
 $color_num_results = mysqli_num_rows($color_result);
