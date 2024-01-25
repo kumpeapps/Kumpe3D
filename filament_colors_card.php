@@ -29,7 +29,7 @@ $color_data = mysqli_fetch_assoc($color_result);
 
 $brand = $color_data['brand'];
 $filament_type = $color_data['type'];
-$filamnet_color = $color_data['color_name'];
+$filament_color = $color_data['color_name'];
 
 ?>
 <html>
