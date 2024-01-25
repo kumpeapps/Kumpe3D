@@ -67,7 +67,7 @@ if ($get_color) {
 }
 $title = $product_data['title'];
 $filament_type = $color_data['type'];
-$filamnet_color = $color_data['color_name'];
+$filament_color = $color_data['color_name'];
 
 $qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $sku;
 ?>
@@ -169,7 +169,7 @@ $qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $sku;
     </div>
     <div class="color-name">
         <b>
-            <?php echo $filament_type . ' ' . $filamnet_color; ?>
+            <?php echo $filament_type . ' ' . $filament_color; ?>
         </b>
     </div>
 </body>
