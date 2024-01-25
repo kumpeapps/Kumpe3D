@@ -12,7 +12,7 @@ $conn = mysqli_connect(
     'Web_3dprints'
 ) or die("Couldn't connect to server.");
 
-if (strlen($sku) == 15 || (strlen($sku) == 3) {
+if (strlen($sku) == 15 || (strlen($sku) == 3)) {
     $get_color = true;
 } else {
     $get_color = false;
