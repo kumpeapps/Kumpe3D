@@ -153,7 +153,7 @@ $qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $sku;
 
 <body>
     <div class="top-container">
-        <img class="logo" src="images/logo.png">
+        <img class="logo" src="images/logo_black_transparent.png">
 
         <img class="qr" src="<?php echo $qr_url; ?>">
         <div class="sku">
