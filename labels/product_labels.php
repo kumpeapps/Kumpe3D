@@ -16,6 +16,7 @@ $pdf = new Pdf(array(
     'no-outline',
     'disable-smart-shrinking',
     'zoom'           => 1.5,
+    'no-background',
 ));
 
 // Add a HTML file, a HTML string or a page from a URL
