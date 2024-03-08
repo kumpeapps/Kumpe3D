@@ -11,8 +11,6 @@ $pdf = new Pdf(array(
     'margin-right'  => 0,
     'margin-bottom' => 0,
     'margin-left'   => 0,
-    'height'        => "50mm",
-    'width'         => "80mm",
 ));
 
 // Add a HTML file, a HTML string or a page from a URL
