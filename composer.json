@@ -3,6 +3,7 @@
         "vlucas/phpdotenv": "^5.5",
         "phpmailer/phpmailer": "^6.8",
         "mpdf/mpdf": "^8.2",
-        "mikehaertl/phpwkhtmltopdf": "^2.5"
+        "mikehaertl/phpwkhtmltopdf": "^2.5",
+        "dompdf/dompdf": "^2.0"
     }
 }

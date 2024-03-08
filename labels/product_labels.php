@@ -10,13 +10,11 @@ $pdf = new Pdf(array(
     'margin-right'  => 0,
     'margin-bottom' => 0,
     'margin-left'   => 0,
-    'page-height'   => "1.97in",
-    'page-width'    => "3.15in",
+    'page-height'   => 20,
+    'page-width'    => 70,
     'print-media-type',
     'no-outline',
     'disable-smart-shrinking',
-    'zoom'           => 5,
-    'no-background',
 ));
 
 // Add a HTML file, a HTML string or a page from a URL
