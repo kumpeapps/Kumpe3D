@@ -15,6 +15,7 @@ $pdf = new Pdf(array(
     'print-media-type',
     'no-outline',
     'disable-smart-shrinking',
+    'dpi'           => 300,
 ));
 
 // Add a HTML file, a HTML string or a page from a URL
