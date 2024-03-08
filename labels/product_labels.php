@@ -11,7 +11,7 @@ $pdf = new Pdf(array(
     'margin-right'  => 0,
     'margin-bottom' => 0,
     'margin-left'   => 0,
-    'page-height'   => 500,
+    'page-height'   => 50,
     'page-width'    => 80,
 ));
 
