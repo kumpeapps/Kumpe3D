@@ -14,7 +14,7 @@ $pdf = new Pdf(array(
     'page-height'   => 50,
     'page-width'    => 80,
     'disable-smart-shrinking',
-    'print-media-type'  => ""
+    'print-media-type'  => "",
 ));
 
 // Add a HTML file, a HTML string or a page from a URL
