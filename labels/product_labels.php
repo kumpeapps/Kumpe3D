@@ -1,7 +1,18 @@
 <?php
+use mikehaertl\wkhtmlto\Pdf;
+include 'vendor/autoload.php';
 $sku = 'test';
-header("Content-Type: application/octet-stream");
-header("Content-Disposition: attachment; filename=\"label.pdf\"");
+// header("Content-Type: application/octet-stream");
+// header("Content-Disposition: attachment; filename=\"label.pdf\"");
 $url = 'https://www.preprod.kumpe3d.com/product_labels.php?sku=' . $sku;
-passthru("wkhtmltopdf $url $sku.pdf",$result);
+$pdf = new WkHtmlToPdf();
+
+// Add a HTML file, a HTML string or a page from a URL
+$pdf->addPage($url);
+
+// ... or send to client for inline display
+$pdf->send();
+
+// ... or send to client as file download
+// $pdf->send('test.pdf');
 ?>
