@@ -11,7 +11,7 @@ $pdf = new Pdf;
 $pdf->addPage($url);
 
 // ... or send to client for inline display
-$pdf->send();
+$pdf->send("label.pdf");
 
 // ... or send to client as file download
 // $pdf->send('test.pdf');
