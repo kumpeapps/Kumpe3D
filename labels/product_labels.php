@@ -15,7 +15,7 @@ $pdf = new Pdf(array(
     'print-media-type',
     'no-outline',
     'disable-smart-shrinking',
-    'zoom'           => 1.5,
+    'zoom'           => 5,
     'no-background',
 ));
 
