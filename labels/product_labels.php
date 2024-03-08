@@ -1,6 +1,6 @@
 <?php
 use mikehaertl\wkhtmlto\Pdf;
-include 'vendor/autoload.php';
+include '../vendor/autoload.php';
 $sku = 'test';
 // header("Content-Type: application/octet-stream");
 // header("Content-Disposition: attachment; filename=\"label.pdf\"");
