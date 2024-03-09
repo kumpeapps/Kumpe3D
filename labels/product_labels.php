@@ -1,7 +1,7 @@
 <?php
 use mikehaertl\wkhtmlto\Pdf;
 include '../vendor/autoload.php';
-$sku = 'test';
+$sku = 'ALO-POO-KSN-K17';
 // header("Content-Type: application/octet-stream");
 // header("Content-Disposition: attachment; filename=\"label.pdf\"");
 $url = 'https://www.preprod.kumpe3d.com/product_labels.php?sku=' . $sku;
