@@ -11,7 +11,7 @@ $pdf = new Pdf(array(
     'margin-bottom' => 0,
     'margin-left'   => 0,
     'page-height'   => 40,
-    'page-width'    => 70,
+    'page-width'    => 80,
     'print-media-type',
     'no-outline',
     'disable-smart-shrinking',
