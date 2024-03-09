@@ -6,7 +6,7 @@ $sku = 'ALO-POO-KSN-K17';
 // header("Content-Disposition: attachment; filename=\"label.pdf\"");
 $url = 'https://www.preprod.kumpe3d.com/product_labels.php?sku=' . $sku;
 $pdf = new Pdf(array(
-    'margin-top'    => 0,
+    'margin-top'    => 1,
     'margin-right'  => 0,
     'margin-bottom' => 0,
     'margin-left'   => 0,
