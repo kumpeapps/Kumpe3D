@@ -1,10 +1,10 @@
 <?php
 use mikehaertl\wkhtmlto\Pdf;
 include '../vendor/autoload.php';
-$sku = 'ALO-POO-KSN-K17';
+$sku = $_GET['sku'];
 // header("Content-Type: application/octet-stream");
 // header("Content-Disposition: attachment; filename=\"label.pdf\"");
-$url = '../product_labels.php?sku=' . $sku;
+$url = 'https://www.kumpe3d.com/product_labels.php?sku=' . $sku;
 $pdf = new Pdf(array(
     'margin-top'    => 1,
     'margin-right'  => 1,
