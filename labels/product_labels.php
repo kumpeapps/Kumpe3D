@@ -10,7 +10,7 @@ $pdf = new Pdf(array(
     'margin-right'  => 0,
     'margin-bottom' => 0,
     'margin-left'   => 0,
-    'page-height'   => 35,
+    'page-height'   => 38,
     'page-width'    => 50,
     'print-media-type',
     'no-outline',
