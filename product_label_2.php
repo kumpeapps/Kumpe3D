@@ -133,10 +133,10 @@ $qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $sku;
         }
 
         .qr {
-            width: 5mm;
+            width: 10mm;
             float: right;
-            padding-top: 1mm;
-            padding-right: 1mm;
+            padding-top: 3mm;
+            padding-right: 4mm;
         }
 
         /* * {
