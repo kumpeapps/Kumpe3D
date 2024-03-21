@@ -91,7 +91,7 @@ $qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $sku;
         }
 
         .logo {
-            width: 40mm;
+            width: 38mm;
             align-items: center;
             padding-left: 0.02mm;
             padding-top: 0.02mm;
@@ -111,7 +111,7 @@ $qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $sku;
             padding-left: 0.1mm;
             padding-right: 0.1mm;
             padding-top: 1mm;
-            font-size: larger;
+            font-size: medium;
             height: 14mm;
             max-width: 79.2mm;
             /* padding-right: 12mm; */
