@@ -100,7 +100,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
         }
 
         .qr {
-            height: 20mm;
+            height: 17mm;
         }
 
         /* * {
