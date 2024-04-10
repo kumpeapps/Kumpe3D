@@ -72,7 +72,6 @@ if ($result) {
 mysqli_close($params_conn);
 if ($site_params['store_maitenance_mode'] && !isset($_COOKIE['maitenance_mode_override'])) {
     http_response_code(503);
-    include ('./under-construction.php');
+    include('./under-construction.php');
     die();
 }
-?>
