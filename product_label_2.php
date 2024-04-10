@@ -5,12 +5,19 @@ $filament_type = 'OV PLA+';
 $filamnet_color = 'Orange';
 require_once 'includes/site_params.php';
 $sku = $_GET['sku'];
+
+if (isset($_GET['qr_data'])) {
+    $qr_data = isset($_GET['qr_data']);
+} else {
+    $qr_data = $sku;
+}
+
 $conn = mysqli_connect(
     $_ENV['mysql_host'],
     $_ENV['mysql_user'],
     $_ENV['mysql_pass'],
     'Web_3dprints'
-) or die ("Couldn't connect to server.");
+) or die("Couldn't connect to server.");
 
 if (strlen($sku) == 15 || (strlen($sku) == 3)) {
     $get_color = true;
@@ -69,7 +76,7 @@ $title = $product_data['title'];
 $filament_type = $color_data['type'];
 $filament_color = $color_data['color_name'];
 
-$qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $sku;
+$qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $qr_data;
 ?>
 <html>
 
