@@ -16,14 +16,16 @@ $conn = mysqli_connect(
 				<div class="col-xl-3 col-md-4 col-sm-6">
 					<div class="widget widget_about me-2">
 						<div class="footer-logo logo-white">
-							<a href="index.php"><img src="<?php echo $site_params['store_footer_logo_url']; ?>" alt="/"></a>
+							<a href="index.php"><img src="<?php echo $site_params['store_footer_logo_url']; ?>"
+									alt="/"></a>
 						</div>
 						<ul class="widget-address">
 							<li>
 								<p><span>Address</span> : <br><?php echo $site_params['store_address']; ?><br>
-								<?php echo $site_params['store_city']; ?>, 
-								<?php echo $site_params['store_state']; ?> 
-								<?php echo $site_params['store_zip']; ?></p>
+									<?php echo $site_params['store_city']; ?>,
+									<?php echo $site_params['store_state']; ?>
+									<?php echo $site_params['store_zip']; ?>
+								</p>
 							</li>
 							<li>
 								<p><span>E-mail</span> : <?php echo $site_params['store_email']; ?></p>

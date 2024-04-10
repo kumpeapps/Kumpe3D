@@ -44,7 +44,7 @@ if (true) {
     $color_data = mysqli_fetch_assoc($color_result);
 }
 
-$filament_type = $product_data['upc']."0".$product_data['sku'];
+$filament_type = $product_data['upc'] . "0" . $product_data['sku'];
 $filament_color = $color_data['color_name'];
 $upc = $product_data['upc'];
 $barcode = "https://barcodeapi.org/api/$upc";
@@ -74,8 +74,10 @@ $barcode = "https://barcodeapi.org/api/$upc";
             font-size: smaller;
             max-width: 39.7mm;
             /* padding-right: 12mm; */
-            line-height: 1em; /* a */
-            max-height: 1em; /* a x number of line to show (ex : 2 line)  */
+            line-height: 1em;
+            /* a */
+            max-height: 1em;
+            /* a x number of line to show (ex : 2 line)  */
         }
 
         .color-name {
@@ -84,8 +86,10 @@ $barcode = "https://barcodeapi.org/api/$upc";
             font-size: xx-small;
             max-width: 39.7mm;
             /* padding-right: 12mm; */
-            line-height: 1em; /* a */
-            max-height: 1em; /* a x number of line to show (ex : 2 line)  */
+            line-height: 1em;
+            /* a */
+            max-height: 1em;
+            /* a x number of line to show (ex : 2 line)  */
         }
 
         .barcode-block {
@@ -95,8 +99,10 @@ $barcode = "https://barcodeapi.org/api/$upc";
             padding-top: 1mm;
             max-width: 39.7mm;
             /* padding-right: 12mm; */
-            line-height: 1em; /* a */
-            max-height: 1em; /* a x number of line to show (ex : 2 line)  */
+            line-height: 1em;
+            /* a */
+            max-height: 1em;
+            /* a x number of line to show (ex : 2 line)  */
         }
 
         .qr {
@@ -107,7 +113,6 @@ $barcode = "https://barcodeapi.org/api/$upc";
             font-family: arial;
             font-size: 12px;
         } */
-
     </style>
 </head>
 
@@ -125,7 +130,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
     <div class="barcode-block">
         <img class="qr" src="<?php echo $barcode; ?>">
     </div>
-    
+
 </body>
 
 </html>

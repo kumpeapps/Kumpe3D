@@ -75,4 +75,3 @@ if ($site_params['store_maitenance_mode'] && !isset($_COOKIE['maitenance_mode_ov
     include('./under-construction.php');
     die();
 }
-?>
