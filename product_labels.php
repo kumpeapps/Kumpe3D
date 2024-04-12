@@ -7,7 +7,7 @@ require_once 'includes/site_params.php';
 $sku = $_GET['sku'];
 
 if (isset($_GET['qr_data'])) {
-    $qr_data = isset($_GET['qr_data']);
+    $qr_data = $_GET['qr_data'];
 } else {
     $qr_data = $sku;
 }
