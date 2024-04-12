@@ -1,7 +1,6 @@
 <?php
 $sku = 'test';
 $title = 'Carbon Fiber PETG Bear Wine Bottle Holder';
-$filament_type = 'OV PLA+';
 $filamnet_color = 'Orange';
 require_once 'includes/site_params.php';
 $sku = $_GET['sku'];
@@ -12,13 +11,25 @@ $conn = mysqli_connect(
     'Web_3dprints'
 ) or die("Couldn't connect to server.");
 
+if (isset($_GET['distributor'])) {
+    $distributor = $_GET['distributor'];
+} else {
+    $distributor = 0;
+}
+
 // Search Product by full SKU
 $product_sql = "
     SELECT 
-        *
+        upc.upc,
+        upc.ean,
+        upc.sku,
+        IFNULL(dist.dist_sku, upc.sku) AS dist_sku
     FROM
-        Web_3dprints.upc_codes
-    WHERE 1=1
+        Web_3dprints.upc_codes upc
+    LEFT JOIN
+        distributor_skus dist ON dist.sku = upc.sku
+        AND dist.iddistributors = $distributor
+    WHERE 1 = 1
         AND (sku = '$sku' OR upc = '$sku');
 ";
 
@@ -44,7 +55,6 @@ if (true) {
     $color_data = mysqli_fetch_assoc($color_result);
 }
 
-$filament_type = $product_data['upc'] . "0" . $product_data['sku'];
 $filament_color = $color_data['color_name'];
 $upc = $product_data['upc'];
 $barcode = "https://barcodeapi.org/api/$upc";
@@ -119,7 +129,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
 <body>
     <div class="sku">
         <b>
-            <?php echo $product_data['sku']; ?>
+            <?php echo $product_data['dist_sku']; ?>
         </b>
     </div>
     <div class="color-name">
