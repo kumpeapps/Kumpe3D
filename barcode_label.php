@@ -30,7 +30,7 @@ $product_sql = "
         distributor_skus dist ON dist.sku = upc.sku
         AND dist.iddistributors = $distributor
     WHERE 1 = 1
-        AND (sku = '$sku' OR upc = '$sku');
+        AND (upc.sku = '$sku' OR upc.upc = '$sku');
 ";
 
 $product_result = mysqli_query($conn, $product_sql);
