@@ -118,7 +118,7 @@ $qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $qr_d
             padding-left: 0.1mm;
             padding-right: 0.1mm;
             padding-top: 1mm;
-            font-size: medium;
+            font-size: small;
             height: 10mm;
             max-width: 79.2mm;
             /* padding-right: 12mm; */
