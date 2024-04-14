@@ -98,16 +98,16 @@ $qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $qr_d
         }
 
         .logo {
-            width: 38mm;
+            width: 35mm;
             align-items: center;
             padding-left: 0.02mm;
-            padding-top: 0.02mm;
+            padding-top: 0.01mm;
         }
 
         .sku {
             text-align: center;
             text-wrap: wrap;
-            line-height: 17mm;
+            line-height: 15mm;
             font-size: medium;
             padding-left: 13.6mm;
         }
@@ -118,8 +118,8 @@ $qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $qr_d
             padding-left: 0.1mm;
             padding-right: 0.1mm;
             padding-top: 1mm;
-            font-size: medium;
-            height: 14mm;
+            font-size: small;
+            height: 10mm;
             max-width: 79.2mm;
             /* padding-right: 12mm; */
 
@@ -140,10 +140,10 @@ $qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $qr_d
         }
 
         .qr {
-            width: 10mm;
+            width: 19mm;
             float: right;
-            padding-top: 3mm;
-            padding-right: 4mm;
+            padding-top: 1mm;
+            padding-right: 1mm;
         }
 
         /* * {
