@@ -146,7 +146,7 @@ $SQL = "
                                 $leftribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This is a special order filament that requires custom pricing. Please email helpdesk@kumpeapps.com for a quote." class="ribbon ribbon-left ribbon-warning">Special Order</div>';
                             } elseif (intval($filament['full_rolls_instock']) > 0) {
                                 $leftribbon = '<div class="ribbon ribbon-left ribbon-success">In Stock</div>';
-                            } elseif (intval($filament['partials_rolls_instock']) > 0) {
+                            } elseif (intval($filament['partial_rolls_instock']) > 0) {
                                 $leftribbon = '<div class="ribbon ribbon-left ribbon-warning">Low Stock</div>';
                             } else {
                                 $leftribbon = '<div class="ribbon ribbon-left ribbon-danger">Out of Stock</div>';
