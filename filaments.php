@@ -141,11 +141,15 @@ $SQL = "
                             if ($filament['coming_soon'] == 1) {
                                 $leftribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This filament is either on the way or has arrived and is being quality tested. Orders may experience a minimal delay." class="ribbon ribbon-bookmark  ribbon-warning">Coming Soon</div>';
                             } elseif ($filament['discontinued'] == 1) {
-                                $leftribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This filament is no longer available." class="ribbon ribbon-left ribbon-danger">Discontinued</div>';
+                                $leftribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This filament is no longer available." class="ribbon ribbon-left ribbon-danger">In Stock but Discontinued</div>';
                             } elseif ($filament['special_order'] == 1) {
                                 $leftribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This is a special order filament that requires custom pricing. Please email helpdesk@kumpeapps.com for a quote." class="ribbon ribbon-left ribbon-warning">Special Order</div>';
+                            } elseif ($filament['full_rolls_instock'] > 0) {
+                                $leftribbon = '<div class="ribbon ribbon-left ribbon-success">In Stock</div>';
+                            } elseif ($filament['partials_rolls_instock'] > 0) {
+                                $leftribbon = '<div class="ribbon ribbon-left ribbon-warning">Low Stock</div>';
                             } else {
-                                $leftribbon = '<div class="ribbon ribbon-left ribbon-success">'.$filament['cost_category'].'</div>';
+                                $leftribbon = '<div class="ribbon ribbon-left ribbon-danger">Out of Stock</div>';
                             }
 
                             if ($filament['backorder'] == 1) {
