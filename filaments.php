@@ -154,8 +154,6 @@ $SQL = "
 
                             if ($filament['backorder'] == 1) {
                                 $rightribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This filament has been ordered but shipping is delayed. Expect extended delay on this filament." class="ribbon ribbon-right ribbon-danger">Backordered</div>';
-                            } elseif ($filament['instock'] == 0) {
-                                $rightribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This filament is currently out of stock. Depending on order volumes for this filament, we may not order any more until an order is placed for this filament. Orders with this filament may experience a shipping delay." class="ribbon ribbon-right ribbon-warning">Out of Stock</div>';
                             } else {
                                 $rightribbon = '';
                             }
