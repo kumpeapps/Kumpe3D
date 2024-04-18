@@ -161,9 +161,9 @@ $SQL = "
                             $photolink = "https://images.kumpeapps.com/filament?swatch=$swatchid";
 
                             $tpubadge = ($filament['type'] === 'TPU') ? ' <span class="label label-rounded label-danger">NOTE: TPU filament is flexible similar to rubber!</span>' : '';
-                            if ($filament['multi_color'] === 1) {
+                            if ($filament['multi_color'] === '1') {
                                 $multiColorBadge = ' <span class="label label-rounded label-warning">NOTE: This is a Color Change filament. Color Change filaments may see little to no color change on smaller products.</span>';
-                            } else if ($filament['dual_color'] === 1) {
+                            } else if ($filament['dual_color'] === '1') {
                                 $multiColorBadge = ' <span class="label label-rounded label-warning">NOTE: This is a Multi-Color Filament. The colors listed are mixed depending on nozzle travel so the color/pattern may differ in multiple prints.</span>';
                             } else {
                                 $multiColorBadge = '';
