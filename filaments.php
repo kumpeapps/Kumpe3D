@@ -1,8 +1,11 @@
 <?php
-require_once("./mysql_params.php");
-$user = $user."_RO";
-
-$connection = mysqli_connect($host,$user,$pass,'Web_3dprints') or die ("Couldn't connect to server.");
+require_once 'includes/site_params.php';
+$conn = mysqli_connect(
+	'sqlreadonly.kumpedns.us',
+	$_ENV['mysql_user'],
+	$_ENV['mysql_pass'],
+	'Web_3dprints'
+) or die("Couldn't connect to server.");
 
 $strength = 0;
 $strengthCondition = ">=";
