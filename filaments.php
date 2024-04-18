@@ -1,6 +1,6 @@
 <?php
 require_once 'includes/site_params.php';
-$conn = mysqli_connect(
+$connection = mysqli_connect(
 	'sqlreadonly.kumpedns.us',
 	$_ENV['mysql_user'],
 	$_ENV['mysql_pass'],
@@ -245,3 +245,6 @@ $SQL = "
 </body>
 
 </html>
+<?php
+    mysqli_close($connection);
+?>
