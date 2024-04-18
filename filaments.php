@@ -70,7 +70,7 @@ $SQL = "
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">Kumpe 3D by KumpeApps LLC</p>
+            <p class="loader__label">Kumpe3D by KumpeApps LLC</p>
         </div>
     </div>
     <!-- ============================================================== -->
@@ -108,9 +108,9 @@ $SQL = "
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h4 class="text-themecolor">Kumpe 3d Available Colors</h4><br>
+                        <h4 class="text-themecolor">Kumpe3D Available Colors</h4><br>
                         <h7 class="text-themecolor">
-                            If you wish to have a color not listed feel free to email us at helpdesk@kumpeapps.com. Chances are we can order the color you want.
+                            If you wish to have a color not listed feel free to email us at sales@kumpe3d.com. Chances are we can order the color you want.
                         </h7>
                     </div>
                     <div class="col-md-7 align-self-center text-right">
@@ -155,10 +155,10 @@ $SQL = "
                                 $rightribbon = '';
                             }
                             $swatchid = $filament['swatch_id'];
-                            $photolink = "https://images.kumpeapps.com/filament_swatch?swatch=$swatchid";
+                            $photolink = "https://images.kumpeapps.com/filament?swatch=$swatchid";
 
                             $tpubadge = ($filament['type'] == 'TPU') ? ' <span class="label label-rounded label-danger">NOTE: TPU filament is flexible similar to rubber!</span>' : '' ;
-                            $multiColorBadge = ($filament['multi_color'] == 1) ? ' <span class="label label-rounded label-warning">NOTE: This is a multi-color filament. Multi-Color filaments may see little to no color change on smaller products.</span>' : '' ;
+                            $multiColorBadge = ($filament['multi_color'] == 1) ? ' <span class="label label-rounded label-warning">NOTE: This is a Color Change filament. Color Change filaments may see little to no color change on smaller products.</span>' : '' ;
                             
                     echo '
                     <!-- .col -->
@@ -169,10 +169,10 @@ $SQL = "
                         <div class="card card-body">
                             <div class="row align-items-center">
                                 <div class="col-md-4 col-lg-3 text-center">
-                                    <a href="https://3d.kumpeapps.com/filament-detail.php?swatch_id='.$filament['swatch_id'].'"><img src="'.$photolink.'" alt="user" class="img-circle img-fluid"></a>
+                                    <a href="https://www.kumpe3d.com/filament-detail.php?swatch_id='.$filament['swatch_id'].'"><img src="'.$photolink.'" alt="user" class="img-circle img-fluid"></a>
                                 </div>
                                 <div class="col-md-8 col-lg-9">
-                                    <h3 class="box-title m-b-0">'.$filament['name'].'</h3> <small>Filament #: '.$filament['swatch_id'].'</small>
+                                    <h3 class="box-title m-b-0">'.$filament['name'].'</h3> <small>Color ID: '.$filament['swatch_id'].'</small>
                                     <address>
                                         Color: '.$filament['color_name'].$multiColorBadge.'<br>
                                         Type: '.$filament['type'].$tpubadge.'<br>
