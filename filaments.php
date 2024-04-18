@@ -34,6 +34,7 @@ $SQL = "
     WHERE
         1 = 1
         AND type LIKE '$typeFilter'
+        AND `type` <> 'Non-Filament'
         $strengthFilter;
     ";
 ?>
