@@ -138,21 +138,21 @@ $SQL = "
                     if ($Query = mysqli_query($connection, $SQL)) {
                         // Loop through each row in the result set
                         while ($filament = mysqli_fetch_array($Query)) {
-                            if ($filament['coming_soon'] == 1) {
+                            if ($filament['coming_soon'] === 1) {
                                 $leftribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This filament is either on the way or has arrived and is being quality tested. Orders may experience a minimal delay." class="ribbon ribbon-bookmark  ribbon-warning">Coming Soon</div>';
-                            } elseif ($filament['discontinued'] == 1) {
+                            } elseif ($filament['discontinued'] === 1) {
                                 $leftribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This filament is no longer available." class="ribbon ribbon-left ribbon-danger">In Stock but Discontinued</div>';
-                            } elseif ($filament['special_order'] == 1) {
+                            } elseif ($filament['special_order'] === 1) {
                                 $leftribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This is a special order filament that requires custom pricing. Please email helpdesk@kumpeapps.com for a quote." class="ribbon ribbon-left ribbon-warning">Special Order</div>';
-                            } elseif (intval($filament['full_rolls_instock']) > 0) {
+                            } else if (intval($filament['full_rolls_instock']) > 0) {
                                 $leftribbon = '<div class="ribbon ribbon-left ribbon-success">In Stock</div>';
-                            } elseif (intval($filament['partial_rolls_instock']) > 0) {
+                            } else if (intval($filament['partial_rolls_instock']) > 0) {
                                 $leftribbon = '<div class="ribbon ribbon-left ribbon-warning">Low Stock</div>';
                             } else {
                                 $leftribbon = '<div class="ribbon ribbon-left ribbon-danger">Out of Stock</div>';
                             }
 
-                            if ($filament['backorder'] == 1) {
+                            if ($filament['backorder'] === 1) {
                                 $rightribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This filament has been ordered but shipping is delayed. Expect extended delay on this filament." class="ribbon ribbon-right ribbon-danger">Backordered</div>';
                             } else {
                                 $rightribbon = '';
@@ -160,10 +160,10 @@ $SQL = "
                             $swatchid = $filament['swatch_id'];
                             $photolink = "https://images.kumpeapps.com/filament?swatch=$swatchid";
 
-                            $tpubadge = ($filament['type'] == 'TPU') ? ' <span class="label label-rounded label-danger">NOTE: TPU filament is flexible similar to rubber!</span>' : '';
-                            if ($filament['multi_color'] == 1) {
+                            $tpubadge = ($filament['type'] === 'TPU') ? ' <span class="label label-rounded label-danger">NOTE: TPU filament is flexible similar to rubber!</span>' : '';
+                            if ($filament['multi_color'] === 1) {
                                 $multiColorBadge = ' <span class="label label-rounded label-warning">NOTE: This is a Color Change filament. Color Change filaments may see little to no color change on smaller products.</span>';
-                            } elseif ($filament['dual_color'] == 1) {
+                            } else if ($filament['dual_color'] === 1) {
                                 $multiColorBadge = ' <span class="label label-rounded label-warning">NOTE: This is a Multi-Color Filament. The colors listed are mixed depending on nozzle travel so the color/pattern may differ in multiple prints.</span>';
                             } else {
                                 $multiColorBadge = '';
