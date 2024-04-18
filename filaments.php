@@ -86,7 +86,7 @@ $SQL = "
             <!-- Topbar header - style you can find in pages.scss -->
             <!-- ============================================================== -->
             <?php
-            include './dist/php/header.php';
+            require './dist/php/header.php';
             ?>
             <!-- ============================================================== -->
             <!-- End Topbar header -->
@@ -95,7 +95,7 @@ $SQL = "
             <!-- Left Sidebar - style you can find in sidebar.scss  -->
             <!-- ============================================================== -->
             <?php
-            include './dist/php/left-sidebar.php';
+            require './dist/php/left-sidebar.php';
             ?>
             <!-- ============================================================== -->
             <!-- End Left Sidebar - style you can find in sidebar.scss  -->
@@ -140,9 +140,9 @@ $SQL = "
                         while ($filament = mysqli_fetch_array($Query)) {
                             if ($filament['coming_soon'] === 1) {
                                 $leftribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This filament is either on the way or has arrived and is being quality tested. Orders may experience a minimal delay." class="ribbon ribbon-bookmark  ribbon-warning">Coming Soon</div>';
-                            } elseif ($filament['discontinued'] === 1) {
+                            } else if ($filament['discontinued'] === 1) {
                                 $leftribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This filament is no longer available." class="ribbon ribbon-left ribbon-danger">In Stock but Discontinued</div>';
-                            } elseif ($filament['special_order'] === 1) {
+                            } else if ($filament['special_order'] === 1) {
                                 $leftribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This is a special order filament that requires custom pricing. Please email helpdesk@kumpeapps.com for a quote." class="ribbon ribbon-left ribbon-warning">Special Order</div>';
                             } else if (intval($filament['full_rolls_instock']) > 0) {
                                 $leftribbon = '<div class="ribbon ribbon-left ribbon-success">In Stock</div>';
@@ -206,7 +206,7 @@ $SQL = "
                 <!-- ============================================================== -->
                 <!-- .right-sidebar -->
                 <?php
-                include 'https://khome.kumpeapps.com/portal/dist/php/right-sidebar.php';
+                require 'https://khome.kumpeapps.com/portal/dist/php/right-sidebar.php';
                 ?>
                 <!-- ============================================================== -->
                 <!-- End Right sidebar -->
@@ -224,7 +224,7 @@ $SQL = "
         <!-- footer -->
         <!-- ============================================================== -->
         <?php
-        include 'https://khome.kumpeapps.com/portal/dist/php/footer.php';
+        require 'https://khome.kumpeapps.com/portal/dist/php/footer.php';
         ?>
         <!-- ============================================================== -->
         <!-- End footer -->
@@ -257,4 +257,3 @@ $SQL = "
 </html>
 <?php
 mysqli_close($connection);
-?>
