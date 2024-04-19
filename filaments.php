@@ -1,8 +1,11 @@
 <?php
-require_once("./mysql_params.php");
-$user = $user."_RO";
-
-$connection = mysqli_connect($host,$user,$pass,'Web_3dprints') or die ("Couldn't connect to server.");
+require_once 'includes/site_params.php';
+$connection = mysqli_connect(
+    'sqlreadonly.kumpedns.us',
+    $_ENV['mysql_user'],
+    $_ENV['mysql_pass'],
+    'Web_3dprints'
+) or die("Couldn't connect to server.");
 
 $strength = 0;
 $strengthCondition = ">=";
@@ -20,7 +23,7 @@ if (isset($_GET['typeFilter'])) {
     $typeFilter = $_GET['typeFilter'] ?: "%";
 }
 
-$strengthFilter = "AND strength ".$strengthCondition." ".$strength;
+$strengthFilter = "AND strength " . $strengthCondition . " " . $strength;
 
 //Get Filaments
 $SQL = "
@@ -31,6 +34,7 @@ $SQL = "
     WHERE
         1 = 1
         AND type LIKE '$typeFilter'
+        AND `type` <> 'Non-Filament'
         $strengthFilter;
     ";
 ?>
@@ -67,7 +71,7 @@ $SQL = "
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">Kumpe 3D by KumpeApps LLC</p>
+            <p class="loader__label">Kumpe3D by KumpeApps LLC</p>
         </div>
     </div>
     <!-- ============================================================== -->
@@ -78,24 +82,7 @@ $SQL = "
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
         <div class="page-wrapper">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-        <?php 
-            include './dist/php/header.php';
-        ?>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-         <?php
-            include './dist/php/left-sidebar.php';
-        ?>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
+
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
@@ -105,18 +92,19 @@ $SQL = "
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h4 class="text-themecolor">Kumpe 3d Available Colors</h4><br>
+                        <h4 class="text-themecolor">Kumpe3D Available Colors</h4><br>
                         <h7 class="text-themecolor">
-                            If you wish to have a color not listed feel free to email us at helpdesk@kumpeapps.com. Chances are we can order the color you want.
+                            If you wish to have a color not listed feel free to email us at sales@kumpe3d.com. Chances
+                            are we can order the color you want.
                         </h7>
                     </div>
                     <div class="col-md-7 align-self-center text-right">
                         <div class="d-flex justify-content-end align-items-center">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                                <li class="breadcrumb-item"><a href="https://www.kumpe3d.com">Home</a></li>
                                 <li class="breadcrumb-item active">Filaments</li>
                             </ol>
-                             
+
                         </div>
                     </div>
                 </div>
@@ -129,51 +117,58 @@ $SQL = "
                 <!-- .row -->
                 <div class="row">
 
-                <?php
-                    if ($Query = mysqli_query($connection, $SQL)){
+                    <?php
+                    if ($Query = mysqli_query($connection, $SQL)) {
                         // Loop through each row in the result set
-                        while($filament = mysqli_fetch_array($Query))
-                        {
-                            if ($filament['coming_soon'] == 1) {
+                        while ($filament = mysqli_fetch_array($Query)) {
+                            if ($filament['coming_soon'] === 1) {
                                 $leftribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This filament is either on the way or has arrived and is being quality tested. Orders may experience a minimal delay." class="ribbon ribbon-bookmark  ribbon-warning">Coming Soon</div>';
-                            } elseif ($filament['discontinued'] == 1) {
-                                $leftribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This filament is no longer available." class="ribbon ribbon-left ribbon-danger">Discontinued</div>';
-                            } elseif ($filament['special_order'] == 1) {
+                            } else if ($filament['discontinued'] === 1) {
+                                $leftribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This filament is no longer available." class="ribbon ribbon-left ribbon-danger">In Stock but Discontinued</div>';
+                            } else if ($filament['special_order'] === 1) {
                                 $leftribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This is a special order filament that requires custom pricing. Please email helpdesk@kumpeapps.com for a quote." class="ribbon ribbon-left ribbon-warning">Special Order</div>';
+                            } else if (intval($filament['full_rolls_instock']) > 0) {
+                                $leftribbon = '<div class="ribbon ribbon-left ribbon-success">In Stock</div>';
+                            } else if (intval($filament['partial_rolls_instock']) > 0) {
+                                $leftribbon = '<div class="ribbon ribbon-left ribbon-warning">Low Stock</div>';
                             } else {
-                                $leftribbon = '<div class="ribbon ribbon-left ribbon-success">'.$filament['cost_category'].'</div>';
+                                $leftribbon = '<div class="ribbon ribbon-left ribbon-danger">Out of Stock</div>';
                             }
 
-                            if ($filament['backorder'] == 1) {
+                            if ($filament['backorder'] === 1) {
                                 $rightribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This filament has been ordered but shipping is delayed. Expect extended delay on this filament." class="ribbon ribbon-right ribbon-danger">Backordered</div>';
-                            } elseif ($filament['instock'] == 0) {
-                                $rightribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This filament is currently out of stock. Depending on order volumes for this filament, we may not order any more until an order is placed for this filament. Orders with this filament may experience a shipping delay." class="ribbon ribbon-right ribbon-warning">Out of Stock</div>';
                             } else {
                                 $rightribbon = '';
                             }
                             $swatchid = $filament['swatch_id'];
-                            $photolink = "https://images.kumpeapps.com/filament_swatch?swatch=$swatchid";
+                            $photolink = "https://images.kumpeapps.com/filament?swatch=$swatchid";
 
-                            $tpubadge = ($filament['type'] == 'TPU') ? ' <span class="label label-rounded label-danger">NOTE: TPU filament is flexible similar to rubber!</span>' : '' ;
-                            $multiColorBadge = ($filament['multi_color'] == 1) ? ' <span class="label label-rounded label-warning">NOTE: This is a multi-color filament. Multi-Color filaments may see little to no color change on smaller products.</span>' : '' ;
-                            
-                    echo '
+                            $tpubadge = ($filament['type'] === 'TPU') ? ' <span class="label label-rounded label-danger">NOTE: TPU filament is flexible similar to rubber!</span>' : '';
+                            if ($filament['multi_color'] === '1') {
+                                $multiColorBadge = ' <span class="label label-rounded label-warning">NOTE: This is a Color Change filament. Color Change filaments may see little to no color change on smaller products.</span>';
+                            } else if ($filament['dual_color'] === '1') {
+                                $multiColorBadge = ' <span class="label label-rounded label-warning">NOTE: This is a Multi-Color Filament. The colors listed are mixed depending on nozzle travel so the color/pattern may differ in multiple prints.</span>';
+                            } else {
+                                $multiColorBadge = '';
+                            }
+
+                            echo '
                     <!-- .col -->
                     <div class="col-md-6 col-lg-6 col-xlg-4">
                     <div class="ribbon-wrapper card">
-                                    '.$leftribbon.'
-                                    '.$rightribbon.'
+                                    ' . $leftribbon . '
+                                    ' . $rightribbon . '
                         <div class="card card-body">
                             <div class="row align-items-center">
                                 <div class="col-md-4 col-lg-3 text-center">
-                                    <a href="https://3d.kumpeapps.com/filament-detail.php?swatch_id='.$filament['swatch_id'].'"><img src="'.$photolink.'" alt="user" class="img-circle img-fluid"></a>
+                                    <img src="' . $photolink . '" alt="user" class="img-circle img-fluid"></a>
                                 </div>
                                 <div class="col-md-8 col-lg-9">
-                                    <h3 class="box-title m-b-0">'.$filament['name'].'</h3> <small>Filament #: '.$filament['swatch_id'].'</small>
+                                    <h3 class="box-title m-b-0">' . $filament['name'] . '</h3> <small>Color ID: ' . $filament['swatch_id'] . '</small>
                                     <address>
-                                        Color: '.$filament['color_name'].$multiColorBadge.'<br>
-                                        Type: '.$filament['type'].$tpubadge.'<br>
-                                        Notes: '.$filament['notes'].'
+                                        Color: ' . $filament['color_name'] . $multiColorBadge . '<br>
+                                        Type: ' . $filament['type'] . $tpubadge . '<br>
+                                        Notes: ' . $filament['notes'] . '
                                     </address>
                                 </div>
                             </div>
@@ -181,42 +176,25 @@ $SQL = "
                     </div>
                     </div>
                     <!-- /.col -->';
-                }
-            }
+                        }
+                    }
                     ?>
                 </div>
                 <!-- /.row -->
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Right sidebar -->
-                <!-- ============================================================== -->
-                <!-- .right-sidebar -->
-                <?php
-                    include 'https://khome.kumpeapps.com/portal/dist/php/right-sidebar.php';
-                ?>
-                <!-- ============================================================== -->
-                <!-- End Right sidebar -->
-                <!-- ============================================================== -->
+
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
-            
+
         </div>
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-         <?php
-            include 'https://khome.kumpeapps.com/portal/dist/php/footer.php';
-        ?>
-        <!-- ============================================================== -->
-        <!-- End footer -->
-        <!-- ============================================================== -->
+
     </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
@@ -235,10 +213,13 @@ $SQL = "
     <!--Menu sidebar -->
     <script src="https://khome.kumpeapps.com/portal/dist/js/sidebarmenu.js"></script>
     <!--stickey kit -->
-    <script src="https://khome.kumpeapps.com/portal/assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script
+        src="https://khome.kumpeapps.com/portal/assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <script src="https://khome.kumpeapps.com/portal/assets/node_modules/sparkline/jquery.sparkline.min.js"></script>
     <!--Custom JavaScript -->
     <script src="https://khome.kumpeapps.com/portal/dist/js/custom.min.js"></script>
 </body>
 
 </html>
+<?php
+mysqli_close($connection);
