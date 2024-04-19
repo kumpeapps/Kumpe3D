@@ -161,7 +161,7 @@ $SQL = "
                         <div class="card card-body">
                             <div class="row align-items-center">
                                 <div class="col-md-4 col-lg-3 text-center">
-                                    <a href="https://www.kumpe3d.com/filament-detail.php?swatch_id=' . $filament['swatch_id'] . '"><img src="' . $photolink . '" alt="user" class="img-circle img-fluid"></a>
+                                    <img src="' . $photolink . '" alt="user" class="img-circle img-fluid"></a>
                                 </div>
                                 <div class="col-md-8 col-lg-9">
                                     <h3 class="box-title m-b-0">' . $filament['name'] . '</h3> <small>Color ID: ' . $filament['swatch_id'] . '</small>
