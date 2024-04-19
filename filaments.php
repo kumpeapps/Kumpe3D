@@ -92,6 +92,9 @@ $SQL = "
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
+                    <div class="logo-header logo-dark me-md-5">
+					<a href="/"><img src="<?php echo $site_params['store_logo_url']; ?>" alt="logo"></a>
+				</div>
                         <h4 class="text-themecolor">Kumpe3D Available Colors</h4><br>
                         <h7 class="text-themecolor">
                             If you wish to have a color not listed feel free to email us at sales@kumpe3d.com. Chances
