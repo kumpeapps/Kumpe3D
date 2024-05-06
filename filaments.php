@@ -121,7 +121,7 @@ $SQL = "
                     if ($Query = mysqli_query($connection, $SQL)) {
                         // Loop through each row in the result set
                         while ($filament = mysqli_fetch_array($Query)) {
-                            if ($filament['coming_soon'] === 1) {
+                            if ($filament['coming_soon'] == 1) {
                                 $leftribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This filament is either on the way or has arrived and is being quality tested. Orders may experience a minimal delay." class="ribbon ribbon-bookmark  ribbon-warning">Coming Soon</div>';
                             } else if ($filament['discontinued'] === 1) {
                                 $leftribbon = '<div data-toggle="tooltip" data-placement="bottom" title="This filament is no longer available." class="ribbon ribbon-left ribbon-danger">In Stock but Discontinued</div>';
