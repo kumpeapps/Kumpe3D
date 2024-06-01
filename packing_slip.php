@@ -158,8 +158,8 @@ while($item = mysqli_fetch_array($items_result)) {
     <tbody>
       <tr>
         <td colspan="2" style="width:3.5in" class="store-info">
-          <div class="company-name">Kumpe3D by KumpeApps LLC</div>
-          <div>4021 West Walnut Street #1109<br/>Rogers, AR  72756</div>
+          <div class="company-name">Kumpe3D</div>
+          <div>8180 Elm Ln<br/>Rogers, AR  72756</div>
         </td>
         <td style="width:3.5in;" align="right" valign="top">
 
