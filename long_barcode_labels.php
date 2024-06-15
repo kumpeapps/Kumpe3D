@@ -70,12 +70,12 @@ $barcode = "https://barcodeapi.org/api/$upc";
         body {
             margin: 1mm 1mm 1mm 1mm;
             width: 50mm;
-            height: 28mm;
+            height: 30mm;
         }
 
         .body {
             width: 50mm;
-            height: 28mm;
+            height: 30mm;
         }
 
         .sku {
@@ -91,10 +91,10 @@ $barcode = "https://barcodeapi.org/api/$upc";
         }
 
         .color-name {
-            text-align: right;
+            text-align: left;
             text-wrap: break-word;
             font-size: xx-small;
-            max-width: 39.7mm;
+            max-width: 20mm;
             /* padding-right: 12mm; */
             line-height: 1em;
             /* a */
@@ -104,6 +104,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
 
         .right-block {
             float: right;
+            max-width: 30mm;
         }
 
         .qr {
@@ -121,14 +122,14 @@ $barcode = "https://barcodeapi.org/api/$upc";
 
 <body>
     <div class="right-block">
+        <div class="color-name">
+            <b>
+                Color: <?php echo $filament_color; ?>
+            </b>
+        </div>
         <div class="sku">
             <b>
                 mfg sku: <?php echo $product_data['sku']; ?>
-            </b>
-        </div>
-        <div class="color-name">
-            <b>
-                <?php echo $filament_color; ?>
             </b>
         </div>
     </div>
