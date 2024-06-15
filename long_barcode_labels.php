@@ -81,7 +81,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
         .sku {
             text-align: left;
             text-wrap: ;
-            font-size: 100%;
+            font-size: 50%;
             max-width: 30mm;
             /* padding-right: 12mm; */
             line-height: 1em;
