@@ -82,7 +82,6 @@ $barcode = "https://barcodeapi.org/api/$upc";
             text-align: left;
             text-wrap: ;
             font-size: 50%;
-            max-width: 30mm;
             /* padding-right: 12mm; */
             line-height: 1em;
             /* a */
@@ -94,7 +93,6 @@ $barcode = "https://barcodeapi.org/api/$upc";
             text-align: left;
             text-wrap: break-word;
             font-size: xx-small;
-            max-width: 20mm;
             /* padding-right: 12mm; */
             line-height: 1em;
             /* a */
@@ -104,7 +102,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
 
         .right-block {
             float: right;
-            max-width: 30mm;
+            max-width: 40mm;
         }
 
         .qr {
