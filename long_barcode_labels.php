@@ -125,7 +125,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
     <div class="right-block">
         <div class="sku">
             <b>
-                <?php echo $product_data['dist_sku']; ?>
+                mfg sku: <?php echo $product_data['sku']; ?>
             </b>
         </div>
         <div class="color-name">
