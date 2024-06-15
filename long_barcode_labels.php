@@ -82,7 +82,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
             text-align: right;
             text-wrap: break-word;
             font-size: smaller;
-            max-width: 39.7mm;
+            max-width: 29.7mm;
             /* padding-right: 12mm; */
             line-height: 1em;
             /* a */
