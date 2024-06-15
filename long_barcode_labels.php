@@ -68,7 +68,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
         }
 
         body {
-            margin: 0in 0in 0in 0in;
+            margin: 2mm 2mm 2mm 2mm;
             width: 50mm;
             height: 28mm;
         }
