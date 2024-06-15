@@ -109,7 +109,6 @@ $barcode = "https://barcodeapi.org/api/$upc";
         .barcode-block {
             float: left;
             padding-top: 3mm;
-            padding-left: -20mm;
         }
 
         .barcode {
@@ -145,9 +144,9 @@ $barcode = "https://barcodeapi.org/api/$upc";
             </b>
         </div>
     </div>
-    <div class="barcode-block">
+
         <img class="barcode" src="<?php echo $barcode; ?>">
-    </div>
+
 
 </body>
 
