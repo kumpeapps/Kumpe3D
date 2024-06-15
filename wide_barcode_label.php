@@ -107,7 +107,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
         }
 
         .barcode-block {
-            padding-top: 10mm;
+            padding-top: 3mm;
         }
 
         .barcode {
