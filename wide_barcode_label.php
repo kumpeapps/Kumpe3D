@@ -112,8 +112,8 @@ $barcode = "https://barcodeapi.org/api/$upc";
             padding-left: -20mm;
         }
 
-        .qr {
-            width: 29mm;
+        .barcode {
+            width: 25mm;
             transform: rotate(-90deg);
             float: top;
         }
@@ -139,7 +139,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
         </div>
     </div>
     <div class="barcode-block">
-        <img class="qr" src="<?php echo $barcode; ?>">
+        <img class="barcode" src="<?php echo $barcode; ?>">
     </div>
 
 </body>
