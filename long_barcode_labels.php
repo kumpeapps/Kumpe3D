@@ -103,7 +103,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
         }
 
         .barcode-block {
-            text-align: left;
+            text-align: le;
             text-wrap: break-word;
             font-size: x-small;
             padding-top: 1mm;
@@ -117,8 +117,9 @@ $barcode = "https://barcodeapi.org/api/$upc";
         }
 
         .qr {
-            height: 8mm;
+            height: 11mm;
             transform: rotate(-90deg);
+            vertical-align: bottom;
         }
 
         /* * {
