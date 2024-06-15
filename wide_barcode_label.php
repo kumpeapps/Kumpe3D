@@ -116,6 +116,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
             width: 25mm;
             transform: rotate(-90deg);
             float: top;
+            display: block;
         }
 
         /* * {
