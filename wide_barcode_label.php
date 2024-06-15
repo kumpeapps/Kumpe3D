@@ -109,7 +109,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
         .barcode-block {
             float: left;
             padding-top: 3mm;
-            padding-left: -3mm;
+            padding-left: -20mm;
         }
 
         .qr {
