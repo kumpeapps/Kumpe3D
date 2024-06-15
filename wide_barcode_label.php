@@ -114,11 +114,12 @@ $barcode = "https://barcodeapi.org/api/$upc";
 
         .barcode {
             width: 25mm;
-            -ms-transform: rotate(90deg);
-            -moz-transform: rotate(90deg);
-            -webkit-transform: rotate(90deg);
-            -o-transform: rotate(90deg);
+            -ms-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            -webkit-transform: rotate(-90deg);
+            -o-transform: rotate(-90deg);
             left: 0px;
+            top: -4px;
             float: top;
             display: block;
             white-space: nowrap;
