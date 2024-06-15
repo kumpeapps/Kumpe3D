@@ -139,9 +139,14 @@ $barcode = "https://barcodeapi.org/api/$upc";
         </div>
         <div class="sku">
             <b>
+                Desc: 
                 K3D sku: <?php echo $product_data['sku']; ?><br>
                 Sort sku: <br>
                 PSD sku: <br>
+                Filament Type: <br>
+                Manufacture: Kumpe3D<br>
+                UPC: <?php echo $product_data['upc']; ?><br>
+                EAN: <?php echo $product_data['ean']; ?><br>
             </b>
         </div>
     </div>
