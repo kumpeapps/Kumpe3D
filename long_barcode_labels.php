@@ -109,6 +109,8 @@ $barcode = "https://barcodeapi.org/api/$upc";
             padding-top: 1mm;
             padding-left: 1mm;
             max-width: 2.7mm;
+            transform: rotate(-90deg);
+            vertical-align: bottom;
             /* padding-right: 12mm; */
             line-height: 1em;
             /* a */
@@ -140,9 +142,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
             <?php echo $filament_color; ?>
         </b>
     </div>
-    <div class="barcode-block">
         <img class="qr" src="<?php echo $barcode; ?>">
-    </div>
 
 </body>
 
