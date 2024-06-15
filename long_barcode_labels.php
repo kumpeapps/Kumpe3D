@@ -102,27 +102,15 @@ $barcode = "https://barcodeapi.org/api/$upc";
             /* a x number of line to show (ex : 2 line)  */
         }
 
-        .barcode-block {
-            text-align: le;
-            text-wrap: break-word;
-            font-size: x-small;
-            padding-top: 1mm;
-            padding-left: 1mm;
-            max-width: 2.7mm;
-            transform: rotate(-90deg);
-            vertical-align: bottom;
-            /* padding-right: 12mm; */
-            line-height: 1em;
-            /* a */
-            max-height: 1em;
-            /* a x number of line to show (ex : 2 line)  */
+        .right-block {
+            float: right;
         }
 
         .qr {
             height: 11mm;
             transform: rotate(-90deg);
             vertical-align: bottom;
-            padding-left: 1mm;
+            padding-left: 0.5mm;
             padding-top: 1mm;
         }
 
@@ -134,17 +122,19 @@ $barcode = "https://barcodeapi.org/api/$upc";
 </head>
 
 <body>
-    <div class="sku">
-        <b>
-            <?php echo $product_data['dist_sku']; ?>
-        </b>
+    <div class="right-block">
+        <div class="sku">
+            <b>
+                <?php echo $product_data['dist_sku']; ?>
+            </b>
+        </div>
+        <div class="color-name">
+            <b>
+                <?php echo $filament_color; ?>
+            </b>
+        </div>
     </div>
-    <div class="color-name">
-        <b>
-            <?php echo $filament_color; ?>
-        </b>
-    </div>
-        <img class="qr" src="<?php echo $barcode; ?>">
+    <img class="qr" src="<?php echo $barcode; ?>">
 
 </body>
 
