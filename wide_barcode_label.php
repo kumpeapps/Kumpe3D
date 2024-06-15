@@ -139,7 +139,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
         </div>
         <div class="sku">
             <b>
-                Desc: 
+                Desc: <br>
                 K3D sku: <?php echo $product_data['sku']; ?><br>
                 Sort sku: <br>
                 PSD sku: <br>
