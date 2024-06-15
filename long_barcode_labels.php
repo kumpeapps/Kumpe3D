@@ -86,7 +86,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
             /* padding-right: 12mm; */
             line-height: 1em;
             /* a */
-            max-height: 1em;
+            max-height: 0.5em;
             /* a x number of line to show (ex : 2 line)  */
         }
 
