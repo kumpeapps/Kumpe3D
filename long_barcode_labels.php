@@ -79,7 +79,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
         }
 
         .sku {
-            text-align: center;
+            text-align: left;
             text-wrap: break-word;
             font-size: smaller;
             max-width: 39.7mm;
@@ -91,7 +91,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
         }
 
         .color-name {
-            text-align: center;
+            text-align: left;
             text-wrap: break-word;
             font-size: xx-small;
             max-width: 39.7mm;
