@@ -119,6 +119,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
             -o-transform: rotate(-90deg);
             left: 0px;
             /* top: -10mm; */
+            right: 1mm;
             float: top;
             display: block;
             white-space: nowrap;
