@@ -136,7 +136,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
             </b>
         </div>
     </div>
-    <div class="barcode_block">
+    <div class="barcode-block">
         <img class="qr" src="<?php echo $barcode; ?>">
     </div>
 
