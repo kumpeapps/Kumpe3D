@@ -70,6 +70,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
         }
 
         .body {
+            margin: 0;
             width: 50mm;
             height: 30mm;
         }
