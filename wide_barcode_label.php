@@ -23,12 +23,10 @@ $product_sql = "
         upc.upc,
         upc.ean,
         upc.sku,
-        IFNULL(dist.dist_sku, upc.sku) AS dist_sku
+        upc.short_sku,
+        upc.psd_sku
     FROM
         Web_3dprints.upc_codes upc
-    LEFT JOIN
-        distributor_skus dist ON dist.sku = upc.sku
-        AND dist.iddistributors = $distributor
     WHERE 1 = 1
         AND (upc.sku = '$sku' OR upc.upc = '$sku');
 ";
@@ -140,9 +138,8 @@ $barcode = "https://barcodeapi.org/api/$upc";
         <div class="sku">
             <b>
                 K3D sku: <?php echo $product_data['sku']; ?><br>
-                Short sku: <br>
-                PSD sku: <br>
-                Filament Type: <br>
+                Short sku: <?php echo $product_data['short_sku']; ?><br>
+                PSD sku: <?php echo $product_data['psd_sku']; ?><br>
                 Manufacture: Kumpe3D<br>
                 UPC: <?php echo $product_data['upc']; ?><br>
                 EAN: <?php echo $product_data['ean']; ?><br>
