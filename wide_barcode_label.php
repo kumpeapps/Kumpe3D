@@ -119,6 +119,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
             float: left;
             display: block;
             white-space: nowrap;
+            padding-right: 1mm;
         }
 
         /* * {
