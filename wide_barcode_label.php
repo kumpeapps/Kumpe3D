@@ -90,7 +90,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
         }
 
         .color-name {
-            text-align: left;
+            text-align: center;
             text-wrap: break-word;
             font-size: xx-small;
             /* padding-right: 12mm; */
@@ -143,7 +143,8 @@ $barcode = "https://barcodeapi.org/api/$upc";
             </b>
         </div>
     </div>
-    <div class="barcode-block">        <div class="color-name">
+    <div class="barcode-block">
+        <div class="color-name">
             <b>
                 Color: <?php echo $filament_color; ?>
                 K3D sku: <?php echo $product_data['sku']; ?><br>
