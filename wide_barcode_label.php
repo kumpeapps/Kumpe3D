@@ -67,13 +67,13 @@ $barcode = "https://barcodeapi.org/api/$upc";
 
         body {
             margin: 0;
-            margin-left: -5mm;
+            /* margin-left: -5mm; */
             margin-right: 1mm;
         }
 
         .body {
             margin: 0;
-            margin-left: -5mm;
+            /* margin-left: -5mm; */
             width: 50mm;
             height: 30mm;
         }
@@ -106,14 +106,14 @@ $barcode = "https://barcodeapi.org/api/$upc";
             -webkit-transform: rotate(-90deg);
             -o-transform: rotate(-90deg);
             float: right;
-            max-width: 35mm;
+            max-width: 29mm;
             padding-top: 1mm;
         }
 
         .barcode-block {
             margin: 0;
-            padding-top: 8mm;
-            padding-right: 1mm;
+            /* padding-top: 8mm;
+            padding-right: 1mm; */
         }
 
         .barcode {
