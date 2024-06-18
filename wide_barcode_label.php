@@ -137,17 +137,17 @@ $barcode = "https://barcodeapi.org/api/$upc";
 
 <body>
     <div>
-    <div class="barcode-block">
-        <div class="color-name">
+    <span class="barcode-block">
+        <span class="color-name">
             <b>
                 Color: <?php echo $filament_color; ?><br>
                 K3D sku: <?php echo $product_data['sku']; ?>
             </b>
-        </div>
+        </span>
         <img class="barcode" src="<?php echo $barcode; ?>">
-    </div>
-    <div class="right-block">
-        <div class="sku">
+    </span>
+    <span class="right-block">
+        <span class="sku">
             <b>
                 Short sku: <?php echo $product_data['short_sku']; ?><br>
                 PSD sku: <?php echo $product_data['psd_sku']; ?><br>
@@ -155,8 +155,8 @@ $barcode = "https://barcodeapi.org/api/$upc";
                 UPC: <?php echo $product_data['upc']; ?><br>
                 EAN: <?php echo $product_data['ean']; ?><br>
             </b>
-        </div>
-    </div>
+        </span>
+    </span>
 </div>
 </body>
 
