@@ -91,6 +91,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
 
         .color-name {
             text-align: center;
+            text-wrap: nowrap;
             font-size: 0.5em;
             /* padding-right: 12mm; */
             line-height: 1em;
@@ -105,7 +106,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
             -webkit-transform: rotate(-90deg);
             -o-transform: rotate(-90deg);
             float: right;
-            max-width: 50mm;
+            max-width: 30mm;
             margin-top: 10mm;
             margin-right: -2mm;
         }
