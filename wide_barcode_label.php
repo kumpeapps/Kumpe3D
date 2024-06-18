@@ -108,7 +108,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
             float: right;
             max-width: 50mm;
             margin-top: 13mm;
-            margin-right: -1mm;
+            margin-right: -3mm;
         }
 
         .barcode-block {
