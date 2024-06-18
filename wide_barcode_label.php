@@ -133,14 +133,8 @@ $barcode = "https://barcodeapi.org/api/$upc";
 
 <body>
     <div class="right-block">
-        <div class="color-name">
-            <b>
-                Color: <?php echo $filament_color; ?>
-            </b>
-        </div>
         <div class="sku">
             <b>
-                K3D sku: <?php echo $product_data['sku']; ?><br>
                 Short sku: <?php echo $product_data['short_sku']; ?><br>
                 PSD sku: <?php echo $product_data['psd_sku']; ?><br>
                 Manufacture: Kumpe3D<br>
@@ -149,7 +143,12 @@ $barcode = "https://barcodeapi.org/api/$upc";
             </b>
         </div>
     </div>
-    <div class="barcode-block">
+    <div class="barcode-block">        <div class="color-name">
+            <b>
+                Color: <?php echo $filament_color; ?>
+                K3D sku: <?php echo $product_data['sku']; ?><br>
+            </b>
+        </div>
         <img class="barcode" src="<?php echo $barcode; ?>">
     </div>
 
