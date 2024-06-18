@@ -107,7 +107,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
             -webkit-transform: rotate(-90deg);
             -o-transform: rotate(-90deg);
             float: right;
-            max-width: 50mm;
+            max-width: 10mm;
             margin-top: 13mm;
             margin-right: -2mm;
         }
@@ -136,7 +136,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
 </head>
 
 <body>
-    <!-- <div class="right-block">
+    <div class="right-block">
         <div class="sku">
             <b>
                 Short sku: <?php echo $product_data['short_sku']; ?><br>
@@ -146,7 +146,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
                 EAN: <?php echo $product_data['ean']; ?><br>
             </b>
         </div>
-    </div> -->
+    </div>
     <div class="barcode-block">
         <div class="color-name">
             <b>
