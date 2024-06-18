@@ -121,6 +121,10 @@ $barcode = "https://barcode.orcascan.com/?type=upca&data=$upc";
             /* padding-top: 10mm; */
         }
 
+        .bc_attribute {
+            padding-top: 1mm;
+        }
+
         /* * {
             font-family: arial;
             font-size: 12px;
