@@ -92,6 +92,7 @@ $barcode = "https://barcode.orcascan.com/?type=upca&data=$upc";
             /* a */
             max-height: 1em;
             /* a x number of line to show (ex : 2 line)  */
+            padding-top: 1mm;
         }
 
         .right-block {
@@ -112,6 +113,7 @@ $barcode = "https://barcode.orcascan.com/?type=upca&data=$upc";
             margin-top: 1mm;
             /* padding-top: 8mm;
             padding-right: 1mm; */
+            float: left;
         }
 
         .barcode {
