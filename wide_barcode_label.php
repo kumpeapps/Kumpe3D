@@ -92,7 +92,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
         .color-name {
             text-align: center;
             text-wrap: break-word;
-            font-size: 3em;
+            font-size: 0.5em;
             /* padding-right: 12mm; */
             line-height: 1em;
             /* a */
