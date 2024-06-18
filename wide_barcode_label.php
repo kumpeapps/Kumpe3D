@@ -109,7 +109,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
             float: right;
             max-width: 50mm;
             margin-top: 0;
-            margin-right: -3mm;
+            margin-right: -10mm;
         }
 
         .barcode-block {
@@ -149,11 +149,11 @@ $barcode = "https://barcodeapi.org/api/$upc";
         <div class="right-block">
             <span class="sku">
                 <b>
-                    Short sku: <?php echo $product_data['short_sku']; ?><br>
-                    PSD sku: <?php echo $product_data['psd_sku']; ?><br>
-                    Manufacture: Kumpe3D<br>
-                    UPC: <?php echo $product_data['upc']; ?><br>
-                    EAN: <?php echo $product_data['ean']; ?><br>
+                    <span>Short sku: <?php echo $product_data['short_sku']; ?></span>
+                    <span>PSD sku: <?php echo $product_data['psd_sku']; ?></span>
+                    <span>Manufacture: Kumpe3D</span>
+                    <span>UPC: <?php echo $product_data['upc']; ?></span>
+                    <span>EAN: <?php echo $product_data['ean']; ?></span>
                 </b>
             </span>
         </div>
