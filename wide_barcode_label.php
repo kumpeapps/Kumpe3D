@@ -79,7 +79,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
         }
 
         .sku {
-            text-align: center;
+            text-align: left;
             text-wrap: ;
             font-size: 50%;
             /* padding-right: 12mm; */
@@ -107,7 +107,6 @@ $barcode = "https://barcodeapi.org/api/$upc";
             -o-transform: rotate(-90deg);
             float: right;
             max-width: 30mm;
-            padding-top: 10;
         }
 
         .barcode-block {
