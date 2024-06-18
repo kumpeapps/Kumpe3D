@@ -149,11 +149,11 @@ $barcode = "https://barcodeapi.org/api/$upc";
         <div class="right-block">
             <span class="sku">
                 <b>
-                    <div>Short sku: <?php echo $product_data['short_sku']; ?></div>
+                    <div>Short sku: <?php echo $product_data['short_sku']; ?><br></div>
                     <div>PSD sku: <?php echo $product_data['psd_sku']; ?></div>
-                    <div>Manufacture: Kumpe3D</div>
-                    <div>UPC: <?php echo $product_data['upc']; ?></div>
-                    <div>EAN: <?php echo $product_data['ean']; ?></div>
+                    <div>Manufacture: Kumpe3D<br></div>
+                    <div>UPC: <?php echo $product_data['upc']; ?><br></div>
+                    <div>EAN: <?php echo $product_data['ean']; ?><br></div>
                 </b>
             </span>
         </div>
