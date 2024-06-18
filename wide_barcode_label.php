@@ -90,6 +90,10 @@ $barcode = "https://barcodeapi.org/api/$upc";
         }
 
         .color-name {
+            -ms-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            -webkit-transform: rotate(-90deg);
+            -o-transform: rotate(-90deg);
             text-align: left;
             text-wrap: break-word;
             font-size: xx-small;
@@ -115,10 +119,6 @@ $barcode = "https://barcodeapi.org/api/$upc";
         .barcode {
             margin: 0;
             width: 25mm;
-            -ms-transform: rotate(-90deg);
-            -moz-transform: rotate(-90deg);
-            -webkit-transform: rotate(-90deg);
-            -o-transform: rotate(-90deg);
             float: left;
             display: block;
             white-space: nowrap;
