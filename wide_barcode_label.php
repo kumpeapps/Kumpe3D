@@ -136,6 +136,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
 </head>
 
 <body>
+    <div>
     <div class="barcode-block">
         <div class="color-name">
             <b>
@@ -156,7 +157,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
             </b>
         </div>
     </div>
-
+</div>
 </body>
 
 </html>
