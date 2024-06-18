@@ -123,7 +123,6 @@ $barcode = "https://barcodeapi.org/api/$upc";
             margin: 0;
             width: 35mm;
             float: left;
-            display: block;
             white-space: nowrap;
             /* padding-top: 10mm; */
         }
