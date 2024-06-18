@@ -105,8 +105,9 @@ $barcode = "https://barcodeapi.org/api/$upc";
             -moz-transform: rotate(-90deg);
             -webkit-transform: rotate(-90deg);
             -o-transform: rotate(-90deg);
-            float: center;
+            float: right;
             max-width: 30mm;
+            padding-top: 10;
         }
 
         .barcode-block {
@@ -146,8 +147,8 @@ $barcode = "https://barcodeapi.org/api/$upc";
     <div class="barcode-block">
         <div class="color-name">
             <b>
-                Color: <?php echo $filament_color; ?>
-                K3D sku: <?php echo $product_data['sku']; ?><br>
+                Color: <?php echo $filament_color; ?><br>
+                K3D sku: <?php echo $product_data['sku']; ?>
             </b>
         </div>
         <img class="barcode" src="<?php echo $barcode; ?>">
