@@ -108,7 +108,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
             -o-transform: rotate(-90deg);
             float: right;
             max-width: 50mm;
-            margin-top: 13mm;
+            margin-top: 0;
             /* margin-right: -3mm; */
         }
 
@@ -137,27 +137,27 @@ $barcode = "https://barcodeapi.org/api/$upc";
 
 <body>
     <div>
-    <span class="barcode-block">
-        <span class="color-name">
-            <b>
-                Color: <?php echo $filament_color; ?><br>
-                K3D sku: <?php echo $product_data['sku']; ?>
-            </b>
-        </span>
-        <img class="barcode" src="<?php echo $barcode; ?>">
-    </span>
-    <span class="right-block">
-        <span class="sku">
-            <b>
-                Short sku: <?php echo $product_data['short_sku']; ?><br>
-                PSD sku: <?php echo $product_data['psd_sku']; ?><br>
-                Manufacture: Kumpe3D<br>
-                UPC: <?php echo $product_data['upc']; ?><br>
-                EAN: <?php echo $product_data['ean']; ?><br>
-            </b>
-        </span>
-    </span>
-</div>
+        <div class="barcode-block">
+            <span class="color-name">
+                <b>
+                    Color: <?php echo $filament_color; ?><br>
+                    K3D sku: <?php echo $product_data['sku']; ?><br>
+                </b>
+            </span>
+            <img class="barcode" src="<?php echo $barcode; ?>"><br>
+        </div>
+        <div class="right-block">
+            <span class="sku">
+                <b>
+                    Short sku: <?php echo $product_data['short_sku']; ?><br>
+                    PSD sku: <?php echo $product_data['psd_sku']; ?><br>
+                    Manufacture: Kumpe3D<br>
+                    UPC: <?php echo $product_data['upc']; ?><br>
+                    EAN: <?php echo $product_data['ean']; ?><br>
+                </b>
+            </span>
+        </div>
+    </div>
 </body>
 
 </html>
