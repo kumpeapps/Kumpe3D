@@ -123,6 +123,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
             margin: 0;
             width: 35mm;
             float: left;
+            display: block;
             white-space: nowrap;
             /* padding-top: 10mm; */
         }
@@ -135,6 +136,15 @@ $barcode = "https://barcodeapi.org/api/$upc";
 </head>
 
 <body>
+    <div class="barcode-block">
+        <div class="color-name">
+            <b>
+                Color: <?php echo $filament_color; ?><br>
+                K3D sku: <?php echo $product_data['sku']; ?>
+            </b>
+        </div>
+        <img class="barcode" src="<?php echo $barcode; ?>">
+    </div>
     <div class="right-block">
         <div class="sku">
             <b>
@@ -145,15 +155,6 @@ $barcode = "https://barcodeapi.org/api/$upc";
                 EAN: <?php echo $product_data['ean']; ?><br>
             </b>
         </div>
-    </div>
-    <div class="barcode-block">
-        <div class="color-name">
-            <b>
-                Color: <?php echo $filament_color; ?><br>
-                K3D sku: <?php echo $product_data['sku']; ?>
-            </b>
-        </div>
-        <img class="barcode" src="<?php echo $barcode; ?>">
     </div>
 
 </body>
