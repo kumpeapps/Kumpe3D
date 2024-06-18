@@ -113,7 +113,6 @@ $barcode = "https://barcode.orcascan.com/?type=upca&data=$upc";
             margin-top: 1mm;
             /* padding-top: 8mm;
             padding-right: 1mm; */
-            float: left;
         }
 
         .barcode {
