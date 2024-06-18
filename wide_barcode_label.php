@@ -128,10 +128,6 @@ $barcode = "https://barcodeapi.org/api/$upc";
             /* padding-top: 10mm; */
         }
 
-        .bc_attribute {
-            padding-top: 1mm;
-        }
-
         /* * {
             font-family: arial;
             font-size: 12px;
@@ -151,15 +147,13 @@ $barcode = "https://barcodeapi.org/api/$upc";
             <img class="barcode" src="<?php echo $barcode; ?>"><br>
         </div>
         <div class="right-block">
-            <span class="sku">
                 <b>
-                    <div class="bc_attribute">Short sku: <?php echo $product_data['short_sku']; ?><br></div>
-                    <div class="bc_attribute">PSD sku: <?php echo $product_data['psd_sku']; ?></div>
-                    <div class="bc_attribute">Manufacture: Kumpe3D<br></div>
-                    <div class="bc_attribute">UPC: <?php echo $product_data['upc']; ?><br></div>
-                    <div class="bc_attribute">EAN: <?php echo $product_data['ean']; ?><br></div>
+                    Short sku: <?php echo $product_data['short_sku']; ?><br>
+                    PSD sku: <?php echo $product_data['psd_sku']; ?><br>
+                    Manufacture: Kumpe3D<br>
+                    UPC: <?php echo $product_data['upc']; ?><br>
+                    EAN: <?php echo $product_data['ean']; ?><br>
                 </b>
-            </span>
         </div>
     </div>
 </body>
