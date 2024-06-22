@@ -67,20 +67,14 @@ $barcode = "https://barcodeapi.org/api/$upc";
 
         body {
             margin: 0;
-            margin-left: -5mm;
+            /* margin-left: -5mm; */
             margin-right: 1mm;
-        }
-
-        .body {
-            margin: 0;
-            margin-left: -5mm;
             width: 50mm;
             height: 30mm;
         }
 
         .sku {
             text-align: left;
-            text-wrap: ;
             font-size: 50%;
             /* padding-right: 12mm; */
             line-height: 1em;
@@ -90,9 +84,9 @@ $barcode = "https://barcodeapi.org/api/$upc";
         }
 
         .color-name {
-            text-align: left;
-            text-wrap: break-word;
-            font-size: xx-small;
+            text-align: center;
+            text-wrap: nowrap;
+            font-size: 0.5em;
             /* padding-right: 12mm; */
             line-height: 1em;
             /* a */
@@ -101,27 +95,29 @@ $barcode = "https://barcodeapi.org/api/$upc";
         }
 
         .right-block {
-            float: right;
-            max-width: 35mm;
-            padding-top: 1mm;
-        }
-
-        .barcode-block {
-            margin: 0;
-            padding-top: 8mm;
-            padding-right: 1mm;
-        }
-
-        .barcode {
-            margin: 0;
-            width: 25mm;
             -ms-transform: rotate(-90deg);
             -moz-transform: rotate(-90deg);
             -webkit-transform: rotate(-90deg);
             -o-transform: rotate(-90deg);
-            float: left;
-            display: block;
-            white-space: nowrap;
+            /* max-width: 50mm; */
+            margin-top: -55;
+            margin-right: -7mm;
+            font-size: xx-small;
+            float: right;
+        }
+
+        .barcode-block {
+            margin: 0;
+            margin-left: 1mm;
+            margin-top: 1mm;
+            /* padding-top: 8mm;
+            padding-right: 1mm; */
+        }
+
+        .barcode {
+            margin: 0;
+            width: 35mm;
+            /* padding-top: 10mm; */
         }
 
         /* * {
@@ -132,27 +128,25 @@ $barcode = "https://barcodeapi.org/api/$upc";
 </head>
 
 <body>
-    <div class="right-block">
-        <div class="color-name">
-            <b>
-                Color: <?php echo $filament_color; ?>
-            </b>
+    <div>
+        <div class="barcode-block">
+            <span class="color-name">
+                <b>
+                    Color: <?php echo $filament_color; ?><br>
+                    K3D sku: <?php echo $product_data['sku']; ?><br><br>
+                </b>
+            </span>
+            <img class="barcode" src="<?php echo $barcode; ?>">
         </div>
-        <div class="sku">
-            <b>
-                K3D sku: <?php echo $product_data['sku']; ?><br>
-                Short sku: <?php echo $product_data['short_sku']; ?><br>
-                PSD sku: <?php echo $product_data['psd_sku']; ?><br>
-                Manufacture: Kumpe3D<br>
-                UPC: <?php echo $product_data['upc']; ?><br>
-                EAN: <?php echo $product_data['ean']; ?><br>
-            </b>
+        <div class="right-block">
+                <b>
+                    Short sku: <?php echo $product_data['short_sku']; ?><br>
+                    PSD: <?php echo $product_data['psd_sku']; ?><br>
+                    UPC: <?php echo $product_data['upc']; ?><br>
+                    EAN: <?php echo $product_data['ean']; ?><br>
+                </b>
         </div>
     </div>
-    <div class="barcode-block">
-        <img class="barcode" src="<?php echo $barcode; ?>">
-    </div>
-
 </body>
 
 </html>
