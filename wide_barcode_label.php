@@ -142,7 +142,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
         <div class="right-block">
                 <b>
                     Short sku: <?php echo $product_data['short_sku']; ?><br>
-                    PSD sku: <?php echo $product_data['psd_sku']; ?><br>
+                    PSD: <?php echo $product_data['psd_sku']; ?><br>
                     UPC: <?php echo $product_data['upc']; ?><br>
                     EAN: <?php echo $product_data['ean']; ?><br>
                 </b>
