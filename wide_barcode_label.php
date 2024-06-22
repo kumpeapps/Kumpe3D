@@ -86,7 +86,6 @@ $barcode = "https://barcode.orcascan.com/?type=upca&data=$upc";
         .color-name {
             text-align: center;
             text-wrap: nowrap;
-            float: top;
             font-size: 0.5em;
             /* padding-right: 12mm; */
             line-height: 1em;
