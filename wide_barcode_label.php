@@ -69,18 +69,12 @@ $barcode = "https://barcodeapi.org/api/$upc";
             margin: 0;
             /* margin-left: -5mm; */
             margin-right: 1mm;
-        }
-
-        .body {
-            margin: 0;
-            /* margin-left: -5mm; */
             width: 50mm;
             height: 30mm;
         }
 
         .sku {
             text-align: left;
-            text-wrap: ;
             font-size: 50%;
             /* padding-right: 12mm; */
             line-height: 1em;
@@ -92,7 +86,6 @@ $barcode = "https://barcodeapi.org/api/$upc";
         .color-name {
             text-align: center;
             text-wrap: nowrap;
-            float: top;
             font-size: 0.5em;
             /* padding-right: 12mm; */
             line-height: 1em;
@@ -106,11 +99,11 @@ $barcode = "https://barcodeapi.org/api/$upc";
             -moz-transform: rotate(-90deg);
             -webkit-transform: rotate(-90deg);
             -o-transform: rotate(-90deg);
-            /* float: right; */
             /* max-width: 50mm; */
-            margin-top: -15;
+            margin-top: -50;
             margin-right: -5mm;
             font-size: xx-small;
+            float: right;
         }
 
         .barcode-block {
@@ -123,7 +116,6 @@ $barcode = "https://barcodeapi.org/api/$upc";
         .barcode {
             margin: 0;
             width: 35mm;
-            float: left;
             display: block;
             white-space: nowrap;
             /* padding-top: 10mm; */
@@ -145,13 +137,12 @@ $barcode = "https://barcodeapi.org/api/$upc";
                     K3D sku: <?php echo $product_data['sku']; ?><br>
                 </b>
             </span>
-            <img class="barcode" src="<?php echo $barcode; ?>"><br>
+            <img class="barcode" src="<?php echo $barcode; ?>">
         </div>
         <div class="right-block">
                 <b>
                     Short sku: <?php echo $product_data['short_sku']; ?><br>
                     PSD sku: <?php echo $product_data['psd_sku']; ?><br>
-                    Manufacture: Kumpe3D<br>
                     UPC: <?php echo $product_data['upc']; ?><br>
                     EAN: <?php echo $product_data['ean']; ?><br>
                 </b>
