@@ -133,7 +133,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
             <span class="color-name">
                 <b>
                     Color: <?php echo $filament_color; ?><br>
-                    K3D sku: <?php echo $product_data['sku']; ?><br>
+                    K3D sku: <?php echo $product_data['sku']; ?><br><br>
                 </b>
             </span>
             <img class="barcode" src="<?php echo $barcode; ?>">
