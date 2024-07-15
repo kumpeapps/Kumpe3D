@@ -5,12 +5,21 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '../.env');
 $dotenv->load();
 $env = $_ENV['env'];
 $base_url = $_SERVER['SERVER_NAME'];
+$session_sql = "
+    INSERT INTO `Web_3dprints`.`sessions`
+        (`session_id`, `app`)
+    VALUES
+        ('" . session_id() . "', 'kumpe3d.com')
+    on DUPLICATE KEY 
+        UPDATE timestamp = now(), app= 'kumpe3d.com';
+";
 $params_conn = mysqli_connect(
     $_ENV['mysql_host'],
     $_ENV['mysql_user'],
     $_ENV['mysql_pass'],
     'Web_3dprints'
 ) or die("Couldn't connect to server.");
+mysqli_query($params_conn, $session_sql);
 $params_sql = "
         SELECT 
             parameter,
@@ -72,6 +81,6 @@ if ($result) {
 mysqli_close($params_conn);
 if ($site_params['store_maitenance_mode'] && !isset($_COOKIE['maitenance_mode_override'])) {
     http_response_code(503);
-    include('./under-construction.php');
+    include ('./under-construction.php');
     die();
 }
