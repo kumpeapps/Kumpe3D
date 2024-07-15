@@ -7,11 +7,11 @@ $env = $_ENV['env'];
 $base_url = $_SERVER['SERVER_NAME'];
 $session_sql = "
     INSERT INTO `Web_3dprints`.`sessions`
-        (`session_id`)
+        (`session_id`, `app`)
     VALUES
-        ('".session_id()."')
+        ('".session_id()."', 'kumpe3d.com')
     on DUPLICATE KEY 
-        UPDATE timestamp = now();
+        UPDATE timestamp = now(), app= 'kumpe3d.com';
 ";
 $params_conn = mysqli_connect(
     $_ENV['mysql_host'],
