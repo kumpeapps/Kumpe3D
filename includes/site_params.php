@@ -5,12 +5,21 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '../.env');
 $dotenv->load();
 $env = $_ENV['env'];
 $base_url = $_SERVER['SERVER_NAME'];
+$session_sql = "
+    INSERT INTO `Web_3dprints`.`sessions`
+        (`session_id)
+    VALUES
+        ('".session_id()."')
+    on DUPLICATE KEY 
+        UPDATE timestamp = now();
+";
 $params_conn = mysqli_connect(
     $_ENV['mysql_host'],
     $_ENV['mysql_user'],
     $_ENV['mysql_pass'],
     'Web_3dprints'
 ) or die("Couldn't connect to server.");
+mysqli_query($params_conn, $session_sql);
 $params_sql = "
         SELECT 
             parameter,
