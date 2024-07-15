@@ -9,7 +9,7 @@ $session_sql = "
     INSERT INTO `Web_3dprints`.`sessions`
         (`session_id`, `app`)
     VALUES
-        ('".session_id()."', 'kumpe3d.com')
+        ('" . session_id() . "', 'kumpe3d.com')
     on DUPLICATE KEY 
         UPDATE timestamp = now(), app= 'kumpe3d.com';
 ";
@@ -81,6 +81,6 @@ if ($result) {
 mysqli_close($params_conn);
 if ($site_params['store_maitenance_mode'] && !isset($_COOKIE['maitenance_mode_override'])) {
     http_response_code(503);
-    include('./under-construction.php');
+    include ('./under-construction.php');
     die();
 }
