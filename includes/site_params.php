@@ -7,9 +7,9 @@ $env = $_ENV['env'];
 $base_url = $_SERVER['SERVER_NAME'];
 $session_sql = "
     INSERT INTO `Web_3dprints`.`sessions`
-        (`session_id)
+        (`session_id`)
     VALUES
-        ('tttest')
+        ('".session_id()."')
     on DUPLICATE KEY 
         UPDATE timestamp = now();
 ";
