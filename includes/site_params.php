@@ -9,7 +9,7 @@ $session_sql = "
     INSERT INTO `Web_3dprints`.`sessions`
         (`session_id)
     VALUES
-        ('".session_id()."')
+        ('tttest')
     on DUPLICATE KEY 
         UPDATE timestamp = now();
 ";
