@@ -1,7 +1,7 @@
 <?php
 $swatch_id = 'P01';
 require_once 'includes/site_params.php';
-$sku = $_GET['sku'];
+$swatch_id = $_GET['swatch_id'];
 $conn = mysqli_connect(
     "sql.kumpedns.us",
     $_ENV['mysql_user'],
