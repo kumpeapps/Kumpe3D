@@ -26,8 +26,7 @@ $product_num_results = mysqli_num_rows($product_result);
 $product_data = mysqli_fetch_assoc($product_result);
 
 $filament_color = $product_data['color_name'];
-$sku = $product_data['sku'];
-$barcode = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $swatch_id;
+$barcode = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $product_data['sku'];
 ?>
 <html>
 
