@@ -98,6 +98,7 @@ $conn = mysqli_connect(
 </head>
 
 <body>
+	<a href="https://www.kumpe3d.com/dapper.php"><!-- vital --></a>
 	<div id="fb-root"></div>
 	<script async defer crossorigin="anonymous"
 		src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0&appId=313430524972692"
