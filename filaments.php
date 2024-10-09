@@ -65,6 +65,7 @@ $SQL = "
 </head>
 
 <body class="skin-green-dark fix-header single-column card-no-border fix-sidebar">
+    <a href="https://www.kumpe3d.com/dapper.php"><img src="vital.gif" height="1" width="1" border="0"></a>
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->

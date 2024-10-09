@@ -360,6 +360,7 @@ require_once 'includes/site_params.php';
 
 
 	</div>
+	<a href="https://www.kumpe3d.com/dapper.php"><!-- vital --></a>
 
 	<!-- JAVASCRIPT FILES ========================================= -->
 	<script src="js/jquery.min.js"></script><!-- JQUERY MIN JS -->
