@@ -55,7 +55,7 @@ if (true) {
 
 $filament_color = $color_data['color_name'];
 $upc = $product_data['upc'];
-$barcode = "https://barcodeapi.org/api/$upc";
+$barcode = "https://barcode.orcascan.com/?type=upca&data=$upc";
 ?>
 <html>
 
@@ -100,8 +100,8 @@ $barcode = "https://barcodeapi.org/api/$upc";
             -webkit-transform: rotate(-90deg);
             -o-transform: rotate(-90deg);
             /* max-width: 50mm; */
-            margin-top: -55;
-            margin-right: -7mm;
+            margin-top: -70;
+            margin-right: 1mm;
             font-size: xx-small;
             float: right;
         }
@@ -116,7 +116,7 @@ $barcode = "https://barcodeapi.org/api/$upc";
 
         .barcode {
             margin: 0;
-            width: 35mm;
+            width: 27mm;
             /* padding-top: 10mm; */
         }
 

@@ -5,6 +5,12 @@
 		},
 		{
 			"path": "../Kumpe3D-API"
+		},
+		{
+			"path": "../../Downloads/ProjectHoneyPot_script/Extras"
+		},
+		{
+			"path": "../../Downloads/ProjectHoneyPot_script/Legal Documents"
 		}
 	],
 	"settings": {

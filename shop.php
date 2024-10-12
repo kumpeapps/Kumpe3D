@@ -98,6 +98,7 @@ $conn = mysqli_connect(
 </head>
 
 <body>
+	<a href="https://www.kumpe3d.com/dapper.php"><img src="vital.gif" height="1" width="1" border="0"></a>
 	<div class="page-wraper">
 		<!-- <div id="loading-area" class="preloader-wrapper-1">
 			<div>
