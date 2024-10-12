@@ -55,7 +55,7 @@ if (true) {
 
 $filament_color = $color_data['color_name'];
 $upc = $product_data['upc'];
-$barcode = "https://barcodeapi.org/api/$upc";
+$barcode = "https://barcode.orcascan.com/?type=upca&data=$upc";
 ?>
 <html>
 
