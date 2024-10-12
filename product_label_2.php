@@ -98,7 +98,7 @@ $qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $qr_d
         }
 
         .logo {
-            width: 30mm;
+            width: 33mm;
             align-items: center;
             padding-left: 0.02mm;
             padding-top: 0.01mm;
@@ -140,7 +140,7 @@ $qr_url = 'https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=' . $qr_d
         }
 
         .qr {
-            width: 17mm;
+            width: 18mm;
             float: right;
             padding-top: 1mm;
             padding-right: 1.5mm;
