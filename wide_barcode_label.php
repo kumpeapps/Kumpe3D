@@ -100,8 +100,7 @@ $barcode = "https://barcode.orcascan.com/?type=upca&data=$upc";
             -webkit-transform: rotate(-90deg);
             -o-transform: rotate(-90deg);
             /* max-width: 50mm; */
-            /* margin-top: -60; */
-            margin-bottom: 1mm;
+            margin-top: -70;
             margin-right: 1mm;
             font-size: xx-small;
             float: right;
