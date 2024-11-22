@@ -64,7 +64,9 @@ function buildProducts() {
                 titleLink.setAttribute("href", "product?sku=" + element.sku);
             }
             titleLink.innerHTML = element.title;
-            title.appendChild(titleLink);
+            if (!element.is_coming_soon) {
+                title.appendChild(titleLink);
+            }
             const priceLabel = document.createElement("h6");
             priceLabel.setAttribute("class", "price");
             const onSaleTag = document.createElement("div");
@@ -98,7 +100,9 @@ function buildProducts() {
             content.appendChild(title);
             content.appendChild(priceLabel);
             imgLink.appendChild(img)
-            media.appendChild(imgLink);
+            if (!element.is_coming_soon) {
+                media.appendChild(imgLink);
+            }
             card.appendChild(media);
             card.appendChild(content);
             if (element.is_on_sale) {
