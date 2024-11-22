@@ -66,7 +66,7 @@ function buildProducts() {
             newTag.setAttribute("class", "ribbon ribbon-top-right");
             const newSpan = document.createElement("span");
             if (element.is_coming_soon) {
-                newSpan.setAttribute("class", "badge badge-purple");
+                newSpan.setAttribute("class", "badge badge-warning");
                 newSpan.innerHTML = "Coming Soon";
             } else {
                 newSpan.setAttribute("class", "badge badge-success");
@@ -95,6 +95,8 @@ function buildProducts() {
                 card.appendChild(onSaleTag);
             }
             if (element.is_new) {
+                card.appendChild(newTag);
+            } else if (element.is_coming_soon) {
                 card.appendChild(newTag);
             }
             return card
