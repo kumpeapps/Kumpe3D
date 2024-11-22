@@ -46,13 +46,21 @@ function buildProducts() {
             const img = document.createElement("img");
             img.setAttribute("src", element.default_photo);
             const imgLink = document.createElement("a");
-            imgLink.setAttribute("href", "product?sku=" + element.sku);
+            if (element.is_coming_soon) {
+                imgLink.setAttribute("href", "");
+            } else {
+                imgLink.setAttribute("href", "product?sku=" + element.sku);
+            }
             const content = document.createElement("class");
             content.setAttribute("class", "dz-content");
             const title = document.createElement("h5");
             title.setAttribute("class", "title");
             const titleLink = document.createElement("a");
-            titleLink.setAttribute("href", "product?sku=" + element.sku);
+            if (element.is_coming_soon) {
+                titleLink.setAttribute("href", "");
+            } else {
+                titleLink.setAttribute("href", "product?sku=" + element.sku);
+            }
             titleLink.innerHTML = element.title;
             title.appendChild(titleLink);
             const priceLabel = document.createElement("h6");
