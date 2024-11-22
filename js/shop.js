@@ -64,9 +64,7 @@ function buildProducts() {
                 titleLink.setAttribute("href", "product?sku=" + element.sku);
             }
             titleLink.innerHTML = element.title;
-            if (!element.is_coming_soon) {
-                title.appendChild(titleLink);
-            }
+            title.appendChild(titleLink);
             const priceLabel = document.createElement("h6");
             priceLabel.setAttribute("class", "price");
             const onSaleTag = document.createElement("div");
