@@ -46,13 +46,21 @@ function buildProducts() {
             const img = document.createElement("img");
             img.setAttribute("src", element.default_photo);
             const imgLink = document.createElement("a");
-            imgLink.setAttribute("href", "product?sku=" + element.sku);
+            if (element.is_coming_soon) {
+                
+            } else {
+                imgLink.setAttribute("href", "product?sku=" + element.sku);
+            }
             const content = document.createElement("class");
             content.setAttribute("class", "dz-content");
             const title = document.createElement("h5");
             title.setAttribute("class", "title");
             const titleLink = document.createElement("a");
-            titleLink.setAttribute("href", "product?sku=" + element.sku);
+            if (element.is_coming_soon) {
+                
+            } else {
+                titleLink.setAttribute("href", "product?sku=" + element.sku);
+            }
             titleLink.innerHTML = element.title;
             title.appendChild(titleLink);
             const priceLabel = document.createElement("h6");
@@ -65,8 +73,13 @@ function buildProducts() {
             const newTag = document.createElement("div");
             newTag.setAttribute("class", "ribbon ribbon-top-right");
             const newSpan = document.createElement("span");
-            newSpan.setAttribute("class", "badge badge-success");
-            newSpan.innerHTML = "NEW";
+            if (element.is_coming_soon) {
+                newSpan.setAttribute("class", "badge badge-warning");
+                newSpan.innerHTML = "Coming Soon";
+            } else {
+                newSpan.setAttribute("class", "badge badge-success");
+                newSpan.innerHTML = "NEW";
+            }
             newTag.appendChild(newSpan);
             onSaleTag.appendChild(onSaleSpan);
             if (element.is_on_sale) {
@@ -74,7 +87,10 @@ function buildProducts() {
             } else {
                 priceLabel.innerHTML = "$" + element.price;
             }
-            if (element.is_new) {
+
+            if (element.is_coming_soon) {
+                card.appendChild(newTag);
+            } else if (element.is_new) {
                 card.appendChild(newTag);
             }
             content.appendChild(title);
@@ -87,6 +103,8 @@ function buildProducts() {
                 card.appendChild(onSaleTag);
             }
             if (element.is_new) {
+                card.appendChild(newTag);
+            } else if (element.is_coming_soon) {
                 card.appendChild(newTag);
             }
             return card
