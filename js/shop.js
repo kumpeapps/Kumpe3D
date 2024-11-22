@@ -88,9 +88,7 @@ function buildProducts() {
             content.appendChild(title);
             content.appendChild(priceLabel);
             imgLink.appendChild(img)
-            if (!element.is_coming_soon) {
-                media.appendChild(imgLink);
-            }
+            media.appendChild(imgLink);
             card.appendChild(media);
             card.appendChild(content);
             if (element.is_on_sale) {
