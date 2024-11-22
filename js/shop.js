@@ -47,7 +47,7 @@ function buildProducts() {
             img.setAttribute("src", element.default_photo);
             const imgLink = document.createElement("a");
             if (element.is_coming_soon) {
-                imgLink.setAttribute("href", "");
+                imgLink.setAttribute("", "");
             } else {
                 imgLink.setAttribute("href", "product?sku=" + element.sku);
             }
@@ -57,7 +57,7 @@ function buildProducts() {
             title.setAttribute("class", "title");
             const titleLink = document.createElement("a");
             if (element.is_coming_soon) {
-                titleLink.setAttribute("href", "");
+                titleLink.setAttribute("", "");
             } else {
                 titleLink.setAttribute("href", "product?sku=" + element.sku);
             }
