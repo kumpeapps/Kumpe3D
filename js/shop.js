@@ -54,7 +54,9 @@ function buildProducts() {
             const titleLink = document.createElement("a");
             titleLink.setAttribute("href", "product?sku=" + element.sku);
             titleLink.innerHTML = element.title;
-            title.appendChild(titleLink);
+            if (!element.is_coming_soon) {
+                title.appendChild(titleLink);
+            }
             const priceLabel = document.createElement("h6");
             priceLabel.setAttribute("class", "price");
             const onSaleTag = document.createElement("div");
@@ -65,8 +67,13 @@ function buildProducts() {
             const newTag = document.createElement("div");
             newTag.setAttribute("class", "ribbon ribbon-top-right");
             const newSpan = document.createElement("span");
-            newSpan.setAttribute("class", "badge badge-success");
-            newSpan.innerHTML = "NEW";
+            if (element.is_coming_soon) {
+                newSpan.setAttribute("class", "badge badge-purple");
+                newSpan.innerHTML = "Coming Soon";
+            } else {
+                newSpan.setAttribute("class", "badge badge-success");
+                newSpan.innerHTML = "NEW";
+            }
             newTag.appendChild(newSpan);
             onSaleTag.appendChild(onSaleSpan);
             if (element.is_on_sale) {
@@ -74,13 +81,18 @@ function buildProducts() {
             } else {
                 priceLabel.innerHTML = "$" + element.price;
             }
-            if (element.is_new) {
+
+            if (element.is_coming_soon) {
+                card.appendChild(newTag);
+            } else if (element.is_new) {
                 card.appendChild(newTag);
             }
             content.appendChild(title);
             content.appendChild(priceLabel);
             imgLink.appendChild(img)
-            media.appendChild(imgLink);
+            if (!element.is_coming_soon) {
+                media.appendChild(imgLink);
+            }
             card.appendChild(media);
             card.appendChild(content);
             if (element.is_on_sale) {
