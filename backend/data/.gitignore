@@ -1,0 +1,7 @@
+# Backend data directory for SQLite database
+# This directory is created automatically when the app runs
+
+*.db
+*.db-journal
+*.db-shm
+*.db-wal

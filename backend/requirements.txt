@@ -8,9 +8,12 @@ pydantic-settings==2.1.0
 # Database
 sqlalchemy==2.0.25
 alembic==1.13.1
-psycopg2-binary==2.9.9  # PostgreSQL
-pymysql==1.1.0  # MySQL (optional)
-cryptography==41.0.7  # For PyMySQL
+
+# Database Drivers
+aiosqlite==0.19.0  # SQLite async driver (development)
+aiomysql==0.2.0  # MySQL async driver (production)
+pymysql==1.1.0  # MySQL sync driver (for Alembic)
+cryptography==41.0.7  # For PyMySQL SSL support
 
 # Authentication & Security
 python-jose[cryptography]==3.3.0
