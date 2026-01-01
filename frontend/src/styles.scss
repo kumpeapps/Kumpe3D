@@ -1,0 +1,54 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 200px;
+}
+
+/* Error message */
+.error-message {
+  color: #f44336;
+  padding: 16px;
+  margin: 16px 0;
+  background-color: #ffebee;
+  border-radius: 4px;
+}
+
+/* Success message */
+.success-message {
+  color: #4caf50;
+  padding: 16px;
+  margin: 16px 0;
+  background-color: #e8f5e9;
+  border-radius: 4px;
+}
