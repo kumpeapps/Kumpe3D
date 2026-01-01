@@ -5,7 +5,7 @@ Loads configuration from environment variables using Pydantic Settings.
 """
 
 from typing import List, Optional
-from pydantic import field_validator
+from pydantic import computed_field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -39,16 +39,16 @@ class Settings(BaseSettings):
     BCRYPT_ROUNDS: int = 12
 
     # CORS
-    CORS_ORIGINS: List[str] = ["http://localhost:4200", "https://localhost"]
+    CORS_ORIGINS: str = "http://localhost:4200,https://localhost"
     CORS_ALLOW_CREDENTIALS: bool = True
-
-    @field_validator("CORS_ORIGINS", mode="before")
-    @classmethod
-    def parse_cors_origins(cls, v):
-        """Parse CORS origins from string or list."""
-        if isinstance(v, str):
-            return [origin.strip() for origin in v.split(",")]
-        return v
+    
+    @computed_field  # type: ignore[misc]
+    @property
+    def cors_origins_list(self) -> List[str]:
+        """Parse CORS origins from comma-separated string."""
+        if isinstance(self.CORS_ORIGINS, str):
+            return [origin.strip() for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
+        return []
 
     # PayPal
     PAYPAL_CLIENT_ID: Optional[str] = None
@@ -77,15 +77,15 @@ class Settings(BaseSettings):
     # File Storage
     UPLOAD_DIR: str = "/app/uploads"
     MAX_UPLOAD_SIZE: int = 10485760  # 10MB
-    ALLOWED_EXTENSIONS: List[str] = ["jpg", "jpeg", "png", "gif", "webp"]
-
-    @field_validator("ALLOWED_EXTENSIONS", mode="before")
-    @classmethod
-    def parse_extensions(cls, v):
-        """Parse allowed extensions from string or list."""
-        if isinstance(v, str):
-            return [ext.strip() for ext in v.split(",")]
-        return v
+    ALLOWED_EXTENSIONS: str = "jpg,jpeg,png,gif,webp"
+    
+    @computed_field  # type: ignore[misc]
+    @property
+    def allowed_extensions_list(self) -> List[str]:
+        """Parse allowed extensions from comma-separated string."""
+        if isinstance(self.ALLOWED_EXTENSIONS, str):
+            return [ext.strip() for ext in self.ALLOWED_EXTENSIONS.split(",") if ext.strip()]
+        return []
 
     # Rate Limiting
     RATE_LIMIT_ENABLED: bool = True

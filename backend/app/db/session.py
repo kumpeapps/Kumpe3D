@@ -23,13 +23,18 @@ elif database_url.startswith("sqlite://"):
 
 
 # Create async engine
-engine = create_async_engine(
-    database_url,
-    echo=settings.DB_ECHO,
-    pool_size=settings.DB_POOL_SIZE if not database_url.startswith("sqlite") else 0,
-    max_overflow=settings.DB_MAX_OVERFLOW if not database_url.startswith("sqlite") else 0,
-    poolclass=NullPool if database_url.startswith("sqlite") else None,
-)
+engine_kwargs = {
+    "echo": settings.DB_ECHO,
+}
+
+# Only add pool settings for non-SQLite databases
+if not database_url.startswith("sqlite"):
+    engine_kwargs["pool_size"] = settings.DB_POOL_SIZE
+    engine_kwargs["max_overflow"] = settings.DB_MAX_OVERFLOW
+else:
+    engine_kwargs["poolclass"] = NullPool
+
+engine = create_async_engine(database_url, **engine_kwargs)
 
 
 # Create async session factory

@@ -1,47 +1,45 @@
 # FastAPI and dependencies
-fastapi==0.109.0
-uvicorn[standard]==0.27.0
-python-multipart==0.0.6
-pydantic[email]==2.5.3
-pydantic-settings==2.1.0
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+pydantic[email]==2.10.6
+pydantic-settings==2.7.1
 
 # Database
-sqlalchemy==2.0.25
-alembic==1.13.1
+sqlalchemy==2.0.36
+alembic==1.14.0
 
 # Database Drivers
-aiosqlite==0.19.0  # SQLite async driver (development)
+aiosqlite==0.20.0  # SQLite async driver (development)
 aiomysql==0.2.0  # MySQL async driver (production)
-pymysql==1.1.0  # MySQL sync driver (for Alembic)
-cryptography==41.0.7  # For PyMySQL SSL support
+pymysql==1.1.1  # MySQL sync driver (for Alembic)
+cryptography==44.0.0  # For PyMySQL SSL support
 
 # Authentication & Security
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
-python-multipart==0.0.6
-bcrypt==4.1.2
+bcrypt==4.2.1
 
 # HTTP Client
-httpx==0.26.0
-requests==2.31.0
+httpx==0.28.1
+requests==2.32.3
 
 # Email
-aiosmtplib==3.0.1
-email-validator==2.1.0
+aiosmtplib==3.0.2
+email-validator==2.2.0
 
 # Utilities
-python-dotenv==1.0.0
-pytz==2023.3
-python-dateutil==2.8.2
+python-dotenv==1.0.1
+pytz==2024.2
+python-dateutil==2.9.0
 
 # Development
-pytest==7.4.4
-pytest-asyncio==0.23.3
-pytest-cov==4.1.0
-black==23.12.1
-ruff==0.1.13
-mypy==1.8.0
-httpx==0.26.0  # For testing
+pytest==8.3.4
+pytest-asyncio==0.24.0
+pytest-cov==6.0.0
+black==24.10.0
+ruff==0.8.6
+mypy==1.14.1
 
 # Logging
-loguru==0.7.2
+loguru==0.7.3

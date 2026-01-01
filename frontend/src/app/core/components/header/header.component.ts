@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatMenuModule } from '@angular/material/menu';
 import { AuthService } from '../../services/auth.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -32,7 +33,7 @@ import { AuthService } from '../../services/auth.service';
         <nav class="nav-links">
           <a mat-button routerLink="/products" routerLinkActive="active">Products</a>
           <a mat-button routerLink="/cart" routerLinkActive="active">
-            <mat-icon [matBadge]="cartItemCount" matBadgeColor="accent">shopping_cart</mat-icon>
+            <mat-icon [matBadge]="cartService.itemCount$()" matBadgeColor="accent">shopping_cart</mat-icon>
           </a>
           
           @if (currentUser$ | async; as user) {
@@ -95,9 +96,9 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HeaderComponent {
   private authService = inject(AuthService);
+  cartService = inject(CartService);
   
   currentUser$ = this.authService.currentUser$;
-  cartItemCount = 0; // TODO: Implement cart service
   
   get isAdmin(): boolean {
     return this.authService.isAdmin();

@@ -60,7 +60,14 @@ class User(Base):
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     # Relationships
-    roles: Mapped[List["Role"]] = relationship("Role", secondary=user_roles, back_populates="users", lazy="selectin")
+    roles: Mapped[List["Role"]] = relationship(
+        "Role",
+        secondary=user_roles,
+        primaryjoin="User.id == user_roles.c.user_id",
+        secondaryjoin="Role.id == user_roles.c.role_id",
+        back_populates="users",
+        lazy="selectin"
+    )
     cart_items: Mapped[List["CartItem"]] = relationship("CartItem", back_populates="user", cascade="all, delete-orphan")
     orders: Mapped[List["Order"]] = relationship("Order", back_populates="user")
     addresses: Mapped[List["Address"]] = relationship("Address", back_populates="user", cascade="all, delete-orphan")
@@ -93,7 +100,13 @@ class Role(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     
     # Relationships
-    users: Mapped[List["User"]] = relationship("User", secondary=user_roles, back_populates="roles")
+    users: Mapped[List["User"]] = relationship(
+        "User",
+        secondary=user_roles,
+        primaryjoin="Role.id == user_roles.c.role_id",
+        secondaryjoin="User.id == user_roles.c.user_id",
+        back_populates="roles"
+    )
     permissions: Mapped[List["Permission"]] = relationship("Permission", secondary=role_permissions, back_populates="roles", lazy="selectin")
     
     def __repr__(self) -> str:

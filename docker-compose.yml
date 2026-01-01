@@ -19,23 +19,13 @@ services:
       REFRESH_TOKEN_EXPIRE_DAYS: 7
       
       # CORS
-      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:4200,http://localhost:3000}
-      
-      # PayPal
-      PAYPAL_CLIENT_ID: ${PAYPAL_CLIENT_ID:-}
-      PAYPAL_SECRET: ${PAYPAL_SECRET:-}
-      PAYPAL_API_URL: ${PAYPAL_API_URL:-https://api-m.sandbox.paypal.com}
-      
-      # Email
-      SMTP_HOST: ${SMTP_HOST:-}
-      SMTP_PORT: ${SMTP_PORT:-587}
-      SMTP_USERNAME: ${SMTP_USERNAME:-}
-      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
-      SMTP_FROM_EMAIL: ${SMTP_FROM_EMAIL:-noreply@kumpe3d.com}
+      CORS_ORIGINS: http://localhost:4200,http://localhost:3000
       
       # App
       APP_ENV: development
-      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      LOG_LEVEL: INFO
+      
+
     volumes:
       - ./backend:/app
       - sqlite_data:/app/data
@@ -45,23 +35,23 @@ services:
       - kumpe3d-network
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
-  # Frontend (will be added later)
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile.dev
-  #   container_name: kumpe3d-frontend
-  #   environment:
-  #     API_URL: http://backend:8000
-  #   volumes:
-  #     - ./frontend:/app
-  #     - /app/node_modules
-  #   ports:
-  #     - "4200:4200"
-  #   depends_on:
-  #     - backend
-  #   networks:
-  #     - kumpe3d-network
+  # Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: kumpe3d-frontend
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+    networks:
+      - kumpe3d-network
 
 volumes:
   sqlite_data:

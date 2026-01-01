@@ -79,22 +79,23 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: kumpe3d-frontend-prod
-    environment:
-      API_URL: ${API_URL:-http://backend:8000}
-      ENABLE_SSL: ${ENABLE_SSL:-false}
-      SSL_CERT_PATH: ${SSL_CERT_PATH:-/etc/nginx/ssl/cert.pem}
-      SSL_KEY_PATH: ${SSL_KEY_PATH:-/etc/nginx/ssl/key.pem}
     volumes:
-      # Optional: Mount SSL certificates
+      # Optional: Mount custom SSL certificates (overrides self-signed)
       - ${SSL_CERT_DIR:-./ssl}:/etc/nginx/ssl:ro
     ports:
       - "80:80"
       - "443:443"
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     networks:
       - kumpe3d-network
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
 
 volumes:
   mysql_data:
