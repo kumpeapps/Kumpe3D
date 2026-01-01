@@ -22,7 +22,7 @@ Kumpe3D is a complete redesign of an e-commerce platform for 3D printed products
 - **Testing**: pytest with >80% coverage target
 
 ### Frontend (Angular)
-- **Framework**: Angular 17+ with standalone components
+- **Framework**: Angular 21+ with standalone components
 - **State Management**: NgRx or Signals for reactive state
 - **UI Library**: Angular Material or PrimeNG
 - **Authentication**: Token-based with interceptors
