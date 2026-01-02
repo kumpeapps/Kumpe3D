@@ -5,16 +5,20 @@ Pydantic models for cart and order-related requests and responses.
 """
 
 from datetime import datetime
-from typing import Optional, List
+from typing import Optional, List, TYPE_CHECKING
 from decimal import Decimal
 from pydantic import BaseModel, EmailStr, Field, ConfigDict
+
+if TYPE_CHECKING:
+    from app.schemas.product import ProductResponse
 
 
 class CartItemBase(BaseModel):
     """Base cart item schema."""
     
     sku: str
-    customization: Optional[str] = None
+    selected_options: Optional[List[int]] = None  # List of selected option IDs
+    customization_notes: Optional[str] = None
     quantity: int = Field(1, ge=1)
 
 
@@ -40,6 +44,50 @@ class CartItemResponse(CartItemBase):
     price: Decimal
     created_at: datetime
     updated_at: datetime
+    product_title: Optional[str] = None
+    product_image: Optional[str] = None
+    option_names: Optional[List[str]] = None  # Names of selected options for display
+    
+    @classmethod
+    def from_cart_item(cls, cart_item):
+        """Create response from CartItem model with product data."""
+        import json
+        from app.db.models import ProductOption
+        
+        product_title = cart_item.product.title if cart_item.product else None
+        product_image = None
+        if cart_item.product and cart_item.product.images:
+            # Get primary image or first image
+            primary = next((img for img in cart_item.product.images if img.is_primary), None)
+            product_image = (primary or cart_item.product.images[0]).file_path if primary or cart_item.product.images else None
+        
+        # Parse selected_options and get option names
+        option_names = []
+        if cart_item.selected_options:
+            try:
+                option_ids = json.loads(cart_item.selected_options)
+                if cart_item.product and cart_item.product.options:
+                    option_names = [
+                        opt.name for opt in cart_item.product.options 
+                        if opt.id in option_ids
+                    ]
+            except (json.JSONDecodeError, TypeError):
+                pass
+        
+        return cls(
+            id=cart_item.id,
+            sku=cart_item.sku,
+            selected_options=json.loads(cart_item.selected_options) if cart_item.selected_options else None,
+            customization_notes=cart_item.customization_notes,
+            quantity=cart_item.quantity,
+            product_id=cart_item.product_id,
+            price=cart_item.price,
+            created_at=cart_item.created_at,
+            updated_at=cart_item.updated_at,
+            product_title=product_title,
+            product_image=product_image,
+            option_names=option_names,
+        )
 
 
 class AddressBase(BaseModel):
@@ -219,3 +267,13 @@ class CountryResponse(BaseModel):
     currency: str
     currency_symbol: Optional[str] = None
     emoji: Optional[str] = None
+
+
+# Rebuild models with forward references after ProductResponse is available
+def rebuild_models():
+    """Rebuild models to resolve forward references."""
+    try:
+        from app.schemas.product import ProductResponse
+        CartItemResponse.model_rebuild()
+    except ImportError:
+        pass  # ProductResponse may not be available yet

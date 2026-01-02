@@ -8,7 +8,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { CartService } from '@core/services/cart.service';
+import { CartItem } from '@core/models/order.model';
 
 @Component({
   selector: 'app-cart',
@@ -23,6 +25,7 @@ import { CartService } from '@core/services/cart.service';
     MatDividerModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatTooltipModule,
   ],
   template: `
     <div class="cart-container">
@@ -53,24 +56,31 @@ import { CartService } from '@core/services/cart.service';
             @for (item of cartService.items$(); track item.id) {
               <mat-card class="cart-item">
                 <div class="item-image">
-                  <img [src]="item.product?.images?.[0]?.file_path || 'assets/placeholder.png'" 
-                       [alt]="item.product?.title">
+                  @if (item.product_image) {
+                    <img [src]="item.product_image" 
+                         [alt]="item.product_title || 'Product'"
+                         (error)="$event.target.style.display='none'">
+                  } @else {
+                    <div class="no-image">
+                      <mat-icon>image</mat-icon>
+                    </div>
+                  }
                 </div>
 
                 <div class="item-details">
                   <h3 class="item-title">
-                    <a [routerLink]="['/products', item.product_id]">{{ item.product?.title }}</a>
+                    <a [routerLink]="['/products', item.product_id]">{{ item.product_title || 'Unknown Product' }}</a>
                   </h3>
                   
-                  @if (item.product?.sku) {
-                    <p class="item-sku">SKU: {{ item.product.sku }}</p>
+                  @if (item.sku) {
+                    <p class="item-sku">SKU: {{ item.sku }}</p>
                   }
 
-                  @if (item.selected_options && item.selected_options.length > 0) {
+                  @if (item.option_names && item.option_names.length > 0) {
                     <div class="item-options">
                       <strong>Options:</strong>
                       <ul>
-                        @for (option of item.selected_options; track option) {
+                        @for (option of item.option_names; track option) {
                           <li>{{ option }}</li>
                         }
                       </ul>
@@ -86,10 +96,7 @@ import { CartService } from '@core/services/cart.service';
                 </div>
 
                 <div class="item-price">
-                  <div class="price">\${{ item.price.toFixed(2) }}</div>
-                  @if (item.price !== item.product?.base_price) {
-                    <div class="base-price">\${{ (+item.product.base_price).toFixed(2) }}</div>
-                  }
+                  <div class="price">\${{ (+item.price).toFixed(2) }}</div>
                 </div>
 
                 <div class="item-quantity">
@@ -101,7 +108,7 @@ import { CartService } from '@core/services/cart.service';
                     [(ngModel)]="item.quantity" 
                     (blur)="updateQuantity(item)"
                     min="1"
-                    [max]="item.product?.stock_quantity || 999"
+                    max="999"
                     [disabled]="updating() === item.id">
                   <button mat-icon-button (click)="incrementQuantity(item)" [disabled]="updating() === item.id">
                     <mat-icon>add</mat-icon>
@@ -110,7 +117,7 @@ import { CartService } from '@core/services/cart.service';
 
                 <div class="item-subtotal">
                   <div class="subtotal-label">Subtotal</div>
-                  <div class="subtotal-amount">\${{ (item.price * item.quantity).toFixed(2) }}</div>
+                  <div class="subtotal-amount">\${{ ((+item.price) * item.quantity).toFixed(2) }}</div>
                 </div>
 
                 <div class="item-actions">
@@ -290,6 +297,23 @@ import { CartService } from '@core/services/cart.service';
       border-radius: 4px;
     }
 
+    .no-image {
+      width: 100%;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f5f5;
+      border-radius: 4px;
+    }
+
+    .no-image mat-icon {
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
+      color: #ccc;
+    }
+
     .item-details {
       display: flex;
       flex-direction: column;
@@ -444,7 +468,7 @@ export class CartComponent implements OnInit {
     });
   }
 
-  updateQuantity(item: any) {
+  updateQuantity(item: CartItem) {
     if (item.quantity < 1) {
       item.quantity = 1;
       return;
@@ -464,19 +488,19 @@ export class CartComponent implements OnInit {
     });
   }
 
-  incrementQuantity(item: any) {
+  incrementQuantity(item: CartItem) {
     item.quantity++;
     this.updateQuantity(item);
   }
 
-  decrementQuantity(item: any) {
+  decrementQuantity(item: CartItem) {
     if (item.quantity > 1) {
       item.quantity--;
       this.updateQuantity(item);
     }
   }
 
-  removeItem(item: any) {
+  removeItem(item: CartItem) {
     this.removing.set(item.id);
     this.cartService.removeFromCart(item.id).subscribe({
       next: () => {

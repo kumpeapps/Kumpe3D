@@ -6,9 +6,9 @@ import { CartItem, APIResponse } from '@core/models';
 import { AuthService } from './auth.service';
 
 export interface AddToCartRequest {
-  product_id: number;
+  sku: string;
   quantity: number;
-  selected_parts?: { [key: string]: number };
+  selected_options?: number[];  // Array of selected option IDs
   customization_notes?: string;
 }
 
@@ -18,7 +18,7 @@ export interface AddToCartRequest {
 export class CartService {
   private http = inject(HttpClient);
   private authService = inject(AuthService);
-  private apiUrl = `${environment.apiUrl}/cart`;
+  private apiUrl = `${environment.apiUrl}/cart/`;  // Note trailing slash to avoid redirects
 
   // Cart state
   private cartItems = signal<CartItem[]>([]);
@@ -26,7 +26,7 @@ export class CartService {
   // Computed cart totals
   items$ = computed(() => this.cartItems());
   itemCount$ = computed(() => this.cartItems().reduce((sum, item) => sum + item.quantity, 0));
-  subtotal$ = computed(() => this.cartItems().reduce((sum, item) => sum + (item.price * item.quantity), 0));
+  subtotal$ = computed(() => this.cartItems().reduce((sum, item) => sum + ((+item.price) * item.quantity), 0));
 
   constructor() {
     // Load cart on init if user is authenticated

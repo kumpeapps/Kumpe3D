@@ -1,23 +1,16 @@
 export interface CartItem {
   id: number;
   product_id: number;
+  sku: string;
   quantity: number;
-  price: number;
-  selected_options?: string[];  // Array of selected option names
+  price: number | string;  // Can be string from backend Decimal
+  selected_options?: number[];  // Array of selected option IDs
   customization_notes?: string;
   created_at: string;
   updated_at?: string;
-  product?: {
-    id: number;
-    sku: string;
-    title: string;
-    base_price: number;
-    stock_quantity?: number;
-    images?: Array<{
-      file_path: string;
-      alt_text?: string;
-    }>;
-  };
+  product_title?: string;
+  product_image?: string;
+  option_names?: string[];  // Names of selected options for display
 }
 
 export interface Order {

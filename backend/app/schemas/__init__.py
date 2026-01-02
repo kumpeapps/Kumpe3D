@@ -41,3 +41,18 @@ class MessageResponse(BaseModel):
     """Simple message response."""
     
     message: str
+
+
+# Rebuild models with forward references after all schemas are imported
+def _rebuild_forward_refs():
+    """Rebuild models to resolve forward references."""
+    try:
+        from app.schemas.order import CartItemResponse
+        from app.schemas.product import ProductResponse
+        CartItemResponse.model_rebuild()
+    except (ImportError, AttributeError):
+        pass  # Schemas may not be fully loaded yet
+
+
+# Call rebuild on import
+_rebuild_forward_refs()

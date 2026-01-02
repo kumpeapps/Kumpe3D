@@ -46,7 +46,13 @@ import { Product, Part } from '@core/models';
       } @else if (product()) {
         <div class="product-detail">
           <div class="product-images">
-            <img [src]="selectedImage() || product()?.images?.[0]?.file_path || 'assets/placeholder.png'" [alt]="product()!.title" class="main-image">
+            @if (selectedImage() || product()?.images?.[0]?.file_path) {
+              <img [src]="selectedImage() || product()!.images![0].file_path" [alt]="product()!.title" class="main-image">
+            } @else {
+              <div class="no-main-image">
+                <mat-icon>image</mat-icon>
+              </div>
+            }
             @if (product()?.images && product()!.images!.length > 1) {
               <div class="image-thumbnails">
                 @for (image of product()!.images!; track image.id) {
@@ -141,8 +147,10 @@ import { Product, Part } from '@core/models';
                 @if (addingToCart()) {
                   <mat-spinner diameter="20"></mat-spinner>
                 } @else {
-                  <mat-icon>shopping_cart</mat-icon>
-                  Add to Cart
+                  <ng-container>
+                    <mat-icon>shopping_cart</mat-icon>
+                    Add to Cart
+                  </ng-container>
                 }
               </button>
               <button mat-stroked-button [routerLink]="['/products']">
@@ -198,6 +206,23 @@ import { Product, Part } from '@core/models';
       height: auto;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .no-main-image {
+      width: 100%;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f5f5;
+      border-radius: 8px;
+    }
+
+    .no-main-image mat-icon {
+      font-size: 120px;
+      width: 120px;
+      height: 120px;
+      color: #ccc;
     }
 
     .image-thumbnails {
@@ -435,10 +460,13 @@ export class ProductDetailComponent implements OnInit {
 
     this.addingToCart.set(true);
 
+    // Convert selectedParts to array of option IDs
+    const selectedOptionIds = Object.values(this.selectedParts).filter(id => id != null) as number[];
+
     this.cartService.addToCart({
-      product_id: this.product()!.id!,
+      sku: this.product()!.sku,
       quantity: this.quantity,
-      selected_parts: this.selectedParts,
+      selected_options: selectedOptionIds.length > 0 ? selectedOptionIds : undefined,
       customization_notes: this.customizationNotes || undefined,
     }).subscribe({
       next: () => {

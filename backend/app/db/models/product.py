@@ -303,7 +303,8 @@ class CartItem(Base):
     user_id: Mapped[int | None] = mapped_column(Integer, ForeignKey("users.id", ondelete="CASCADE"), index=True, nullable=True)
     product_id: Mapped[int] = mapped_column(Integer, ForeignKey("products.id", ondelete="CASCADE"), index=True, nullable=False)
     sku: Mapped[str] = mapped_column(String(20), nullable=False)
-    customization: Mapped[str | None] = mapped_column(Text, nullable=True)
+    selected_options: Mapped[str | None] = mapped_column(Text, nullable=True)  # JSON array of selected option IDs
+    customization_notes: Mapped[str | None] = mapped_column(Text, nullable=True)
     quantity: Mapped[int] = mapped_column(Integer, nullable=False, default=1)
     price: Mapped[Decimal] = mapped_column(Numeric(10, 2), nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)

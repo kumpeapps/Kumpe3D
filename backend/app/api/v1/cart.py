@@ -8,9 +8,11 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status, Header
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, delete
+from sqlalchemy.orm import selectinload
+import json
 
 from app.db.session import get_db
-from app.db.models import CartItem, Product, User
+from app.db.models import CartItem, Product, User, ProductOption
 from app.schemas.order import CartItemCreate, CartItemUpdate, CartItemResponse
 from app.schemas import APIResponse, MessageResponse
 from app.api.deps import get_optional_current_user, get_optional_session_id
@@ -32,6 +34,12 @@ async def get_cart_items(
         query = select(CartItem).where(CartItem.session_id == session_id)
     else:
         return []
+    
+    # Eagerly load product and primary image to avoid lazy loading issues
+    query = query.options(
+        selectinload(CartItem.product).selectinload(Product.images),
+        selectinload(CartItem.product).selectinload(Product.options)
+    )
     
     result = await db.execute(query)
     return result.scalars().all()
@@ -59,7 +67,7 @@ async def get_cart(
     items = await get_cart_items(db, user=current_user, session_id=session_id)
     
     return APIResponse(
-        data=[CartItemResponse.model_validate(item) for item in items]
+        data=[CartItemResponse.from_cart_item(item) for item in items]
     )
 
 
@@ -82,9 +90,11 @@ async def add_to_cart(
             detail="Session ID or authentication required",
         )
     
-    # Get product
+    # Get product with parts eagerly loaded
     result = await db.execute(
-        select(Product).where(Product.sku == item_data.sku, Product.is_active == True)
+        select(Product)
+        .options(selectinload(Product.parts), selectinload(Product.options))
+        .where(Product.sku == item_data.sku, Product.is_active == True)
     )
     product = result.scalar_one_or_none()
     
@@ -93,6 +103,27 @@ async def add_to_cart(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Product not found",
         )
+    
+    # Calculate price with option modifiers
+    final_price = product.base_price
+    selected_option_ids = item_data.selected_options or []
+    
+    if selected_option_ids:
+        # Get selected options
+        result = await db.execute(
+            select(ProductOption).where(
+                ProductOption.id.in_(selected_option_ids),
+                ProductOption.product_id == product.id,
+                ProductOption.is_active == True
+            )
+        )
+        selected_options = result.scalars().all()
+        
+        # Add price modifiers
+        for option in selected_options:
+            final_price += option.price_modifier
+        
+        logger.info(f"Price calculation: base={product.base_price}, options={[opt.price_modifier for opt in selected_options]}, final={final_price}")
     
     # Check stock
     if product.stock_quantity < item_data.quantity:
@@ -104,7 +135,7 @@ async def add_to_cart(
     # Check if item already in cart
     query = select(CartItem).where(
         CartItem.product_id == product.id,
-        CartItem.customization == item_data.customization,
+        CartItem.customization_notes == item_data.customization_notes,
     )
     if current_user:
         query = query.where(CartItem.user_id == current_user.id)
@@ -127,7 +158,7 @@ async def add_to_cart(
         await db.refresh(existing_item)
         
         logger.info(f"Cart item updated: {product.sku} qty={new_quantity}")
-        return APIResponse(data=CartItemResponse.model_validate(existing_item))
+        return APIResponse(data=CartItemResponse.from_cart_item(existing_item))
     
     # Create new cart item
     cart_item = CartItem(
@@ -136,17 +167,21 @@ async def add_to_cart(
         product_id=product.id,
         sku=product.sku,
         quantity=item_data.quantity,
-        price=product.base_price,
-        customization=item_data.customization,
+        price=final_price,
+        selected_options=json.dumps(selected_option_ids) if selected_option_ids else None,
+        customization_notes=item_data.customization_notes,
     )
     
     db.add(cart_item)
     await db.commit()
-    await db.refresh(cart_item)
+    await db.refresh(cart_item, ['product'])
+    
+    # Load product images and options
+    await db.refresh(cart_item.product, ['images', 'options'])
     
     logger.info(f"Item added to cart: {product.sku}")
     
-    return APIResponse(data=CartItemResponse.model_validate(cart_item))
+    return APIResponse(data=CartItemResponse.from_cart_item(cart_item))
 
 
 @router.put("/items/{item_id}", response_model=APIResponse[CartItemResponse])
@@ -180,9 +215,11 @@ async def update_cart_item(
             detail="Cart item not found",
         )
     
-    # Get product and check stock
+    # Get product and check stock - eagerly load parts
     result = await db.execute(
-        select(Product).where(Product.id == cart_item.product_id)
+        select(Product)
+        .options(selectinload(Product.parts), selectinload(Product.images))
+        .where(Product.id == cart_item.product_id)
     )
     product = result.scalar_one_or_none()
     
@@ -199,12 +236,13 @@ async def update_cart_item(
         )
     
     cart_item.quantity = item_data.quantity
+    cart_item.product = product  # Attach the loaded product
     await db.commit()
-    await db.refresh(cart_item)
+    await db.refresh(cart_item, ['product'])
     
     logger.info(f"Cart item updated: {product.sku} qty={item_data.quantity}")
     
-    return APIResponse(data=CartItemResponse.model_validate(cart_item))
+    return APIResponse(data=CartItemResponse.from_cart_item(cart_item))
 
 
 @router.delete("/items/{item_id}", status_code=status.HTTP_204_NO_CONTENT)
@@ -297,13 +335,13 @@ async def merge_guest_cart(
     # Get user cart items
     user_items = await get_cart_items(db, user=current_user)
     user_items_map = {
-        (item.product_id, item.customization): item
+        (item.product_id, item.customization_notes): item
         for item in user_items
     }
     
     merged_count = 0
     for guest_item in guest_items:
-        key = (guest_item.product_id, guest_item.customization)
+        key = (guest_item.product_id, guest_item.customization_notes)
         
         if key in user_items_map:
             # Update existing user item quantity

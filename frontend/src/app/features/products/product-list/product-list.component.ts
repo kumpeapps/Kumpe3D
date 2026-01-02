@@ -74,7 +74,13 @@ import { Product, Category } from '@core/models';
         <div class="products-grid">
           @for (product of products(); track product.id) {
             <mat-card class="product-card">
-              <img mat-card-image [src]="product.images?.[0]?.file_path || 'assets/placeholder.png'" [alt]="product.title">
+              @if (product.images?.[0]?.file_path) {
+                <img mat-card-image [src]="product.images![0].file_path" [alt]="product.title">
+              } @else {
+                <div class="no-image-card">
+                  <mat-icon>image</mat-icon>
+                </div>
+              }
               <mat-card-header>
                 <mat-card-title>{{ product.title }}</mat-card-title>
                 <mat-card-subtitle>{{ product.categories?.[0]?.name }}</mat-card-subtitle>
@@ -173,6 +179,21 @@ import { Product, Category } from '@core/models';
     .product-card img {
       height: 200px;
       object-fit: cover;
+    }
+
+    .no-image-card {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f5f5;
+    }
+
+    .no-image-card mat-icon {
+      font-size: 80px;
+      width: 80px;
+      height: 80px;
+      color: #ccc;
     }
 
     mat-card-content {
