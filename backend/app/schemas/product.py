@@ -36,9 +36,11 @@ class CategoryBase(BaseModel):
     slug: str
     description: Optional[str] = None
     photo: Optional[str] = None
+    icon: Optional[str] = None
     parent_id: Optional[int] = None
     sort_order: int = 0
     is_active: bool = True
+    show_on_home: bool = False
 
 
 class CategoryResponse(CategoryBase):
@@ -170,6 +172,7 @@ class ProductBase(BaseModel):
     weight: Optional[Decimal] = None
     is_active: bool = True
     featured: bool = False
+    allow_order_when_out_of_stock: bool = False
     meta_title: Optional[str] = None
     meta_description: Optional[str] = None
     sort_order: int = 0
@@ -216,6 +219,33 @@ class ProductDetailResponse(ProductResponse):
     """Product detail response with additional info (admin)."""
     
     parts: List[ProductPartResponse] = []  # Only visible to admins
+
+
+class ProductOptionBase(BaseModel):
+    """Base product option schema."""
+    
+    name: str
+    option_group: str
+    price_modifier: Decimal = Decimal(0)
+    part_id: Optional[int] = None
+    sort_order: int = 0
+    is_active: bool = True
+
+
+class ProductOptionResponse(ProductOptionBase):
+    """Product option response schema."""
+    
+    model_config = ConfigDict(from_attributes=True)
+    
+    id: int
+    product_id: int
+    created_at: datetime
+
+
+class ProductWithOptionsResponse(ProductResponse):
+    """Product response with customer-facing options."""
+    
+    options: List[ProductOptionResponse] = []
 
 
 class ProductListQuery(BaseModel):

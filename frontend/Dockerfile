@@ -24,20 +24,25 @@ COPY nginx.conf /etc/nginx/nginx.conf
 # Copy built application
 COPY --from=builder /app/dist/kumpe3d-frontend /usr/share/nginx/html
 
-# Generate self-signed SSL certificate if not provided
-RUN apk add --no-cache openssl && \
-    mkdir -p /etc/nginx/ssl && \
-    openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-    -keyout /etc/nginx/ssl/key.pem \
-    -out /etc/nginx/ssl/cert.pem \
-    -subj "/C=US/ST=State/L=City/O=Kumpe3D/CN=localhost"
+# Copy SSL generation script
+COPY generate-ssl.sh /usr/local/bin/generate-ssl.sh
+RUN chmod +x /usr/local/bin/generate-ssl.sh
+
+# Install OpenSSL for SSL certificate generation
+RUN apk add --no-cache openssl
+
+# Create entrypoint script
+RUN echo '#!/bin/sh' > /docker-entrypoint.sh && \
+    echo '/usr/local/bin/generate-ssl.sh' >> /docker-entrypoint.sh && \
+    echo 'exec nginx -g "daemon off;"' >> /docker-entrypoint.sh && \
+    chmod +x /docker-entrypoint.sh
 
 # Expose ports
 EXPOSE 80 443
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD wget --quiet --tries=1 --spider http://localhost/ || exit 1
+    CMD wget --quiet --tries=1 --spider http://localhost/health || exit 1
 
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start with entrypoint that generates SSL if needed
+ENTRYPOINT ["/docker-entrypoint.sh"]

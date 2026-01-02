@@ -43,15 +43,16 @@ services:
     container_name: kumpe3d-frontend
     environment:
       - NODE_ENV=development
+      # API will be proxied to http://backend:8000 via proxy.conf.json
     volumes:
       - ./frontend:/app
       - /app/node_modules
     ports:
       - "4200:4200"
-    depends_on:
-      - backend
     networks:
       - kumpe3d-network
+    depends_on:
+      - backend
 
 volumes:
   sqlite_data:

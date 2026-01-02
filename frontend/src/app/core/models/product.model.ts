@@ -9,6 +9,7 @@ export interface Product {
   stock_quantity?: number;  // Calculated from parts
   is_active?: boolean;
   featured?: boolean;
+  allow_order_when_out_of_stock?: boolean;
   meta_title?: string;
   meta_description?: string;
   sort_order?: number;
@@ -33,30 +34,23 @@ export interface Category {
   slug: string;
   description?: string;
   photo?: string;
+  icon?: string;
   parent_id?: number;
   sort_order?: number;
   is_active?: boolean;
+  show_on_home?: boolean;
   created_at?: string;
 }
 
 export interface Part {
   id?: number;
-  part_number: string;
+  product_id?: number;
   name: string;
-  type?: string;  // Part type/category
-  description?: string;
-  stock_quantity?: number;
-  low_stock_threshold?: number;
-  reorder_quantity?: number;
-  unit_cost?: number;
-  price_modifier: number;  // Price adjustment for this part
-  supplier?: string;
-  supplier_part_number?: string;
-  location?: string;
-  notes?: string;
-  alternative_group?: string;  // For OR relationships
+  option_group: string;  // e.g., "Color", "Size", "Material"
+  price_modifier: number;  // Price adjustment for this option
+  part_id?: number;  // Internal link to inventory part
+  sort_order?: number;
   is_active?: boolean;
-  is_low_stock?: boolean;
   created_at?: string;
   updated_at?: string;
 }

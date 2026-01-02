@@ -11,16 +11,19 @@ from sqlalchemy import select, func, or_
 from sqlalchemy.orm import selectinload
 
 from app.db.session import get_db
-from app.db.models import Product, Category, ProductImage, ProductPart, Part
+from app.db.models import Product, Category, ProductImage, ProductPart, Part, ProductOption
 from app.schemas.product import (
     ProductResponse,
     ProductDetailResponse,
     ProductListQuery,
     ProductCreate,
     ProductUpdate,
+    CategoryResponse,
     PartResponse,
     PartCreate,
     PartUpdate,
+    ProductWithOptionsResponse,
+    ProductOptionResponse,
 )
 from app.schemas import APIResponse, ResponseMetadata
 from app.api.deps import get_current_admin_user, get_optional_current_user
@@ -35,6 +38,7 @@ async def list_products(
     page: int = Query(1, ge=1),
     per_page: int = Query(20, ge=1, le=100),
     category: Optional[str] = None,
+    category_id: Optional[int] = None,
     search: Optional[str] = None,
     featured: Optional[bool] = None,
     sort_by: str = Query("sort_order", regex="^(sort_order|title|base_price|created_at)$"),
@@ -46,13 +50,15 @@ async def list_products(
     
     - Public endpoint (no auth required)
     - Returns calculated stock quantity (not parts)
-    - Supports search, category filter, featured filter
+    - Supports search, category filter (slug or id), featured filter
     """
     query = select(Product).where(Product.is_active == True)
     
     # Apply filters
     if category:
         query = query.join(Product.categories).where(Category.slug == category)
+    elif category_id:
+        query = query.join(Product.categories).where(Category.id == category_id)
     
     if search:
         query = query.where(
@@ -85,6 +91,7 @@ async def list_products(
     query = query.options(
         selectinload(Product.images),
         selectinload(Product.categories),
+        selectinload(Product.parts).selectinload(ProductPart.part),
     )
     
     result = await db.execute(query)
@@ -101,24 +108,46 @@ async def list_products(
     )
 
 
-@router.get("/{product_id}", response_model=APIResponse[ProductDetailResponse])
+@router.get("/categories/", response_model=APIResponse[List[CategoryResponse]])
+async def list_categories(
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Get all categories shown on home page.
+    
+    - Public endpoint (no auth required)
+    - Returns active categories with show_on_home = True
+    """
+    query = select(Category).where(
+        Category.is_active == True,
+        Category.show_on_home == True
+    ).order_by(Category.sort_order, Category.name)
+    result = await db.execute(query)
+    categories = result.scalars().all()
+    
+    return APIResponse(
+        data=[CategoryResponse.model_validate(c) for c in categories]
+    )
+
+
+@router.get("/{product_id}", response_model=APIResponse[ProductWithOptionsResponse])
 async def get_product(
     product_id: int,
     current_user = Depends(get_optional_current_user),
     db: AsyncSession = Depends(get_db),
 ):
     """
-    Get product details.
+    Get product details with customer-facing options.
     
     - Public endpoint (no auth required)
-    - Admin users see parts list
-    - Regular users see only calculated stock
+    - Returns product with selectable options (not inventory parts)
     """
     query = select(Product).where(Product.id == product_id, Product.is_active == True)
     query = query.options(
         selectinload(Product.images),
         selectinload(Product.categories),
-        selectinload(Product.product_parts).selectinload(ProductPart.part),
+        selectinload(Product.options),
+        selectinload(Product.parts).selectinload(ProductPart.part),
     )
     
     result = await db.execute(query)
@@ -130,11 +159,29 @@ async def get_product(
             detail="Product not found",
         )
     
-    # Only show parts to admin users
-    if current_user and current_user.is_admin:
-        return APIResponse(data=ProductDetailResponse.model_validate(product))
-    else:
-        return APIResponse(data=ProductResponse.model_validate(product))
+    return APIResponse(data=ProductWithOptionsResponse.model_validate(product))
+
+
+@router.get("/{product_id}/options", response_model=APIResponse[List[ProductOptionResponse]])
+async def get_product_options(
+    product_id: int,
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Get selectable options for a product (customer-facing).
+    
+    - Public endpoint (no auth required)
+    - Returns options like colors, sizes, finishes with price modifiers
+    """
+    query = select(ProductOption).where(
+        ProductOption.product_id == product_id,
+        ProductOption.is_active == True
+    ).order_by(ProductOption.option_group, ProductOption.sort_order, ProductOption.name)
+    
+    result = await db.execute(query)
+    options = result.scalars().all()
+    
+    return APIResponse(data=[ProductOptionResponse.model_validate(o) for o in options])
 
 
 @router.post("/", response_model=APIResponse[ProductDetailResponse], status_code=status.HTTP_201_CREATED)

@@ -17,7 +17,7 @@ export interface ProductListParams {
 })
 export class ProductService {
   private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/products`;
+  private apiUrl = `${environment.apiUrl}/products/`;
 
   /**
    * Get list of products with pagination and filtering
@@ -45,14 +45,14 @@ export class ProductService {
    * Get all categories
    */
   getCategories(): Observable<APIResponse<Category[]>> {
-    return this.http.get<APIResponse<Category[]>>(`${environment.apiUrl}/categories`);
+    return this.http.get<APIResponse<Category[]>>(`${environment.apiUrl}/products/categories/`);
   }
 
   /**
    * Get available parts for a product
    */
   getProductParts(productId: number): Observable<APIResponse<Part[]>> {
-    return this.http.get<APIResponse<Part[]>>(`${this.apiUrl}/${productId}/parts`);
+    return this.http.get<APIResponse<Part[]>>(`${this.apiUrl}${productId}/options`);
   }
 
   /**

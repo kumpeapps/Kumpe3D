@@ -1,5 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+/* Kumpe3D Global Styles - Matching Legacy Design */
+@import './styles/theme';
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
 
 * {
   margin: 0;
@@ -9,21 +10,121 @@
 
 html, body {
   height: 100%;
+  font-size: 16px;
 }
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--kumpe-text-color);
+  background-color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  color: var(--kumpe-title-color);
+  margin-bottom: 1rem;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1.125rem; }
+h6 { font-size: 1rem; }
+
+a {
+  color: var(--kumpe-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: var(--kumpe-primary-hover);
+  }
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 16px;
+  
+  @media (min-width: 768px) {
+    padding: 0 24px;
+  }
+}
+
+.container-fluid {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .spacer {
   flex: 1 1 auto;
+}
+
+/* Buttons matching legacy */
+.btn {
+  display: inline-block;
+  font-weight: 500;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &.btn-primary {
+    background-color: var(--kumpe-primary);
+    color: white;
+    
+    &:hover {
+      background-color: var(--kumpe-primary-hover);
+    }
+  }
+  
+  &.btn-secondary {
+    background-color: var(--kumpe-secondary);
+    color: white;
+    
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+  
+  &.btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--kumpe-primary);
+    color: var(--kumpe-primary);
+    
+    &:hover {
+      background-color: var(--kumpe-primary);
+      color: white;
+    }
+  }
+}
+
+/* Cards */
+.card {
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(13, 119, 94, 0.15);
+  }
 }
 
 /* Loading spinner */
@@ -33,22 +134,86 @@ body {
   align-items: center;
   height: 100%;
   min-height: 200px;
+  
+  mat-spinner {
+    --mdc-circular-progress-active-indicator-color: var(--kumpe-primary);
+  }
 }
 
-/* Error message */
+/* Messages */
 .error-message {
-  color: #f44336;
+  color: var(--kumpe-danger);
   padding: 16px;
   margin: 16px 0;
-  background-color: #ffebee;
-  border-radius: 4px;
+  background-color: #fff5f5;
+  border-radius: 6px;
+  border-left: 4px solid var(--kumpe-danger);
 }
 
-/* Success message */
 .success-message {
-  color: #4caf50;
+  color: var(--kumpe-success);
   padding: 16px;
   margin: 16px 0;
-  background-color: #e8f5e9;
-  border-radius: 4px;
+  background-color: #f0fdf4;
+  border-radius: 6px;
+  border-left: 4px solid var(--kumpe-success);
 }
+
+.warning-message {
+  color: var(--kumpe-warning);
+  padding: 16px;
+  margin: 16px 0;
+  background-color: #fffbeb;
+  border-radius: 6px;
+  border-left: 4px solid var(--kumpe-warning);
+}
+
+/* Badge */
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.6em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 50rem;
+  
+  &.badge-primary {
+    background-color: var(--kumpe-primary);
+  }
+  
+  &.badge-circle {
+    padding: 0.4em 0.5em;
+    min-width: 1.5em;
+    border-radius: 50%;
+  }
+}
+
+/* Utility classes */
+.text-primary { color: var(--kumpe-primary) !important; }
+.text-secondary { color: var(--kumpe-secondary) !important; }
+.text-muted { color: var(--kumpe-text-color) !important; }
+.bg-grey { background-color: var(--kumpe-bg-grey) !important; }
+.bg-light { background-color: var(--kumpe-bg-light) !important; }
+
+.mt-0 { margin-top: 0 !important; }
+.mt-1 { margin-top: 0.5rem !important; }
+.mt-2 { margin-top: 1rem !important; }
+.mt-3 { margin-top: 1.5rem !important; }
+.mt-4 { margin-top: 2rem !important; }
+.mt-5 { margin-top: 3rem !important; }
+
+.mb-0 { margin-bottom: 0 !important; }
+.mb-1 { margin-bottom: 0.5rem !important; }
+.mb-2 { margin-bottom: 1rem !important; }
+.mb-3 { margin-bottom: 1.5rem !important; }
+.mb-4 { margin-bottom: 2rem !important; }
+.mb-5 { margin-bottom: 3rem !important; }
+
+.d-flex { display: flex !important; }
+.justify-content-between { justify-content: space-between !important; }
+.justify-content-center { justify-content: center !important; }
+.align-items-center { align-items: center !important; }

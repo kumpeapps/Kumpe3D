@@ -1,6 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -81,11 +81,19 @@ import { Product, Category } from '@core/models';
               </mat-card-header>
               <mat-card-content>
                 <p class="description">{{ product.description }}</p>
-                <div class="price">\${{ product.base_price.toFixed(2) }}</div>
-                @if (!product.stock_quantity || product.stock_quantity === 0) {
-                  <span class="out-of-stock">Out of Stock</span>
-                } @else if (product.stock_quantity < 10) {
-                  <span class="low-stock">Only {{ product.stock_quantity }} left</span>
+                <div class="price">\${{ (+product.base_price).toFixed(2) }}</div>
+                @if (product.stock_quantity !== undefined && product.stock_quantity !== null) {
+                  @if (product.stock_quantity < 0) {
+                    <span class="backordered">Backordered</span>
+                  } @else if (product.stock_quantity === 0) {
+                    @if (product.allow_order_when_out_of_stock) {
+                      <span class="made-to-order">Made to Order</span>
+                    } @else {
+                      <span class="out-of-stock">Out of Stock</span>
+                    }
+                  } @else if (product.stock_quantity < 10) {
+                    <span class="low-stock">Only {{ product.stock_quantity }} left</span>
+                  }
                 }
               </mat-card-content>
               <mat-card-actions>
@@ -198,6 +206,16 @@ import { Product, Category } from '@core/models';
       font-weight: 500;
     }
 
+    .made-to-order {
+      color: #2196f3;
+      font-weight: 500;
+    }
+
+    .backordered {
+      color: #9c27b0;
+      font-weight: 500;
+    }
+
     .no-products {
       grid-column: 1 / -1;
       text-align: center;
@@ -212,6 +230,7 @@ import { Product, Category } from '@core/models';
 })
 export class ProductListComponent implements OnInit {
   private productService = inject(ProductService);
+  private route = inject(ActivatedRoute);
 
   products = signal<Product[]>([]);
   categories = signal<Category[]>([]);
@@ -229,6 +248,13 @@ export class ProductListComponent implements OnInit {
   private searchTimeout: any;
 
   ngOnInit(): void {
+    // Read category_id from query params
+    this.route.queryParams.subscribe(params => {
+      if (params['category_id']) {
+        this.selectedCategory = +params['category_id'];
+      }
+    });
+    
     this.loadCategories();
     this.loadProducts();
   }

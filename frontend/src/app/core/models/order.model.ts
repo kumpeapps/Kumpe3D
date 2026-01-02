@@ -1,12 +1,23 @@
 export interface CartItem {
   id: number;
-  sku: string;
-  customization?: string;
-  quantity: number;
   product_id: number;
+  quantity: number;
   price: number;
+  selected_options?: string[];  // Array of selected option names
+  customization_notes?: string;
   created_at: string;
-  updated_at: string;
+  updated_at?: string;
+  product?: {
+    id: number;
+    sku: string;
+    title: string;
+    base_price: number;
+    stock_quantity?: number;
+    images?: Array<{
+      file_path: string;
+      alt_text?: string;
+    }>;
+  };
 }
 
 export interface Order {

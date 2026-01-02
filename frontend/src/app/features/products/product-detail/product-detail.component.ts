@@ -77,12 +77,18 @@ import { Product, Part } from '@core/models';
             <div class="price-section">
               <div class="price">\${{ calculatedPrice().toFixed(2) }}</div>
               @if (product()?.stock_quantity !== undefined && product()!.stock_quantity !== null) {
-                @if (product()!.stock_quantity === 0) {
-                  <mat-chip class="out-of-stock">Out of Stock</mat-chip>
+                @if (product()!.stock_quantity! < 0) {
+                  <mat-chip class="backordered">Backordered</mat-chip>
+                } @else if (product()!.stock_quantity === 0) {
+                  @if (product()!.allow_order_when_out_of_stock) {
+                    <mat-chip class="made-to-order">Made to Order</mat-chip>
+                  } @else {
+                    <mat-chip class="out-of-stock">Out of Stock</mat-chip>
+                  }
                 } @else if (product()!.stock_quantity! < 10) {
                   <mat-chip class="low-stock">Only {{ product()!.stock_quantity }} left</mat-chip>
                 } @else {
-                  <mat-chip class="in-stock">In Stock</mat-chip>
+                  <mat-chip class="in-stock">{{ product()!.stock_quantity }} in Stock</mat-chip>
                 }
               }
             </div>
@@ -101,7 +107,7 @@ import { Product, Part } from '@core/models';
                         <mat-option [value]="part.id">
                           {{ part.name }} 
                           @if (part.price_modifier !== 0) {
-                            <span>({{ part.price_modifier > 0 ? '+' : '' }}\${{ part.price_modifier.toFixed(2) }})</span>
+                            <span>({{ part.price_modifier > 0 ? '+' : '' }}\${{ (+part.price_modifier).toFixed(2) }})</span>
                           }
                         </mat-option>
                       }
@@ -131,7 +137,7 @@ import { Product, Part } from '@core/models';
                 mat-raised-button 
                 color="primary" 
                 (click)="addToCart()"
-                [disabled]="addingToCart() || product()!.stock_quantity === 0">
+                [disabled]="addingToCart() || (product()!.stock_quantity === 0 && !product()!.allow_order_when_out_of_stock)">
                 @if (addingToCart()) {
                   <mat-spinner diameter="20"></mat-spinner>
                 } @else {
@@ -272,6 +278,16 @@ import { Product, Part } from '@core/models';
       color: white;
     }
 
+    .made-to-order {
+      background-color: #2196f3;
+      color: white;
+    }
+
+    .backordered {
+      background-color: #9c27b0;
+      color: white;
+    }
+
     .description {
       line-height: 1.6;
       color: #444;
@@ -351,7 +367,7 @@ export class ProductDetailComponent implements OnInit {
         if (response.data) {
           this.product.set(response.data);
           this.selectedImage.set(response.data.images?.[0]?.file_path || '');
-          this.calculatedPrice.set(response.data.base_price);
+          this.calculatedPrice.set(+response.data.base_price);
           
           // Load parts if product requires them
           if (response.data.id) {
@@ -384,7 +400,7 @@ export class ProductDetailComponent implements OnInit {
     const groups = new Map<string, Part[]>();
     
     this.availableParts().forEach(part => {
-      const groupKey = part.alternative_group || 'default';
+      const groupKey = part.option_group || 'default';
       if (!groups.has(groupKey)) {
         groups.set(groupKey, []);
       }
@@ -393,7 +409,7 @@ export class ProductDetailComponent implements OnInit {
 
     return Array.from(groups.entries()).map(([group, parts]) => ({
       group,
-      name: parts[0]?.type || 'Options',
+      name: group,
       parts
     }));
   }
@@ -401,13 +417,13 @@ export class ProductDetailComponent implements OnInit {
   updatePrice(): void {
     if (!this.product()) return;
 
-    let price = this.product()!.base_price;
+    let price = +this.product()!.base_price;
     
     // Add price modifiers from selected parts
     Object.values(this.selectedParts).forEach(partId => {
       const part = this.availableParts().find(p => p.id === partId);
       if (part) {
-        price += part.price_modifier;
+        price += +part.price_modifier;
       }
     });
 

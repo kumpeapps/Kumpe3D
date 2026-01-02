@@ -17,6 +17,7 @@ from app.core.logging import get_logger
 
 logger = get_logger(__name__)
 security = HTTPBearer()
+optional_security = HTTPBearer(auto_error=False)
 
 
 async def get_current_user(
@@ -128,7 +129,7 @@ def check_permission(permission_name: str):
 
 
 async def get_optional_current_user(
-    credentials: Optional[HTTPAuthorizationCredentials] = Depends(security),
+    credentials: Optional[HTTPAuthorizationCredentials] = Depends(optional_security),
     db: AsyncSession = Depends(get_db),
 ) -> Optional[User]:
     """

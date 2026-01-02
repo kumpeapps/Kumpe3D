@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   template: `
     <footer class="footer">
       <div class="container">
-        <p>&copy; {{ currentYear }} Kumpe3D. All rights reserved.</p>
+        <p>&copy; {{ currentYear }} KumpeApps LLC d/b/a Kumpe3D. All rights reserved.</p>
       </div>
     </footer>
   `,

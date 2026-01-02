@@ -119,8 +119,8 @@ async def login(
     await db.commit()
     
     # Create tokens
-    access_token = create_access_token(subject=str(user.id))
-    refresh_token = create_refresh_token(subject=str(user.id))
+    access_token = create_access_token(data={"sub": str(user.id)})
+    refresh_token = create_refresh_token(data={"sub": str(user.id)})
     
     logger.info(f"User logged in: {user.email}")
     
@@ -173,8 +173,8 @@ async def refresh_token(
         )
     
     # Create new tokens
-    access_token = create_access_token(subject=str(user.id))
-    refresh_token = create_refresh_token(subject=str(user.id))
+    access_token = create_access_token(data={"sub": str(user.id)})
+    refresh_token = create_refresh_token(data={"sub": str(user.id)})
     
     return APIResponse(
         data=TokenResponse(

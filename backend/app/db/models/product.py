@@ -41,6 +41,7 @@ class Product(Base):
     # Status flags
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, index=True)
     featured: Mapped[bool] = mapped_column(Boolean, default=False, index=True)
+    allow_order_when_out_of_stock: Mapped[bool] = mapped_column(Boolean, default=False)
     
     # SEO
     meta_title: Mapped[str | None] = mapped_column(String(255), nullable=True)
@@ -59,6 +60,7 @@ class Product(Base):
     images: Mapped[List["ProductImage"]] = relationship("ProductImage", back_populates="product", cascade="all, delete-orphan", lazy="selectin")
     categories: Mapped[List["Category"]] = relationship("Category", secondary=product_categories, back_populates="products")
     parts: Mapped[List["ProductPart"]] = relationship("ProductPart", back_populates="product", cascade="all, delete-orphan")
+    options: Mapped[List["ProductOption"]] = relationship("ProductOption", back_populates="product", cascade="all, delete-orphan", lazy="selectin")
     cart_items: Mapped[List["CartItem"]] = relationship("CartItem", back_populates="product")
     order_items: Mapped[List["OrderItem"]] = relationship("OrderItem", back_populates="product")
     
@@ -200,6 +202,33 @@ class ProductPart(Base):
         return f"<ProductPart(product_id={self.product_id}, part_id={self.part_id}, qty={self.quantity})>"
 
 
+class ProductOption(Base):
+    """
+    Customer-facing product options (e.g., color, size, material).
+    Each option can reference a part for inventory tracking.
+    """
+    
+    __tablename__ = "product_options"
+    
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    product_id: Mapped[int] = mapped_column(Integer, ForeignKey("products.id", ondelete="CASCADE"), nullable=False, index=True)
+    name: Mapped[str] = mapped_column(String(255), nullable=False)  # e.g., "Red PLA", "Large", "Matte Finish"
+    option_group: Mapped[str] = mapped_column(String(100), nullable=False, index=True)  # e.g., "Color", "Size", "Finish"
+    price_modifier: Mapped[Decimal] = mapped_column(Numeric(10, 2), default=0)
+    part_id: Mapped[int | None] = mapped_column(Integer, ForeignKey("parts.id"), nullable=True)  # Link to inventory
+    sort_order: Mapped[int] = mapped_column(Integer, default=0)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True, index=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    # Relationships
+    product: Mapped["Product"] = relationship("Product", back_populates="options")
+    part: Mapped[Optional["Part"]] = relationship("Part")
+    
+    def __repr__(self) -> str:
+        return f"<ProductOption(id={self.id}, name='{self.name}', group='{self.option_group}')>"
+
+
 class Category(Base):
     """Product categories."""
     
@@ -210,9 +239,11 @@ class Category(Base):
     slug: Mapped[str] = mapped_column(String(100), unique=True, index=True, nullable=False)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
     photo: Mapped[str | None] = mapped_column(String(500), nullable=True)
+    icon: Mapped[str | None] = mapped_column(String(50), nullable=True)
     parent_id: Mapped[int | None] = mapped_column(Integer, ForeignKey("categories.id"), nullable=True, index=True)
     sort_order: Mapped[int] = mapped_column(Integer, default=0, index=True)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, index=True)
+    show_on_home: Mapped[bool] = mapped_column(Boolean, default=False, index=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     

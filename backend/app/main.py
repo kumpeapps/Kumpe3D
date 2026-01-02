@@ -62,20 +62,6 @@ app.add_middleware(
 )
 
 
-# Health check endpoint
-@app.get("/health", tags=["Health"])
-async def health_check():
-    """Health check endpoint for monitoring."""
-    return JSONResponse(
-        status_code=200,
-        content={
-            "status": "healthy",
-            "environment": settings.APP_ENV,
-            "version": "1.0.0",
-        },
-    )
-
-
 # Include API router
 app.include_router(api_router, prefix="/api/v1")
 
