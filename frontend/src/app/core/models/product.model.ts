@@ -14,9 +14,33 @@ export interface Product {
   meta_description?: string;
   sort_order?: number;
   images?: ProductImage[];
+  primary_image?: string;  // URL of primary image
   categories?: Category[];
+  options?: ProductOption[];  // Product options like colors, sizes
   created_at?: string;
   updated_at?: string;
+}
+
+export interface ProductOption {
+  id?: number;
+  product_id?: number;
+  name: string;  // e.g., "Color: Red", "Size: Large"
+  option_group?: string;  // e.g., "Color", "Size"
+  price_modifier: number;  // Price adjustment for this option
+  sort_order?: number;
+  is_active?: boolean;
+  parts?: OptionPart[];  // Parts linked to this option
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface OptionPart {
+  part_id: number;
+  quantity: number;
+  alternative_group?: number;  // For OR relationships (same group = alternatives)
+  priority?: number;
+  notes?: string;
+  part?: Part;  // Populated in responses
 }
 
 export interface ProductImage {

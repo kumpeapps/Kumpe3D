@@ -161,6 +161,24 @@ class ProductPartResponse(ProductPartBase):
     part: PartResponse
 
 
+class OptionPartBase(BaseModel):
+    """Base option-part relationship schema (admin only)."""
+    
+    part_id: int
+    quantity: int = 1
+    alternative_group: Optional[int] = None
+    priority: int = 0
+    notes: Optional[str] = None
+
+
+class OptionPartResponse(OptionPartBase):
+    """Option-part response with part details (admin only)."""
+    
+    model_config = ConfigDict(from_attributes=True)
+    
+    part: PartResponse
+
+
 class ProductBase(BaseModel):
     """Base product schema."""
     
@@ -227,7 +245,6 @@ class ProductOptionBase(BaseModel):
     name: str
     option_group: str
     price_modifier: Decimal = Decimal(0)
-    part_id: Optional[int] = None
     sort_order: int = 0
     is_active: bool = True
 
@@ -240,12 +257,31 @@ class ProductOptionResponse(ProductOptionBase):
     id: int
     product_id: int
     created_at: datetime
+    parts: List[OptionPartResponse] = []  # Parts needed for this option
+
+
+class ProductOptionCreate(ProductOptionBase):
+    """Product option creation with parts."""
+    
+    parts: List[OptionPartBase] = []
+
+
+class ProductOptionUpdate(BaseModel):
+    """Product option update schema."""
+    
+    name: Optional[str] = None
+    option_group: Optional[str] = None
+    price_modifier: Optional[Decimal] = None
+    sort_order: Optional[int] = None
+    is_active: Optional[bool] = None
+    parts: Optional[List[OptionPartBase]] = None
 
 
 class ProductWithOptionsResponse(ProductResponse):
-    """Product response with customer-facing options."""
+    """Product response with customer-facing options and parts (admin only)."""
     
     options: List[ProductOptionResponse] = []
+    parts: List[ProductPartResponse] = []  # Admin can see product parts/BOM
 
 
 class ProductListQuery(BaseModel):

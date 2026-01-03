@@ -1,6 +1,5 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { inject } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { environment } from '@environments/environment';
 
 /**
  * Generate or retrieve a guest session ID
@@ -18,19 +17,37 @@ function getGuestSessionId(): string {
   return sessionId;
 }
 
+/**
+ * Get access token directly from localStorage to avoid circular dependency
+ */
+function getAccessToken(): string | null {
+  const tokensJson = localStorage.getItem(environment.tokenStorageKey);
+  if (!tokensJson) return null;
+  
+  try {
+    const tokens = JSON.parse(tokensJson);
+    return tokens.access_token || null;
+  } catch {
+    return null;
+  }
+}
+
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const authService = inject(AuthService);
-  const token = authService.getAccessToken();
+  const token = getAccessToken();
+
+  console.log('Auth Interceptor - URL:', req.url, 'Token exists:', !!token);
 
   let headers = req.headers;
 
   if (token) {
     // Add authentication token for logged-in users
     headers = headers.set('Authorization', `Bearer ${token}`);
+    console.log('Auth Interceptor - Added Bearer token to headers');
   } else {
     // Add session ID for guest users
     const sessionId = getGuestSessionId();
     headers = headers.set('X-Session-ID', sessionId);
+    console.log('Auth Interceptor - Added guest session ID:', sessionId);
   }
 
   const cloned = req.clone({ headers });

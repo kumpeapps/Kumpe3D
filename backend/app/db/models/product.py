@@ -212,10 +212,9 @@ class ProductOption(Base):
     
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
     product_id: Mapped[int] = mapped_column(Integer, ForeignKey("products.id", ondelete="CASCADE"), nullable=False, index=True)
-    name: Mapped[str] = mapped_column(String(255), nullable=False)  # e.g., "Red PLA", "Large", "Matte Finish"
+    name: Mapped[str] = mapped_column(String(255), nullable=False)  # e.g., "Red", "Large", "Matte Finish"
     option_group: Mapped[str] = mapped_column(String(100), nullable=False, index=True)  # e.g., "Color", "Size", "Finish"
     price_modifier: Mapped[Decimal] = mapped_column(Numeric(10, 2), default=0)
-    part_id: Mapped[int | None] = mapped_column(Integer, ForeignKey("parts.id"), nullable=True)  # Link to inventory
     sort_order: Mapped[int] = mapped_column(Integer, default=0)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, index=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
@@ -223,10 +222,35 @@ class ProductOption(Base):
     
     # Relationships
     product: Mapped["Product"] = relationship("Product", back_populates="options")
-    part: Mapped[Optional["Part"]] = relationship("Part")
+    parts: Mapped[List["OptionPart"]] = relationship("OptionPart", back_populates="option", cascade="all, delete-orphan")
     
     def __repr__(self) -> str:
         return f"<ProductOption(id={self.id}, name='{self.name}', group='{self.option_group}')>"
+
+
+class OptionPart(Base):
+    """
+    Many-to-many relationship between product options and parts.
+    Allows options to require multiple parts with OR relationships.
+    Example: "Include Key: Yes" option might need (2" key OR 1" key)
+    """
+    
+    __tablename__ = "option_parts"
+    
+    option_id: Mapped[int] = mapped_column(Integer, ForeignKey("product_options.id", ondelete="CASCADE"), primary_key=True)
+    part_id: Mapped[int] = mapped_column(Integer, ForeignKey("parts.id", ondelete="CASCADE"), primary_key=True)
+    quantity: Mapped[int] = mapped_column(Integer, nullable=False, default=1)
+    alternative_group: Mapped[int | None] = mapped_column(Integer, index=True, nullable=True)  # For OR relationships
+    priority: Mapped[int] = mapped_column(Integer, default=0)  # Order preference in alternative group
+    notes: Mapped[str | None] = mapped_column(String(500), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    
+    # Relationships
+    option: Mapped["ProductOption"] = relationship("ProductOption", back_populates="parts")
+    part: Mapped["Part"] = relationship("Part", lazy="joined")
+    
+    def __repr__(self) -> str:
+        return f"<OptionPart(option_id={self.option_id}, part_id={self.part_id}, qty={self.quantity})>"
 
 
 class Category(Base):

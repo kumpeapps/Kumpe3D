@@ -11,6 +11,7 @@ from sqlalchemy import select
 
 from app.db.session import get_db
 from app.db.models import User, Role
+from app.core.config import settings
 from app.core.security import (
     verify_password,
     get_password_hash,
@@ -128,7 +129,7 @@ async def login(
         data=TokenResponse(
             access_token=access_token,
             refresh_token=refresh_token,
-            expires_in=900,  # 15 minutes
+            expires_in=settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60,  # Convert minutes to seconds
         )
     )
 
@@ -180,7 +181,7 @@ async def refresh_token(
         data=TokenResponse(
             access_token=access_token,
             refresh_token=refresh_token,
-            expires_in=900,
+            expires_in=settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60,  # Convert minutes to seconds
         )
     )
 

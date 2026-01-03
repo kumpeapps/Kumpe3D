@@ -109,14 +109,23 @@ class OrderItem(Base):
     price: Mapped[Decimal] = mapped_column(Numeric(10, 2), nullable=False)
     cost: Mapped[Decimal] = mapped_column(Numeric(10, 2), default=0)
     subtotal: Mapped[Decimal] = mapped_column(Numeric(10, 2), nullable=False)
+    
+    # Fulfillment tracking
+    is_filled: Mapped[bool] = mapped_column(Boolean, default=False, index=True, nullable=False)
+    filled_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    filled_by: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    scanned_parts: Mapped[str | None] = mapped_column(Text, nullable=True)  # JSON array of scanned part IDs
+    notes: Mapped[str | None] = mapped_column(Text, nullable=True)
+    
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     
     # Relationships
     order: Mapped["Order"] = relationship("Order", back_populates="items")
     product: Mapped[Optional["Product"]] = relationship("Product", back_populates="order_items")
+    parts: Mapped[List["OrderItemPart"]] = relationship("OrderItemPart", back_populates="order_item", cascade="all, delete-orphan")
     
     def __repr__(self) -> str:
-        return f"<OrderItem(id={self.id}, order_id={self.order_id}, sku='{self.sku}')>"
+        return f"<OrderItem(id={self.id}, order_id={self.order_id}, sku='{self.sku}', is_filled={self.is_filled})>"
 
 
 class OrderHistory(Base):
@@ -231,6 +240,43 @@ class SiteParameter(Base):
     is_public: Mapped[bool] = mapped_column(Boolean, default=False, index=True)
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     updated_by: Mapped[int | None] = mapped_column(Integer, ForeignKey("users.id"), nullable=True)
+    
+    def __repr__(self) -> str:
+        return f"<SiteParameter(parameter='{self.parameter}', value='{self.value}')>"
+
+
+class OrderItemPart(Base):
+    """
+    Junction table tracking which parts are needed for each order item.
+    Used for fulfillment scanning and inventory reservation.
+    """
+    
+    __tablename__ = "order_item_parts"
+    
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    order_item_id: Mapped[int] = mapped_column(Integer, ForeignKey("order_items.id", ondelete="CASCADE"), index=True, nullable=False)
+    part_id: Mapped[int] = mapped_column(Integer, ForeignKey("parts.id", ondelete="RESTRICT"), index=True, nullable=False)
+    quantity: Mapped[int] = mapped_column(Integer, nullable=False)
+    
+    # OR Group tracking - for alternative parts
+    alternative_group: Mapped[int | None] = mapped_column(Integer, nullable=True)  # Which OR group this belongs to
+    alternative_part_ids: Mapped[str | None] = mapped_column(Text, nullable=True)  # JSON array of acceptable alternative part IDs
+    
+    # Scanning/fulfillment tracking
+    is_scanned: Mapped[bool] = mapped_column(Boolean, default=False, index=True, nullable=False)
+    scanned_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    scanned_by: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    actual_part_id: Mapped[int | None] = mapped_column(Integer, ForeignKey("parts.id"), nullable=True)  # The actual part scanned (if different)
+    
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    
+    # Relationships
+    order_item: Mapped["OrderItem"] = relationship("OrderItem", back_populates="parts")
+    part: Mapped["Part"] = relationship("Part", foreign_keys=[part_id])  # The reserved part
+    actual_part: Mapped[Optional["Part"]] = relationship("Part", foreign_keys=[actual_part_id])  # The part actually used
+    
+    def __repr__(self) -> str:
+        return f"<OrderItemPart(id={self.id}, order_item_id={self.order_item_id}, part_id={self.part_id}, is_scanned={self.is_scanned})>"
     
     def __repr__(self) -> str:
         return f"<SiteParameter(id={self.id}, parameter='{self.parameter}')>"

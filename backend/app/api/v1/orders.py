@@ -260,14 +260,18 @@ async def create_order(
     for cart_item in cart_items:
         product = products[cart_item.product_id]
         
+        # Calculate item subtotal
+        item_subtotal = cart_item.price * cart_item.quantity
+        
         order_item = OrderItem(
             order_id=order.id,
             product_id=product.id,
             sku=cart_item.sku,
             title=product.title,
-            customization=cart_item.customization,
+            customization=cart_item.customization_notes,
             quantity=cart_item.quantity,
             price=cart_item.price,
+            subtotal=item_subtotal,
         )
         db.add(order_item)
     
@@ -357,6 +361,51 @@ async def list_user_orders(
     )
 
 
+@router.get("/number/{order_number}", response_model=APIResponse[OrderDetailResponse])
+async def get_order_by_number(
+    order_number: str,
+    current_user = Depends(get_optional_current_user),
+    session_id: str = Depends(get_optional_session_id),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Get order details by order number.
+    
+    - Supports both authenticated users and guest sessions
+    - User/guest can only access their own orders
+    - Returns order with items, addresses, and history
+    """
+    if not current_user and not session_id:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Session ID or authentication required",
+        )
+    
+    query = select(Order).where(Order.order_number == order_number).options(
+        selectinload(Order.items),
+        selectinload(Order.shipping_address),
+        selectinload(Order.billing_address),
+        selectinload(Order.history),
+    )
+    
+    # Filter by user or session
+    if current_user:
+        query = query.where(Order.user_id == current_user.id)
+    else:
+        query = query.where(Order.session_id == session_id)
+    
+    result = await db.execute(query)
+    order = result.scalar_one_or_none()
+    
+    if not order:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Order not found",
+        )
+    
+    return APIResponse(data=OrderDetailResponse.model_validate(order))
+
+
 @router.get("/{order_id}", response_model=APIResponse[OrderDetailResponse])
 async def get_order(
     order_id: int,
@@ -364,7 +413,7 @@ async def get_order(
     db: AsyncSession = Depends(get_db),
 ):
     """
-    Get order details.
+    Get order details by ID.
     
     - Requires authentication
     - User can only access their own orders

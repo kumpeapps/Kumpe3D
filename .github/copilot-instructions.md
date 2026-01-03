@@ -1,11 +1,89 @@
 # GitHub Copilot Instructions for Kumpe3D Project
 
+## ⚠️ CRITICAL: Development Environment
+
+**THIS PROJECT USES DOCKER COMPOSE FOR ALL DEVELOPMENT TASKS**
+
+- **NEVER** run `npm`, `ng`, `pip`, or `python` commands directly
+- **ALWAYS** use `docker compose` commands
+- **Frontend**: Runs in Docker container on port 4200
+- **Backend**: Runs in Docker container on port 8000
+- **Database**: SQLite in Docker volume
+
+### Common Commands:
+- Start services: `docker compose up -d`
+- View logs: `docker compose logs -f [frontend|backend]`
+- Restart service: `docker compose restart [frontend|backend]`
+- Run commands in container: `docker compose exec [frontend|backend] <command>`
+- Stop services: `docker compose down`
+
+### Examples:
+- Install npm package: `docker compose exec frontend npm install <package>`
+- Run Alembic migration: `docker compose exec backend alembic upgrade head`
+- Access backend shell: `docker compose exec backend python`
+
 ## Project Overview
 Kumpe3D is a complete redesign of an e-commerce platform for 3D printed products. The project consists of:
-- **Frontend**: Angular-based SPA with admin interface
-- **Backend**: Python FastAPI REST API
-- **Database**: Database-agnostic using SQLAlchemy ORM
-- **Infrastructure**: Docker containers for both frontend and backend
+- **Frontend**: Angular-based SPA with admin interface (Docker container)
+- **Backend**: Python FastAPI REST API (Docker container)
+- **Database**: Database-agnostic using SQLAlchemy ORM (Docker volume)
+- **Infrastructure**: Docker Compose orchestrates all services
+
+## Inventory Philosophy
+
+**Reservation-Based Stock Management:**
+
+This system uses a reservation model where physical stock is NOT removed until parts are physically scanned during order fulfillment.
+
+**Stock Flow:**
+1. **Order Placed** → Parts are RESERVED (OrderItemPart records created with is_scanned=False)
+   - Physical stock remains unchanged
+   - Parts are "spoken for" but not removed
+   
+2. **Order Fulfillment** → Parts are scanned using barcode/manual entry
+   - Each part marked as scanned (is_scanned=True)
+   - Physical stock decremented ONLY when scanned
+   - When all parts scanned → OrderItem marked as filled
+   
+3. **Customer-Facing Availability**:
+   ```
+   Available Stock = Physical Stock - Reserved Stock (unfilled orders)
+   ```
+   
+4. **Packing Slip Generation**:
+   - Only includes OrderItems where is_filled=True
+   - Prevents shipping unfilled/incomplete items
+
+**Database Schema:**
+- `order_items.is_filled` - Boolean indicating all parts scanned
+- `order_items.filled_at`, `filled_by` - Tracking who/when
+- `order_item_parts` - Junction table tracking each part needed
+- `order_item_parts.is_scanned` - Boolean for scan status
+- `order_item_parts.scanned_at`, `scanned_by` - Audit trail
+- `order_item_parts.alternative_group` - OR group number (for alternative parts)
+- `order_item_parts.alternative_part_ids` - JSON array of acceptable alternatives
+- `order_item_parts.actual_part_id` - The part actually scanned (if different from reserved)
+
+**OR Group Handling:**
+- When order placed: System picks best available part from OR group, but stores ALL alternatives
+- During fulfillment: Staff can scan ANY part from the OR group
+- Stock tracking: Removes the actual scanned part from inventory (not necessarily the reserved one)
+- Example: Product needs "Red Filament OR Blue Filament"
+  - Cart: Reserves Blue (more in stock)
+  - Fulfillment: Staff scans Red (it's closer)
+  - Result: Red removed from stock, order fulfilled successfully
+
+**Key Services:**
+- `InventoryService.get_part_availability()` - Calculates available = physical - reserved
+- `InventoryService.reserve_parts_for_order_item()` - Creates OrderItemPart records when order placed, intelligently picks from OR groups
+- `InventoryService.scan_part(order_item_part_id, scanned_by, scanned_part_id)` - Marks part scanned, validates alternative if provided, decrements physical stock
+- `/api/v1/fulfillment/` - API endpoints for scanning interface
+
+**Business Rules:**
+- Products cannot be ordered if available stock (after reservations) is insufficient
+- Unfilled orders block stock availability for new orders
+- Scanning interface must show all pending OrderItemParts grouped by order
+- Packing slips automatically exclude unfilled items
 
 ## Architecture Principles
 

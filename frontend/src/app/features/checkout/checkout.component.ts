@@ -15,6 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { CartService } from '@core/services/cart.service';
 import { AuthService } from '@core/services/auth.service';
+import { OrderService } from '@core/services/order.service';
+import { PaypalButtonComponent, PayPalResult } from '@shared/components/paypal-button/paypal-button.component';
 
 @Component({
   selector: 'app-checkout',
@@ -34,6 +36,7 @@ import { AuthService } from '@core/services/auth.service';
     MatSnackBarModule,
     MatIconModule,
     MatDividerModule,
+    PaypalButtonComponent,
   ],
   template: `
     <div class="checkout-container">
@@ -310,22 +313,25 @@ import { AuthService } from '@core/services/auth.service';
                     <span>\${{ orderTotal().toFixed(2) }}</span>
                   </div>
 
-                  <button 
-                    mat-raised-button 
-                    color="primary" 
-                    class="place-order-btn"
-                    (click)="placeOrder()"
-                    [disabled]="placingOrder()">
-                    @if (placingOrder()) {
-                      <mat-spinner diameter="20"></mat-spinner>
-                      Processing...
-                    } @else {
-                      <ng-container>
-                        <mat-icon>payment</mat-icon>
-                        Place Order
-                      </ng-container>
-                    }
-                  </button>
+                  @if (!placingOrder()) {
+                    <div class="paypal-button-container">
+                      <app-paypal-button
+                        [orderData]="{
+                          amount: orderTotal(),
+                          currency: 'USD',
+                          description: 'Kumpe3D Order - ' + cartService.itemCount$() + ' items'
+                        }"
+                        (onApprove)="handlePayPalApprove($event)"
+                        (onError)="handlePayPalError($event)"
+                        (onCancel)="handlePayPalCancel()">
+                      </app-paypal-button>
+                    </div>
+                  } @else {
+                    <div class="processing-order">
+                      <mat-spinner diameter="40"></mat-spinner>
+                      <p>Processing your order...</p>
+                    </div>
+                  }
 
                   <div class="step-actions">
                     <button mat-stroked-button matStepperPrevious>
@@ -547,6 +553,26 @@ import { AuthService } from '@core/services/auth.service';
       font-weight: 600;
     }
 
+    .paypal-button-container {
+      margin-top: 24px;
+      min-height: 150px;
+    }
+
+    .processing-order {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .processing-order p {
+      font-size: 16px;
+      color: #666;
+      margin: 0;
+    }
+
     .order-summary-sticky {
       position: sticky;
       top: 24px;
@@ -586,6 +612,7 @@ export class CheckoutComponent implements OnInit {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private snackBar = inject(MatSnackBar);
+  private orderService = inject(OrderService);
   
   cartService = inject(CartService);
   authService = inject(AuthService);
@@ -642,7 +669,9 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  placeOrder() {
+  handlePayPalApprove(result: PayPalResult) {
+    console.log('PayPal payment approved:', result);
+    
     if (!this.shippingForm.valid || !this.paymentForm.valid) {
       this.snackBar.open('Please complete all required fields', 'Close', { duration: 3000 });
       return;
@@ -650,12 +679,61 @@ export class CheckoutComponent implements OnInit {
 
     this.placingOrder.set(true);
 
-    // TODO: Implement PayPal integration
-    // For now, just show success message
-    setTimeout(() => {
-      this.placingOrder.set(false);
-      this.snackBar.open('Order placed successfully! (PayPal integration coming soon)', 'Close', { duration: 5000 });
-      this.router.navigate(['/orders']);
-    }, 2000);
+    // Get session ID from localStorage for guest users
+    const sessionId = localStorage.getItem('guest_session_id');
+    
+    // Build address from shipping form
+    const shippingAddress = {
+      first_name: this.shippingForm.value.first_name,
+      last_name: this.shippingForm.value.last_name,
+      company_name: this.shippingForm.value.company_name || '',
+      address_line1: this.shippingForm.value.address_line1,
+      address_line2: this.shippingForm.value.address_line2 || '',
+      city: this.shippingForm.value.city,
+      state: this.shippingForm.value.state_province,
+      zip_code: this.shippingForm.value.postal_code,
+      country: this.shippingForm.value.country || 'US',
+      phone: this.shippingForm.value.phone,
+    };
+
+    // Create order request matching backend schema
+    const orderData = {
+      session_id: sessionId || undefined,
+      email: this.shippingForm.value.email,
+      first_name: this.shippingForm.value.first_name,
+      last_name: this.shippingForm.value.last_name,
+      company_name: this.shippingForm.value.company_name || '',
+      shipping_address: shippingAddress,
+      payment_transaction_id: result.orderID,
+      notes: '',
+      client_browser: navigator.userAgent,
+    };
+
+    console.log('Creating order with data:', orderData);
+
+    this.orderService.createOrder(orderData).subscribe({
+      next: (order) => {
+        this.placingOrder.set(false);
+        this.snackBar.open('Order placed successfully!', 'Close', { duration: 5000 });
+        console.log('Order created:', order);
+        this.router.navigate(['/orders', order.order_number]);
+      },
+      error: (error) => {
+        this.placingOrder.set(false);
+        console.error('Error creating order:', error);
+        const errorMessage = error.error?.error?.message || 'Failed to create order. Please try again.';
+        this.snackBar.open(errorMessage, 'Close', { duration: 5000 });
+      }
+    });
+  }
+
+  handlePayPalError(error: any) {
+    console.error('PayPal error:', error);
+    this.snackBar.open('Payment failed. Please try again.', 'Close', { duration: 5000 });
+  }
+
+  handlePayPalCancel() {
+    console.log('PayPal payment cancelled');
+    this.snackBar.open('Payment cancelled', 'Close', { duration: 3000 });
   }
 }

@@ -19,7 +19,7 @@ export class AuthService {
   private router = inject(Router);
   private apiUrl = `${environment.apiUrl}/auth`;
 
-  private currentUserSubject = new BehaviorSubject<User | null>(null);
+  private currentUserSubject = new BehaviorSubject<User | null | undefined>(undefined);
   public currentUser$ = this.currentUserSubject.asObservable();
 
   private tokensSubject = new BehaviorSubject<AuthTokens | null>(this.getStoredTokens());
@@ -27,8 +27,15 @@ export class AuthService {
 
   constructor() {
     // Load user on app start if tokens exist
-    if (this.getStoredTokens()) {
+    const tokens = this.getStoredTokens();
+    console.log('AuthService constructor - tokens exist:', !!tokens);
+    if (tokens) {
+      console.log('AuthService constructor - calling loadCurrentUser()');
       this.loadCurrentUser();
+    } else {
+      // No tokens, user is definitely not logged in
+      console.log('AuthService constructor - no tokens, setting user to null');
+      this.currentUserSubject.next(null);
     }
   }
 
@@ -77,14 +84,26 @@ export class AuthService {
   }
 
   loadCurrentUser(): void {
+    console.log('loadCurrentUser() called, making request to /auth/me');
     this.http.get<APIResponse<User>>(`${this.apiUrl}/me`).subscribe({
       next: (response) => {
+        console.log('loadCurrentUser() - received response:', response);
         if (response.data) {
           this.currentUserSubject.next(response.data);
+        } else {
+          // No user data in response, clear tokens
+          console.log('loadCurrentUser() - no user data, clearing tokens');
+          this.clearTokens();
+          this.currentUserSubject.next(null);
         }
       },
-      error: () => {
-        this.clearTokens();
+      error: (error) => {
+        console.error('Failed to load user:', error);
+        // Clear tokens and logout on 401 Unauthorized
+        if (error.status === 401) {
+          this.clearTokens();
+        }
+        // Always set to null so guards can proceed
         this.currentUserSubject.next(null);
       },
     });
@@ -94,9 +113,17 @@ export class AuthService {
     return !!this.getStoredTokens();
   }
 
+  getCurrentUser(): User | null | undefined {
+    return this.currentUserSubject.value;
+  }
+
   isAdmin(): boolean {
     const user = this.currentUserSubject.value;
-    return user?.roles.some((role) => role.name === 'admin') ?? false;
+    if (user === undefined) {
+      // User not loaded yet
+      return false;
+    }
+    return user?.roles?.some((role) => role.name === 'admin') ?? false;
   }
 
   getAccessToken(): string | null {

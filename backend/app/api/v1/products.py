@@ -11,7 +11,7 @@ from sqlalchemy import select, func, or_
 from sqlalchemy.orm import selectinload
 
 from app.db.session import get_db
-from app.db.models import Product, Category, ProductImage, ProductPart, Part, ProductOption
+from app.db.models import Product, Category, ProductImage, ProductPart, Part, ProductOption, OptionPart
 from app.schemas.product import (
     ProductResponse,
     ProductDetailResponse,
@@ -146,7 +146,7 @@ async def get_product(
     query = query.options(
         selectinload(Product.images),
         selectinload(Product.categories),
-        selectinload(Product.options),
+        selectinload(Product.options).selectinload(ProductOption.parts).selectinload(OptionPart.part),
         selectinload(Product.parts).selectinload(ProductPart.part),
     )
     

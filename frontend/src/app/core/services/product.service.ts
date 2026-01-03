@@ -38,7 +38,7 @@ export class ProductService {
    * Get single product by ID
    */
   getProduct(id: number): Observable<APIResponse<Product>> {
-    return this.http.get<APIResponse<Product>>(`${this.apiUrl}/${id}`);
+    return this.http.get<APIResponse<Product>>(`${this.apiUrl}${id}`);
   }
 
   /**
@@ -65,14 +65,14 @@ export class ProductService {
   /**
    * Update product (admin only)
    */
-  updateProduct(id: number, product: Partial<Product>): Observable<APIResponse<Product>> {
-    return this.http.put<APIResponse<Product>>(`${this.apiUrl}/${id}`, product);
+  updateProduct(idOrSku: number | string, product: Partial<Product>): Observable<APIResponse<Product>> {
+    return this.http.put<APIResponse<Product>>(`${this.apiUrl}${idOrSku}`, product);
   }
 
   /**
    * Delete product (admin only)
    */
   deleteProduct(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}${id}`);
   }
 }

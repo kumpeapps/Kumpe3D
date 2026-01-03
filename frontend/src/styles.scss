@@ -217,3 +217,30 @@ a {
 .justify-content-between { justify-content: space-between !important; }
 .justify-content-center { justify-content: center !important; }
 .align-items-center { align-items: center !important; }
+
+/* Fix Angular Material Button Issues */
+.mat-mdc-raised-button, .mat-mdc-stroked-button, .mat-mdc-icon-button {
+  .mat-icon {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    vertical-align: middle !important;
+  }
+  
+  span:not(.mat-icon) {
+    vertical-align: middle !important;
+  }
+}
+
+.mat-mdc-raised-button .mdc-button__label,
+.mat-mdc-stroked-button .mdc-button__label {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+mat-card-header {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+}

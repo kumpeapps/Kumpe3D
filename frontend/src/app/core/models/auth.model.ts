@@ -8,7 +8,7 @@ export interface User {
   is_verified: boolean;
   created_at: string;
   last_login?: string;
-  roles: Role[];
+  roles?: Role[];  // Made optional for loading state
 }
 
 export interface Role {
